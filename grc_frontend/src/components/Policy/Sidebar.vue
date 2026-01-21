@@ -603,7 +603,7 @@
 
       <div @click="toggleSubmenu('vendorManagement')" class="menu-item has-submenu" :class="{'expanded': openMenus.vendorManagement}">
         <i class="fas fa-building icon"></i>
-        <span>Vendor Management</span>
+        <span>Due Diligence</span>
         <i class="fas fa-chevron-right submenu-arrow"></i>
       </div>
       <div v-if="!isCollapsed && openMenus.vendorManagement" class="submenu">
@@ -674,7 +674,21 @@
           </div>
         </div>
       </div>
-
+      <div @click="toggleSubmenu('vendorManagement')" class="menu-item has-submenu" :class="{'expanded': openMenus.vendorManagement}">
+        <i class="fas fa-building icon"></i>
+        <span>Vendor Management</span>
+        <i class="fas fa-chevron-right submenu-arrow"></i>
+      </div>
+      <div v-if="!isCollapsed && openMenus.vendorManagement" class="submenu">
+        <div class="menu-item" @click="navigate('/tprm/add-vendor')" :class="{'active': isActive('/tprm/add-vendor')}">
+          <i class="fas fa-plus icon"></i>
+          <span>Add Vendor</span>
+        </div>
+        <div class="menu-item" @click="navigate('/tprm/all-vendors')" :class="{'active': isActive('/tprm/all-vendors')}">
+          <i class="fas fa-list icon"></i>
+          <span>All Vendors</span>
+        </div>
+      </div>
       <div @click="toggleSubmenu('contractManagement')" class="menu-item has-submenu" :class="{'expanded': openMenus.contractManagement}">
         <i class="fas fa-file-contract icon"></i>
         <span>Contract Management</span>
