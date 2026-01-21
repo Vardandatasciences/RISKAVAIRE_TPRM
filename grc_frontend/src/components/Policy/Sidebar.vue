@@ -674,12 +674,12 @@
           </div>
         </div>
       </div>
-      <div @click="toggleSubmenu('vendorManagement')" class="menu-item has-submenu" :class="{'expanded': openMenus.vendorManagement}">
+      <div @click="toggleSubmenu('vendorMgmtModule')" class="menu-item has-submenu" :class="{'expanded': openMenus.vendorMgmtModule}">
         <i class="fas fa-building icon"></i>
         <span>Vendor Management</span>
         <i class="fas fa-chevron-right submenu-arrow"></i>
       </div>
-      <div v-if="!isCollapsed && openMenus.vendorManagement" class="submenu">
+      <div v-if="!isCollapsed && openMenus.vendorMgmtModule" class="submenu">
         <div class="menu-item" @click="navigate('/tprm/add-vendor')" :class="{'active': isActive('/tprm/add-vendor')}">
           <i class="fas fa-plus icon"></i>
           <span>Add Vendor</span>
@@ -1087,6 +1087,7 @@ export default {
       rfpWorkflow: false,
       rfpEvaluation: false,
       vendorManagement: false,
+      vendorMgmtModule: false,
       vendorQuestionnaire: false,
       vendorApproval: false,
       contractManagement: false,

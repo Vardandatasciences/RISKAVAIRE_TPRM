@@ -1058,6 +1058,13 @@ const routes = [
   component: SentinelIntegration,
   meta: { requiresAuth: true }
 },
+  // TPRM specific routes (must come before wildcard)
+  {
+    path: '/tprm/add-vendor',
+    name: 'AddVendor',
+    component: () => import('../components/TPRM/AddVendor.vue'),
+    meta: { requiresAuth: true }
+  },
   // TPRM catch-all route - loads the Vite app inside an iframe
   {
     path: '/tprm',
