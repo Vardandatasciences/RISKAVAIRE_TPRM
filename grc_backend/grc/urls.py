@@ -3132,5 +3132,11 @@ path('bamboohr/oauth/', bamboohr_oauth, name='bamboohr-oauth'),
     path('streamline/save-project-tasks/', streamline_save_project_tasks, name='streamline-save-project-tasks'),
     path('streamline/user-task-actions/', streamline_get_user_task_actions, name='streamline-get-user-task-actions'),
 
+    # ========================================================================
+    # TPRM MANAGEMENT APIs - Vendor Listing and Management
+    # ========================================================================
+    path('api/v1/management/', include('tprm_backend.apps.management.urls')),
+    path('api/tprm/v1/management/', include('tprm_backend.apps.management.urls')),
+    path('api/tprm/management/', include('tprm_backend.apps.management.urls')),
  
 ]

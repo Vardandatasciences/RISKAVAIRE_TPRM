@@ -1059,12 +1059,8 @@ const routes = [
   meta: { requiresAuth: true }
 },
   // TPRM specific routes (must come before wildcard)
-  {
-    path: '/tprm/add-vendor',
-    name: 'AddVendor',
-    component: () => import('../components/TPRM/AddVendor.vue'),
-    meta: { requiresAuth: true }
-  },
+  // Note: All TPRM routes use the TprmWrapper component which loads the TPRM app in an iframe
+  // The actual routes/components live in grc_frontend/tprm_frontend/src/
   // TPRM catch-all route - loads the Vite app inside an iframe
   {
     path: '/tprm',

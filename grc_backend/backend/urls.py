@@ -267,6 +267,11 @@ urlpatterns = [
     path('api/v1/vendor-invitations/send/<int:rfp_id>/', rfp_views.send_vendor_invitations, name='send_vendor_invitations_v1'),
     path('api/v1/vendor-invitations/primary-contacts/', rfp_views.get_primary_contacts, name='get_primary_contacts_v1'),
     path('api/v1/vendor-dashboard/', include('tprm_backend.apps.vendor_dashboard.urls')),  # Frontend compatibility for /api/v1/vendor-dashboard/
+    
+    # TPRM Management APIs - Vendor Listing and Management
+    path('api/v1/management/', include('tprm_backend.apps.management.urls')),
+    path('api/tprm/v1/management/', include('tprm_backend.apps.management.urls')),
+    path('api/tprm/management/', include('tprm_backend.apps.management.urls')),
 ]
 
 # Serve media files during development

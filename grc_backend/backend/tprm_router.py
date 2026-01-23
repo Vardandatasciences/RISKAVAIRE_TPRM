@@ -54,6 +54,11 @@ class TPRMDatabaseRouter:
         'vendor_approval',
         'tprm_backend.apps.vendor_approval',
         'tprm_compliance',
+        'tprm_management',
+        'management',
+        'tprm_backend.management',  # Old path for backwards compatibility
+        'tprm_backend.apps.management',  # New path
+
         'compliance',
         'tprm_backend.compliance',
         'tprm_bcpdrp',

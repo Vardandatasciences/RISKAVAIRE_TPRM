@@ -526,6 +526,18 @@ const router = createRouter({
       component: () => import('@/pages/vendor/Login.vue'),
       meta: { publicRoute: true }
     },
+    {
+      path: '/add-vendor',
+      name: 'Add Vendor',
+      component: () => import('@/pages/management/AddVendor.vue'),
+      meta: { requiresAuth: true, permission: 'vendor_create' }
+    },
+    {
+      path: '/all-vendors',
+      name: 'AllVendors',
+      component: () => import('@/pages/management/AllVendors.vue'),
+      meta: { requiresAuth: true, permission: 'vendor_view' }
+    },
     
     // RFP Management Routes
     {

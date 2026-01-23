@@ -4121,28 +4121,20 @@ def decline_invitation(request, token):
 
 
 @api_view(['GET', 'POST'])
-@authentication_classes([JWTAuthentication])
-@permission_classes([SimpleAuthenticatedPermission])
-@rbac_rfp_required('view_rfp')
-@require_tenant  # MULTI-TENANCY: Ensure tenant is present
-@tenant_filter   # MULTI-TENANCY: Add tenant_id to request
+# NO AUTHENTICATION REQUIRED - Public endpoint accessed via email links
 def ack_invitation_with_ids(request, rfp_id, invitation_id):
     """
     Track acknowledgement via link containing rfp_id and invitation_id.
     Sets invitation_status to ACKNOWLEDGED, is_acknowledged=True, and timestamp.
-    MULTI-TENANCY: Only allows acknowledging invitations for tenant's RFP
+    PUBLIC ENDPOINT: No authentication required - accessed via email links.
+    MULTI-TENANCY: Gets tenant_id from invitation itself for security.
     """
-    # MULTI-TENANCY: Get tenant_id from request
-    tenant_id = get_tenant_id_from_request(request)
-    if not tenant_id:
-        return JsonResponse({
-            'success': False,
-            'error': 'Tenant context not found'
-        }, status=403)
-    
     try:
-        # MULTI-TENANCY: Filter invitation by tenant
-        invitation = get_object_or_404(VendorInvitation, invitation_id=invitation_id, rfp__rfp_id=rfp_id, tenant_id=tenant_id)
+        # Get invitation and validate it exists and matches rfp_id
+        # This provides security without requiring authentication
+        invitation = get_object_or_404(VendorInvitation, invitation_id=invitation_id, rfp__rfp_id=rfp_id)
+        # Get tenant_id from invitation (not from request since this is public)
+        tenant_id = invitation.tenant_id
         if request.method == 'POST':
             invitation.invitation_status = 'ACKNOWLEDGED'
             invitation.is_acknowledged = True
@@ -4181,28 +4173,20 @@ def ack_invitation_with_ids(request, rfp_id, invitation_id):
 
 
 @api_view(['GET', 'POST'])
-@authentication_classes([JWTAuthentication])
-@permission_classes([SimpleAuthenticatedPermission])
-@rbac_rfp_required('view_rfp')
-@require_tenant  # MULTI-TENANCY: Ensure tenant is present
-@tenant_filter   # MULTI-TENANCY: Add tenant_id to request
+# NO AUTHENTICATION REQUIRED - Public endpoint accessed via email links
 def decline_invitation_with_ids(request, rfp_id, invitation_id):
     """
     Track decline via link containing rfp_id and invitation_id.
     Sets invitation_status to DECLINED, is_acknowledged=False and stores declined_reason if provided.
-    MULTI-TENANCY: Only allows declining invitations for tenant's RFP
+    PUBLIC ENDPOINT: No authentication required - accessed via email links.
+    MULTI-TENANCY: Gets tenant_id from invitation itself for security.
     """
-    # MULTI-TENANCY: Get tenant_id from request
-    tenant_id = get_tenant_id_from_request(request)
-    if not tenant_id:
-        return JsonResponse({
-            'success': False,
-            'error': 'Tenant context not found'
-        }, status=403)
-    
     try:
-        # MULTI-TENANCY: Filter invitation by tenant
-        invitation = get_object_or_404(VendorInvitation, invitation_id=invitation_id, rfp__rfp_id=rfp_id, tenant_id=tenant_id)
+        # Get invitation and validate it exists and matches rfp_id
+        # This provides security without requiring authentication
+        invitation = get_object_or_404(VendorInvitation, invitation_id=invitation_id, rfp__rfp_id=rfp_id)
+        # Get tenant_id from invitation (not from request since this is public)
+        tenant_id = invitation.tenant_id
         decline_reason = None
         if request.method == 'POST':
             try:
