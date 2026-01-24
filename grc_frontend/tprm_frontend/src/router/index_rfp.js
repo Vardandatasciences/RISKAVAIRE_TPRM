@@ -24,6 +24,12 @@ import Phase8ConsensusAndAward from '@/views/rfp/Phase8ConsensusAndAward.vue'
 import RFPList from '@/views/rfp/RFPList.vue'
 import NotFound from '@/views/rfp/NotFound.vue'
 import AccessDenied from '@/components/AccessDenied.vue'
+// Procurement Type Components
+import RFICreation from '@/views/rfi/RFICreation.vue'
+import RPQCreation from '@/views/rpq/RPQCreation.vue'
+import DirectCreation from '@/views/Direct/DirectCreation.vue'
+import AuctionCreation from '@/views/Auction/AuctionCreation.vue'
+import EmergencyCreation from '@/views/Emergency/EmergencyCreation.vue'
 
 const routes = [
   {
@@ -199,6 +205,116 @@ const routes = [
     component: GenericWrapper,
     props: { component: RFPList },
     meta: { title: 'RFP Management', requiresAuth: true, permission: 'view_rfp' }
+  },
+  // RFI Routes
+  {
+    path: '/rfi-creation',
+    name: 'RFICreation',
+    component: GenericWrapper,
+    props: { component: RFICreation },
+    meta: { title: 'RFI Creation', requiresAuth: true, permission: 'create_rfp' }
+  },
+  {
+    path: '/rfi-dashboard',
+    name: 'RFIDashboard',
+    component: GenericWrapper,
+    props: { component: Dashboard },
+    meta: { title: 'RFI Dashboard', requiresAuth: true, permission: 'view_rfp' }
+  },
+  {
+    path: '/rfi-list',
+    name: 'RFIList',
+    component: GenericWrapper,
+    props: { component: RFPList },
+    meta: { title: 'RFI List', requiresAuth: true, permission: 'view_rfp' }
+  },
+  // RPQ Routes
+  {
+    path: '/rpq-creation',
+    name: 'RPQCreation',
+    component: GenericWrapper,
+    props: { component: RPQCreation },
+    meta: { title: 'RPQ Creation', requiresAuth: true, permission: 'create_rfp' }
+  },
+  {
+    path: '/rpq-dashboard',
+    name: 'RPQDashboard',
+    component: GenericWrapper,
+    props: { component: Dashboard },
+    meta: { title: 'RPQ Dashboard', requiresAuth: true, permission: 'view_rfp' }
+  },
+  {
+    path: '/rpq-list',
+    name: 'RPQList',
+    component: GenericWrapper,
+    props: { component: RFPList },
+    meta: { title: 'RPQ List', requiresAuth: true, permission: 'view_rfp' }
+  },
+  // Direct Procurement Routes
+  {
+    path: '/direct-creation',
+    name: 'DirectCreation',
+    component: GenericWrapper,
+    props: { component: DirectCreation },
+    meta: { title: 'Direct Procurement Creation', requiresAuth: true, permission: 'create_rfp' }
+  },
+  {
+    path: '/direct-dashboard',
+    name: 'DirectDashboard',
+    component: GenericWrapper,
+    props: { component: Dashboard },
+    meta: { title: 'Direct Procurement Dashboard', requiresAuth: true, permission: 'view_rfp' }
+  },
+  {
+    path: '/direct-list',
+    name: 'DirectList',
+    component: GenericWrapper,
+    props: { component: RFPList },
+    meta: { title: 'Direct Procurement List', requiresAuth: true, permission: 'view_rfp' }
+  },
+  // Auction Routes
+  {
+    path: '/auction-creation',
+    name: 'AuctionCreation',
+    component: GenericWrapper,
+    props: { component: AuctionCreation },
+    meta: { title: 'Auction Creation', requiresAuth: true, permission: 'create_rfp' }
+  },
+  {
+    path: '/auction-dashboard',
+    name: 'AuctionDashboard',
+    component: GenericWrapper,
+    props: { component: Dashboard },
+    meta: { title: 'Auction Dashboard', requiresAuth: true, permission: 'view_rfp' }
+  },
+  {
+    path: '/auction-list',
+    name: 'AuctionList',
+    component: GenericWrapper,
+    props: { component: RFPList },
+    meta: { title: 'Auction List', requiresAuth: true, permission: 'view_rfp' }
+  },
+  // Emergency Procurement Routes
+  {
+    path: '/emergency-creation',
+    name: 'EmergencyCreation',
+    component: GenericWrapper,
+    props: { component: EmergencyCreation },
+    meta: { title: 'Emergency Procurement Creation', requiresAuth: true, permission: 'create_rfp' }
+  },
+  {
+    path: '/emergency-dashboard',
+    name: 'EmergencyDashboard',
+    component: GenericWrapper,
+    props: { component: Dashboard },
+    meta: { title: 'Emergency Procurement Dashboard', requiresAuth: true, permission: 'view_rfp' }
+  },
+  {
+    path: '/emergency-list',
+    name: 'EmergencyList',
+    component: GenericWrapper,
+    props: { component: RFPList },
+    meta: { title: 'Emergency Procurement List', requiresAuth: true, permission: 'view_rfp' }
   },
   {
     path: '/access-denied',

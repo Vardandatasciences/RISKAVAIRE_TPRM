@@ -73,6 +73,12 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('tprm_backend.rfp.urls')),
+    # Procurement type URLs
+    path('api/v1/', include('tprm_backend.rfp.rfi.urls')),
+    path('api/v1/', include('tprm_backend.rfp.rpq.urls')),
+    path('api/v1/', include('tprm_backend.rfp.direct.urls')),
+    path('api/v1/', include('tprm_backend.rfp.auction.urls')),
+    path('api/v1/', include('tprm_backend.rfp.emergency.urls')),
     path('api/v1/vendor-core/', include('tprm_backend.apps.vendor_core.urls')),
     # Management URLs - try include first, add direct routes as fallback
     path('api/v1/management/', include('tprm_backend.apps.management.urls')),

@@ -1061,13 +1061,116 @@ const routes = [
   // TPRM specific routes (must come before wildcard)
   // Note: All TPRM routes use the TprmWrapper component which loads the TPRM app in an iframe
   // The actual routes/components live in grc_frontend/tprm_frontend/src/
-  // TPRM catch-all route - loads the Vite app inside an iframe
+  
+  // TPRM Root
   {
     path: '/tprm',
     name: 'TPRMRoot',
     component: () => import('../views/TprmWrapper.vue'),
     meta: { requiresAuth: true }
   },
+  
+  // RFI Routes
+  {
+    path: '/tprm/rfi-creation',
+    name: 'TPRMRFICreation',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/rfi-dashboard',
+    name: 'TPRMRFIDashboard',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/rfi-list',
+    name: 'TPRMRFIList',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  
+  // RPQ Routes
+  {
+    path: '/tprm/rpq-creation',
+    name: 'TPRMRPQCreation',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/rpq-dashboard',
+    name: 'TPRMRPQDashboard',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/rpq-list',
+    name: 'TPRMRPQList',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  
+  // Direct Procurement Routes
+  {
+    path: '/tprm/direct-creation',
+    name: 'TPRMDirectCreation',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/direct-dashboard',
+    name: 'TPRMDirectDashboard',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/direct-list',
+    name: 'TPRMDirectList',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  
+  // Auction Routes
+  {
+    path: '/tprm/auction-creation',
+    name: 'TPRMAuctionCreation',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/auction-dashboard',
+    name: 'TPRMAuctionDashboard',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/auction-list',
+    name: 'TPRMAuctionList',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  
+  // Emergency Procurement Routes
+  {
+    path: '/tprm/emergency-creation',
+    name: 'TPRMEmergencyCreation',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/emergency-dashboard',
+    name: 'TPRMEmergencyDashboard',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tprm/emergency-list',
+    name: 'TPRMEmergencyList',
+    component: () => import('../views/TprmWrapper.vue'),
+    meta: { requiresAuth: true }
+  },
+  
+  // TPRM catch-all route - loads the Vite app inside an iframe (must be last)
   {
     path: '/tprm/:tprmPath(.*)*',
     name: 'TPRMWildcard',

@@ -109,16 +109,23 @@ export default {
     const BASE_URL = getTprmBaseUrl()
 
     const normalizedPath = computed(() => {
-      const param = route.params.tprmPath
-
       let pathValue = ''
+      
+      // First, try to get path from route params (for wildcard routes)
+      const param = route.params.tprmPath
       if (Array.isArray(param)) {
         pathValue = param.join('/')
       } else if (typeof param === 'string') {
         pathValue = param
       }
-
-      // If no path value, default to '/' (home page)
+      
+      // If no param (specific routes like /tprm/rpq-creation), extract from route.path
+      if (!pathValue && route.path && route.path.startsWith('/tprm/')) {
+        // Extract everything after /tprm/
+        pathValue = route.path.replace(/^\/tprm\/?/, '')
+      }
+      
+      // If still no path value, default to '/' (home page)
       // But ensure it's a valid path for the TPRM app
       const cleanPath = pathValue ? `/${pathValue}` : '/'
       

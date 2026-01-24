@@ -619,6 +619,10 @@
             <i class="fas fa-tachometer-alt icon"></i>
             <span>RFI Dashboard</span>
           </div>
+          <div class="menu-item" @click="navigate('/tprm/rfi-creation')" :class="{'active': isActive('/tprm/rfi-creation')}">
+            <i class="fas fa-plus icon"></i>
+            <span>Create RFI</span>
+          </div>
           <div class="menu-item" @click="navigate('/tprm/rfi-list')" :class="{'active': isActive('/tprm/rfi-list')}">
             <i class="fas fa-list icon"></i>
             <span>Select RFI</span>
@@ -634,6 +638,10 @@
           <div class="menu-item" @click="navigate('/tprm/rpq-dashboard')" :class="{'active': isActive('/tprm/rpq')}">
             <i class="fas fa-tachometer-alt icon"></i>
             <span>RPQ Dashboard</span>
+          </div>
+          <div class="menu-item" @click="navigate('/tprm/rpq-creation')" :class="{'active': isActive('/tprm/rpq-creation')}">
+            <i class="fas fa-plus icon"></i>
+            <span>Create RPQ</span>
           </div>
           <div class="menu-item" @click="navigate('/tprm/rpq-list')" :class="{'active': isActive('/tprm/rpq-list')}">
             <i class="fas fa-list icon"></i>
@@ -651,6 +659,10 @@
             <i class="fas fa-tachometer-alt icon"></i>
             <span>Auction Dashboard</span>
           </div>
+          <div class="menu-item" @click="navigate('/tprm/auction-creation')" :class="{'active': isActive('/tprm/auction-creation')}">
+            <i class="fas fa-plus icon"></i>
+            <span>Create Auction</span>
+          </div>
           <div class="menu-item" @click="navigate('/tprm/auction-list')" :class="{'active': isActive('/tprm/auction-list')}">
             <i class="fas fa-list icon"></i>
             <span>Select Auction</span>
@@ -667,6 +679,10 @@
             <i class="fas fa-tachometer-alt icon"></i>
             <span>Direct Dashboard</span>
           </div>
+          <div class="menu-item" @click="navigate('/tprm/direct-creation')" :class="{'active': isActive('/tprm/direct-creation')}">
+            <i class="fas fa-plus icon"></i>
+            <span>Create Direct Procurement</span>
+          </div>
           <div class="menu-item" @click="navigate('/tprm/direct-list')" :class="{'active': isActive('/tprm/direct-list')}">
             <i class="fas fa-list icon"></i>
             <span>Select Direct</span>
@@ -682,6 +698,10 @@
           <div class="menu-item" @click="navigate('/tprm/emergency-dashboard')" :class="{'active': isActive('/tprm/emergency')}">
             <i class="fas fa-tachometer-alt icon"></i>
             <span>Emergency Dashboard</span>
+          </div>
+          <div class="menu-item" @click="navigate('/tprm/emergency-creation')" :class="{'active': isActive('/tprm/emergency-creation')}">
+            <i class="fas fa-plus icon"></i>
+            <span>Create Emergency Procurement</span>
           </div>
           <div class="menu-item" @click="navigate('/tprm/emergency-list')" :class="{'active': isActive('/tprm/emergency-list')}">
             <i class="fas fa-list icon"></i>

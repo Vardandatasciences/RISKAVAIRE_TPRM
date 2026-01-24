@@ -588,6 +588,106 @@ const router = createRouter({
       component: () => import('@/views/rfp/RFPList.vue'),
       meta: { requiresAuth: true, permission: 'view_rfp' }
     },
+    
+    // RFI Routes
+    {
+      path: '/rfi-creation',
+      name: 'RFI Creation',
+      component: () => import('@/views/rfi/RFICreation.vue'),
+      meta: { requiresAuth: true, permission: 'create_rfp' }
+    },
+    {
+      path: '/rfi-dashboard',
+      name: 'RFI Dashboard',
+      component: () => import('@/views/rfp/Dashboard.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
+    {
+      path: '/rfi-list',
+      name: 'RFI List',
+      component: () => import('@/views/rfp/RFPList.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
+    
+    // RPQ Routes
+    {
+      path: '/rpq-creation',
+      name: 'RPQ Creation',
+      component: () => import('@/views/rpq/RPQCreation.vue'),
+      meta: { requiresAuth: true, permission: 'create_rfp' }
+    },
+    {
+      path: '/rpq-dashboard',
+      name: 'RPQ Dashboard',
+      component: () => import('@/views/rfp/Dashboard.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
+    {
+      path: '/rpq-list',
+      name: 'RPQ List',
+      component: () => import('@/views/rfp/RFPList.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
+    
+    // Direct Procurement Routes
+    {
+      path: '/direct-creation',
+      name: 'Direct Creation',
+      component: () => import('@/views/Direct/DirectCreation.vue'),
+      meta: { requiresAuth: true, permission: 'create_rfp' }
+    },
+    {
+      path: '/direct-dashboard',
+      name: 'Direct Dashboard',
+      component: () => import('@/views/rfp/Dashboard.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
+    {
+      path: '/direct-list',
+      name: 'Direct List',
+      component: () => import('@/views/rfp/RFPList.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
+    
+    // Auction Routes
+    {
+      path: '/auction-creation',
+      name: 'Auction Creation',
+      component: () => import('@/views/Auction/AuctionCreation.vue'),
+      meta: { requiresAuth: true, permission: 'create_rfp' }
+    },
+    {
+      path: '/auction-dashboard',
+      name: 'Auction Dashboard',
+      component: () => import('@/views/rfp/Dashboard.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
+    {
+      path: '/auction-list',
+      name: 'Auction List',
+      component: () => import('@/views/rfp/RFPList.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
+    
+    // Emergency Procurement Routes
+    {
+      path: '/emergency-creation',
+      name: 'Emergency Creation',
+      component: () => import('@/views/Emergency/EmergencyCreation.vue'),
+      meta: { requiresAuth: true, permission: 'create_rfp' }
+    },
+    {
+      path: '/emergency-dashboard',
+      name: 'Emergency Dashboard',
+      component: () => import('@/views/rfp/Dashboard.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
+    {
+      path: '/emergency-list',
+      name: 'Emergency List',
+      component: () => import('@/views/rfp/RFPList.vue'),
+      meta: { requiresAuth: true, permission: 'view_rfp' }
+    },
     {
       path: '/rfp-comparison',
       name: 'RFP Comparison',
