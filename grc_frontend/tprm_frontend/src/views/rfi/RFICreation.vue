@@ -36,7 +36,7 @@
                 :disabled="isSubmitting || isGeneratingDocument || isUploadingDocuments"
                 class="inline-flex items-center justify-center px-4 h-10 rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 transition-all text-sm font-medium shadow-sm"
               >
-                <Icons name="wand-2" class="h-4 w-4 mr-1.5" />
+                <Icons name="lightbulb" class="h-4 w-4 mr-1.5" />
                 <span>Load Sample</span>
               </button>
               
@@ -942,6 +942,16 @@ const handleSaveDraft = async () => {
       ? formData.value.complianceRequirements.split(/[,\n]/).map(r => r.trim()).filter(r => r)
       : null
     
+    // Prepare documents array with metadata
+    const documentsArray = uploadedDocuments.value.map(doc => ({
+      name: doc.name,
+      fileName: doc.fileName,
+      fileSize: doc.fileSize,
+      uploaded: doc.uploaded || false,
+      url: doc.url || null,
+      uploadedAt: doc.uploadedAt || null
+    }))
+    
     const rfiData = {
       rfi_number: formData.value.rfiNumber,
       rfi_title: formData.value.title,
@@ -964,7 +974,8 @@ const handleSaveDraft = async () => {
       allow_late_submissions: Boolean(formData.value.allowLateSubmissions),
       auto_approve: Boolean(formData.value.autoApprove),
       status: 'DRAFT',
-      custom_fields: formData.value.customFields || null
+      custom_fields: formData.value.customFields || null,
+      documents: documentsArray.length > 0 ? documentsArray : null
     }
     
     let existingRfiId = localStorage.getItem('current_rfi_id')
@@ -1039,10 +1050,8 @@ const handleSaveDraft = async () => {
 
 const handleProceedToApprovalWorkflow = async () => {
   await handleSaveDraft()
-  // Navigate to approval workflow
-  setTimeout(() => {
-    router.push('/approval-management')
-  }, 1000)
+  // Stay on the same screen after saving
+  success('RFI Saved', 'Your RFI has been saved successfully. You can continue editing or proceed with the approval workflow when ready.')
 }
 
 let autoSaveInterval: any = null

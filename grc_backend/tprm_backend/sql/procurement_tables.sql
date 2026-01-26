@@ -1,6 +1,6 @@
 -- =====================================================
 -- SQL Script to Create Procurement Type Tables
--- RFI, RPQ, Direct, Auction, and Emergency
+-- RFI, RFQ, Direct, Auction, and Emergency
 -- =====================================================
 
 -- =====================================================
@@ -80,15 +80,15 @@ CREATE TABLE IF NOT EXISTS `rfi_evaluation_criteria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
--- 2. RPQ (Request for Quotation) Table
+-- 2. RFQ (Request for Quotation) Table
 -- =====================================================
-CREATE TABLE IF NOT EXISTS `rpqs` (
-  `rpq_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS `rfqs` (
+  `rfq_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `TenantId` INT NULL,
-  `rpq_number` VARCHAR(50) UNIQUE NULL,
-  `rpq_title` VARCHAR(255) NOT NULL,
+  `rfq_number` VARCHAR(50) UNIQUE NULL,
+  `rfq_title` VARCHAR(255) NOT NULL,
   `description` TEXT NOT NULL,
-  `rpq_type` TEXT NOT NULL,
+  `rfq_type` TEXT NOT NULL,
   `category` VARCHAR(100) NULL,
   `estimated_value` DECIMAL(15, 2) NULL,
   `currency` VARCHAR(10) DEFAULT 'USD',
@@ -120,18 +120,18 @@ CREATE TABLE IF NOT EXISTS `rpqs` (
   `award_decision_date` DATETIME NULL,
   `award_justification` TEXT NULL,
   `documents` JSON NULL,
-  INDEX `idx_rpq_number` (`rpq_number`),
+  INDEX `idx_rfq_number` (`rfq_number`),
   INDEX `idx_status` (`status`),
   INDEX `idx_created_by` (`created_by`),
   INDEX `idx_tenant` (`TenantId`),
   INDEX `idx_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- RPQ Evaluation Criteria Table
-CREATE TABLE IF NOT EXISTS `rpq_evaluation_criteria` (
+-- RFQ Evaluation Criteria Table
+CREATE TABLE IF NOT EXISTS `rfq_evaluation_criteria` (
   `criteria_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `TenantId` INT NULL,
-  `rpq_id` BIGINT NOT NULL,
+  `rfq_id` BIGINT NOT NULL,
   `criteria_name` VARCHAR(255) NOT NULL,
   `criteria_description` TEXT NOT NULL,
   `weight_percentage` DECIMAL(5, 2) NOT NULL,
@@ -149,10 +149,10 @@ CREATE TABLE IF NOT EXISTS `rpq_evaluation_criteria` (
   `created_date` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `data_inventory` JSON NULL,
   `retentionExpiry` DATE NULL,
-  INDEX `idx_rpq` (`rpq_id`),
+  INDEX `idx_rfq` (`rfq_id`),
   INDEX `idx_is_mandatory` (`is_mandatory`),
   INDEX `idx_tenant` (`TenantId`),
-  FOREIGN KEY (`rpq_id`) REFERENCES `rpqs`(`rpq_id`) ON DELETE CASCADE
+  FOREIGN KEY (`rfq_id`) REFERENCES `rfqs`(`rfq_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
@@ -428,7 +428,7 @@ CREATE TABLE IF NOT EXISTS `emergency_evaluation_criteria` (
 CREATE TABLE IF NOT EXISTS `procurement_type_custom_fields` (
   `procurement_type_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
   `TenantId` INT NULL,
-  `procurement_type` VARCHAR(255) NOT NULL COMMENT 'RFI, RPQ, Direct, Auction, Emergency',
+  `procurement_type` VARCHAR(255) NOT NULL COMMENT 'RFI, RFQ, Direct, Auction, Emergency',
   `custom_fields` JSON NULL,
   `response_fields` JSON NULL,
   `data_inventory` JSON NULL,

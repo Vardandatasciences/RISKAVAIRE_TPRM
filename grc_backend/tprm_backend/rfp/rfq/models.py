@@ -5,9 +5,9 @@ import json
 from tprm_backend.utils.encrypted_fields_mixin import TPRMEncryptedFieldsMixin
 
 
-class RPQ(TPRMEncryptedFieldsMixin, models.Model):
+class RFQ(TPRMEncryptedFieldsMixin, models.Model):
     """
-    Model for Request for Quotation (RPQ) data
+    Model for Request for Quotation (RFQ) data
     """
     
     STATUS_CHOICES = [
@@ -36,17 +36,17 @@ class RPQ(TPRMEncryptedFieldsMixin, models.Model):
     ]
     
     # Primary key
-    rpq_id = models.BigAutoField(primary_key=True, auto_created=True)
+    rfq_id = models.BigAutoField(primary_key=True, auto_created=True, db_column='rpq_id')
     
-    # MULTI-TENANCY: Link RPQ to tenant
+    # MULTI-TENANCY: Link RFQ to tenant
     tenant = models.ForeignKey('core.Tenant', on_delete=models.CASCADE, db_column='TenantId', 
-                               related_name='rpqs', null=True, blank=True)
+                               related_name='rfqs', null=True, blank=True)
     
     # Basic information
-    rpq_number = models.CharField(max_length=50, unique=True, null=True, blank=True)
-    rpq_title = models.CharField(max_length=255)
+    rfq_number = models.CharField(max_length=50, unique=True, null=True, blank=True, db_column='rpq_number')
+    rfq_title = models.CharField(max_length=255, db_column='rpq_title')
     description = models.TextField()
-    rpq_type = models.TextField()
+    rfq_type = models.TextField(db_column='rpq_type')
     category = models.CharField(max_length=100, null=True, blank=True)
     
     # Budget information
@@ -96,27 +96,27 @@ class RPQ(TPRMEncryptedFieldsMixin, models.Model):
     documents = models.JSONField(null=True, blank=True)
     
     def __str__(self):
-        return f"{self.rpq_title} ({self.rpq_number})"
+        return f"{self.rfq_title} ({self.rfq_number})"
     
     def save(self, *args, **kwargs):
-        if isinstance(self.rpq_number, str):
-            self.rpq_number = self.rpq_number.strip()
-            if not self.rpq_number:
-                self.rpq_number = None
+        if isinstance(self.rfq_number, str):
+            self.rfq_number = self.rfq_number.strip()
+            if not self.rfq_number:
+                self.rfq_number = None
         
-        if not self.rpq_number and not self.pk:
+        if not self.rfq_number and not self.pk:
             today = timezone.now()
-            prefix = f"RPQ-{today.year}-{today.month:02d}-"
-            last_rpq = RPQ.objects.filter(rpq_number__startswith=prefix).order_by('-rpq_number').first()
-            if last_rpq:
+            prefix = f"RFQ-{today.year}-{today.month:02d}-"
+            last_rfq = RFQ.objects.filter(rfq_number__startswith=prefix).order_by('-rfq_number').first()
+            if last_rfq:
                 try:
-                    last_number = int(last_rpq.rpq_number.split('-')[-1])
+                    last_number = int(last_rfq.rfq_number.split('-')[-1])
                     new_number = last_number + 1
                 except (ValueError, IndexError):
                     new_number = 1
             else:
                 new_number = 1
-            self.rpq_number = f"{prefix}{new_number:04d}"
+            self.rfq_number = f"{prefix}{new_number:04d}"
         
         if isinstance(self.compliance_requirements, str):
             try:
@@ -133,19 +133,19 @@ class RPQ(TPRMEncryptedFieldsMixin, models.Model):
         super().save(*args, **kwargs)
     
     class Meta:
-        db_table = 'rpqs'
+        db_table = 'rfqs'
         ordering = ['-created_at']
         indexes = [
-            models.Index(fields=['rpq_number']),
-            models.Index(fields=['status']),
-            models.Index(fields=['created_by']),
-            models.Index(fields=['tenant']),
-            models.Index(fields=['created_at']),
+            models.Index(fields=['rfq_number'], name='idx_rfq_number'),
+            models.Index(fields=['status'], name='idx_status'),
+            models.Index(fields=['created_by'], name='idx_created_by'),
+            models.Index(fields=['tenant'], name='idx_tenant'),
+            models.Index(fields=['created_at'], name='idx_created_at'),
         ]
 
 
-class RPQEvaluationCriteria(models.Model):
-    """Model for RPQ evaluation criteria"""
+class RFQEvaluationCriteria(models.Model):
+    """Model for RFQ evaluation criteria"""
     EVALUATION_TYPE_CHOICES = [
         ('scoring', 'Scoring'),
         ('binary', 'Binary'),
@@ -154,8 +154,8 @@ class RPQEvaluationCriteria(models.Model):
     
     criteria_id = models.BigAutoField(primary_key=True)
     tenant = models.ForeignKey('core.Tenant', on_delete=models.CASCADE, db_column='TenantId', 
-                               related_name='rpq_evaluation_criteria', null=True, blank=True)
-    rpq = models.ForeignKey(RPQ, on_delete=models.CASCADE, related_name='evaluation_criteria', db_column='rpq_id')
+                               related_name='rfq_evaluation_criteria', null=True, blank=True)
+    rfq = models.ForeignKey(RFQ, on_delete=models.CASCADE, related_name='evaluation_criteria', db_column='rpq_id')
     criteria_name = models.CharField(max_length=255)
     criteria_description = models.TextField()
     weight_percentage = models.DecimalField(max_digits=5, decimal_places=2)
@@ -178,10 +178,10 @@ class RPQEvaluationCriteria(models.Model):
         return f"{self.criteria_name} - {self.weight_percentage}%"
     
     class Meta:
-        db_table = 'rpq_evaluation_criteria'
+        db_table = 'rfq_evaluation_criteria'
         ordering = ['display_order', 'criteria_id']
         indexes = [
-            models.Index(fields=['rpq']),
+            models.Index(fields=['rfq']),
             models.Index(fields=['is_mandatory']),
             models.Index(fields=['tenant']),
         ]

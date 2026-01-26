@@ -57,6 +57,18 @@ except Exception as e:
 
 print("="*80 + "\n", file=sys.stdout, flush=True)
 
+# Test RFI URL imports
+print("🔧 [URLs] Testing RFI URL imports...", file=sys.stdout, flush=True)
+try:
+    from tprm_backend.rfp.rfi import urls as rfi_urls_module
+    print(f"✅ [URLs] RFI URLs imported successfully. Patterns: {len(rfi_urls_module.urlpatterns)}", file=sys.stdout, flush=True)
+    for pattern in rfi_urls_module.urlpatterns:
+        print(f"   - {pattern.pattern}", file=sys.stdout, flush=True)
+except Exception as e:
+    print(f"❌ [URLs] Failed to import RFI URLs: {e}", file=sys.stdout, flush=True)
+    import traceback
+    print(traceback.format_exc(), file=sys.stdout, flush=True)
+
 schema_view = get_schema_view(
     openapi.Info(
         title="TPRM RFP API",
@@ -73,21 +85,36 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('tprm_backend.rfp.urls')),
-    # Procurement type URLs
+    # Procurement type URLs - support both /api/v1/ and /api/tprm/v1/ for compatibility
     path('api/v1/', include('tprm_backend.rfp.rfi.urls')),
-    path('api/v1/', include('tprm_backend.rfp.rpq.urls')),
+    path('api/tprm/v1/', include('tprm_backend.rfp.rfi.urls')),  # Frontend uses this path
+    path('api/v1/', include('tprm_backend.rfp.rfq.urls')),
+    path('api/tprm/v1/', include('tprm_backend.rfp.rfq.urls')),
     path('api/v1/', include('tprm_backend.rfp.direct.urls')),
+    path('api/tprm/v1/', include('tprm_backend.rfp.direct.urls')),
     path('api/v1/', include('tprm_backend.rfp.auction.urls')),
+    path('api/tprm/v1/', include('tprm_backend.rfp.auction.urls')),
     path('api/v1/', include('tprm_backend.rfp.emergency.urls')),
-    path('api/v1/vendor-core/', include('tprm_backend.apps.vendor_core.urls')),
-    # Management URLs - try include first, add direct routes as fallback
-    path('api/v1/management/', include('tprm_backend.apps.management.urls')),
-    # Test endpoint (always available, doesn't require imports)
-    path('api/v1/management/test/', management_test_endpoint, name='management-test'),
-    # Direct routes as immediate workaround (works without app reload)
-    *([path('api/v1/management/health/', management_health_check, name='management-health-direct'),
-       path('api/v1/management/vendors/all/', AllVendorsListView.as_view(), name='all-vendors-list-direct'),
-       path('api/v1/management/vendors/<str:vendor_code>/', VendorDetailView.as_view(), name='vendor-detail-direct')] if MANAGEMENT_VIEWS_AVAILABLE else []),
+    path('api/tprm/v1/', include('tprm_backend.rfp.emergency.urls')),
+]
+
+print(f"✅ [URLs] Total URL patterns registered: {len(urlpatterns)}", file=sys.stdout, flush=True)
+
+# Add vendor-core and management URLs
+urlpatterns.append(path('api/v1/vendor-core/', include('tprm_backend.apps.vendor_core.urls')))
+urlpatterns.append(path('api/v1/management/', include('tprm_backend.apps.management.urls')))
+urlpatterns.append(path('api/v1/management/test/', management_test_endpoint, name='management-test'))
+
+# Add management direct routes if available
+if MANAGEMENT_VIEWS_AVAILABLE:
+    try:
+        urlpatterns.append(path('api/v1/management/health/', management_health_check, name='management-health-direct'))
+        urlpatterns.append(path('api/v1/management/vendors/all/', AllVendorsListView.as_view(), name='all-vendors-list-direct'))
+        urlpatterns.append(path('api/v1/management/vendors/<str:vendor_code>/', VendorDetailView.as_view(), name='vendor-detail-direct'))
+    except NameError:
+        pass  # Variables not defined if import failed
+
+urlpatterns.extend([
     path('api/approval/', include('tprm_backend.rfp_approval.urls')),
     path('api/rfp-approval/', include('tprm_backend.rfp_approval.urls')),  # Add this line for compatibility
     path('api/auth/', include('tprm_project.auth_urls')),

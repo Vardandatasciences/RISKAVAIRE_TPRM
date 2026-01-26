@@ -6,7 +6,9 @@ from .models import Auction, AuctionEvaluationCriteria, AuctionBid
 class AuctionEvaluationCriteriaSerializer(AutoDecryptingModelSerializer):
     """Serializer for Auction Evaluation Criteria"""
     auction_id = serializers.IntegerField(write_only=True, required=False)
+    auction = serializers.PrimaryKeyRelatedField(queryset=Auction.objects.all(), required=False, allow_null=True)
     data_inventory = serializers.JSONField(required=False, allow_null=True)
+    created_by = serializers.IntegerField(required=False, allow_null=True)
     
     class Meta:
         model = AuctionEvaluationCriteria
@@ -39,23 +41,32 @@ class AuctionEvaluationCriteriaSerializer(AutoDecryptingModelSerializer):
         representation['auction_id'] = self.get_auction_id(instance)
         return representation
     
-    def create(self, validated_data):
-        auction_id = validated_data.pop('auction_id', None)
-        if auction_id and 'auction' not in validated_data:
-            from .models import Auction
-            try:
-                validated_data['auction'] = Auction.objects.get(auction_id=auction_id)
-            except Auction.DoesNotExist:
-                raise serializers.ValidationError({'auction_id': 'Auction with this ID does not exist'})
-        return super().create(validated_data)
-    
     def validate(self, data):
+        """Validate evaluation criteria data and convert auction_id to auction"""
+        # Convert auction_id to auction if auction_id is provided but auction is not
+        auction_id = data.pop('auction_id', None)
+        if auction_id is not None:
+            try:
+                from .models import Auction
+                auction_obj = Auction.objects.get(auction_id=auction_id)
+                data['auction'] = auction_obj
+            except Auction.DoesNotExist:
+                raise serializers.ValidationError({'auction_id': f'Auction with ID {auction_id} does not exist'})
+            except Exception as e:
+                raise serializers.ValidationError({'auction_id': f'Error fetching Auction: {str(e)}'})
+        elif 'auction' not in data or data.get('auction') is None:
+            # If neither auction_id nor auction is provided, make it optional for now
+            # The view will handle setting it if needed
+            pass
+        
+        # Validate weight_percentage
         if 'weight_percentage' in data:
             weight = data['weight_percentage']
             if weight < 0 or weight > 100:
                 raise serializers.ValidationError(
                     {"weight_percentage": "Weight must be between 0 and 100"}
                 )
+        
         return data
 
 
@@ -80,7 +91,7 @@ class AuctionSerializer(AutoDecryptingModelSerializer):
             'data_inventory', 'retentionExpiry', 'auction_start_time', 'auction_end_time',
             'starting_bid', 'reserve_price', 'bid_increment', 'auction_format'
         ]
-        read_only_fields = ['auction_id', 'auction_number', 'created_at', 'updated_at']
+        read_only_fields = ['auction_id', 'auction_number', 'created_by', 'created_at', 'updated_at']
     
     def validate_data_inventory(self, value):
         if not isinstance(value, dict):
@@ -91,6 +102,7 @@ class AuctionSerializer(AutoDecryptingModelSerializer):
 class AuctionCreateSerializer(AutoDecryptingModelSerializer):
     """Serializer for creating Auction"""
     data_inventory = serializers.JSONField(required=False, allow_null=True)
+    created_by = serializers.IntegerField(required=False, allow_null=True)
     
     class Meta:
         model = Auction
@@ -106,7 +118,7 @@ class AuctionCreateSerializer(AutoDecryptingModelSerializer):
             'data_inventory', 'retentionExpiry', 'documents', 'auction_start_time',
             'auction_end_time', 'starting_bid', 'reserve_price', 'bid_increment', 'auction_format'
         ]
-        read_only_fields = ['auction_id', 'auction_number']
+        read_only_fields = ['auction_id', 'auction_number', 'created_by']
 
 
 class AuctionListSerializer(AutoDecryptingModelSerializer):
@@ -115,6 +127,7 @@ class AuctionListSerializer(AutoDecryptingModelSerializer):
     class Meta:
         model = Auction
         fields = [
-            'auction_id', 'auction_number', 'auction_title', 'status', 'created_at',
-            'submission_deadline', 'criticality_level', 'created_by'
+            'auction_id', 'auction_number', 'auction_title', 'description', 'auction_type',
+            'status', 'created_at', 'submission_deadline', 'criticality_level',
+            'created_by', 'budget_range_min', 'budget_range_max', 'category'
         ]

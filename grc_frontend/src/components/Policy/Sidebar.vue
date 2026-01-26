@@ -628,24 +628,24 @@
             <span>Select RFI</span>
           </div>
         </div>
-        <!-- RPQ -->
-        <div @click="toggleSubmenu('rpqManagement')" class="menu-item has-submenu" :class="{'expanded': openMenus.rpqManagement}">
+        <!-- RFQ -->
+        <div @click="toggleSubmenu('rfqManagement')" class="menu-item has-submenu" :class="{'expanded': openMenus.rfqManagement}">
           <i class="fas fa-file-invoice-dollar icon"></i>
-          <span>RPQ</span>
+          <span>RFQ</span>
           <i class="fas fa-chevron-right submenu-arrow"></i>
         </div>
-        <div v-if="!isCollapsed && openMenus.rpqManagement" class="submenu nested-submenu">
-          <div class="menu-item" @click="navigate('/tprm/rpq-dashboard')" :class="{'active': isActive('/tprm/rpq')}">
+        <div v-if="!isCollapsed && openMenus.rfqManagement" class="submenu nested-submenu">
+          <div class="menu-item" @click="navigate('/tprm/rfq-dashboard')" :class="{'active': isActive('/tprm/rfq')}">
             <i class="fas fa-tachometer-alt icon"></i>
-            <span>RPQ Dashboard</span>
+            <span>RFQ Dashboard</span>
           </div>
-          <div class="menu-item" @click="navigate('/tprm/rpq-creation')" :class="{'active': isActive('/tprm/rpq-creation')}">
+          <div class="menu-item" @click="navigate('/tprm/rfq-creation')" :class="{'active': isActive('/tprm/rfq-creation')}">
             <i class="fas fa-plus icon"></i>
-            <span>Create RPQ</span>
+            <span>Create RFQ</span>
           </div>
-          <div class="menu-item" @click="navigate('/tprm/rpq-list')" :class="{'active': isActive('/tprm/rpq-list')}">
+          <div class="menu-item" @click="navigate('/tprm/rfq-list')" :class="{'active': isActive('/tprm/rfq-list')}">
             <i class="fas fa-list icon"></i>
-            <span>Select RPQ</span>
+            <span>Select RFQ</span>
           </div>
         </div>
         <!-- Auction -->
@@ -1197,7 +1197,7 @@ export default {
       rfpWorkflow: false,
       rfpEvaluation: false,
       rfiManagement: false,
-      rpqManagement: false,
+      rfqManagement: false,
       auctionManagement: false,
       directManagement: false,
       emergencyManagement: false,

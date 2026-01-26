@@ -293,14 +293,24 @@
             </td>
             <td>{{ formatDate(vendor.created_at) }}</td>
             <td>
-              <button 
-                @click="viewVendorDetails(vendor.vendor_code)" 
-                class="action-btn btn-sm view-btn-table"
-                title="View Details"
-              >
-                <i class="fas fa-eye"></i>
-                <span>View</span>
-              </button>
+              <div class="table-actions">
+                <button 
+                  @click="viewVendorDetails(vendor.vendor_code)" 
+                  class="action-btn btn-sm view-btn-table"
+                  title="View Details"
+                >
+                  <i class="fas fa-eye"></i>
+                  <span>View</span>
+                </button>
+                <button 
+                  @click="handleExternalScreening(vendor.vendor_code)" 
+                  class="action-btn btn-sm screening-btn-table"
+                  title="External Screening"
+                >
+                  <i class="fas fa-shield-alt"></i>
+                  <span>External Screening</span>
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -452,6 +462,54 @@ export default {
       selectedVendorCode.value = null
     }
 
+    const handleExternalScreening = async (vendorCode) => {
+      console.log('[AllVendors] 🔍 Starting External Screening for vendor:', vendorCode)
+      
+      try {
+        // Show loading state
+        const loadingMessage = `Starting external screening for vendor ${vendorCode}...`
+        console.log('[AllVendors] 📡', loadingMessage)
+        
+        // Call the external screening API endpoint
+        const apiUrl = `/api/v1/management/vendors/${vendorCode}/external-screening/`
+        console.log('[AllVendors] 📡 Making POST request to:', apiUrl)
+        
+        const response = await axios.post(apiUrl)
+        
+        console.log('[AllVendors] ✅ External Screening Response:', response.data)
+        
+        if (response.data.success) {
+          const results = response.data.screening_results || []
+          const totalTypes = response.data.total_screening_types || 0
+          
+          // Show success message
+          alert(
+            `External Screening Completed!\n\n` +
+            `Vendor: ${vendorCode}\n` +
+            `Screening Types: ${totalTypes}\n` +
+            `Results: ${results.length} screening result(s) processed.\n\n` +
+            `Check the screening results for details.`
+          )
+          
+          // Optionally refresh the vendor list to show updated data
+          // await fetchVendors()
+        } else {
+          throw new Error(response.data.error || 'Screening failed')
+        }
+      } catch (err) {
+        console.error('[AllVendors] ❌ External Screening Error:', err)
+        
+        let errorMessage = 'Failed to perform external screening'
+        if (err.response?.data?.error) {
+          errorMessage = err.response.data.error
+        } else if (err.message) {
+          errorMessage = err.message
+        }
+        
+        alert(`External Screening Error:\n\n${errorMessage}`)
+      }
+    }
+
     const getVendorCardClass = (vendorType) => {
       const classMap = {
         'ONBOARDED_WITH_RFP': 'card-onboarded-rfp',
@@ -561,6 +619,7 @@ export default {
       fetchVendors,
       viewVendorDetails,
       closeDetailModal,
+      handleExternalScreening,
       getVendorCardClass,
       getVendorTypeBadgeClass,
       getRiskLevelClass,
@@ -916,6 +975,26 @@ export default {
 
 .view-btn-table:hover {
   background: #1d4ed8;
+  color: #fff;
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.screening-btn-table {
+  padding: 0.375rem 0.75rem;
+  background: #10b981;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+.screening-btn-table:hover {
+  background: #059669;
   color: #fff;
 }
 

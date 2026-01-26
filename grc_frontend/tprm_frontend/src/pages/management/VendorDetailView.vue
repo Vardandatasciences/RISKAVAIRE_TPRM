@@ -168,6 +168,178 @@
             </div>
           </div>
 
+          <!-- External Screening Tab -->
+          <div v-if="activeTab === 'screening'" class="info-section">
+            <h3 class="section-title">External Screening Results</h3>
+            
+            <!-- Date Filters -->
+            <div class="screening-filters">
+              <div class="filter-group">
+                <label>Start Date</label>
+                <input 
+                  type="date" 
+                  v-model="screeningFilters.startDate" 
+                  @change="fetchScreeningResults"
+                  class="filter-input"
+                />
+              </div>
+              <div class="filter-group">
+                <label>End Date</label>
+                <input 
+                  type="date" 
+                  v-model="screeningFilters.endDate" 
+                  @change="fetchScreeningResults"
+                  class="filter-input"
+                />
+              </div>
+              <div class="filter-group">
+                <button @click="clearScreeningFilters" class="btn btn-secondary btn-sm">
+                  <i class="fas fa-times"></i> Clear Filters
+                </button>
+              </div>
+            </div>
+
+            <!-- Loading State -->
+            <div v-if="screeningLoading" class="loading-state-small">
+              <div class="spinner-small"></div>
+              <p>Loading screening results...</p>
+            </div>
+
+            <!-- Error State -->
+            <div v-else-if="screeningError" class="error-state-small">
+              <i class="fas fa-exclamation-triangle"></i>
+              <p>{{ screeningError }}</p>
+              <button @click="fetchScreeningResults" class="btn btn-primary btn-sm">Retry</button>
+            </div>
+
+            <!-- Empty State -->
+            <div v-else-if="!screeningData || screeningData.versions.length === 0" class="empty-state">
+              <i class="fas fa-search"></i>
+              <p>No screening results found</p>
+              <p class="empty-state-subtitle">External screening results will appear here once screening is performed.</p>
+            </div>
+
+            <!-- Screening Results by Version -->
+            <div v-else class="screening-versions">
+              <div 
+                v-for="version in screeningData.versions" 
+                :key="version.version"
+                class="screening-version"
+              >
+                <div class="version-header">
+                  <h4 class="version-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Version: {{ formatDate(version.screening_date) }}
+                  </h4>
+                  <span class="version-badge">{{ version.results.length }} Screening{{ version.results.length !== 1 ? 's' : '' }}</span>
+                </div>
+
+                <!-- Screening Results for this Version -->
+                <div class="screening-results-list">
+                  <div 
+                    v-for="result in version.results" 
+                    :key="result.screening_id"
+                    class="screening-result-card"
+                  >
+                    <div class="result-header">
+                      <div class="result-title">
+                        <i :class="getScreeningTypeIcon(result.screening_type)"></i>
+                        <span class="result-type">{{ result.screening_type }}</span>
+                        <span class="badge" :class="getScreeningStatusClass(result.status)">
+                          {{ result.status }}
+                        </span>
+                      </div>
+                      <div class="result-meta">
+                        <span class="result-date">{{ formatDateTime(result.screening_date) }}</span>
+                      </div>
+                    </div>
+
+                    <div class="result-stats">
+                      <div class="stat-item">
+                        <label>Total Matches</label>
+                        <span class="stat-value">{{ result.total_matches }}</span>
+                      </div>
+                      <div class="stat-item">
+                        <label>High Risk</label>
+                        <span class="stat-value stat-high-risk">{{ result.high_risk_matches }}</span>
+                      </div>
+                      <div class="stat-item" v-if="result.search_terms">
+                        <label>Search Terms</label>
+                        <span class="stat-value">{{ formatSearchTerms(result.search_terms) }}</span>
+                      </div>
+                    </div>
+
+                    <!-- Review Information -->
+                    <div v-if="result.review_date || result.review_comments" class="result-review">
+                      <div v-if="result.review_date" class="review-item">
+                        <label>Reviewed On:</label>
+                        <span>{{ formatDateTime(result.review_date) }}</span>
+                      </div>
+                      <div v-if="result.review_comments" class="review-item">
+                        <label>Comments:</label>
+                        <p>{{ result.review_comments }}</p>
+                      </div>
+                    </div>
+
+                    <!-- Matches for this Screening Result -->
+                    <div v-if="result.matches && result.matches.length > 0" class="matches-section">
+                      <h5 class="matches-title">
+                        <i class="fas fa-list"></i>
+                        Matches ({{ result.matches.length }})
+                      </h5>
+                      <div class="matches-list">
+                        <div 
+                          v-for="match in result.matches" 
+                          :key="match.match_id"
+                          class="match-card"
+                          :class="getMatchRiskClass(match.match_score)"
+                        >
+                          <div class="match-header">
+                            <div class="match-type">
+                              <i class="fas fa-flag"></i>
+                              {{ match.match_type }}
+                            </div>
+                            <div class="match-score">
+                              <span class="score-badge" :class="getScoreClass(match.match_score)">
+                                Score: {{ match.match_score }}%
+                              </span>
+                            </div>
+                          </div>
+                          <div class="match-details" v-if="match.match_details">
+                            <div v-for="(value, key) in match.match_details" :key="key" class="match-detail-item">
+                              <label>{{ formatKey(key) }}:</label>
+                              <span>{{ formatMatchValue(value) }}</span>
+                            </div>
+                          </div>
+                          <div class="match-resolution" v-if="match.resolution_status || match.resolution_notes">
+                            <div class="resolution-status">
+                              <label>Resolution:</label>
+                              <span class="badge" :class="getResolutionStatusClass(match.resolution_status)">
+                                {{ match.resolution_status || 'PENDING' }}
+                              </span>
+                            </div>
+                            <div v-if="match.resolution_notes" class="resolution-notes">
+                              <label>Notes:</label>
+                              <p>{{ match.resolution_notes }}</p>
+                            </div>
+                            <div v-if="match.resolved_date" class="resolution-date">
+                              <label>Resolved:</label>
+                              <span>{{ formatDateTime(match.resolved_date) }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-else class="no-matches">
+                      <i class="fas fa-check-circle"></i>
+                      <span>No matches found</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Risk & Status Tab -->
           <div v-if="activeTab === 'risk'" class="info-section">
             <h3 class="section-title">Risk & Status Information</h3>
@@ -689,7 +861,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import axios from '@/config/axios'
 
 export default {
@@ -706,11 +878,19 @@ export default {
     const loading = ref(false)
     const error = ref(null)
     const activeTab = ref('company')
+    const screeningData = ref(null)
+    const screeningLoading = ref(false)
+    const screeningError = ref(null)
+    const screeningFilters = ref({
+      startDate: '',
+      endDate: ''
+    })
 
     const tabs = computed(() => {
       const baseTabs = [
         { id: 'company', label: 'Company Info', icon: 'fas fa-building' },
         { id: 'risk', label: 'Risk & Status', icon: 'fas fa-shield-alt' },
+        { id: 'screening', label: 'External Screening', icon: 'fas fa-search' },
         { id: 'contracts', label: 'Contracts', icon: 'fas fa-file-contract' },
         { id: 'slas', label: 'SLAs', icon: 'fas fa-chart-line' },
         { id: 'bcp_plans', label: 'BCP/DRP Plans', icon: 'fas fa-clipboard-list' },
@@ -916,6 +1096,132 @@ export default {
       return vendor.value.related_data.sla_metrics.filter(metric => metric.sla_id === slaId)
     }
 
+    const fetchScreeningResults = async () => {
+      if (!props.vendorCode) return
+      
+      screeningLoading.value = true
+      screeningError.value = null
+      
+      try {
+        let url = `/api/v1/management/vendors/${props.vendorCode}/screening-results/`
+        const params = new URLSearchParams()
+        
+        if (screeningFilters.value.startDate) {
+          params.append('start_date', screeningFilters.value.startDate)
+        }
+        if (screeningFilters.value.endDate) {
+          params.append('end_date', screeningFilters.value.endDate)
+        }
+        
+        if (params.toString()) {
+          url += `?${params.toString()}`
+        }
+        
+        const response = await axios.get(url)
+        
+        if (response.data.success) {
+          screeningData.value = response.data
+        } else {
+          screeningError.value = response.data.error || 'Failed to load screening results'
+        }
+      } catch (err) {
+        console.error('Error fetching screening results:', err)
+        screeningError.value = err.response?.data?.error || 'Failed to load screening results'
+      } finally {
+        screeningLoading.value = false
+      }
+    }
+
+    const clearScreeningFilters = () => {
+      screeningFilters.value.startDate = ''
+      screeningFilters.value.endDate = ''
+      fetchScreeningResults()
+    }
+
+    const getScreeningTypeIcon = (type) => {
+      const iconMap = {
+        'OFAC': 'fas fa-shield-alt',
+        'PEP': 'fas fa-user-tie',
+        'SANCTIONS': 'fas fa-ban',
+        'ADVERSE_MEDIA': 'fas fa-newspaper',
+        'WORLDCHECK': 'fas fa-globe'
+      }
+      return iconMap[type] || 'fas fa-search'
+    }
+
+    const getScreeningStatusClass = (status) => {
+      const classMap = {
+        'CLEAR': 'badge-success',
+        'POTENTIAL_MATCH': 'badge-warning',
+        'CONFIRMED_MATCH': 'badge-danger',
+        'UNDER_REVIEW': 'badge-info'
+      }
+      return classMap[status] || 'badge-secondary'
+    }
+
+    const getMatchRiskClass = (score) => {
+      if (score >= 85) return 'match-high-risk'
+      if (score >= 70) return 'match-medium-risk'
+      return 'match-low-risk'
+    }
+
+    const getScoreClass = (score) => {
+      if (score >= 85) return 'score-high'
+      if (score >= 70) return 'score-medium'
+      return 'score-low'
+    }
+
+    const getResolutionStatusClass = (status) => {
+      const classMap = {
+        'PENDING': 'badge-warning',
+        'CLEARED': 'badge-success',
+        'ESCALATED': 'badge-info',
+        'BLOCKED': 'badge-danger'
+      }
+      return classMap[status] || 'badge-secondary'
+    }
+
+    const formatSearchTerms = (searchTerms) => {
+      if (!searchTerms) return 'N/A'
+      if (typeof searchTerms === 'string') {
+        try {
+          searchTerms = JSON.parse(searchTerms)
+        } catch (e) {
+          return searchTerms
+        }
+      }
+      if (typeof searchTerms === 'object') {
+        return Object.entries(searchTerms)
+          .filter(([key, value]) => value && key !== 'threshold')
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(', ') || 'N/A'
+      }
+      return 'N/A'
+    }
+
+    const formatKey = (key) => {
+      return key.split('_').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+      ).join(' ')
+    }
+
+    const formatMatchValue = (value) => {
+      if (Array.isArray(value)) {
+        return value.join(', ')
+      }
+      if (typeof value === 'object') {
+        return JSON.stringify(value, null, 2)
+      }
+      return value || 'N/A'
+    }
+
+    // Watch for tab changes to fetch screening data when tab is activated
+    watch(activeTab, (newTab) => {
+      if (newTab === 'screening' && !screeningData.value && !screeningLoading.value) {
+        fetchScreeningResults()
+      }
+    })
+
     onMounted(() => {
       fetchVendorDetails()
     })
@@ -926,7 +1232,13 @@ export default {
       error,
       activeTab,
       tabs,
+      screeningData,
+      screeningLoading,
+      screeningError,
+      screeningFilters,
       fetchVendorDetails,
+      fetchScreeningResults,
+      clearScreeningFilters,
       goBack,
       getBannerClass,
       getRiskLevelClass,
@@ -941,7 +1253,15 @@ export default {
       getContractAuditFindings,
       getSLAAuditFindings,
       getAuditStatusClass,
-      getReviewStatusClass
+      getReviewStatusClass,
+      getScreeningTypeIcon,
+      getScreeningStatusClass,
+      getMatchRiskClass,
+      getScoreClass,
+      getResolutionStatusClass,
+      formatSearchTerms,
+      formatKey,
+      formatMatchValue
     }
   }
 }
@@ -1900,5 +2220,443 @@ export default {
 .empty-state-small p {
   margin: 0;
   font-size: 0.875rem;
+}
+
+/* External Screening Tab Styles */
+.screening-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f7fafc;
+  border-radius: 0.5rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.filter-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  min-width: 150px;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-secondary {
+  background: #6b7280;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #4b5563;
+}
+
+.loading-state-small,
+.error-state-small {
+  text-align: center;
+  padding: 2rem;
+  color: #9ca3af;
+}
+
+.spinner-small {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #e2e8f0;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+.error-state-small i {
+  font-size: 2rem;
+  color: #dc2626;
+  margin-bottom: 1rem;
+}
+
+.empty-state-subtitle {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}
+
+.screening-versions {
+  display: grid;
+  gap: 2rem;
+}
+
+.screening-version {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: #fff;
+}
+
+.version-header {
+  padding: 1rem 1.5rem;
+  background: #f7fafc;
+  border-bottom: 2px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.version-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.version-title i {
+  color: #2563eb;
+}
+
+.version-badge {
+  padding: 0.25rem 0.75rem;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.screening-results-list {
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.screening-result-card {
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  background: #f7fafc;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.result-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.result-type {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.result-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.result-date {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-item label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.stat-high-risk {
+  color: #dc2626;
+}
+
+.result-review {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 0.375rem;
+  border-left: 3px solid #2563eb;
+  margin-bottom: 1rem;
+}
+
+.review-item {
+  margin-bottom: 0.5rem;
+}
+
+.review-item:last-child {
+  margin-bottom: 0;
+}
+
+.review-item label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.review-item p {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.matches-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.matches-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.matches-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.match-card {
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  background: #fff;
+  border-left: 4px solid;
+}
+
+.match-low-risk {
+  border-left-color: #10b981;
+}
+
+.match-medium-risk {
+  border-left-color: #f59e0b;
+}
+
+.match-high-risk {
+  border-left-color: #dc2626;
+}
+
+.match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.match-type {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.match-score {
+  display: flex;
+  align-items: center;
+}
+
+.score-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.score-low {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.score-medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.score-high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.match-details {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  background: #f7fafc;
+  border-radius: 0.375rem;
+}
+
+.match-detail-item {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.match-detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.match-detail-item label {
+  font-weight: 600;
+  color: #4a5568;
+  min-width: 120px;
+}
+
+.match-detail-item span {
+  color: #1a202c;
+  word-break: break-word;
+}
+
+.match-resolution {
+  padding: 0.75rem;
+  background: #f7fafc;
+  border-radius: 0.375rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.resolution-status {
+  margin-bottom: 0.5rem;
+}
+
+.resolution-status label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  margin-right: 0.5rem;
+}
+
+.resolution-notes {
+  margin-top: 0.5rem;
+}
+
+.resolution-notes label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.resolution-notes p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.resolution-date {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.resolution-date label {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.no-matches {
+  padding: 1rem;
+  text-align: center;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.no-matches i {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .screening-filters {
+    flex-direction: column;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .result-meta {
+    align-items: flex-start;
+  }
+
+  .result-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .match-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 </style>

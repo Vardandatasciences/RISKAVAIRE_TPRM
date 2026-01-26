@@ -976,6 +976,16 @@ const handleSaveDraft = async () => {
       ? formData.value.complianceRequirements.split(/[,\n]/).map(r => r.trim()).filter(r => r)
       : null
     
+    // Prepare documents array if any documents are uploaded
+    const documentsArray = uploadedDocuments.value.length > 0
+      ? uploadedDocuments.value.map(doc => ({
+          name: doc.name,
+          fileName: doc.fileName,
+          fileSize: doc.fileSize,
+          uploaded: doc.uploaded || false
+        }))
+      : null
+    
     const emergencyData = {
       emergency_number: formData.value.emergencyNumber,
       emergency_title: formData.value.title,
@@ -1002,7 +1012,8 @@ const handleSaveDraft = async () => {
       allow_late_submissions: Boolean(formData.value.allowLateSubmissions),
       auto_approve: Boolean(formData.value.autoApprove),
       status: 'DRAFT',
-      custom_fields: formData.value.customFields || null
+      custom_fields: formData.value.customFields || null,
+      documents: documentsArray
     }
     
     let existingEmergencyId = localStorage.getItem('current_emergency_id')
@@ -1077,9 +1088,8 @@ const handleSaveDraft = async () => {
 
 const handleProceedToApprovalWorkflow = async () => {
   await handleSaveDraft()
-  setTimeout(() => {
-    router.push('/approval-management')
-  }, 1000)
+  // Stay on the same screen after saving
+  success('Emergency Procurement Saved', 'Your Emergency Procurement has been saved successfully. You can continue editing or proceed with the approval workflow when ready.')
 }
 
 let autoSaveInterval: any = null

@@ -8,7 +8,9 @@ from .models import RFI, RFIEvaluationCriteria
 class RFIEvaluationCriteriaSerializer(AutoDecryptingModelSerializer):
     """Serializer for RFI Evaluation Criteria"""
     rfi_id = serializers.IntegerField(write_only=True, required=False)
+    rfi = serializers.PrimaryKeyRelatedField(queryset=RFI.objects.all(), required=False, allow_null=True)
     data_inventory = serializers.JSONField(required=False, allow_null=True)
+    created_by = serializers.IntegerField(required=False, allow_null=True)
     
     class Meta:
         model = RFIEvaluationCriteria
@@ -38,43 +40,37 @@ class RFIEvaluationCriteriaSerializer(AutoDecryptingModelSerializer):
         representation['rfi_id'] = self.get_rfi_id(instance)
         return representation
     
-    def create(self, validated_data):
-        """Handle rfi_id if provided instead of rfi"""
-        rfi_id = validated_data.pop('rfi_id', None)
-        if rfi_id and 'rfi' not in validated_data:
-            from .models import RFI
+    def validate(self, data):
+        """Validate evaluation criteria data and convert rfi_id to rfi"""
+        # Convert rfi_id to rfi if rfi_id is provided but rfi is not
+        rfi_id = data.pop('rfi_id', None)
+        if rfi_id is not None:
             try:
-                validated_data['rfi'] = RFI.objects.get(rfi_id=rfi_id)
+                rfi_obj = RFI.objects.get(rfi_id=rfi_id)
+                data['rfi'] = rfi_obj
             except RFI.DoesNotExist:
-                raise serializers.ValidationError({'rfi_id': 'RFI with this ID does not exist'})
-        return super().create(validated_data)
+                raise serializers.ValidationError({'rfi_id': f'RFI with ID {rfi_id} does not exist'})
+            except Exception as e:
+                raise serializers.ValidationError({'rfi_id': f'Error fetching RFI: {str(e)}'})
+        elif 'rfi' not in data or data.get('rfi') is None:
+            # If neither rfi_id nor rfi is provided, make it optional for now
+            # The model will enforce the constraint if needed
+            pass
+        
+        # Validate weight_percentage if provided
+        if 'weight_percentage' in data:
+            weight = data['weight_percentage']
+            if weight is not None and (weight < 0 or weight > 100):
+                raise serializers.ValidationError(
+                    {"weight_percentage": "Weight must be between 0 and 100"}
+                )
+        return data
     
     def validate_data_inventory(self, value):
         """Ensure data_inventory is always a dictionary"""
         if not isinstance(value, dict):
             return {}
         return value
-    
-    def get_rfi_id(self, obj):
-        """Get rfi_id from ForeignKey relationship"""
-        try:
-            if hasattr(obj, 'rfi_id'):
-                return obj.rfi_id
-            elif hasattr(obj, 'rfi') and obj.rfi:
-                return obj.rfi.rfi_id
-        except Exception:
-            pass
-        return None
-    
-    def validate(self, data):
-        """Validate evaluation criteria data"""
-        if 'weight_percentage' in data:
-            weight = data['weight_percentage']
-            if weight < 0 or weight > 100:
-                raise serializers.ValidationError(
-                    {"weight_percentage": "Weight must be between 0 and 100"}
-                )
-        return data
 
 
 class RFISerializer(AutoDecryptingModelSerializer):
@@ -111,6 +107,8 @@ class RFISerializer(AutoDecryptingModelSerializer):
 class RFICreateSerializer(AutoDecryptingModelSerializer):
     """Serializer for creating RFI (simplified)"""
     data_inventory = serializers.JSONField(required=False, allow_null=True)
+    documents = serializers.JSONField(required=False, allow_null=True)
+    created_by = serializers.IntegerField(required=False, allow_null=True)
     
     class Meta:
         model = RFI
@@ -125,7 +123,19 @@ class RFICreateSerializer(AutoDecryptingModelSerializer):
             'geographical_scope', 'compliance_requirements', 'custom_fields',
             'data_inventory', 'retentionExpiry', 'documents'
         ]
-        read_only_fields = ['rfi_id', 'rfi_number']
+        read_only_fields = ['rfi_id', 'rfi_number', 'created_by']
+    
+    def validate_documents(self, value):
+        """Ensure documents is always a list/array when provided"""
+        if value is not None and not isinstance(value, list):
+            return []
+        return value
+    
+    def validate_data_inventory(self, value):
+        """Ensure data_inventory is always a dictionary"""
+        if not isinstance(value, dict):
+            return {}
+        return value
 
 
 class RFIListSerializer(AutoDecryptingModelSerializer):
@@ -134,6 +144,7 @@ class RFIListSerializer(AutoDecryptingModelSerializer):
     class Meta:
         model = RFI
         fields = [
-            'rfi_id', 'rfi_number', 'rfi_title', 'status', 'created_at',
-            'submission_deadline', 'criticality_level', 'created_by'
+            'rfi_id', 'rfi_number', 'rfi_title', 'description', 'rfi_type',
+            'status', 'created_at', 'submission_deadline', 'criticality_level',
+            'created_by', 'budget_range_min', 'budget_range_max', 'category'
         ]

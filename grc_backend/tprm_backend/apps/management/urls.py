@@ -6,7 +6,7 @@ from django.urls import path, include
 from django.http import JsonResponse
 from datetime import datetime
 from rest_framework.routers import DefaultRouter
-from .views import AllVendorsListView, VendorDetailView
+from .views import AllVendorsListView, VendorDetailView, ExternalScreeningView, VendorScreeningResultsView
 from . import views
 app_name = 'management'
 management_router = DefaultRouter()
@@ -34,5 +34,7 @@ urlpatterns = [
     path('health/', health_check, name='health-check'),
     path('vendors/all/', AllVendorsListView.as_view(), name='all-vendors-list'),
     path('vendors/<str:vendor_code>/', VendorDetailView.as_view(), name='vendor-detail'),
+    path('vendors/<str:vendor_code>/external-screening/', ExternalScreeningView.as_view(), name='external-screening'),
+    path('vendors/<str:vendor_code>/screening-results/', VendorScreeningResultsView.as_view(), name='vendor-screening-results'),
     path('', include(management_router.urls)),
 ]

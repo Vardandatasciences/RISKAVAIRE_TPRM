@@ -3138,5 +3138,5 @@ path('bamboohr/oauth/', bamboohr_oauth, name='bamboohr-oauth'),
     path('api/v1/management/', include('tprm_backend.apps.management.urls')),
     path('api/tprm/v1/management/', include('tprm_backend.apps.management.urls')),
     path('api/tprm/management/', include('tprm_backend.apps.management.urls')),
- 
+
 ]

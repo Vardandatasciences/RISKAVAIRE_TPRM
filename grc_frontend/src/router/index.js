@@ -1090,22 +1090,22 @@ const routes = [
     meta: { requiresAuth: true }
   },
   
-  // RPQ Routes
+  // RFQ Routes
   {
-    path: '/tprm/rpq-creation',
-    name: 'TPRMRPQCreation',
+    path: '/tprm/rfq-creation',
+    name: 'TPRMRFQCreation',
     component: () => import('../views/TprmWrapper.vue'),
     meta: { requiresAuth: true }
   },
   {
-    path: '/tprm/rpq-dashboard',
-    name: 'TPRMRPQDashboard',
+    path: '/tprm/rfq-dashboard',
+    name: 'TPRMRFQDashboard',
     component: () => import('../views/TprmWrapper.vue'),
     meta: { requiresAuth: true }
   },
   {
-    path: '/tprm/rpq-list',
-    name: 'TPRMRPQList',
+    path: '/tprm/rfq-list',
+    name: 'TPRMRFQList',
     component: () => import('../views/TprmWrapper.vue'),
     meta: { requiresAuth: true }
   },

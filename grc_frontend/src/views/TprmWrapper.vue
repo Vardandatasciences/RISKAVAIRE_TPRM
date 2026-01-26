@@ -119,7 +119,7 @@ export default {
         pathValue = param
       }
       
-      // If no param (specific routes like /tprm/rpq-creation), extract from route.path
+      // If no param (specific routes like /tprm/rfq-creation), extract from route.path
       if (!pathValue && route.path && route.path.startsWith('/tprm/')) {
         // Extract everything after /tprm/
         pathValue = route.path.replace(/^\/tprm\/?/, '')

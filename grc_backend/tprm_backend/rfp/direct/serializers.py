@@ -6,7 +6,9 @@ from .models import DirectProcurement, DirectEvaluationCriteria
 class DirectEvaluationCriteriaSerializer(AutoDecryptingModelSerializer):
     """Serializer for Direct Procurement Evaluation Criteria"""
     direct_id = serializers.IntegerField(write_only=True, required=False)
+    direct = serializers.PrimaryKeyRelatedField(queryset=DirectProcurement.objects.all(), required=False, allow_null=True)
     data_inventory = serializers.JSONField(required=False, allow_null=True)
+    created_by = serializers.IntegerField(required=False, allow_null=True)
     
     class Meta:
         model = DirectEvaluationCriteria
@@ -39,23 +41,32 @@ class DirectEvaluationCriteriaSerializer(AutoDecryptingModelSerializer):
         representation['direct_id'] = self.get_direct_id(instance)
         return representation
     
-    def create(self, validated_data):
-        direct_id = validated_data.pop('direct_id', None)
-        if direct_id and 'direct' not in validated_data:
-            from .models import DirectProcurement
-            try:
-                validated_data['direct'] = DirectProcurement.objects.get(direct_id=direct_id)
-            except DirectProcurement.DoesNotExist:
-                raise serializers.ValidationError({'direct_id': 'Direct Procurement with this ID does not exist'})
-        return super().create(validated_data)
-    
     def validate(self, data):
+        """Validate evaluation criteria data and convert direct_id to direct"""
+        # Convert direct_id to direct if direct_id is provided but direct is not
+        direct_id = data.pop('direct_id', None)
+        if direct_id is not None:
+            try:
+                from .models import DirectProcurement
+                direct_obj = DirectProcurement.objects.get(direct_id=direct_id)
+                data['direct'] = direct_obj
+            except DirectProcurement.DoesNotExist:
+                raise serializers.ValidationError({'direct_id': f'Direct Procurement with ID {direct_id} does not exist'})
+            except Exception as e:
+                raise serializers.ValidationError({'direct_id': f'Error fetching Direct Procurement: {str(e)}'})
+        elif 'direct' not in data or data.get('direct') is None:
+            # If neither direct_id nor direct is provided, make it optional for now
+            # The view will handle setting it if needed
+            pass
+        
+        # Validate weight_percentage
         if 'weight_percentage' in data:
             weight = data['weight_percentage']
             if weight < 0 or weight > 100:
                 raise serializers.ValidationError(
                     {"weight_percentage": "Weight must be between 0 and 100"}
                 )
+        
         return data
 
 
@@ -79,7 +90,7 @@ class DirectProcurementSerializer(AutoDecryptingModelSerializer):
             'award_decision_date', 'award_justification', 'documents', 'evaluation_criteria',
             'data_inventory', 'retentionExpiry', 'direct_justification', 'vendor_id'
         ]
-        read_only_fields = ['direct_id', 'direct_number', 'created_at', 'updated_at']
+        read_only_fields = ['direct_id', 'direct_number', 'created_by', 'created_at', 'updated_at']
     
     def validate_data_inventory(self, value):
         if not isinstance(value, dict):
@@ -90,6 +101,7 @@ class DirectProcurementSerializer(AutoDecryptingModelSerializer):
 class DirectProcurementCreateSerializer(AutoDecryptingModelSerializer):
     """Serializer for creating Direct Procurement"""
     data_inventory = serializers.JSONField(required=False, allow_null=True)
+    created_by = serializers.IntegerField(required=False, allow_null=True)
     
     class Meta:
         model = DirectProcurement
@@ -104,7 +116,7 @@ class DirectProcurementCreateSerializer(AutoDecryptingModelSerializer):
             'geographical_scope', 'compliance_requirements', 'custom_fields',
             'data_inventory', 'retentionExpiry', 'documents', 'direct_justification', 'vendor_id'
         ]
-        read_only_fields = ['direct_id', 'direct_number']
+        read_only_fields = ['direct_id', 'direct_number', 'created_by']
 
 
 class DirectProcurementListSerializer(AutoDecryptingModelSerializer):
@@ -113,6 +125,7 @@ class DirectProcurementListSerializer(AutoDecryptingModelSerializer):
     class Meta:
         model = DirectProcurement
         fields = [
-            'direct_id', 'direct_number', 'direct_title', 'status', 'created_at',
-            'submission_deadline', 'criticality_level', 'created_by'
+            'direct_id', 'direct_number', 'direct_title', 'description', 'direct_type',
+            'status', 'created_at', 'submission_deadline', 'criticality_level',
+            'created_by', 'budget_range_min', 'budget_range_max', 'category'
         ]

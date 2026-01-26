@@ -795,15 +795,37 @@ const fetchDirectTypes = async () => {
 const fetchVendors = async () => {
   try {
     loadingVendors.value = true
-    const response = await axios.get(`${API_BASE_URL}/vendors/`, {
-      headers: getAuthHeaders()
-    })
-    if (response.data && response.data.results) {
-      vendors.value = response.data.results
-    } else if (Array.isArray(response.data)) {
-      vendors.value = response.data
-    } else {
-      vendors.value = []
+    // Try management/vendors/all endpoint first, fallback to vendors/
+    let response
+    try {
+      response = await axios.get(`${API_BASE_URL}/management/vendors/all/`, {
+        headers: getAuthHeaders()
+      })
+      // The management endpoint returns { success: true, data: [...], total: N, counts: {...} }
+      if (response.data && response.data.success && response.data.data && Array.isArray(response.data.data)) {
+        vendors.value = response.data.data
+      } else if (response.data && Array.isArray(response.data)) {
+        vendors.value = response.data
+      } else if (response.data && response.data.vendors && Array.isArray(response.data.vendors)) {
+        vendors.value = response.data.vendors
+      } else if (response.data && response.data.results && Array.isArray(response.data.results)) {
+        vendors.value = response.data.results
+      } else {
+        vendors.value = []
+      }
+    } catch (managementErr) {
+      // Fallback to vendor-core endpoint
+      console.warn('Management vendors endpoint failed, trying vendor-core:', managementErr)
+      response = await axios.get(`${API_BASE_URL}/vendors/`, {
+        headers: getAuthHeaders()
+      })
+      if (response.data && response.data.results) {
+        vendors.value = response.data.results
+      } else if (Array.isArray(response.data)) {
+        vendors.value = response.data
+      } else {
+        vendors.value = []
+      }
     }
   } catch (err) {
     console.error('Error fetching vendors:', err)
@@ -947,6 +969,16 @@ const handleSaveDraft = async () => {
       ? formData.value.complianceRequirements.split(/[,\n]/).map(r => r.trim()).filter(r => r)
       : null
     
+    // Prepare documents array if any documents are uploaded
+    const documentsArray = uploadedDocuments.value.length > 0
+      ? uploadedDocuments.value.map(doc => ({
+          name: doc.name,
+          fileName: doc.fileName,
+          fileSize: doc.fileSize,
+          uploaded: doc.uploaded || false
+        }))
+      : null
+    
     const directData = {
       direct_number: formData.value.directNumber,
       direct_title: formData.value.title,
@@ -970,7 +1002,8 @@ const handleSaveDraft = async () => {
       allow_late_submissions: Boolean(formData.value.allowLateSubmissions),
       auto_approve: Boolean(formData.value.autoApprove),
       status: 'DRAFT',
-      custom_fields: formData.value.customFields || null
+      custom_fields: formData.value.customFields || null,
+      documents: documentsArray
     }
     
     let existingDirectId = localStorage.getItem('current_direct_id')
@@ -1045,9 +1078,8 @@ const handleSaveDraft = async () => {
 
 const handleProceedToApprovalWorkflow = async () => {
   await handleSaveDraft()
-  setTimeout(() => {
-    router.push('/approval-management')
-  }, 1000)
+  // Stay on the same screen after saving
+  success('Direct Procurement Saved', 'Your Direct Procurement has been saved successfully. You can continue editing or proceed with the approval workflow when ready.')
 }
 
 let autoSaveInterval: any = null

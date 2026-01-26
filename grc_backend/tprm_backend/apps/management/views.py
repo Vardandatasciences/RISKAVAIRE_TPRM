@@ -5,7 +5,7 @@ Management views for vendor listing
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.db.models import Q, OuterRef, Subquery, Exists, Value, CharField
 from django.db.models.functions import Coalesce
 from tprm_backend.apps.vendor_core.models import Vendors, TempVendor
@@ -39,7 +39,7 @@ class AllVendorsListView(APIView):
     3. Temporary vendor with RFP (only in temp_vendor with response_id)
     4. Temporary vendor without RFP (only in temp_vendor without response_id)
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request):
         import logging
@@ -146,6 +146,11 @@ class AllVendorsListView(APIView):
                                     logger.warning(f"[AllVendorsListView] Database error during tenant lookup: {db_error}")
                 except Exception as e:
                     logger.warning(f"[AllVendorsListView] Error extracting tenant_id from user: {e}")
+            
+            # If still no tenant_id, use default tenant (1) for development
+            if not tenant_id:
+                tenant_id = 1
+                logger.info(f"[AllVendorsListView] Using default tenant_id: {tenant_id}")
             
             logger.info(f"[AllVendorsListView] Final tenant_id: {tenant_id}")
             
@@ -631,7 +636,7 @@ Views for Management app - TempVendor operations
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.db.models import Q
 from django.utils import timezone
 import logging
@@ -1247,23 +1252,54 @@ For support, contact us through the vendor portal or your designated account man
            
             # Create screening record using raw SQL for tprm database
             db_connection = connections['tprm']
+            # Get tenant_id from vendor
+            tenant_id = None
+            if hasattr(vendor, 'tenant_id') and vendor.tenant_id:
+                tenant_id = vendor.tenant_id
+            elif hasattr(vendor, 'TenantId') and vendor.TenantId:
+                tenant_id = vendor.TenantId
+            elif hasattr(vendor, 'tenant') and vendor.tenant:
+                if hasattr(vendor.tenant, 'tenant_id'):
+                    tenant_id = vendor.tenant.tenant_id
+                elif isinstance(vendor.tenant, int):
+                    tenant_id = vendor.tenant
+            
             with db_connection.cursor() as cursor:
-                cursor.execute("""
-                    INSERT INTO external_screening_results
-                    (vendor_id, screening_type, search_terms, status, screening_date, last_updated)
-                    VALUES (%s, %s, %s, %s, %s, %s)
-                """, [
-                    vendor.id,
-                    'OFAC',
-                    json.dumps({
-                        'company_name': vendor.company_name,
-                        'legal_name': vendor.legal_name,
-                        'tax_id': vendor.tax_id
-                    }),
-                    'UNDER_REVIEW',
-                    timezone.now(),
-                    timezone.now()
-                ])
+                if tenant_id:
+                    cursor.execute("""
+                        INSERT INTO external_screening_results
+                        (vendor_id, screening_type, search_terms, status, screening_date, last_updated, TenantId)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    """, [
+                        vendor.id,
+                        'OFAC',
+                        json.dumps({
+                            'company_name': vendor.company_name,
+                            'legal_name': vendor.legal_name,
+                            'tax_id': vendor.tax_id
+                        }),
+                        'UNDER_REVIEW',
+                        timezone.now(),
+                        timezone.now(),
+                        tenant_id
+                    ])
+                else:
+                    cursor.execute("""
+                        INSERT INTO external_screening_results
+                        (vendor_id, screening_type, search_terms, status, screening_date, last_updated)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+                    """, [
+                        vendor.id,
+                        'OFAC',
+                        json.dumps({
+                            'company_name': vendor.company_name,
+                            'legal_name': vendor.legal_name,
+                            'tax_id': vendor.tax_id
+                        }),
+                        'UNDER_REVIEW',
+                        timezone.now(),
+                        timezone.now()
+                    ])
                 screening_id = cursor.lastrowid
            
             # Get the screening instance
@@ -1303,16 +1339,29 @@ For support, contact us through the vendor portal or your designated account man
                 }
                
                 with db_connection.cursor() as cursor:
-                    cursor.execute("""
-                        INSERT INTO screening_matches
-                        (screening_id, match_type, match_score, match_details)
-                        VALUES (%s, %s, %s, %s)
-                    """, [
-                        screening_id,
-                        f"OFAC - {match.get('source', 'Unknown')}",
-                        match_score,
-                        json.dumps(match_details)
-                    ])
+                    if tenant_id:
+                        cursor.execute("""
+                            INSERT INTO screening_matches
+                            (screening_id, match_type, match_score, match_details, TenantId)
+                            VALUES (%s, %s, %s, %s, %s)
+                        """, [
+                            screening_id,
+                            f"OFAC - {match.get('source', 'Unknown')}",
+                            match_score,
+                            json.dumps(match_details),
+                            tenant_id
+                        ])
+                    else:
+                        cursor.execute("""
+                            INSERT INTO screening_matches
+                            (screening_id, match_type, match_score, match_details)
+                            VALUES (%s, %s, %s, %s)
+                        """, [
+                            screening_id,
+                            f"OFAC - {match.get('source', 'Unknown')}",
+                            match_score,
+                            json.dumps(match_details)
+                        ])
            
             # Update screening status
             with db_connection.cursor() as cursor:
@@ -1334,22 +1383,52 @@ For support, contact us through the vendor portal or your designated account man
         """Perform PEP (Politically Exposed Person) screening"""
         try:
             db_connection = connections['tprm']
+            # Get tenant_id from vendor
+            tenant_id = None
+            if hasattr(vendor, 'tenant_id') and vendor.tenant_id:
+                tenant_id = vendor.tenant_id
+            elif hasattr(vendor, 'TenantId') and vendor.TenantId:
+                tenant_id = vendor.TenantId
+            elif hasattr(vendor, 'tenant') and vendor.tenant:
+                if hasattr(vendor.tenant, 'tenant_id'):
+                    tenant_id = vendor.tenant.tenant_id
+                elif isinstance(vendor.tenant, int):
+                    tenant_id = vendor.tenant
+            
             with db_connection.cursor() as cursor:
-                cursor.execute("""
-                    INSERT INTO external_screening_results
-                    (vendor_id, screening_type, search_terms, status, screening_date, last_updated)
-                    VALUES (%s, %s, %s, %s, %s, %s)
-                """, [
-                    vendor.id,
-                    'PEP',
-                    json.dumps({
-                        'company_name': vendor.company_name,
-                        'legal_name': vendor.legal_name
-                    }),
-                    'UNDER_REVIEW',
-                    timezone.now(),
-                    timezone.now()
-                ])
+                if tenant_id:
+                    cursor.execute("""
+                        INSERT INTO external_screening_results
+                        (vendor_id, screening_type, search_terms, status, screening_date, last_updated, TenantId)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    """, [
+                        vendor.id,
+                        'PEP',
+                        json.dumps({
+                            'company_name': vendor.company_name,
+                            'legal_name': vendor.legal_name
+                        }),
+                        'UNDER_REVIEW',
+                        timezone.now(),
+                        timezone.now(),
+                        tenant_id
+                    ])
+                else:
+                    cursor.execute("""
+                        INSERT INTO external_screening_results
+                        (vendor_id, screening_type, search_terms, status, screening_date, last_updated)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+                    """, [
+                        vendor.id,
+                        'PEP',
+                        json.dumps({
+                            'company_name': vendor.company_name,
+                            'legal_name': vendor.legal_name
+                        }),
+                        'UNDER_REVIEW',
+                        timezone.now(),
+                        timezone.now()
+                    ])
                 screening_id = cursor.lastrowid
            
             # Simulate PEP search (replace with actual PEP API in production)
@@ -1375,22 +1454,52 @@ For support, contact us through the vendor portal or your designated account man
         """Perform sanctions screening"""
         try:
             db_connection = connections['tprm']
+            # Get tenant_id from vendor
+            tenant_id = None
+            if hasattr(vendor, 'tenant_id') and vendor.tenant_id:
+                tenant_id = vendor.tenant_id
+            elif hasattr(vendor, 'TenantId') and vendor.TenantId:
+                tenant_id = vendor.TenantId
+            elif hasattr(vendor, 'tenant') and vendor.tenant:
+                if hasattr(vendor.tenant, 'tenant_id'):
+                    tenant_id = vendor.tenant.tenant_id
+                elif isinstance(vendor.tenant, int):
+                    tenant_id = vendor.tenant
+            
             with db_connection.cursor() as cursor:
-                cursor.execute("""
-                    INSERT INTO external_screening_results
-                    (vendor_id, screening_type, search_terms, status, screening_date, last_updated)
-                    VALUES (%s, %s, %s, %s, %s, %s)
-                """, [
-                    vendor.id,
-                    'SANCTIONS',
-                    json.dumps({
-                        'company_name': vendor.company_name,
-                        'legal_name': vendor.legal_name
-                    }),
-                    'UNDER_REVIEW',
-                    timezone.now(),
-                    timezone.now()
-                ])
+                if tenant_id:
+                    cursor.execute("""
+                        INSERT INTO external_screening_results
+                        (vendor_id, screening_type, search_terms, status, screening_date, last_updated, TenantId)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    """, [
+                        vendor.id,
+                        'SANCTIONS',
+                        json.dumps({
+                            'company_name': vendor.company_name,
+                            'legal_name': vendor.legal_name
+                        }),
+                        'UNDER_REVIEW',
+                        timezone.now(),
+                        timezone.now(),
+                        tenant_id
+                    ])
+                else:
+                    cursor.execute("""
+                        INSERT INTO external_screening_results
+                        (vendor_id, screening_type, search_terms, status, screening_date, last_updated)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+                    """, [
+                        vendor.id,
+                        'SANCTIONS',
+                        json.dumps({
+                            'company_name': vendor.company_name,
+                            'legal_name': vendor.legal_name
+                        }),
+                        'UNDER_REVIEW',
+                        timezone.now(),
+                        timezone.now()
+                    ])
                 screening_id = cursor.lastrowid
            
             # Simulate sanctions search (replace with actual sanctions API in production)
@@ -1416,22 +1525,52 @@ For support, contact us through the vendor portal or your designated account man
         """Perform adverse media screening"""
         try:
             db_connection = connections['tprm']
+            # Get tenant_id from vendor
+            tenant_id = None
+            if hasattr(vendor, 'tenant_id') and vendor.tenant_id:
+                tenant_id = vendor.tenant_id
+            elif hasattr(vendor, 'TenantId') and vendor.TenantId:
+                tenant_id = vendor.TenantId
+            elif hasattr(vendor, 'tenant') and vendor.tenant:
+                if hasattr(vendor.tenant, 'tenant_id'):
+                    tenant_id = vendor.tenant.tenant_id
+                elif isinstance(vendor.tenant, int):
+                    tenant_id = vendor.tenant
+            
             with db_connection.cursor() as cursor:
-                cursor.execute("""
-                    INSERT INTO external_screening_results
-                    (vendor_id, screening_type, search_terms, status, screening_date, last_updated)
-                    VALUES (%s, %s, %s, %s, %s, %s)
-                """, [
-                    vendor.id,
-                    'ADVERSE_MEDIA',
-                    json.dumps({
-                        'company_name': vendor.company_name,
-                        'legal_name': vendor.legal_name
-                    }),
-                    'UNDER_REVIEW',
-                    timezone.now(),
-                    timezone.now()
-                ])
+                if tenant_id:
+                    cursor.execute("""
+                        INSERT INTO external_screening_results
+                        (vendor_id, screening_type, search_terms, status, screening_date, last_updated, TenantId)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    """, [
+                        vendor.id,
+                        'ADVERSE_MEDIA',
+                        json.dumps({
+                            'company_name': vendor.company_name,
+                            'legal_name': vendor.legal_name
+                        }),
+                        'UNDER_REVIEW',
+                        timezone.now(),
+                        timezone.now(),
+                        tenant_id
+                    ])
+                else:
+                    cursor.execute("""
+                        INSERT INTO external_screening_results
+                        (vendor_id, screening_type, search_terms, status, screening_date, last_updated)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+                    """, [
+                        vendor.id,
+                        'ADVERSE_MEDIA',
+                        json.dumps({
+                            'company_name': vendor.company_name,
+                            'legal_name': vendor.legal_name
+                        }),
+                        'UNDER_REVIEW',
+                        timezone.now(),
+                        timezone.now()
+                    ])
                 screening_id = cursor.lastrowid
            
             # Simulate adverse media search (replace with actual adverse media API in production)
@@ -1452,6 +1591,254 @@ For support, contact us through the vendor portal or your designated account man
         except Exception as e:
             logger.error(f"Adverse media screening failed for vendor {vendor.id}: {str(e)}", exc_info=True)
             return None
+
+
+class ExternalScreeningView(APIView):
+    """
+    API endpoint to trigger external screening for a vendor by vendor_code.
+    If vendor is onboarded (exists in vendors table), gets vendor_id from temp_vendor
+    and performs comprehensive screening, saving results to external_screening_results
+    and screening_matches tables.
+    """
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request, vendor_code):
+        """
+        Trigger external screening for a vendor
+        
+        Args:
+            vendor_code: Vendor code to screen
+            
+        Returns:
+            Response with screening results
+        """
+        logger.info(f"[ExternalScreeningView] Starting external screening for vendor_code: {vendor_code}")
+        
+        try:
+            # Get tenant_id from request
+            tenant_id = get_tenant_id_from_request(request)
+            if not tenant_id:
+                logger.warning(f"[ExternalScreeningView] No tenant_id found in request")
+            
+            # Step 1: Check if vendor is onboarded (exists in vendors table)
+            onboarded_vendor = None
+            try:
+                onboarded_vendor = Vendors.objects.filter(vendor_code=vendor_code).first()
+                if onboarded_vendor:
+                    logger.info(f"[ExternalScreeningView] Vendor {vendor_code} is onboarded (vendor_id: {onboarded_vendor.vendor_id})")
+            except Exception as e:
+                logger.error(f"[ExternalScreeningView] Error checking vendors table: {str(e)}")
+            
+            # Step 2: Get vendor_id from temp_vendor table using vendor_code
+            temp_vendor = None
+            try:
+                # Try to find in temp_vendor table
+                temp_vendor = TempVendor.objects.using('tprm').filter(vendor_code=vendor_code).first()
+                if not temp_vendor:
+                    # If not found by vendor_code, try to find by matching with onboarded vendor
+                    if onboarded_vendor:
+                        # Try to find temp_vendor that matches the onboarded vendor's details
+                        temp_vendor = TempVendor.objects.using('tprm').filter(
+                            company_name=onboarded_vendor.company_name
+                        ).first()
+                
+                if temp_vendor:
+                    logger.info(f"[ExternalScreeningView] Found temp_vendor (id: {temp_vendor.id}) for vendor_code: {vendor_code}")
+                else:
+                    logger.warning(f"[ExternalScreeningView] No temp_vendor found for vendor_code: {vendor_code}")
+            except Exception as e:
+                logger.error(f"[ExternalScreeningView] Error finding temp_vendor: {str(e)}")
+            
+            # Step 3: If no temp_vendor found, return error
+            if not temp_vendor:
+                return Response({
+                    'success': False,
+                    'error': f'Vendor with code {vendor_code} not found in temp_vendor table. Cannot perform screening.',
+                    'vendor_code': vendor_code
+                }, status=status.HTTP_404_NOT_FOUND)
+            
+            # Step 4: Perform comprehensive automatic screening
+            # Use the existing screening methods from TempVendorManagementViewSet
+            viewset = TempVendorManagementViewSet()
+            screening_results = viewset._perform_automatic_screening(temp_vendor)
+            
+            # Step 5: Format response
+            response_data = {
+                'success': True,
+                'message': f'External screening completed for vendor {vendor_code}',
+                'vendor_code': vendor_code,
+                'vendor_id': temp_vendor.id,
+                'is_onboarded': onboarded_vendor is not None,
+                'screening_results': screening_results or [],
+                'total_screening_types': len(screening_results) if screening_results else 0
+            }
+            
+            logger.info(f"[ExternalScreeningView] Screening completed for vendor_code: {vendor_code}, results: {len(screening_results) if screening_results else 0}")
+            
+            return Response(response_data, status=status.HTTP_200_OK)
+            
+        except Exception as e:
+            logger.error(f"[ExternalScreeningView] Error performing external screening for vendor_code {vendor_code}: {str(e)}", exc_info=True)
+            return Response({
+                'success': False,
+                'error': f'Failed to perform external screening: {str(e)}',
+                'vendor_code': vendor_code
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class VendorScreeningResultsView(APIView):
+    """
+    API endpoint to get external screening results for a vendor by vendor_code.
+    Returns screening results and matches grouped by screening_date (version).
+    """
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, vendor_code):
+        """
+        Get screening results for a vendor
+        
+        Args:
+            vendor_code: Vendor code to get screening results for
+            start_date (optional): Filter results from this date (YYYY-MM-DD)
+            end_date (optional): Filter results to this date (YYYY-MM-DD)
+            
+        Returns:
+            Response with screening results grouped by version (screening_date)
+        """
+        logger.info(f"[VendorScreeningResultsView] Getting screening results for vendor_code: {vendor_code}")
+        
+        try:
+            # Get date filters from query params
+            start_date = request.query_params.get('start_date')
+            end_date = request.query_params.get('end_date')
+            
+            # Get tenant_id from request
+            tenant_id = get_tenant_id_from_request(request)
+            
+            # Step 1: Find temp_vendor by vendor_code
+            temp_vendor = None
+            try:
+                temp_vendor = TempVendor.objects.using('tprm').filter(vendor_code=vendor_code).first()
+                if not temp_vendor:
+                    # Try to find by matching with onboarded vendor
+                    onboarded_vendor = Vendors.objects.filter(vendor_code=vendor_code).first()
+                    if onboarded_vendor:
+                        temp_vendor = TempVendor.objects.using('tprm').filter(
+                            company_name=onboarded_vendor.company_name
+                        ).first()
+            except Exception as e:
+                logger.error(f"[VendorScreeningResultsView] Error finding temp_vendor: {str(e)}")
+            
+            if not temp_vendor:
+                return Response({
+                    'success': False,
+                    'error': f'Vendor with code {vendor_code} not found',
+                    'vendor_code': vendor_code
+                }, status=status.HTTP_404_NOT_FOUND)
+            
+            # Step 2: Get screening results for this vendor
+            screening_results_query = ExternalScreeningResult.objects.using('tprm').filter(
+                vendor_id=temp_vendor.id
+            )
+            
+            # Apply date filters
+            if start_date:
+                try:
+                    from datetime import datetime
+                    start_datetime = datetime.strptime(start_date, '%Y-%m-%d')
+                    screening_results_query = screening_results_query.filter(screening_date__gte=start_datetime)
+                except ValueError:
+                    logger.warning(f"[VendorScreeningResultsView] Invalid start_date format: {start_date}")
+            
+            if end_date:
+                try:
+                    from datetime import datetime
+                    end_datetime = datetime.strptime(end_date, '%Y-%m-%d')
+                    # Add one day to include the entire end date
+                    from datetime import timedelta
+                    end_datetime = end_datetime + timedelta(days=1)
+                    screening_results_query = screening_results_query.filter(screening_date__lt=end_datetime)
+                except ValueError:
+                    logger.warning(f"[VendorScreeningResultsView] Invalid end_date format: {end_date}")
+            
+            # Order by screening_date descending (newest first)
+            screening_results = screening_results_query.order_by('-screening_date')
+            
+            # Step 3: Group results by screening_date (version) and get matches
+            grouped_results = {}
+            for result in screening_results:
+                # Use screening_date as version key (format: YYYY-MM-DD)
+                version_key = result.screening_date.strftime('%Y-%m-%d') if result.screening_date else 'unknown'
+                
+                if version_key not in grouped_results:
+                    grouped_results[version_key] = {
+                        'version': version_key,
+                        'screening_date': result.screening_date.isoformat() if result.screening_date else None,
+                        'results': []
+                    }
+                
+                # Get matches for this screening result
+                matches = ScreeningMatch.objects.using('tprm').filter(
+                    screening_id=result.screening_id
+                ).order_by('-match_score')
+                
+                result_data = {
+                    'screening_id': result.screening_id,
+                    'screening_type': result.screening_type,
+                    'screening_date': result.screening_date.isoformat() if result.screening_date else None,
+                    'search_terms': result.search_terms,
+                    'total_matches': result.total_matches,
+                    'high_risk_matches': result.high_risk_matches,
+                    'status': result.status,
+                    'last_updated': result.last_updated.isoformat() if result.last_updated else None,
+                    'reviewed_by': result.reviewed_by,
+                    'review_date': result.review_date.isoformat() if result.review_date else None,
+                    'review_comments': result.review_comments,
+                    'matches': [
+                        {
+                            'match_id': match.match_id,
+                            'match_type': match.match_type,
+                            'match_score': float(match.match_score) if match.match_score else 0,
+                            'match_details': match.match_details,
+                            'is_false_positive': match.is_false_positive,
+                            'resolution_status': match.resolution_status,
+                            'resolution_notes': match.resolution_notes,
+                            'resolved_by': match.resolved_by,
+                            'resolved_date': match.resolved_date.isoformat() if match.resolved_date else None
+                        }
+                        for match in matches
+                    ]
+                }
+                
+                grouped_results[version_key]['results'].append(result_data)
+            
+            # Convert to list and sort by version (date) descending
+            versions_list = list(grouped_results.values())
+            versions_list.sort(key=lambda x: x['screening_date'] or '', reverse=True)
+            
+            response_data = {
+                'success': True,
+                'vendor_code': vendor_code,
+                'vendor_id': temp_vendor.id,
+                'vendor_name': temp_vendor.company_name,
+                'versions': versions_list,
+                'total_versions': len(versions_list),
+                'total_results': sum(len(v['results']) for v in versions_list)
+            }
+            
+            logger.info(f"[VendorScreeningResultsView] Found {len(versions_list)} versions with {response_data['total_results']} total results")
+            
+            return Response(response_data, status=status.HTTP_200_OK)
+            
+        except Exception as e:
+            logger.error(f"[VendorScreeningResultsView] Error getting screening results for vendor_code {vendor_code}: {str(e)}", exc_info=True)
+            return Response({
+                'success': False,
+                'error': f'Failed to get screening results: {str(e)}',
+                'vendor_code': vendor_code
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
  
  
  

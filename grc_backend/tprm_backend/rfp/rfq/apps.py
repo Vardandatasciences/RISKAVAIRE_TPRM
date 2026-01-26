@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class RPQConfig(AppConfig):
+class RFQConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'tprm_backend.rfp.rpq'
-    label = 'rpq'
+    name = 'tprm_backend.rfp.rfq'
+    label = 'rfq'

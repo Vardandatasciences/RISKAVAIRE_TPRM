@@ -6,7 +6,9 @@ from .models import EmergencyProcurement, EmergencyEvaluationCriteria
 class EmergencyEvaluationCriteriaSerializer(AutoDecryptingModelSerializer):
     """Serializer for Emergency Procurement Evaluation Criteria"""
     emergency_id = serializers.IntegerField(write_only=True, required=False)
+    emergency = serializers.PrimaryKeyRelatedField(queryset=EmergencyProcurement.objects.all(), required=False, allow_null=True)
     data_inventory = serializers.JSONField(required=False, allow_null=True)
+    created_by = serializers.IntegerField(required=False, allow_null=True)
     
     class Meta:
         model = EmergencyEvaluationCriteria
@@ -39,23 +41,32 @@ class EmergencyEvaluationCriteriaSerializer(AutoDecryptingModelSerializer):
         representation['emergency_id'] = self.get_emergency_id(instance)
         return representation
     
-    def create(self, validated_data):
-        emergency_id = validated_data.pop('emergency_id', None)
-        if emergency_id and 'emergency' not in validated_data:
-            from .models import EmergencyProcurement
-            try:
-                validated_data['emergency'] = EmergencyProcurement.objects.get(emergency_id=emergency_id)
-            except EmergencyProcurement.DoesNotExist:
-                raise serializers.ValidationError({'emergency_id': 'Emergency Procurement with this ID does not exist'})
-        return super().create(validated_data)
-    
     def validate(self, data):
+        """Validate evaluation criteria data and convert emergency_id to emergency"""
+        # Convert emergency_id to emergency if emergency_id is provided but emergency is not
+        emergency_id = data.pop('emergency_id', None)
+        if emergency_id is not None:
+            try:
+                from .models import EmergencyProcurement
+                emergency_obj = EmergencyProcurement.objects.get(emergency_id=emergency_id)
+                data['emergency'] = emergency_obj
+            except EmergencyProcurement.DoesNotExist:
+                raise serializers.ValidationError({'emergency_id': f'Emergency Procurement with ID {emergency_id} does not exist'})
+            except Exception as e:
+                raise serializers.ValidationError({'emergency_id': f'Error fetching Emergency Procurement: {str(e)}'})
+        elif 'emergency' not in data or data.get('emergency') is None:
+            # If neither emergency_id nor emergency is provided, make it optional for now
+            # The view will handle setting it if needed
+            pass
+        
+        # Validate weight_percentage
         if 'weight_percentage' in data:
             weight = data['weight_percentage']
             if weight < 0 or weight > 100:
                 raise serializers.ValidationError(
                     {"weight_percentage": "Weight must be between 0 and 100"}
                 )
+        
         return data
 
 
@@ -80,7 +91,7 @@ class EmergencyProcurementSerializer(AutoDecryptingModelSerializer):
             'data_inventory', 'retentionExpiry', 'emergency_justification',
             'emergency_type_category', 'urgency_level', 'required_delivery_date', 'impact_description'
         ]
-        read_only_fields = ['emergency_id', 'emergency_number', 'created_at', 'updated_at']
+        read_only_fields = ['emergency_id', 'emergency_number', 'created_by', 'created_at', 'updated_at']
     
     def validate_data_inventory(self, value):
         if not isinstance(value, dict):
@@ -91,6 +102,7 @@ class EmergencyProcurementSerializer(AutoDecryptingModelSerializer):
 class EmergencyProcurementCreateSerializer(AutoDecryptingModelSerializer):
     """Serializer for creating Emergency Procurement"""
     data_inventory = serializers.JSONField(required=False, allow_null=True)
+    created_by = serializers.IntegerField(required=False, allow_null=True)
     
     class Meta:
         model = EmergencyProcurement
@@ -106,7 +118,7 @@ class EmergencyProcurementCreateSerializer(AutoDecryptingModelSerializer):
             'data_inventory', 'retentionExpiry', 'documents', 'emergency_justification',
             'emergency_type_category', 'urgency_level', 'required_delivery_date', 'impact_description'
         ]
-        read_only_fields = ['emergency_id', 'emergency_number']
+        read_only_fields = ['emergency_id', 'emergency_number', 'created_by']
 
 
 class EmergencyProcurementListSerializer(AutoDecryptingModelSerializer):
@@ -115,6 +127,7 @@ class EmergencyProcurementListSerializer(AutoDecryptingModelSerializer):
     class Meta:
         model = EmergencyProcurement
         fields = [
-            'emergency_id', 'emergency_number', 'emergency_title', 'status', 'created_at',
-            'submission_deadline', 'criticality_level', 'created_by', 'urgency_level'
+            'emergency_id', 'emergency_number', 'emergency_title', 'description', 'emergency_type',
+            'status', 'created_at', 'submission_deadline', 'criticality_level',
+            'created_by', 'budget_range_min', 'budget_range_max', 'category', 'urgency_level'
         ]

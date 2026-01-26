@@ -26,10 +26,15 @@ import NotFound from '@/views/rfp/NotFound.vue'
 import AccessDenied from '@/components/AccessDenied.vue'
 // Procurement Type Components
 import RFICreation from '@/views/rfi/RFICreation.vue'
-import RPQCreation from '@/views/rpq/RPQCreation.vue'
+import RFIList from '@/views/rfi/RFIList.vue'
+import RFQCreation from '@/views/rfq/RFQCreation.vue'
+import RFQList from '@/views/rfq/RFQList.vue'
 import DirectCreation from '@/views/Direct/DirectCreation.vue'
+import DirectList from '@/views/Direct/DirectList.vue'
 import AuctionCreation from '@/views/Auction/AuctionCreation.vue'
+import AuctionList from '@/views/Auction/AuctionList.vue'
 import EmergencyCreation from '@/views/Emergency/EmergencyCreation.vue'
+import EmergencyList from '@/views/Emergency/EmergencyList.vue'
 
 const routes = [
   {
@@ -225,30 +230,30 @@ const routes = [
     path: '/rfi-list',
     name: 'RFIList',
     component: GenericWrapper,
-    props: { component: RFPList },
+    props: { component: RFIList },
     meta: { title: 'RFI List', requiresAuth: true, permission: 'view_rfp' }
   },
-  // RPQ Routes
+  // RFQ Routes
   {
-    path: '/rpq-creation',
-    name: 'RPQCreation',
+    path: '/rfq-creation',
+    name: 'RFQCreation',
     component: GenericWrapper,
-    props: { component: RPQCreation },
-    meta: { title: 'RPQ Creation', requiresAuth: true, permission: 'create_rfp' }
+    props: { component: RFQCreation },
+    meta: { title: 'RFQ Creation', requiresAuth: true, permission: 'create_rfp' }
   },
   {
-    path: '/rpq-dashboard',
-    name: 'RPQDashboard',
+    path: '/rfq-dashboard',
+    name: 'RFQDashboard',
     component: GenericWrapper,
     props: { component: Dashboard },
-    meta: { title: 'RPQ Dashboard', requiresAuth: true, permission: 'view_rfp' }
+    meta: { title: 'RFQ Dashboard', requiresAuth: true, permission: 'view_rfp' }
   },
   {
-    path: '/rpq-list',
-    name: 'RPQList',
+    path: '/rfq-list',
+    name: 'RFQList',
     component: GenericWrapper,
-    props: { component: RFPList },
-    meta: { title: 'RPQ List', requiresAuth: true, permission: 'view_rfp' }
+    props: { component: RFQList },
+    meta: { title: 'RFQ List', requiresAuth: true, permission: 'view_rfp' }
   },
   // Direct Procurement Routes
   {
@@ -269,7 +274,7 @@ const routes = [
     path: '/direct-list',
     name: 'DirectList',
     component: GenericWrapper,
-    props: { component: RFPList },
+    props: { component: DirectList },
     meta: { title: 'Direct Procurement List', requiresAuth: true, permission: 'view_rfp' }
   },
   // Auction Routes
@@ -291,7 +296,7 @@ const routes = [
     path: '/auction-list',
     name: 'AuctionList',
     component: GenericWrapper,
-    props: { component: RFPList },
+    props: { component: AuctionList },
     meta: { title: 'Auction List', requiresAuth: true, permission: 'view_rfp' }
   },
   // Emergency Procurement Routes
@@ -313,7 +318,7 @@ const routes = [
     path: '/emergency-list',
     name: 'EmergencyList',
     component: GenericWrapper,
-    props: { component: RFPList },
+    props: { component: EmergencyList },
     meta: { title: 'Emergency Procurement List', requiresAuth: true, permission: 'view_rfp' }
   },
   {

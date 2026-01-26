@@ -605,27 +605,27 @@ const router = createRouter({
     {
       path: '/rfi-list',
       name: 'RFI List',
-      component: () => import('@/views/rfp/RFPList.vue'),
+      component: () => import('@/views/rfi/RFIList.vue'),
       meta: { requiresAuth: true, permission: 'view_rfp' }
     },
     
-    // RPQ Routes
+    // RFQ Routes
     {
-      path: '/rpq-creation',
-      name: 'RPQ Creation',
-      component: () => import('@/views/rpq/RPQCreation.vue'),
+      path: '/rfq-creation',
+      name: 'RFQ Creation',
+      component: () => import('@/views/rfq/RFQCreation.vue'),
       meta: { requiresAuth: true, permission: 'create_rfp' }
     },
     {
-      path: '/rpq-dashboard',
-      name: 'RPQ Dashboard',
+      path: '/rfq-dashboard',
+      name: 'RFQ Dashboard',
       component: () => import('@/views/rfp/Dashboard.vue'),
       meta: { requiresAuth: true, permission: 'view_rfp' }
     },
     {
-      path: '/rpq-list',
-      name: 'RPQ List',
-      component: () => import('@/views/rfp/RFPList.vue'),
+      path: '/rfq-list',
+      name: 'RFQ List',
+      component: () => import('@/views/rfq/RFQList.vue'),
       meta: { requiresAuth: true, permission: 'view_rfp' }
     },
     
@@ -645,7 +645,7 @@ const router = createRouter({
     {
       path: '/direct-list',
       name: 'Direct List',
-      component: () => import('@/views/rfp/RFPList.vue'),
+      component: () => import('@/views/Direct/DirectList.vue'),
       meta: { requiresAuth: true, permission: 'view_rfp' }
     },
     
@@ -665,7 +665,7 @@ const router = createRouter({
     {
       path: '/auction-list',
       name: 'Auction List',
-      component: () => import('@/views/rfp/RFPList.vue'),
+      component: () => import('@/views/Auction/AuctionList.vue'),
       meta: { requiresAuth: true, permission: 'view_rfp' }
     },
     
@@ -685,7 +685,7 @@ const router = createRouter({
     {
       path: '/emergency-list',
       name: 'Emergency List',
-      component: () => import('@/views/rfp/RFPList.vue'),
+      component: () => import('@/views/Emergency/EmergencyList.vue'),
       meta: { requiresAuth: true, permission: 'view_rfp' }
     },
     {

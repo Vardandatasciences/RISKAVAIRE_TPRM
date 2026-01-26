@@ -10,7 +10,7 @@
                 <Icons name="file-invoice-dollar" class="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">RPQ Creation & Setup</h1>
+                <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">RFQ Creation & Setup</h1>
                 <div v-if="lastSaved" class="flex items-center gap-1 text-xs sm:text-sm text-gray-500 mt-1">
                   <Icons v-if="isAutoSaving" name="clock" class="h-3 w-3 animate-spin" />
                   <Icons v-else name="check-circle" class="h-3 w-3 text-green-500" />
@@ -65,12 +65,12 @@
           </div>
           
           <p class="text-gray-600 text-sm mt-2">
-            Create a comprehensive RPQ to request quotations from vendors for specific products or services.
+            Create a comprehensive RFQ to request quotations from vendors for specific products or services.
           </p>
         </div>
       </div>
 
-      <!-- Form Container - Similar structure to RFI but with RPQ-specific fields -->
+      <!-- Form Container - Similar structure to RFI but with RFQ-specific fields -->
       <div class="space-y-6">
         <!-- Tabs Navigation -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
@@ -122,7 +122,7 @@
               <div>
                 <CardTitle class="text-lg font-semibold text-gray-900">Basic Information</CardTitle>
                 <CardDescription class="text-sm text-gray-600 mt-0.5">
-                  Define the core details of your RPQ
+                  Define the core details of your RFQ
                 </CardDescription>
               </div>
             </div>
@@ -130,18 +130,18 @@
           <CardContent class="p-6 space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <Label html-for="rpqNumber">
-                  <span>RPQ Number *</span>
+                <Label html-for="rfqNumber">
+                  <span>RFQ Number *</span>
                 </Label>
                 <Input
-                  id="rpqNumber"
-                  placeholder="e.g., RPQ-2024-001"
-                  v-model="formData.rpqNumber"
+                  id="rfqNumber"
+                  placeholder="e.g., RFQ-2024-001"
+                  v-model="formData.rfqNumber"
                 />
               </div>
               <div class="space-y-2">
                 <Label html-for="title">
-                  <span>RPQ Title *</span>
+                  <span>RFQ Title *</span>
                 </Label>
                 <Input
                   id="title"
@@ -154,15 +154,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
                 <Label html-for="type">
-                  <span>RPQ Type *</span>
+                  <span>RFQ Type *</span>
                 </Label>
-                <Select v-model="formData.type" :disabled="loadingRpqTypes">
+                <Select v-model="formData.type" :disabled="loadingRfqTypes">
                   <option value="" disabled>Select type</option>
-                  <option v-for="rpqType in rpqTypes" :key="rpqType" :value="rpqType">
-                    {{ rpqType }}
+                  <option v-for="rfqType in rfqTypes" :key="rfqType" :value="rfqType">
+                    {{ rfqType }}
                   </option>
                 </Select>
-                <p v-if="loadingRpqTypes" class="text-xs text-muted-foreground">Loading RPQ types...</p>
+                <p v-if="loadingRfqTypes" class="text-xs text-muted-foreground">Loading RFQ types...</p>
               </div>
               <div v-if="!hiddenFields.category" class="space-y-2">
                 <Label html-for="category">
@@ -305,7 +305,7 @@
               <CardTitle>Document Upload</CardTitle>
             </div>
             <CardDescription>
-              Upload supporting documents for your RPQ
+              Upload supporting documents for your RFQ
             </CardDescription>
           </CardHeader>
           <CardContent class="p-6 space-y-6">
@@ -606,8 +606,8 @@ const activeTab = ref(formTabs[0].value)
 const hiddenTabs = ref<Set<string>>(new Set())
 const visibleTabs = computed(() => formTabs.filter(tab => !hiddenTabs.value.has(tab.value)))
 
-// Default RPQ types
-const defaultRpqTypes = [
+// Default RFQ types
+const defaultRfqTypes = [
   'Software',
   'Hardware',
   'Services',
@@ -620,8 +620,8 @@ const defaultRpqTypes = [
   'Maintenance Services'
 ]
 
-const rpqTypes = ref<string[]>([...defaultRpqTypes])
-const loadingRpqTypes = ref(false)
+const rfqTypes = ref<string[]>([...defaultRfqTypes])
+const loadingRfqTypes = ref(false)
 
 const hiddenFields = ref<Record<string, boolean>>({
   category: false,
@@ -643,7 +643,7 @@ interface EvaluationCriteria {
 const criteria = ref<EvaluationCriteria[]>([])
 
 const formData = ref({
-  rpqNumber: '',
+  rfqNumber: '',
   title: '',
   description: '',
   type: '',
@@ -667,8 +667,8 @@ const formData = ref({
 })
 
 const hasExistingDraft = computed(() => {
-  const rpqId = localStorage.getItem('current_rpq_id')
-  return rpqId && rpqId !== 'null' && rpqId !== ''
+  const rfqId = localStorage.getItem('current_rfq_id')
+  return rfqId && rfqId !== 'null' && rfqId !== ''
 })
 
 const totalWeight = computed(() => {
@@ -754,30 +754,30 @@ const removeDocument = (index) => {
 }
 
 const isFormValid = computed(() => {
-  return !!(formData.value.title && formData.value.description && formData.value.type && formData.value.rpqNumber && formData.value.deadline && formData.value.issueDate)
+  return !!(formData.value.title && formData.value.description && formData.value.type && formData.value.rfqNumber && formData.value.deadline && formData.value.issueDate)
 })
 
-const fetchRpqTypes = async () => {
+const fetchRfqTypes = async () => {
   try {
-    loadingRpqTypes.value = true
-    const response = await axios.get(`${API_BASE_URL}/rpq-types/types/`, {
+    loadingRfqTypes.value = true
+    const response = await axios.get(`${API_BASE_URL}/rfq-types/types/`, {
       headers: getAuthHeaders()
     })
-    if (response.data && response.data.success && response.data.rpq_types && response.data.rpq_types.length > 0) {
+    if (response.data && response.data.success && response.data.rfq_types && response.data.rfq_types.length > 0) {
       // Merge backend types with defaults, removing duplicates
-      const backendTypes = response.data.rpq_types
-      const merged = [...new Set([...defaultRpqTypes, ...backendTypes])]
-      rpqTypes.value = merged.sort()
+      const backendTypes = response.data.rfq_types
+      const merged = [...new Set([...defaultRfqTypes, ...backendTypes])]
+      rfqTypes.value = merged.sort()
     } else {
       // Use defaults if backend doesn't return types
-      rpqTypes.value = [...defaultRpqTypes]
+      rfqTypes.value = [...defaultRfqTypes]
     }
   } catch (err) {
-    console.error('Error fetching RPQ types:', err)
+    console.error('Error fetching RFQ types:', err)
     // Use defaults on error
-    rpqTypes.value = [...defaultRpqTypes]
+    rfqTypes.value = [...defaultRfqTypes]
   } finally {
-    loadingRpqTypes.value = false
+    loadingRfqTypes.value = false
   }
 }
 
@@ -786,15 +786,15 @@ const formatTime = (date: Date) => {
 }
 
 const clearDraftAndStartFresh = () => {
-  localStorage.removeItem('current_rpq_id')
-  localStorage.removeItem('rpq_draft_current')
+  localStorage.removeItem('current_rfq_id')
+  localStorage.removeItem('rfq_draft_current')
   resetFormData()
   success('Started Fresh', 'Starting with a clean form.')
 }
 
 const resetFormData = () => {
   formData.value = {
-    rpqNumber: '',
+    rfqNumber: '',
     title: '',
     description: '',
     type: '',
@@ -833,10 +833,10 @@ const loadSampleData = () => {
   
   // Populate all form fields
   formData.value = {
-    rpqNumber: `RPQ-${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-001`,
+    rfqNumber: `RFQ-${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-001`,
     title: 'Enterprise Software License Quotation Request',
-    description: 'We are requesting quotations for enterprise software licenses including pricing, support options, and volume discounts. This RPQ covers annual licensing for 500+ users across multiple departments.',
-    type: rpqTypes.value[0] || 'Software',
+    description: 'We are requesting quotations for enterprise software licenses including pricing, support options, and volume discounts. This RFQ covers annual licensing for 500+ users across multiple departments.',
+    type: rfqTypes.value[0] || 'Software',
     category: 'Software Licensing',
     estimatedValue: '100000',
     currency: 'USD',
@@ -894,8 +894,8 @@ const loadSampleData = () => {
   // Populate sample documents
   uploadedDocuments.value = [
     {
-      name: 'RPQ Requirements Document',
-      fileName: 'rpq-requirements.pdf',
+      name: 'RFQ Requirements Document',
+      fileName: 'rfq-requirements.pdf',
       fileSize: 189440,
       uploaded: false
     },
@@ -919,11 +919,21 @@ const handleSaveDraft = async () => {
       ? formData.value.complianceRequirements.split(/[,\n]/).map(r => r.trim()).filter(r => r)
       : null
     
-    const rpqData = {
-      rpq_number: formData.value.rpqNumber,
-      rpq_title: formData.value.title,
+    // Prepare documents array if any documents are uploaded
+    const documentsArray = uploadedDocuments.value.length > 0
+      ? uploadedDocuments.value.map(doc => ({
+          name: doc.name,
+          fileName: doc.fileName,
+          fileSize: doc.fileSize,
+          uploaded: doc.uploaded || false
+        }))
+      : null
+    
+    const rfqData = {
+      rfq_number: formData.value.rfqNumber,
+      rfq_title: formData.value.title,
       description: formData.value.description,
-      rpq_type: formData.value.type || 'SOFTWARE',
+      rfq_type: formData.value.type || 'SOFTWARE',
       category: formData.value.category || null,
       estimated_value: formData.value.estimatedValue ? Number(formData.value.estimatedValue) : null,
       currency: formData.value.currency || 'USD',
@@ -941,46 +951,47 @@ const handleSaveDraft = async () => {
       allow_late_submissions: Boolean(formData.value.allowLateSubmissions),
       auto_approve: Boolean(formData.value.autoApprove),
       status: 'DRAFT',
-      custom_fields: formData.value.customFields || null
+      custom_fields: formData.value.customFields || null,
+      documents: documentsArray
     }
     
-    let existingRpqId = localStorage.getItem('current_rpq_id')
-    const isUpdate = existingRpqId && existingRpqId !== 'null' && existingRpqId !== ''
+    let existingRfqId = localStorage.getItem('current_rfq_id')
+    const isUpdate = existingRfqId && existingRfqId !== 'null' && existingRfqId !== ''
     
     let response
     if (isUpdate) {
-      response = await axios.patch(`${API_BASE_URL}/rpqs/${existingRpqId}/`, rpqData, {
+      response = await axios.patch(`${API_BASE_URL}/rfqs/${existingRfqId}/`, rfqData, {
         headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' }
       })
     } else {
-      response = await axios.post(`${API_BASE_URL}/rpqs/`, rpqData, {
+      response = await axios.post(`${API_BASE_URL}/rfqs/`, rfqData, {
         headers: { ...getAuthHeaders(), 'Content-Type': 'application/json' }
       })
     }
     
-    const savedRpqId = response.data.rpq_id || existingRpqId
-    localStorage.setItem('current_rpq_id', savedRpqId)
+    const savedRfqId = response.data.rfq_id || existingRfqId
+    localStorage.setItem('current_rfq_id', savedRfqId)
     
-    if (response.data.rpq_number) {
-      formData.value.rpqNumber = response.data.rpq_number
+    if (response.data.rfq_number) {
+      formData.value.rfqNumber = response.data.rfq_number
     }
     
     // Save evaluation criteria if any exist
-    if (criteria.value.length > 0 && savedRpqId) {
+    if (criteria.value.length > 0 && savedRfqId) {
       try {
         // Delete existing criteria first (if updating)
         if (isUpdate) {
-          await axios.delete(`${API_BASE_URL}/rpq-evaluation-criteria/`, {
+          await axios.delete(`${API_BASE_URL}/rfq-evaluation-criteria/`, {
             headers: getAuthHeaders(),
-            params: { rpq_id: savedRpqId }
+            params: { rfq_id: savedRfqId }
           }).catch(() => {}) // Ignore if no criteria exist
         }
         
         // Save new criteria
         for (const criterion of criteria.value) {
           if (criterion.name && criterion.description) {
-            await axios.post(`${API_BASE_URL}/rpq-evaluation-criteria/`, {
-              rpq_id: savedRpqId,
+            await axios.post(`${API_BASE_URL}/rfq-evaluation-criteria/`, {
+              rfq_id: savedRfqId,
               criteria_name: criterion.name,
               criteria_description: criterion.description,
               weight_percentage: criterion.weight,
@@ -999,15 +1010,15 @@ const handleSaveDraft = async () => {
       }
     }
     
-    success(isUpdate ? 'Draft Updated' : 'Draft Saved', `Your RPQ has been ${isUpdate ? 'updated' : 'saved'} as a draft.`)
+    success(isUpdate ? 'Draft Updated' : 'Draft Saved', `Your RFQ has been ${isUpdate ? 'updated' : 'saved'} as a draft.`)
     lastSaved.value = new Date()
     
   } catch (err) {
-    console.error('Error saving RPQ:', err)
+    console.error('Error saving RFQ:', err)
     if (err.response && err.response.data) {
-      error('Error', `Failed to save RPQ: ${JSON.stringify(err.response.data)}`)
+      error('Error', `Failed to save RFQ: ${JSON.stringify(err.response.data)}`)
     } else {
-      error('Error', 'Failed to save RPQ. Please try again.')
+      error('Error', 'Failed to save RFQ. Please try again.')
     }
   } finally {
     isSubmitting.value = false
@@ -1016,19 +1027,18 @@ const handleSaveDraft = async () => {
 
 const handleProceedToApprovalWorkflow = async () => {
   await handleSaveDraft()
-  setTimeout(() => {
-    router.push('/approval-management')
-  }, 1000)
+  // Stay on the same screen after saving
+  success('RFQ Saved', 'Your RFQ has been saved successfully. You can continue editing or proceed with the approval workflow when ready.')
 }
 
 let autoSaveInterval: any = null
 
 onMounted(async () => {
-  await fetchRpqTypes()
+  await fetchRfqTypes()
   autoSaveInterval = setInterval(() => {
     if (formData.value.title || formData.value.description) {
       isAutoSaving.value = true
-      localStorage.setItem('rpq_draft_current', JSON.stringify(formData.value))
+      localStorage.setItem('rfq_draft_current', JSON.stringify(formData.value))
       lastSaved.value = new Date()
       setTimeout(() => isAutoSaving.value = false, 1000)
     }

@@ -204,6 +204,14 @@ urlpatterns = [
     path('api/tprm/rfp-approval/', include('tprm_backend.rfp_approval.urls')),
     path('api/tprm/rfp-risk-analysis/', include('tprm_backend.rfp_risk_analysis.urls')),
     
+    # TPRM Procurement Type APIs - RFI, RFQ, Direct, Auction, Emergency
+    # These must be added here because they need /api/tprm/v1/ prefix
+    path('api/tprm/v1/', include('tprm_backend.rfp.rfi.urls')),  # RFI endpoints
+    path('api/tprm/v1/', include('tprm_backend.rfp.rfq.urls')),  # RFQ endpoints
+    path('api/tprm/v1/', include('tprm_backend.rfp.direct.urls')),  # Direct Procurement endpoints
+    path('api/tprm/v1/', include('tprm_backend.rfp.auction.urls')),  # Auction endpoints
+    path('api/tprm/v1/', include('tprm_backend.rfp.emergency.urls')),  # Emergency Procurement endpoints
+    
     # RFP Approval URLs - Additional paths for compatibility
     path('api/approval/', include('tprm_backend.rfp_approval.urls')),
     path('api/rfp-approval/', include('tprm_backend.rfp_approval.urls')),
