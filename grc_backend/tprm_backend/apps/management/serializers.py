@@ -148,4 +148,37 @@ class TempVendorManagementSerializer(AutoDecryptingModelSerializer):
         return instance
  
  
- 
+class VendorRiskSerializer(serializers.ModelSerializer):
+    """Serializer for Vendor Risks from risk_tprm table"""
+    tenant_id = serializers.SerializerMethodField()
+    id = serializers.CharField(allow_null=True, allow_blank=True)  # String IDs like 'R-1755'
+    title = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    description = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    likelihood = serializers.IntegerField(allow_null=True, required=False)
+    impact = serializers.IntegerField(allow_null=True, required=False)
+    score = serializers.FloatField(allow_null=True, required=False)
+    priority = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    ai_explanation = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    suggested_mitigations = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    status = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    exposure_rating = serializers.IntegerField(allow_null=True, required=False)
+    risk_type = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    entity = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    data = serializers.JSONField(allow_null=True, required=False)
+    row = serializers.CharField(allow_null=True, allow_blank=True, required=False)
+    created_at = serializers.DateTimeField(allow_null=True, required=False)
+    updated_at = serializers.DateTimeField(allow_null=True, required=False)
+   
+    class Meta:
+        from tprm_backend.apps.vendor_risk.models import RiskTPRM
+        model = RiskTPRM
+        fields = [
+            'id', 'title', 'description', 'likelihood', 'impact', 'score',
+            'priority', 'ai_explanation', 'suggested_mitigations', 'status',
+            'exposure_rating', 'risk_type', 'entity', 'data', 'row',
+            'created_at', 'updated_at', 'tenant_id'
+        ]
+   
+    def get_tenant_id(self, obj):
+        """Get tenant_id from the ForeignKey"""
+        return obj.tenant_id if hasattr(obj, 'tenant_id') else (obj.tenant.id if obj.tenant else None) 

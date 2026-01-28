@@ -340,6 +340,290 @@
             </div>
           </div>
 
+          <!-- RFP Tab -->
+          <div v-if="activeTab === 'rfp'" class="info-section">
+            <h3 class="section-title">RFP Information</h3>
+            
+            <!-- Loading State -->
+            <div v-if="rfpLoading" class="loading-state-small">
+              <div class="spinner-small"></div>
+              <p>Loading RFP data...</p>
+            </div>
+
+            <!-- Error State -->
+            <div v-else-if="rfpError" class="error-state-small">
+              <i class="fas fa-exclamation-triangle"></i>
+              <p>{{ rfpError }}</p>
+              <button @click="fetchRFPData" class="btn btn-primary btn-sm">Retry</button>
+            </div>
+
+            <!-- Empty State -->
+            <div v-else-if="!rfpData" class="empty-state">
+              <i class="fas fa-file-alt"></i>
+              <p>No RFP data available</p>
+            </div>
+
+            <!-- RFP Data -->
+            <div v-else class="rfp-content">
+              <!-- RFP Response Information Section -->
+              <div class="rfp-subsection">
+                <h4 class="subsection-title">
+                  <i class="fas fa-file-signature"></i>
+                  RFP Response Information
+                </h4>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <label>Response ID</label>
+                    <p class="response-id">{{ rfpData.response?.response_id || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>RFP ID</label>
+                    <p>{{ rfpData.response?.rfp_id || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Vendor Name</label>
+                    <p>{{ rfpData.response?.vendor_name || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Organization</label>
+                    <p>{{ rfpData.response?.org || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Contact Email</label>
+                    <p>
+                      <a v-if="rfpData.response?.contact_email" :href="`mailto:${rfpData.response.contact_email}`" class="link">
+                        {{ rfpData.response.contact_email }}
+                      </a>
+                      <span v-else>N/A</span>
+                    </p>
+                  </div>
+                  <div class="info-item">
+                    <label>Contact Phone</label>
+                    <p>{{ rfpData.response?.contact_phone || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Proposed Value</label>
+                    <p>{{ formatCurrency(rfpData.response?.proposed_value) }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Evaluation Status</label>
+                    <p>
+                      <span 
+                        v-if="rfpData.response?.evaluation_status"
+                        class="badge"
+                        :class="getStatusClass(rfpData.response.evaluation_status)"
+                      >
+                        {{ rfpData.response.evaluation_status }}
+                      </span>
+                      <span v-else>N/A</span>
+                    </p>
+                  </div>
+                  <div class="info-item">
+                    <label>Submission Date</label>
+                    <p>{{ formatDateTime(rfpData.response?.submission_date || rfpData.response?.submitted_at) }}</p>
+                  </div>
+                  <div class="info-item" v-if="rfpData.response?.submitted_at && rfpData.response?.submission_date && rfpData.response.submitted_at !== rfpData.response.submission_date">
+                    <label>Submitted At</label>
+                    <p>{{ formatDateTime(rfpData.response.submitted_at) }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Technical Score</label>
+                    <p>{{ rfpData.response?.technical_score !== null && rfpData.response?.technical_score !== undefined ? rfpData.response.technical_score : 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Commercial Score</label>
+                    <p>{{ rfpData.response?.commercial_score !== null && rfpData.response?.commercial_score !== undefined ? rfpData.response.commercial_score : 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Overall Score</label>
+                    <p>{{ rfpData.response?.overall_score !== null && rfpData.response?.overall_score !== undefined ? rfpData.response.overall_score : 'N/A' }}</p>
+                  </div>
+                  <div class="info-item" v-if="rfpData.response?.weighted_final_score">
+                    <label>Weighted Final Score</label>
+                    <p>{{ rfpData.response.weighted_final_score }}</p>
+                  </div>
+                  <div class="info-item" v-if="rfpData.response?.evaluation_date">
+                    <label>Evaluation Date</label>
+                    <p>{{ formatDateTime(rfpData.response.evaluation_date) }}</p>
+                  </div>
+                  <div class="info-item" v-if="rfpData.response?.completion_percentage">
+                    <label>Completion Percentage</label>
+                    <p>{{ rfpData.response.completion_percentage }}%</p>
+                  </div>
+                  <div class="info-item" v-if="rfpData.response?.submission_source">
+                    <label>Submission Source</label>
+                    <p>{{ rfpData.response.submission_source }}</p>
+                  </div>
+                  <div class="info-item full-width" v-if="rfpData.response?.evaluation_comments">
+                    <label>Evaluation Comments</label>
+                    <p>{{ rfpData.response.evaluation_comments }}</p>
+                  </div>
+                  <div class="info-item full-width" v-if="rfpData.response?.rejection_reason">
+                    <label>Rejection Reason</label>
+                    <p>{{ rfpData.response.rejection_reason }}</p>
+                  </div>
+                </div>
+
+                <!-- Proposal Data Section -->
+                <div v-if="rfpData.response?.proposal_data" class="rfp-subsection">
+                  <h5 class="subsection-title">
+                    <i class="fas fa-file-alt"></i>
+                    Proposal Data
+                  </h5>
+                  <div class="json-data-container">
+                    <JsonRenderer :data="rfpData.response.proposal_data" />
+                  </div>
+                </div>
+
+                <!-- Response Documents Section -->
+                <div v-if="rfpData.response?.response_documents" class="rfp-subsection">
+                  <h5 class="subsection-title">
+                    <i class="fas fa-file-alt"></i>
+                    Response Documents
+                  </h5>
+                  <div class="json-data-container">
+                    <JsonRenderer :data="rfpData.response.response_documents" />
+                  </div>
+                </div>
+
+                <!-- Document URLs Section -->
+                <div v-if="rfpData.response?.document_urls && Object.keys(rfpData.response.document_urls).length > 0" class="rfp-subsection">
+                  <h5 class="subsection-title">
+                    <i class="fas fa-paperclip"></i>
+                    Response Documents
+                  </h5>
+                  <div class="documents-list">
+                    <div 
+                      v-for="(url, docName) in rfpData.response.document_urls" 
+                      :key="docName"
+                      class="document-card"
+                    >
+                      <i class="fas fa-file-alt document-icon"></i>
+                      <div class="document-info">
+                        <h4 class="document-name">{{ docName }}</h4>
+                        <a :href="url" target="_blank" class="link">View Document</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RFP Details Section -->
+              <div v-if="rfpData.rfp" class="rfp-subsection">
+                <h4 class="subsection-title">
+                  <i class="fas fa-file-contract"></i>
+                  RFP Details
+                </h4>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <label>RFP Number</label>
+                    <p>{{ rfpData.rfp.rfp_number || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>RFP Title</label>
+                    <p>{{ rfpData.rfp.rfp_title || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>RFP Type</label>
+                    <p>{{ rfpData.rfp.rfp_type || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Category</label>
+                    <p>{{ rfpData.rfp.category || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Status</label>
+                    <p>
+                      <span 
+                        v-if="rfpData.rfp.status"
+                        class="badge"
+                        :class="getStatusClass(rfpData.rfp.status)"
+                      >
+                        {{ rfpData.rfp.status }}
+                      </span>
+                      <span v-else>N/A</span>
+                    </p>
+                  </div>
+                  <div class="info-item">
+                    <label>Estimated Value</label>
+                    <p>{{ formatCurrency(rfpData.rfp.estimated_value) }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Currency</label>
+                    <p>{{ rfpData.rfp.currency || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Budget Range</label>
+                    <p v-if="rfpData.rfp.budget_range_min || rfpData.rfp.budget_range_max">
+                      {{ formatCurrency(rfpData.rfp.budget_range_min) }} - {{ formatCurrency(rfpData.rfp.budget_range_max) }}
+                    </p>
+                    <p v-else>N/A</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Issue Date</label>
+                    <p>{{ formatDate(rfpData.rfp.issue_date) }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Submission Deadline</label>
+                    <p>{{ formatDateTime(rfpData.rfp.submission_deadline) }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Evaluation Period End</label>
+                    <p>{{ formatDate(rfpData.rfp.evaluation_period_end) }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Award Date</label>
+                    <p>{{ formatDate(rfpData.rfp.award_date) }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Criticality Level</label>
+                    <p>
+                      <span 
+                        v-if="rfpData.rfp.criticality_level"
+                        class="badge"
+                        :class="getRiskLevelClass(rfpData.rfp.criticality_level.toUpperCase())"
+                      >
+                        {{ rfpData.rfp.criticality_level }}
+                      </span>
+                      <span v-else>N/A</span>
+                    </p>
+                  </div>
+                  <div class="info-item">
+                    <label>Evaluation Method</label>
+                    <p>{{ rfpData.rfp.evaluation_method || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item">
+                    <label>Geographical Scope</label>
+                    <p>{{ rfpData.rfp.geographical_scope || 'N/A' }}</p>
+                  </div>
+                  <div class="info-item" v-if="rfpData.rfp.final_evaluation_score">
+                    <label>Final Evaluation Score</label>
+                    <p>{{ rfpData.rfp.final_evaluation_score }}</p>
+                  </div>
+                  <div class="info-item full-width" v-if="rfpData.rfp.description">
+                    <label>Description</label>
+                    <p>{{ rfpData.rfp.description }}</p>
+                  </div>
+                  <div class="info-item full-width" v-if="rfpData.rfp.award_justification">
+                    <label>Award Justification</label>
+                    <p>{{ rfpData.rfp.award_justification }}</p>
+                  </div>
+                </div>
+
+                <!-- RFP Documents Section -->
+                <div v-if="rfpData.rfp.documents" class="rfp-subsection">
+                  <h5 class="subsection-title">
+                    <i class="fas fa-paperclip"></i>
+                    RFP Documents
+                  </h5>
+                  <div class="json-data-container">
+                    <JsonRenderer :data="rfpData.rfp.documents" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Risk & Status Tab -->
           <div v-if="activeTab === 'risk'" class="info-section">
             <h3 class="section-title">Risk & Status Information</h3>
@@ -864,8 +1148,364 @@
 import { ref, onMounted, computed, watch } from 'vue'
 import axios from '@/config/axios'
 
+// JsonRenderer Component - Recursively renders JSON data in a clean, structured format
+const JsonRenderer = {
+  name: 'JsonRenderer',
+  props: {
+    data: {
+      type: [Object, Array, String, Number, Boolean],
+      required: true
+    },
+    level: {
+      type: Number,
+      default: 0
+    },
+    keyName: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props) {
+    const isExpanded = ref(props.level < 2) // Auto-expand first 2 levels
+    
+    const toggleExpand = () => {
+      isExpanded.value = !isExpanded.value
+    }
+    
+    const formatValue = (value) => {
+      if (value === null || value === undefined || value === '') {
+        return { type: 'empty', display: 'N/A' }
+      }
+      
+      if (typeof value === 'string') {
+        // Check if it's a URL
+        if (value.startsWith('http://') || value.startsWith('https://')) {
+          return { type: 'url', display: value, url: value }
+        }
+        // Check if it's an email
+        if (value.includes('@') && value.includes('.') && !value.includes(' ')) {
+          return { type: 'email', display: value, email: value }
+        }
+        // Check if it's a date string
+        if (/^\d{4}-\d{2}-\d{2}/.test(value) && value.includes('T')) {
+          try {
+            const date = new Date(value)
+            return { 
+              type: 'date', 
+              display: date.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              })
+            }
+          } catch (e) {
+            return { type: 'string', display: value }
+          }
+        }
+        return { type: 'string', display: value }
+      }
+      
+      if (typeof value === 'number') {
+        return { type: 'number', display: value.toLocaleString('en-US') }
+      }
+      
+      if (typeof value === 'boolean') {
+        return { type: 'boolean', display: value ? 'Yes' : 'No', value: value }
+      }
+      
+      return { type: 'string', display: String(value) }
+    }
+    
+    const formatKey = (key) => {
+      // Convert camelCase or snake_case to Title Case
+      return key
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/_/g, ' ')
+        .replace(/^./, str => str.toUpperCase())
+        .trim()
+    }
+    
+    const isSpecialSection = (key) => {
+      const specialKeys = ['companyInfo', 'keyPersonnel', 'metadata', 'teamInfo', 'documents', 'document_urls', 'response_documents']
+      return specialKeys.includes(key)
+    }
+    
+    const isPersonnelItem = (item) => {
+      return item && typeof item === 'object' && (item.name || item.email || item.role)
+    }
+    
+    const isDocumentItem = (item) => {
+      return item && typeof item === 'object' && (item.url || item.filename || item.key || (typeof item === 'object' && !Array.isArray(item) && Object.keys(item).some(k => k.toLowerCase().includes('url') || k.toLowerCase().includes('file'))))
+    }
+    
+    const renderDocumentObject = (docObj) => {
+      // Handle nested document objects like { technical_proposal: { url: ..., filename: ... } }
+      const docs = []
+      for (const [key, value] of Object.entries(docObj)) {
+        if (value && typeof value === 'object' && (value.url || value.filename || value.key)) {
+          docs.push({ name: key, ...value })
+        } else if (typeof value === 'string' && (value.startsWith('http://') || value.startsWith('https://'))) {
+          docs.push({ name: key, url: value })
+        }
+      }
+      return docs
+    }
+    
+    return {
+      isExpanded,
+      toggleExpand,
+      formatValue,
+      formatKey,
+      isSpecialSection,
+      isPersonnelItem,
+      isDocumentItem,
+      renderDocumentObject
+    }
+  },
+  template: `
+    <div class="json-renderer" :class="'json-level-' + level">
+      <!-- Array with special handling for personnel and documents -->
+      <div v-if="Array.isArray(data)" class="json-array">
+        <div v-if="isPersonnelItem(data[0])" class="personnel-grid">
+          <div v-for="(person, index) in data" :key="index" class="personnel-card">
+            <div class="personnel-header">
+              <i class="fas fa-user-tie"></i>
+              <h4>{{ person.name || 'Unknown' }}</h4>
+            </div>
+            <div class="personnel-details">
+              <div v-if="person.role" class="detail-item">
+                <label>Role:</label>
+                <span>{{ person.role }}</span>
+              </div>
+              <div v-if="person.email" class="detail-item">
+                <label>Email:</label>
+                <a :href="'mailto:' + person.email" class="json-link">
+                  <i class="fas fa-envelope"></i> {{ person.email }}
+                </a>
+              </div>
+              <div v-if="person.phone" class="detail-item">
+                <label>Phone:</label>
+                <span>{{ person.phone }}</span>
+              </div>
+              <div v-if="person.education" class="detail-item">
+                <label>Education:</label>
+                <span>{{ person.education }}</span>
+              </div>
+              <div v-if="person.experience" class="detail-item">
+                <label>Experience:</label>
+                <span>{{ person.experience }} year{{ person.experience !== 1 ? 's' : '' }}</span>
+              </div>
+              <div v-if="person.certifications && person.certifications.length > 0" class="detail-item">
+                <label>Certifications:</label>
+                <div class="certifications-list">
+                  <span v-for="(cert, idx) in person.certifications" :key="idx" class="cert-badge">
+                    {{ cert }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-else-if="isDocumentItem(data[0])" class="documents-grid">
+          <div v-for="(doc, index) in data" :key="index" class="document-item-card">
+            <i class="fas fa-file-alt"></i>
+            <div class="document-details">
+              <div v-if="doc.filename || doc.key" class="doc-name">{{ doc.filename || doc.key }}</div>
+              <div v-if="doc.url" class="doc-url">
+                <a :href="doc.url" target="_blank" class="json-link">
+                  <i class="fas fa-external-link-alt"></i> View Document
+                </a>
+              </div>
+              <div v-if="doc.size" class="doc-size">Size: {{ (doc.size / 1024).toFixed(2) }} KB</div>
+              <div v-if="doc.content_type" class="doc-type">{{ doc.content_type }}</div>
+            </div>
+          </div>
+        </div>
+        <div v-else-if="data.length > 0" class="clean-array-container">
+          <div v-for="(item, index) in data" :key="index" class="clean-array-item">
+            <JsonRenderer :data="item" :level="level + 1" />
+          </div>
+        </div>
+        <div v-else class="json-empty">
+          <i class="fas fa-inbox"></i>
+          <span>No items</span>
+        </div>
+      </div>
+      
+      <!-- Object with clean section-based layout -->
+      <div v-else-if="data !== null && typeof data === 'object'" class="clean-object-container">
+        <!-- Top-level proposal data -->
+        <template v-if="level === 0">
+          <div v-for="(value, key) in data" :key="key" class="clean-section">
+            <!-- Organization -->
+            <div v-if="key === 'org'" class="clean-field-row">
+              <label>Organization:</label>
+              <span class="clean-value">{{ value || 'N/A' }}</span>
+            </div>
+            
+            <!-- Metadata Section -->
+            <div v-else-if="key === 'metadata'" class="clean-section-card">
+              <h5 class="section-header">
+                <i class="fas fa-info-circle"></i>
+                Metadata
+              </h5>
+              <div class="metadata-grid">
+                <div v-for="(metaValue, metaKey) in value" :key="metaKey" class="metadata-field">
+                  <label>{{ formatKey(metaKey) }}</label>
+                  <JsonRenderer :data="metaValue" :level="level + 1" :key-name="metaKey" />
+                </div>
+              </div>
+            </div>
+            
+            <!-- Team Info Section -->
+            <div v-else-if="key === 'teamInfo' || key === 'team_info'" class="clean-section-card">
+              <h5 class="section-header">
+                <i class="fas fa-users"></i>
+                Team Information
+              </h5>
+              <JsonRenderer :data="value" :level="level + 1" :key-name="key" />
+            </div>
+            
+            <!-- Company Info Section -->
+            <div v-else-if="key === 'companyInfo' || key === 'company_info'" class="clean-section-card">
+              <h5 class="section-header">
+                <i class="fas fa-building"></i>
+                Company Information
+              </h5>
+              <div class="info-grid-clean">
+                <div v-for="(infoValue, infoKey) in value" :key="infoKey" class="info-item-clean">
+                  <label>{{ formatKey(infoKey) }}</label>
+                  <div class="info-value">
+                    <template v-if="formatValue(infoValue).type === 'url'">
+                      <a :href="formatValue(infoValue).url" target="_blank" class="json-link" rel="noopener noreferrer">
+                        <i class="fas fa-external-link-alt"></i> {{ formatValue(infoValue).display }}
+                      </a>
+                    </template>
+                    <template v-else-if="formatValue(infoValue).type === 'email'">
+                      <a :href="'mailto:' + formatValue(infoValue).email" class="json-link">
+                        <i class="fas fa-envelope"></i> {{ formatValue(infoValue).display }}
+                      </a>
+                    </template>
+                    <template v-else-if="formatValue(infoValue).type === 'boolean'">
+                      <span :class="'badge badge-' + (infoValue ? 'success' : 'secondary')">
+                        {{ formatValue(infoValue).display }}
+                      </span>
+                    </template>
+                    <template v-else>
+                      <span :class="'json-value json-' + formatValue(infoValue).type">
+                        {{ formatValue(infoValue).display }}
+                      </span>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Default field -->
+            <div v-else class="clean-field-row">
+              <label>{{ formatKey(key) }}:</label>
+              <JsonRenderer :data="value" :level="level + 1" :key-name="key" />
+            </div>
+          </div>
+        </template>
+        
+        <!-- Nested objects -->
+        <template v-else>
+          <!-- Key Personnel -->
+          <div v-if="keyName === 'keyPersonnel' || keyName === 'key_personnel'" class="key-personnel-section">
+            <h6 class="subsection-header">
+              <i class="fas fa-user-tie"></i>
+              Key Personnel
+            </h6>
+            <JsonRenderer :data="data" :level="level + 1" :key-name="keyName" />
+          </div>
+          
+          <!-- Document Objects -->
+          <div v-else-if="isDocumentItem(Object.values(data)[0])" class="documents-grid">
+            <div v-for="(value, key) in data" :key="key" class="document-item-card">
+              <i class="fas fa-file-alt"></i>
+              <div class="document-details">
+                <div class="doc-name">{{ formatKey(key) }}</div>
+                <template v-if="typeof value === 'object' && value !== null">
+                  <div v-if="value.url" class="doc-url">
+                    <a :href="value.url" target="_blank" class="json-link">
+                      <i class="fas fa-external-link-alt"></i> View Document
+                    </a>
+                  </div>
+                  <div v-if="value.filename || value.key" class="doc-name">{{ value.filename || value.key }}</div>
+                  <div v-if="value.size" class="doc-size">Size: {{ (value.size / 1024).toFixed(2) }} KB</div>
+                  <div v-if="value.content_type" class="doc-type">{{ value.content_type }}</div>
+                  <div v-if="value.upload_date" class="doc-date">Uploaded: {{ formatValue(value.upload_date).display }}</div>
+                </template>
+                <template v-else-if="typeof value === 'string' && (value.startsWith('http://') || value.startsWith('https://'))">
+                  <div class="doc-url">
+                    <a :href="value" target="_blank" class="json-link">
+                      <i class="fas fa-external-link-alt"></i> View Document
+                    </a>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Metadata nested -->
+          <div v-else-if="keyName === 'metadata' || keyName === 'utmParameters' || keyName === 'utm_parameters'" class="metadata-nested">
+            <div v-for="(value, key) in data" :key="key" class="metadata-field">
+              <label>{{ formatKey(key) }}</label>
+              <JsonRenderer :data="value" :level="level + 1" :key-name="key" />
+            </div>
+          </div>
+          
+          <!-- Team Info nested -->
+          <div v-else-if="keyName === 'teamInfo' || keyName === 'team_info'" class="team-info-nested">
+            <div v-for="(value, key) in data" :key="key" class="team-field">
+              <label>{{ formatKey(key) }}</label>
+              <JsonRenderer :data="value" :level="level + 1" :key-name="key" />
+            </div>
+          </div>
+          
+          <!-- Regular nested object -->
+          <div v-else class="clean-nested-object">
+            <div v-for="(value, key) in data" :key="key" class="clean-field-row">
+              <label>{{ formatKey(key) }}:</label>
+              <JsonRenderer :data="value" :level="level + 1" :key-name="key" />
+            </div>
+          </div>
+        </template>
+      </div>
+      
+      <!-- Primitive Value -->
+      <div v-else class="clean-primitive">
+        <template v-if="formatValue(data).type === 'url'">
+          <a :href="formatValue(data).url" target="_blank" class="json-link" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> {{ formatValue(data).display }}
+          </a>
+        </template>
+        <template v-else-if="formatValue(data).type === 'email'">
+          <a :href="'mailto:' + formatValue(data).email" class="json-link">
+            <i class="fas fa-envelope"></i> {{ formatValue(data).display }}
+          </a>
+        </template>
+        <template v-else-if="formatValue(data).type === 'boolean'">
+          <span :class="'badge badge-' + (data ? 'success' : 'secondary')">
+            {{ formatValue(data).display }}
+          </span>
+        </template>
+        <template v-else>
+          <span :class="'clean-value clean-' + formatValue(data).type">{{ formatValue(data).display }}</span>
+        </template>
+      </div>
+    </div>
+  `
+}
+
 export default {
   name: 'VendorDetailView',
+  components: {
+    JsonRenderer
+  },
   props: {
     vendorCode: {
       type: String,
@@ -885,6 +1525,9 @@ export default {
       startDate: '',
       endDate: ''
     })
+    const rfpData = ref(null)
+    const rfpLoading = ref(false)
+    const rfpError = ref(null)
 
     const tabs = computed(() => {
       const baseTabs = [
@@ -896,6 +1539,11 @@ export default {
         { id: 'bcp_plans', label: 'BCP/DRP Plans', icon: 'fas fa-clipboard-list' },
         { id: 'audit', label: 'Audit Trail', icon: 'fas fa-history' }
       ]
+
+      // Add RFP tab for vendors with RFP (ONBOARDED_WITH_RFP or TEMPORARY_WITH_RFP)
+      if (vendor.value && (vendor.value.vendor_type === 'ONBOARDED_WITH_RFP' || vendor.value.vendor_type === 'TEMPORARY_WITH_RFP')) {
+        baseTabs.splice(3, 0, { id: 'rfp', label: 'RFP', icon: 'fas fa-file-alt' })
+      }
 
       // Add contacts and documents tabs for temporary vendors
       if (vendor.value?.is_temporary) {
@@ -921,6 +1569,8 @@ export default {
           // Log related data for debugging
           console.log('[VendorDetailView] Vendor data loaded:', {
             vendor_code: vendor.value.vendor_code,
+            response_id: vendor.value.response_id,
+            vendor_type: vendor.value.vendor_type,
             has_related_data: !!vendor.value.related_data,
             contracts_count: vendor.value.related_data?.contracts?.length || 0,
             slas_count: vendor.value.related_data?.slas?.length || 0,
@@ -1138,6 +1788,92 @@ export default {
       fetchScreeningResults()
     }
 
+    const fetchRFPData = async () => {
+      rfpLoading.value = true
+      rfpError.value = null
+      
+      try {
+        // Get response_id from vendor data or fetch from temp_vendor if not available
+        let responseId = vendor.value?.response_id
+        
+        // If response_id is not in vendor data, try to fetch it from temp_vendor using vendor_code
+        if (!responseId && vendor.value?.vendor_code) {
+          try {
+            console.log('[VendorDetailView] Response ID not found in vendor data, fetching from temp_vendor...')
+            // Try to get temp_vendor data to extract response_id
+            // The vendor detail endpoint should already include this, but as a fallback:
+            const tempVendorResponse = await axios.get(`/api/v1/management/vendors/${vendor.value.vendor_code}/`)
+            if (tempVendorResponse.data?.success && tempVendorResponse.data?.data?.response_id) {
+              responseId = tempVendorResponse.data.data.response_id
+              console.log('[VendorDetailView] Found response_id from vendor detail:', responseId)
+            }
+          } catch (tempErr) {
+            console.warn('[VendorDetailView] Could not fetch response_id from vendor detail:', tempErr)
+          }
+        }
+        
+        if (!responseId) {
+          rfpError.value = 'No RFP response ID available for this vendor. This vendor may not have submitted an RFP response.'
+          rfpLoading.value = false
+          return
+        }
+        
+        console.log('[VendorDetailView] Fetching RFP response data for response_id:', responseId)
+        
+        // First, fetch the RFP response data
+        const responseData = await axios.get(`/api/v1/rfp-responses-detail/${responseId}/`)
+        
+        if (!responseData.data.success) {
+          rfpError.value = responseData.data.error || 'Failed to load RFP response data'
+          rfpLoading.value = false
+          return
+        }
+        
+        const rfpResponse = responseData.data.data
+        
+        // Map the response data to include all fields from the database
+        const mappedResponse = {
+          ...rfpResponse,
+          submission_date: rfpResponse.submission_date || rfpResponse.submitted_at,
+          submitted_at: rfpResponse.submitted_at || rfpResponse.submission_date
+        }
+        
+        // Then, fetch the RFP data using the rfp_id from the response
+        let rfpDetails = null
+        if (rfpResponse.rfp_id) {
+          try {
+            const rfpResponseData = await axios.get(`/api/v1/rfps/${rfpResponse.rfp_id}/`)
+            if (rfpResponseData.data && (rfpResponseData.data.rfp_id || rfpResponseData.data.id)) {
+              rfpDetails = rfpResponseData.data
+            }
+          } catch (rfpErr) {
+            console.warn('Could not fetch RFP details:', rfpErr)
+            // Continue without RFP details if it fails - this is not critical
+          }
+        }
+        
+        // Combine both datasets
+        rfpData.value = {
+          response: mappedResponse,
+          rfp: rfpDetails
+        }
+      } catch (err) {
+        console.error('[VendorDetailView] Error fetching RFP data:', err)
+        const responseId = vendor.value?.response_id || 'unknown'
+        if (err.response?.status === 404) {
+          rfpError.value = `RFP response not found: ${responseId}. The response may have been deleted, the ID is incorrect, or it belongs to a different tenant. Please verify the response_id in the temp_vendor table.`
+        } else if (err.response?.status === 403) {
+          rfpError.value = 'Access denied. You may not have permission to view this RFP response, or tenant context is missing.'
+        } else if (err.response?.status === 401) {
+          rfpError.value = 'Authentication required. Please log in again.'
+        } else {
+          rfpError.value = err.response?.data?.error || err.response?.data?.message || err.message || 'Failed to load RFP data'
+        }
+      } finally {
+        rfpLoading.value = false
+      }
+    }
+
     const getScreeningTypeIcon = (type) => {
       const iconMap = {
         'OFAC': 'fas fa-shield-alt',
@@ -1220,6 +1956,13 @@ export default {
       if (newTab === 'screening' && !screeningData.value && !screeningLoading.value) {
         fetchScreeningResults()
       }
+      if (newTab === 'rfp' && !rfpData.value && !rfpLoading.value && vendor.value) {
+        console.log('[VendorDetailView] RFP tab activated, fetching RFP data...', {
+          vendor_code: vendor.value.vendor_code,
+          response_id: vendor.value.response_id
+        })
+        fetchRFPData()
+      }
     })
 
     onMounted(() => {
@@ -1236,9 +1979,13 @@ export default {
       screeningLoading,
       screeningError,
       screeningFilters,
+      rfpData,
+      rfpLoading,
+      rfpError,
       fetchVendorDetails,
       fetchScreeningResults,
       clearScreeningFilters,
+      fetchRFPData,
       goBack,
       getBannerClass,
       getRiskLevelClass,
@@ -2657,6 +3404,522 @@ export default {
   .match-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+/* RFP Tab Styles */
+.rfp-content {
+  margin-top: 1rem;
+}
+
+.rfp-subsection {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e2e8f0;
+}
+
+.rfp-subsection:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.proposal-data-container {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.proposal-data {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: #1a202c;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+/* Clean JSON Renderer Styles */
+.json-data-container {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  overflow-x: auto;
+  max-height: 800px;
+  overflow-y: auto;
+}
+
+.json-renderer {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #1a202c;
+}
+
+/* Clean Section Cards */
+.clean-section {
+  margin-bottom: 1.5rem;
+}
+
+.clean-section-card {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.section-header {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-header i {
+  color: #2563eb;
+  font-size: 1.125rem;
+}
+
+.subsection-header {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.subsection-header i {
+  color: #2563eb;
+}
+
+/* Clean Field Rows */
+.clean-field-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f7fafc;
+}
+
+.clean-field-row:last-child {
+  border-bottom: none;
+}
+
+.clean-field-row label {
+  font-weight: 600;
+  color: #4a5568;
+  min-width: 180px;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+}
+
+.clean-value {
+  color: #1a202c;
+  word-break: break-word;
+  flex: 1;
+}
+
+.clean-value.clean-string {
+  color: #1a202c;
+}
+
+.clean-value.clean-number {
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.clean-value.clean-date {
+  color: #7c3aed;
+  font-weight: 500;
+}
+
+/* Clean Arrays */
+.clean-array-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.clean-array-item {
+  padding: 0.75rem;
+  background: #f7fafc;
+  border-radius: 0.375rem;
+  border: 1px solid #e2e8f0;
+}
+
+/* Clean Nested Objects */
+.clean-nested-object {
+  padding: 0.5rem 0;
+}
+
+.clean-primitive {
+  display: inline-block;
+}
+
+/* Metadata Section */
+.metadata-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.metadata-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metadata-field label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.metadata-nested {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+/* Team Info Nested */
+.team-info-nested {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.team-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.team-field label {
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 0.875rem;
+}
+
+.key-personnel-section {
+  margin-top: 1rem;
+}
+
+.json-empty {
+  color: #9ca3af;
+  font-style: italic;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.json-empty i {
+  font-size: 1rem;
+}
+
+/* Link Styles */
+.json-link {
+  color: #2563eb;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  background: #dbeafe;
+  transition: all 0.2s;
+  word-break: break-word;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.json-link:hover {
+  background: #bfdbfe;
+  text-decoration: underline;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.json-link i {
+  font-size: 0.875rem;
+}
+
+/* Clean UI Components */
+.info-grid-clean {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.info-item-clean {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+}
+
+.info-item-clean:hover {
+  border-color: #2563eb;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+}
+
+.info-item-clean label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.info-item-clean .info-value {
+  font-size: 0.875rem;
+  color: #1a202c;
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+.personnel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.personnel-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.personnel-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #2563eb;
+}
+
+.personnel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.personnel-header i {
+  font-size: 1.5rem;
+  color: #2563eb;
+}
+
+.personnel-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.personnel-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.personnel-details .detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.personnel-details .detail-item label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.personnel-details .detail-item span {
+  font-size: 0.875rem;
+  color: #1a202c;
+}
+
+.certifications-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.cert-badge {
+  padding: 0.25rem 0.75rem;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.document-item-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.document-item-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #2563eb;
+}
+
+.document-item-card i {
+  font-size: 2rem;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.document-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.doc-name {
+  font-weight: 600;
+  color: #1a202c;
+  font-size: 0.875rem;
+  word-break: break-word;
+}
+
+.doc-url {
+  margin-top: 0.25rem;
+}
+
+.doc-size,
+.doc-type {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.metadata-section {
+  padding: 1rem;
+  background: #f7fafc;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.metadata-item {
+  margin-bottom: 1rem;
+}
+
+.metadata-item:last-child {
+  margin-bottom: 0;
+}
+
+.metadata-item label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.json-object-fields-default {
+  padding: 0.5rem 0;
+}
+
+.json-array-items-default {
+  padding: 0.5rem 0;
+}
+
+/* Badge styles for boolean values */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-secondary {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .json-key {
+    min-width: 100px;
+    font-size: 0.8125rem;
+  }
+  
+  .json-object-fields,
+  .json-array-items {
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  
+  .json-level-1 {
+    padding-left: 0.5rem;
+  }
+  
+  .json-level-2 {
+    padding-left: 1rem;
+  }
+  
+  .json-level-3 {
+    padding-left: 1.5rem;
+  }
+  
+  .info-grid-clean {
+    grid-template-columns: 1fr;
+  }
+  
+  .personnel-grid,
+  .documents-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

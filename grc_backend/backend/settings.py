@@ -137,7 +137,7 @@ MIDDLEWARE = [
     # "grc.middleware.CORSMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    # "grc.middleware.SessionTimeoutMiddleware",  # TEMPORARILY DISABLED: Causing immediate logout issues
+    # "grc.middleware.SessionTimeoutMiddleware",  # DISABLED: Auto logout is disabled
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",

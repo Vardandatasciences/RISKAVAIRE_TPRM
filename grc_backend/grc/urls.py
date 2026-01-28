@@ -3135,8 +3135,8 @@ path('bamboohr/oauth/', bamboohr_oauth, name='bamboohr-oauth'),
     # ========================================================================
     # TPRM MANAGEMENT APIs - Vendor Listing and Management
     # ========================================================================
-    path('api/v1/management/', include('tprm_backend.apps.management.urls')),
-    path('api/tprm/v1/management/', include('tprm_backend.apps.management.urls')),
-    path('api/tprm/management/', include('tprm_backend.apps.management.urls')),
+    path('v1/management/', include('tprm_backend.apps.management.urls')),
+    path('tprm/v1/management/', include('tprm_backend.apps.management.urls')),
+    path('tprm/management/', include('tprm_backend.apps.management.urls')),
 
 ]

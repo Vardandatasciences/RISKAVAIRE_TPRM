@@ -21,17 +21,11 @@ class SessionTimeoutService {
 
   /**
    * Initialize session timeout tracking
+   * DISABLED: Auto logout is disabled
    */
   start() {
-    // Clear any existing intervals
-    this.stop()
-    
-    // Check session timeout every second
-    this.checkInterval = setInterval(() => {
-      this.checkSessionTimeout()
-    }, 1000)
-    
-    console.log('⏰ Session timeout service started (1 hour timeout)')
+    // DISABLED: Auto logout is disabled - do not start timeout tracking
+    console.log('⏰ Session timeout service disabled - auto logout is turned off')
   }
 
   /**

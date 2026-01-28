@@ -104,19 +104,19 @@
                     <!-- Vendor options list -->
                     <div 
                       v-for="(option, index) in filteredVendorOptions" 
-                      :key="`vendor-${String(option.value)}-${index}`"
-                      class="relative flex w-full cursor-pointer select-none items-center rounded-sm py-2 pl-8 pr-2 text-sm outline-none hover:bg-blue-100 transition-colors"
+                      :key="`vendor-${String(option.value)}-${option.label}`"
+                      class="relative flex w-full cursor-pointer select-none items-center rounded-sm py-2 px-2 text-sm outline-none hover:bg-blue-100 transition-colors"
                       :data-vendor-value="String(option.value)"
                       :data-vendor-label="option.label"
                       :data-index="index"
                       @mousedown.prevent.stop
                       @click.prevent.stop="() => handleVendorClickDirect(String(option.value), option.label, index)"
                     >
-                      <span class="absolute left-2 flex h-4 w-4 items-center justify-center pointer-events-none">
+                      <span class="flex h-4 w-4 items-center justify-center flex-shrink-0 mr-2 pointer-events-none">
                         <Check v-if="isVendorSelected(option.value)" class="h-4 w-4 text-blue-600" />
                       </span>
-                      <div class="flex items-center gap-2 flex-1 pointer-events-none">
-                        <span class="text-gray-900">{{ option.label }}</span>
+                      <div class="flex items-center gap-2 flex-1 pointer-events-none min-w-0">
+                        <span class="text-gray-900 truncate">{{ option.label }}</span>
                       </div>
                     </div>
                   </div>

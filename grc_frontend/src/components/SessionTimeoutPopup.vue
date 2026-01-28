@@ -44,16 +44,16 @@ export default {
       this.handleLogout()
     })
 
-    // Start the service if user is authenticated
-    this.checkAuthAndStart()
+    // DISABLED: Auto logout is disabled - do not start the service
+    // this.checkAuthAndStart()
 
-    // Listen for auth changes
-    window.addEventListener('authChanged', this.checkAuthAndStart)
+    // DISABLED: Auto logout is disabled - do not listen for auth changes
+    // window.addEventListener('authChanged', this.checkAuthAndStart)
     
-    // Check periodically for auth changes (in case event doesn't fire)
-    this.authCheckInterval = setInterval(() => {
-      this.checkAuthAndStart()
-    }, 5000)
+    // DISABLED: Auto logout is disabled - do not check for auth changes
+    // this.authCheckInterval = setInterval(() => {
+    //   this.checkAuthAndStart()
+    // }, 5000)
   },
   beforeUnmount() {
     sessionTimeoutService.stop()
@@ -72,34 +72,21 @@ export default {
       sessionTimeoutService.performLogout()
     },
     checkAuthAndStart() {
-      // Check authentication status and start/stop service accordingly
-      const accessToken = localStorage.getItem('access_token')
-      if (accessToken) {
-        // User is authenticated - start service if not already running
-        if (!sessionTimeoutService.checkInterval) {
-          this.showPopup = false
-          this.countdown = 5
-          sessionTimeoutService.start()
-        }
-      } else {
-        // User is not authenticated - stop service
-        sessionTimeoutService.stop()
-        this.showPopup = false
-      }
+      // DISABLED: Auto logout is disabled - no-op
     }
   },
   watch: {
-    // Restart service when authentication status changes
-    '$store.getters.isAuthenticated'(isAuthenticated) {
-      if (isAuthenticated) {
-        this.showPopup = false
-        this.countdown = 5
-        sessionTimeoutService.start()
-      } else {
-        sessionTimeoutService.stop()
-        this.showPopup = false
-      }
-    }
+    // DISABLED: Auto logout is disabled - do not restart service on auth changes
+    // '$store.getters.isAuthenticated'(isAuthenticated) {
+    //   if (isAuthenticated) {
+    //     this.showPopup = false
+    //     this.countdown = 5
+    //     sessionTimeoutService.start()
+    //   } else {
+    //     sessionTimeoutService.stop()
+    //     this.showPopup = false
+    //   }
+    // }
   }
 }
 </script>

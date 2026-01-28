@@ -78,8 +78,8 @@ export class AuthManager {
       sessionStorage.setItem(this.refreshTokenKey, refreshToken);
     }
     
-    // Set automatic logout timer
-    this.setSessionTimeout();
+    // DISABLED: Auto logout is disabled - do not set automatic logout timer
+    // this.setSessionTimeout();
   }
   
   getToken() {

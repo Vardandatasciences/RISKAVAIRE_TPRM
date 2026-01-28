@@ -11,6 +11,7 @@ from django.db.models.functions import Coalesce
 from tprm_backend.apps.vendor_core.models import Vendors, TempVendor
 from tprm_backend.apps.vendor_core.serializers import VendorsSerializer
 from .serializers import AllVendorsListSerializer, TempVendorSerializer
+import csv
 
 # Try to import tenant utils - use TPRM backend version if available
 try:
@@ -1839,6 +1840,828 @@ class VendorScreeningResultsView(APIView):
                 'error': f'Failed to get screening results: {str(e)}',
                 'vendor_code': vendor_code
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class VendorsListForDropdownView(APIView):
+    """
+    API endpoint to list only vendors from vendors table (for dropdown)
+    Returns only onboarded vendors, not temporary vendors
+    """
+    permission_classes = [IsAuthenticated]
+ 
+    def get(self, request):
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.info(f"[VendorsListForDropdownView] GET request received")
+        
+        try:
+            # Get tenant_id from request
+            tenant_id = None
+            if hasattr(request, 'tenant_id') and request.tenant_id:
+                tenant_id = request.tenant_id
+                logger.info(f"[VendorsListForDropdownView] Got tenant_id from request.tenant_id: {tenant_id}")
+            elif not tenant_id:
+                tenant_id = get_tenant_id_from_request(request)
+                if tenant_id:
+                    logger.info(f"[VendorsListForDropdownView] Got tenant_id from get_tenant_id_from_request: {tenant_id}")
+                else:
+                    logger.warning(f"[VendorsListForDropdownView] No tenant_id found - will fetch all vendors")
+           
+            # Get vendors only from vendors table (onboarded vendors)
+            from tprm_backend.apps.vendor_core.models import Vendors
+            from .serializers import AllVendorsListSerializer
+           
+            vendors_qs = Vendors.objects.all()
+            initial_count = vendors_qs.count()
+            logger.info(f"[VendorsListForDropdownView] Initial vendors queryset count (before tenant filter): {initial_count}")
+            
+            if tenant_id:
+                # Try tenant_id first (Django auto-created field for ForeignKey)
+                try:
+                    vendors_qs = vendors_qs.filter(tenant_id=tenant_id)
+                    filtered_count = vendors_qs.count()
+                    logger.info(f"[VendorsListForDropdownView] Filtered by tenant_id={tenant_id}, count: {filtered_count}")
+                except Exception as filter_error:
+                    # Fallback: try using tenant__id if tenant_id doesn't work
+                    logger.warning(f"[VendorsListForDropdownView] tenant_id filter failed, trying tenant__id: {filter_error}")
+                    try:
+                        vendors_qs = Vendors.objects.filter(tenant__id=tenant_id)
+                        filtered_count = vendors_qs.count()
+                        logger.info(f"[VendorsListForDropdownView] Filtered by tenant__id={tenant_id}, count: {filtered_count}")
+                    except Exception as filter_error2:
+                        logger.error(f"[VendorsListForDropdownView] Both tenant_id and tenant__id filters failed: {filter_error2}")
+                        # Continue without filter - return all vendors
+                        vendors_qs = Vendors.objects.all()
+            else:
+                logger.info(f"[VendorsListForDropdownView] No tenant_id filter applied, fetching all vendors")
+           
+            vendors_qs = vendors_qs.order_by('company_name')
+            vendors = list(vendors_qs)
+            logger.info(f"[VendorsListForDropdownView] Retrieved {len(vendors)} vendor objects from database")
+           
+            # Serialize vendors
+            serializer = AllVendorsListSerializer(vendors, many=True)
+            vendor_list = serializer.data
+            logger.info(f"[VendorsListForDropdownView] Serialized {len(vendor_list)} vendors")
+           
+            # Ensure vendor_id is set and set vendor_type fields for onboarded vendors
+            for vendor in vendor_list:
+                # Ensure vendor_id is present (should already be there from serializer)
+                if 'vendor_id' not in vendor:
+                    vendor['vendor_id'] = vendor.get('id')
+                    logger.debug(f"[VendorsListForDropdownView] Added vendor_id from id field for vendor: {vendor.get('company_name')}")
+                # Set vendor type fields for onboarded vendors
+                vendor['vendor_type'] = 'ONBOARDED'
+                vendor['vendor_type_label'] = 'Onboarded Vendor'
+                vendor['is_temporary'] = False
+                vendor['response_id'] = None  # Will be None for vendors-only endpoint
+           
+            logger.info(f"[VendorsListForDropdownView] Returning {len(vendor_list)} vendors from vendors table")
+            
+            # Log sample vendor data for debugging
+            if vendor_list:
+                sample_vendor = vendor_list[0]
+                logger.info(f"[VendorsListForDropdownView] Sample vendor data: vendor_id={sample_vendor.get('vendor_id')}, company_name={sample_vendor.get('company_name')}, vendor_code={sample_vendor.get('vendor_code')}")
+           
+            return Response({
+                'success': True,
+                'data': vendor_list,
+                'total': len(vendor_list)
+            }, status=status.HTTP_200_OK)
+           
+        except Exception as e:
+            logger.exception(f"[VendorsListForDropdownView] Error: {e}")
+            return Response({
+                'success': False,
+                'error': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
  
  
+class VendorRisksListView(APIView):
+    """
+    API endpoint to list all vendor risks from risk_tprm table
+    """
+    permission_classes = [IsAuthenticated]
  
+    def get(self, request):
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.info(f"[VendorRisksListView] GET request received for /api/v1/management/vendor-risks/")
+       
+        try:
+            # Get tenant_id from request
+            tenant_id = None
+           
+            # Method 1: Check if already set on request
+            if hasattr(request, 'tenant_id') and request.tenant_id:
+                tenant_id = request.tenant_id
+                logger.info(f"[VendorRisksListView] Got tenant_id from request.tenant_id: {tenant_id}")
+           
+            # Method 2: Try tenant utils function
+            if not tenant_id:
+                tenant_id = get_tenant_id_from_request(request)
+                if tenant_id:
+                    logger.info(f"[VendorRisksListView] Got tenant_id from get_tenant_id_from_request: {tenant_id}")
+           
+            # Method 3: Try to extract from JWT token payload
+            if not tenant_id:
+                try:
+                    auth_header = request.headers.get('Authorization', '')
+                    if auth_header.startswith('Bearer '):
+                        token = auth_header.split(' ')[1]
+                        import jwt
+                        from django.conf import settings
+                        try:
+                            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'], options={"verify_signature": False})
+                            if 'tenant_id' in payload:
+                                tenant_id = payload['tenant_id']
+                                logger.info(f"[VendorRisksListView] Got tenant_id from JWT token: {tenant_id}")
+                        except Exception as jwt_error:
+                            logger.debug(f"[VendorRisksListView] Could not decode JWT: {jwt_error}")
+                except Exception as e:
+                    logger.debug(f"[VendorRisksListView] Error extracting tenant_id from JWT: {e}")
+           
+            logger.info(f"[VendorRisksListView] Final tenant_id: {tenant_id}")
+           
+            # Import RiskTPRM model
+            from tprm_backend.apps.vendor_risk.models import RiskTPRM
+            from .serializers import VendorRiskSerializer
+            from django.db import connections
+           
+            # Use 'tprm' database connection which points to tprm_integration schema
+            db_connection = 'tprm'
+           
+            # Build query with tenant filtering
+            queryset = RiskTPRM.objects.using(db_connection).all()
+           
+            # Filter by entity only if explicitly provided (default: show all risks)
+            entity_filter = request.query_params.get('entity', None)
+            if entity_filter:
+                queryset = queryset.filter(entity=entity_filter)
+                logger.info(f"[VendorRisksListView] Filtering by entity: {entity_filter}")
+            else:
+                logger.info(f"[VendorRisksListView] Showing all risks (no entity filter)")
+           
+            # Apply tenant filter if tenant_id is available
+            # RiskTPRM has a ForeignKey 'tenant' with db_column='TenantId', so use tenant_id
+            if tenant_id:
+                from django.db.models import Q
+                # Include records with matching tenant_id OR NULL tenant_id (for backward compatibility)
+                queryset = queryset.filter(Q(tenant_id=tenant_id) | Q(tenant_id__isnull=True))
+                logger.info(f"[VendorRisksListView] Filtering by tenant_id: {tenant_id}")
+            else:
+                logger.warning(f"[VendorRisksListView] No tenant_id found - showing ALL risks (no tenant filtering)")
+           
+            # Apply additional filters
+            status_filter = request.query_params.get('status', None)
+            if status_filter:
+                queryset = queryset.filter(status=status_filter)
+           
+            priority_filter = request.query_params.get('priority', None)
+            if priority_filter:
+                queryset = queryset.filter(priority=priority_filter)
+           
+            risk_type_filter = request.query_params.get('risk_type', None)
+            if risk_type_filter:
+                queryset = queryset.filter(risk_type=risk_type_filter)
+           
+            # Vendor ID filter - filters risks across all sources (vendor, BCP/DRP, RFP, Contracts)
+            # IMPORTANT: Direct vendor risks use temp_vendor.id, while RFP/BCP/DRP/Contracts use vendors.vendor_id
+            vendor_id_filter = request.query_params.get('vendor_id', None)
+            if vendor_id_filter:
+                try:
+                    vendor_id = int(vendor_id_filter)
+                    from django.db.models import Q
+                    from tprm_backend.apps.vendor_core.models import Vendors, TempVendor
+                   
+                    # Determine which ID type we have and find the corresponding IDs
+                    temp_vendor_id = None
+                    vendors_vendor_id = None
+                    vendor_code = None
+                   
+                    # Check if it's a vendors.vendor_id
+                    try:
+                        vendor_filter = {'vendor_id': vendor_id}
+                        if tenant_id:
+                            vendor_filter['tenant_id'] = tenant_id
+                        vendor = Vendors.objects.using(db_connection).filter(**vendor_filter).first()
+                        if vendor:
+                            vendors_vendor_id = vendor_id
+                            vendor_code = vendor.vendor_code
+                            # Find corresponding temp_vendor by vendor_code
+                            if vendor_code:
+                                temp_filter = {'vendor_code': vendor_code}
+                                if tenant_id:
+                                    temp_filter['tenant_id'] = tenant_id
+                                temp_vendor = TempVendor.objects.using(db_connection).filter(**temp_filter).first()
+                                if temp_vendor:
+                                    temp_vendor_id = temp_vendor.id
+                                    logger.info(f"[VendorRisksListView] Found vendors.vendor_id={vendor_id}, mapped to temp_vendor.id={temp_vendor_id}")
+                    except Exception as e:
+                        logger.debug(f"[VendorRisksListView] vendor_id {vendor_id} not found in vendors table: {e}")
+                   
+                    # Check if it's a temp_vendor.id
+                    if not temp_vendor_id:
+                        try:
+                            temp_filter = {'id': vendor_id}
+                            if tenant_id:
+                                temp_filter['tenant_id'] = tenant_id
+                            temp_vendor = TempVendor.objects.using(db_connection).filter(**temp_filter).first()
+                            if temp_vendor:
+                                temp_vendor_id = vendor_id
+                                vendor_code = temp_vendor.vendor_code
+                                # Find corresponding vendors.vendor_id by vendor_code
+                                if vendor_code:
+                                    vendor_filter = {'vendor_code': vendor_code}
+                                    if tenant_id:
+                                        vendor_filter['tenant_id'] = tenant_id
+                                    vendor = Vendors.objects.using(db_connection).filter(**vendor_filter).first()
+                                    if vendor:
+                                        vendors_vendor_id = vendor.vendor_id
+                                        logger.info(f"[VendorRisksListView] Found temp_vendor.id={vendor_id}, mapped to vendors.vendor_id={vendors_vendor_id}")
+                        except Exception as e:
+                            logger.debug(f"[VendorRisksListView] vendor_id {vendor_id} not found in temp_vendor table: {e}")
+                   
+                    # Build conditions for different risk sources
+                    vendor_conditions = []
+                   
+                    # 1. Direct vendor risks - use temp_vendor.id (linked to temp_vendor)
+                    if temp_vendor_id:
+                        vendor_risk_condition = Q(
+                            entity='vendor_management',
+                            row=str(temp_vendor_id)
+                        )
+                        # Handle JSONField data - check if it contains 'temp_vendor' or equals it
+                        vendor_risk_condition &= (
+                            Q(data__icontains='temp_vendor') |
+                            Q(data='temp_vendor')
+                        )
+                        vendor_conditions.append(vendor_risk_condition)
+                        logger.info(f"[VendorRisksListView] Filtering direct vendor risks by temp_vendor.id={temp_vendor_id}")
+                   
+                    # 2. BCP/DRP Plan risks - use vendors.vendor_id (linked to vendors table)
+                    if vendors_vendor_id:
+                        try:
+                            from tprm_backend.bcpdrp.models import Plan
+                            bcp_plan_ids = list(Plan.objects.using(db_connection).filter(vendor_id=vendors_vendor_id).values_list('plan_id', flat=True))
+                            bcp_plan_ids_str = [str(pid) for pid in bcp_plan_ids]
+                           
+                            if bcp_plan_ids_str:
+                                bcp_risk_condition = Q(
+                                    entity__in=['bcp_drp_module', 'BCP_DRP', 'bcp_drp'],
+                                    row__in=bcp_plan_ids_str
+                                )
+                                # Handle JSONField data - check for BCP/DRP related data values
+                                # Comprehensive risks use 'comprehensive_plan_data', regular risks use 'bcp_drp_plans' or 'bcp_drp_evaluations'
+                                bcp_risk_condition &= (
+                                    Q(data__icontains='bcp_drp_plans') |
+                                    Q(data='bcp_drp_plans') |
+                                    Q(data__icontains='bcp_drp_evaluations') |
+                                    Q(data='bcp_drp_evaluations') |
+                                    Q(data__icontains='comprehensive_plan_data') |
+                                    Q(data='comprehensive_plan_data')
+                                )
+                                vendor_conditions.append(bcp_risk_condition)
+                                logger.info(f"[VendorRisksListView] Found {len(bcp_plan_ids)} BCP/DRP plans for vendors.vendor_id={vendors_vendor_id}")
+                        except Exception as bcp_error:
+                            logger.warning(f"[VendorRisksListView] Error fetching BCP/DRP plans: {bcp_error}")
+                   
+                    # 3. RFP Response risks - use vendors.vendor_id (linked to vendors table)
+                    if vendors_vendor_id:
+                        try:
+                            from tprm_backend.rfp.models import RFPResponse
+                            rfp_response_ids = list(RFPResponse.objects.using(db_connection).filter(vendor_id=vendors_vendor_id).values_list('response_id', flat=True))
+                            rfp_response_ids_str = [str(rid) for rid in rfp_response_ids]
+                           
+                            if rfp_response_ids_str:
+                                rfp_risk_condition = Q(
+                                    entity__in=['rfp_module', 'RFP', 'rfp'],
+                                    row__in=rfp_response_ids_str
+                                )
+                                # Handle JSONField data - check for RFP related data values
+                                # Regular risks use 'rfp_responses' or 'rfps', comprehensive risks may use 'comprehensive_rfp_data'
+                                rfp_risk_condition &= (
+                                    Q(data__icontains='rfp_responses') |
+                                    Q(data='rfp_responses') |
+                                    Q(data__icontains='rfps') |
+                                    Q(data='rfps') |
+                                    Q(data__icontains='comprehensive_rfp_data') |
+                                    Q(data='comprehensive_rfp_data')
+                                )
+                                vendor_conditions.append(rfp_risk_condition)
+                                logger.info(f"[VendorRisksListView] Found {len(rfp_response_ids)} RFP responses for vendors.vendor_id={vendors_vendor_id}")
+                        except Exception as rfp_error:
+                            logger.warning(f"[VendorRisksListView] Error fetching RFP responses: {rfp_error}")
+                   
+                    # 4. Contract risks - use vendors.vendor_id (linked to vendors table via ForeignKey)
+                    if vendors_vendor_id:
+                        try:
+                            from tprm_backend.apps.vendor_lifecycle.models import VendorContracts
+                            contract_ids = list(VendorContracts.objects.using(db_connection).filter(vendor_id=vendors_vendor_id).values_list('contract_id', flat=True))
+                            contract_ids_str = [str(cid) for cid in contract_ids]
+                           
+                            if contract_ids_str:
+                                contract_risk_condition = Q(
+                                    entity__in=['contract_module', 'Contract', 'contract'],
+                                    row__in=contract_ids_str
+                                )
+                                # Handle JSONField data - check for Contract related data values
+                                # Regular risks use 'vendor_contracts', comprehensive risks may use 'comprehensive_contract_data'
+                                contract_risk_condition &= (
+                                    Q(data__icontains='vendor_contracts') |
+                                    Q(data='vendor_contracts') |
+                                    Q(data__icontains='contracts') |
+                                    Q(data='contracts') |
+                                    Q(data__icontains='contract_terms') |
+                                    Q(data='contract_terms') |
+                                    Q(data__icontains='contract_clauses') |
+                                    Q(data='contract_clauses') |
+                                    Q(data__icontains='comprehensive_contract_data') |
+                                    Q(data='comprehensive_contract_data')
+                                )
+                                vendor_conditions.append(contract_risk_condition)
+                                logger.info(f"[VendorRisksListView] Found {len(contract_ids)} contracts for vendors.vendor_id={vendors_vendor_id}")
+                        except Exception as contract_error:
+                            logger.warning(f"[VendorRisksListView] Error fetching contracts: {contract_error}")
+                   
+                    # Combine all conditions with OR
+                    if vendor_conditions:
+                        combined_condition = vendor_conditions[0]
+                        for condition in vendor_conditions[1:]:
+                            combined_condition |= condition
+                        queryset = queryset.filter(combined_condition)
+                        logger.info(f"[VendorRisksListView] Filtering by vendor_id: {vendor_id} (temp_vendor.id={temp_vendor_id}, vendors.vendor_id={vendors_vendor_id}) with {len(vendor_conditions)} condition(s)")
+                    else:
+                        # No matching conditions found - return empty queryset
+                        queryset = queryset.none()
+                        logger.info(f"[VendorRisksListView] No risks found for vendor_id: {vendor_id} (temp_vendor.id={temp_vendor_id}, vendors.vendor_id={vendors_vendor_id})")
+                       
+                except (ValueError, TypeError) as e:
+                    logger.warning(f"[VendorRisksListView] Invalid vendor_id filter: {vendor_id_filter}, error: {e}")
+                    # Don't filter if vendor_id is invalid
+           
+            # Search filter
+            search_term = request.query_params.get('search', None)
+            if search_term:
+                queryset = queryset.filter(
+                    Q(title__icontains=search_term) |
+                    Q(description__icontains=search_term)
+                )
+           
+            # Order by created_at descending
+            queryset = queryset.order_by('-created_at')
+           
+            # Pagination
+            page_size = int(request.query_params.get('page_size', 50))
+            page = int(request.query_params.get('page', 1))
+            start = (page - 1) * page_size
+            end = start + page_size
+           
+            total_count = queryset.count()
+            risks = queryset[start:end]
+           
+            # Get all unique entity values from the database (for dropdown)
+            unique_entities = RiskTPRM.objects.using(db_connection).exclude(
+                entity__isnull=True
+            ).exclude(
+                entity=''
+            ).values_list('entity', flat=True).distinct().order_by('entity')
+            unique_entities_list = list(unique_entities)
+           
+            # Serialize the data
+            serializer = VendorRiskSerializer(risks, many=True)
+           
+            return Response({
+                'success': True,
+                'data': serializer.data,
+                'total': total_count,
+                'page': page,
+                'page_size': page_size,
+                'total_pages': (total_count + page_size - 1) // page_size if page_size > 0 else 1,
+                'unique_entities': unique_entities_list
+            }, status=status.HTTP_200_OK)
+           
+        except Exception as e:
+            logger.exception(f"[VendorRisksListView] Unexpected error: {e}")
+            return Response({
+                'success': False,
+                'error': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class VendorRisksExportExcelView(APIView):
+    """
+    API endpoint to export vendor risks to Excel file
+    Exports all filtered risks with all columns from risk_tprm table
+    """
+    permission_classes = [IsAuthenticated]
+ 
+    def get(self, request):
+        import logging
+        import io
+        from datetime import datetime
+        from django.http import HttpResponse
+       
+        logger = logging.getLogger(__name__)
+        logger.info(f"[VendorRisksExportExcelView] GET request received for Excel export")
+       
+        try:
+            # Try to import openpyxl
+            try:
+                import openpyxl
+                from openpyxl.styles import Font, Alignment, PatternFill
+                from openpyxl.utils import get_column_letter
+                OPENPYXL_AVAILABLE = True
+            except ImportError:
+                OPENPYXL_AVAILABLE = False
+                logger.warning("[VendorRisksExportExcelView] openpyxl not available, using CSV fallback")
+           
+            # Get tenant_id from request (same logic as VendorRisksListView)
+            tenant_id = None
+           
+            if hasattr(request, 'tenant_id') and request.tenant_id:
+                tenant_id = request.tenant_id
+                logger.info(f"[VendorRisksExportExcelView] Got tenant_id from request.tenant_id: {tenant_id}")
+           
+            if not tenant_id:
+                tenant_id = get_tenant_id_from_request(request)
+                if tenant_id:
+                    logger.info(f"[VendorRisksExportExcelView] Got tenant_id from get_tenant_id_from_request: {tenant_id}")
+           
+            if not tenant_id:
+                try:
+                    auth_header = request.headers.get('Authorization', '')
+                    if auth_header.startswith('Bearer '):
+                        token = auth_header.split(' ')[1]
+                        import jwt
+                        from django.conf import settings
+                        try:
+                            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'], options={"verify_signature": False})
+                            if 'tenant_id' in payload:
+                                tenant_id = payload['tenant_id']
+                                logger.info(f"[VendorRisksExportExcelView] Got tenant_id from JWT token: {tenant_id}")
+                        except Exception as jwt_error:
+                            logger.debug(f"[VendorRisksExportExcelView] Could not decode JWT: {jwt_error}")
+                except Exception as e:
+                    logger.debug(f"[VendorRisksExportExcelView] Error extracting tenant_id from JWT: {e}")
+           
+            logger.info(f"[VendorRisksExportExcelView] Final tenant_id: {tenant_id}")
+           
+            # Import RiskTPRM model
+            from tprm_backend.apps.vendor_risk.models import RiskTPRM
+            from django.db import connections
+            from django.db.models import Q
+           
+            # Use 'tprm' database connection
+            db_connection = 'tprm'
+           
+            # Build query with same filters as VendorRisksListView
+            queryset = RiskTPRM.objects.using(db_connection).all()
+           
+            # Filter by entity if provided
+            entity_filter = request.query_params.get('entity', None)
+            if entity_filter:
+                queryset = queryset.filter(entity=entity_filter)
+                logger.info(f"[VendorRisksExportExcelView] Filtering by entity: {entity_filter}")
+           
+            # Apply tenant filter
+            if tenant_id:
+                queryset = queryset.filter(Q(tenant_id=tenant_id) | Q(tenant_id__isnull=True))
+                logger.info(f"[VendorRisksExportExcelView] Filtering by tenant_id: {tenant_id}")
+            else:
+                logger.warning(f"[VendorRisksExportExcelView] No tenant_id found - showing ALL risks")
+           
+            # Apply additional filters
+            status_filter = request.query_params.get('status', None)
+            if status_filter:
+                queryset = queryset.filter(status=status_filter)
+           
+            priority_filter = request.query_params.get('priority', None)
+            if priority_filter:
+                queryset = queryset.filter(priority=priority_filter)
+           
+            risk_type_filter = request.query_params.get('risk_type', None)
+            if risk_type_filter:
+                queryset = queryset.filter(risk_type=risk_type_filter)
+           
+            # Vendor ID filter (same complex logic as VendorRisksListView)
+            vendor_id_filter = request.query_params.get('vendor_id', None)
+            if vendor_id_filter:
+                try:
+                    vendor_id = int(vendor_id_filter)
+                    from tprm_backend.apps.vendor_core.models import Vendors, TempVendor
+                   
+                    temp_vendor_id = None
+                    vendors_vendor_id = None
+                    vendor_code = None
+                   
+                    # Check if it's a vendors.vendor_id
+                    try:
+                        vendor_filter = {'vendor_id': vendor_id}
+                        if tenant_id:
+                            vendor_filter['tenant_id'] = tenant_id
+                        vendor = Vendors.objects.using(db_connection).filter(**vendor_filter).first()
+                        if vendor:
+                            vendors_vendor_id = vendor_id
+                            vendor_code = vendor.vendor_code
+                            if vendor_code:
+                                temp_filter = {'vendor_code': vendor_code}
+                                if tenant_id:
+                                    temp_filter['tenant_id'] = tenant_id
+                                temp_vendor = TempVendor.objects.using(db_connection).filter(**temp_filter).first()
+                                if temp_vendor:
+                                    temp_vendor_id = temp_vendor.id
+                    except Exception as e:
+                        logger.debug(f"[VendorRisksExportExcelView] vendor_id {vendor_id} not found in vendors table: {e}")
+                   
+                    # Check if it's a temp_vendor.id
+                    if not temp_vendor_id:
+                        try:
+                            temp_filter = {'id': vendor_id}
+                            if tenant_id:
+                                temp_filter['tenant_id'] = tenant_id
+                            temp_vendor = TempVendor.objects.using(db_connection).filter(**temp_filter).first()
+                            if temp_vendor:
+                                temp_vendor_id = vendor_id
+                                vendor_code = temp_vendor.vendor_code
+                                if vendor_code:
+                                    vendor_filter = {'vendor_code': vendor_code}
+                                    if tenant_id:
+                                        vendor_filter['tenant_id'] = tenant_id
+                                    vendor = Vendors.objects.using(db_connection).filter(**vendor_filter).first()
+                                    if vendor:
+                                        vendors_vendor_id = vendor.vendor_id
+                        except Exception as e:
+                            logger.debug(f"[VendorRisksExportExcelView] vendor_id {vendor_id} not found in temp_vendor table: {e}")
+                   
+                    # Build conditions for different risk sources
+                    vendor_conditions = []
+                   
+                    if temp_vendor_id:
+                        vendor_risk_condition = Q(
+                            entity='vendor_management',
+                            row=str(temp_vendor_id)
+                        )
+                        vendor_risk_condition &= (
+                            Q(data__icontains='temp_vendor') |
+                            Q(data='temp_vendor')
+                        )
+                        vendor_conditions.append(vendor_risk_condition)
+                   
+                    if vendors_vendor_id:
+                        try:
+                            from tprm_backend.bcpdrp.models import Plan
+                            bcp_plan_ids = list(Plan.objects.using(db_connection).filter(vendor_id=vendors_vendor_id).values_list('plan_id', flat=True))
+                            bcp_plan_ids_str = [str(pid) for pid in bcp_plan_ids]
+                           
+                            if bcp_plan_ids_str:
+                                bcp_risk_condition = Q(
+                                    entity__in=['bcp_drp_module', 'BCP_DRP', 'bcp_drp'],
+                                    row__in=bcp_plan_ids_str
+                                )
+                                bcp_risk_condition &= (
+                                    Q(data__icontains='bcp_drp_plans') |
+                                    Q(data='bcp_drp_plans') |
+                                    Q(data__icontains='bcp_drp_evaluations') |
+                                    Q(data='bcp_drp_evaluations') |
+                                    Q(data__icontains='comprehensive_plan_data') |
+                                    Q(data='comprehensive_plan_data')
+                                )
+                                vendor_conditions.append(bcp_risk_condition)
+                        except Exception as bcp_error:
+                            logger.warning(f"[VendorRisksExportExcelView] Error fetching BCP/DRP plans: {bcp_error}")
+                       
+                        try:
+                            from tprm_backend.rfp.models import RFPResponse
+                            rfp_response_ids = list(RFPResponse.objects.using(db_connection).filter(vendor_id=vendors_vendor_id).values_list('response_id', flat=True))
+                            rfp_response_ids_str = [str(rid) for rid in rfp_response_ids]
+                           
+                            if rfp_response_ids_str:
+                                rfp_risk_condition = Q(
+                                    entity__in=['rfp_module', 'RFP', 'rfp'],
+                                    row__in=rfp_response_ids_str
+                                )
+                                rfp_risk_condition &= (
+                                    Q(data__icontains='rfp_responses') |
+                                    Q(data='rfp_responses') |
+                                    Q(data__icontains='rfps') |
+                                    Q(data='rfps') |
+                                    Q(data__icontains='comprehensive_rfp_data') |
+                                    Q(data='comprehensive_rfp_data')
+                                )
+                                vendor_conditions.append(rfp_risk_condition)
+                        except Exception as rfp_error:
+                            logger.warning(f"[VendorRisksExportExcelView] Error fetching RFP responses: {rfp_error}")
+                       
+                        try:
+                            from tprm_backend.apps.vendor_lifecycle.models import VendorContracts
+                            contract_ids = list(VendorContracts.objects.using(db_connection).filter(vendor_id=vendors_vendor_id).values_list('contract_id', flat=True))
+                            contract_ids_str = [str(cid) for cid in contract_ids]
+                           
+                            if contract_ids_str:
+                                contract_risk_condition = Q(
+                                    entity__in=['contract_module', 'Contract', 'contract'],
+                                    row__in=contract_ids_str
+                                )
+                                contract_risk_condition &= (
+                                    Q(data__icontains='vendor_contracts') |
+                                    Q(data='vendor_contracts') |
+                                    Q(data__icontains='contracts') |
+                                    Q(data='contracts') |
+                                    Q(data__icontains='contract_terms') |
+                                    Q(data='contract_terms') |
+                                    Q(data__icontains='contract_clauses') |
+                                    Q(data='contract_clauses') |
+                                    Q(data__icontains='comprehensive_contract_data') |
+                                    Q(data='comprehensive_contract_data')
+                                )
+                                vendor_conditions.append(contract_risk_condition)
+                        except Exception as contract_error:
+                            logger.warning(f"[VendorRisksExportExcelView] Error fetching contracts: {contract_error}")
+                   
+                    if vendor_conditions:
+                        combined_condition = vendor_conditions[0]
+                        for condition in vendor_conditions[1:]:
+                            combined_condition |= condition
+                        queryset = queryset.filter(combined_condition)
+                except (ValueError, TypeError) as e:
+                    logger.warning(f"[VendorRisksExportExcelView] Invalid vendor_id filter: {vendor_id_filter}, error: {e}")
+           
+            # Search filter
+            search_term = request.query_params.get('search', None)
+            if search_term:
+                queryset = queryset.filter(
+                    Q(title__icontains=search_term) |
+                    Q(description__icontains=search_term)
+                )
+           
+            # Order by created_at descending
+            queryset = queryset.order_by('-created_at')
+           
+            # Get all risks (no pagination for export)
+            risks = list(queryset.values())
+            total_count = len(risks)
+           
+            logger.info(f"[VendorRisksExportExcelView] Exporting {total_count} risks to Excel")
+           
+            if OPENPYXL_AVAILABLE:
+                # Create Excel workbook
+                workbook = openpyxl.Workbook()
+                sheet = workbook.active
+                sheet.title = "Vendor Risks"
+               
+                # Define all columns from risk_tprm table
+                headers = [
+                    'ID', 'Title', 'Description', 'Likelihood', 'Impact', 'Score',
+                    'Priority', 'Status', 'Risk Type', 'Entity', 'Exposure Rating',
+                    'AI Explanation', 'Suggested Mitigations', 'Data', 'Row',
+                    'Created At', 'Updated At', 'Tenant ID'
+                ]
+               
+                # Write headers with styling
+                for col, header in enumerate(headers, 1):
+                    cell = sheet.cell(row=1, column=col, value=header)
+                    cell.font = Font(bold=True, color="FFFFFF")
+                    cell.fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
+                    cell.alignment = Alignment(horizontal="center", vertical="center")
+               
+                # Write data rows
+                for row_idx, risk in enumerate(risks, 2):
+                    # Handle JSONField data - convert to string if it's a dict/list
+                    data_value = risk.get('data')
+                    if isinstance(data_value, (dict, list)):
+                        import json
+                        data_value = json.dumps(data_value)
+                   
+                    # Handle datetime fields
+                    created_at = risk.get('created_at')
+                    if created_at:
+                        if isinstance(created_at, str):
+                            try:
+                                created_at = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
+                            except:
+                                pass
+                        if isinstance(created_at, datetime):
+                            created_at = created_at.strftime('%Y-%m-%d %H:%M:%S')
+                   
+                    updated_at = risk.get('updated_at')
+                    if updated_at:
+                        if isinstance(updated_at, str):
+                            try:
+                                updated_at = datetime.fromisoformat(updated_at.replace('Z', '+00:00'))
+                            except:
+                                pass
+                        if isinstance(updated_at, datetime):
+                            updated_at = updated_at.strftime('%Y-%m-%d %H:%M:%S')
+                   
+                    sheet.cell(row=row_idx, column=1, value=risk.get('id', ''))
+                    sheet.cell(row=row_idx, column=2, value=risk.get('title', ''))
+                    sheet.cell(row=row_idx, column=3, value=risk.get('description', ''))
+                    sheet.cell(row=row_idx, column=4, value=risk.get('likelihood', ''))
+                    sheet.cell(row=row_idx, column=5, value=risk.get('impact', ''))
+                    sheet.cell(row=row_idx, column=6, value=risk.get('score', ''))
+                    sheet.cell(row=row_idx, column=7, value=risk.get('priority', ''))
+                    sheet.cell(row=row_idx, column=8, value=risk.get('status', ''))
+                    sheet.cell(row=row_idx, column=9, value=risk.get('risk_type', ''))
+                    sheet.cell(row=row_idx, column=10, value=risk.get('entity', ''))
+                    sheet.cell(row=row_idx, column=11, value=risk.get('exposure_rating', ''))
+                    sheet.cell(row=row_idx, column=12, value=risk.get('ai_explanation', ''))
+                    sheet.cell(row=row_idx, column=13, value=risk.get('suggested_mitigations', ''))
+                    sheet.cell(row=row_idx, column=14, value=data_value)
+                    sheet.cell(row=row_idx, column=15, value=risk.get('row', ''))
+                    sheet.cell(row=row_idx, column=16, value=created_at)
+                    sheet.cell(row=row_idx, column=17, value=updated_at)
+                    sheet.cell(row=row_idx, column=18, value=risk.get('tenant_id', ''))
+               
+                # Auto-adjust column widths
+                for column in sheet.columns:
+                    max_length = 0
+                    column_letter = get_column_letter(column[0].column)
+                    for cell in column:
+                        try:
+                            if cell.value:
+                                cell_length = len(str(cell.value))
+                                if cell_length > max_length:
+                                    max_length = cell_length
+                        except:
+                            pass
+                    adjusted_width = min(max_length + 2, 50)
+                    sheet.column_dimensions[column_letter].width = adjusted_width
+               
+                # Save to buffer
+                excel_buffer = io.BytesIO()
+                workbook.save(excel_buffer)
+                excel_buffer.seek(0)
+               
+                # Create response
+                response = HttpResponse(
+                    excel_buffer.getvalue(),
+                    content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                )
+                filename = f"vendor-risks-export-{datetime.now().strftime('%Y-%m-%d-%H%M%S')}.xlsx"
+                response['Content-Disposition'] = f'attachment; filename="{filename}"'
+               
+                logger.info(f"[VendorRisksExportExcelView] Excel export completed: {total_count} risks exported")
+                return response
+            else:
+                # Fallback to CSV if openpyxl is not available
+                response = HttpResponse(content_type='text/csv')
+                filename = f"vendor-risks-export-{datetime.now().strftime('%Y-%m-%d-%H%M%S')}.csv"
+                response['Content-Disposition'] = f'attachment; filename="{filename}"'
+               
+                writer = csv.writer(response)
+               
+                # Write headers
+                headers = [
+                    'ID', 'Title', 'Description', 'Likelihood', 'Impact', 'Score',
+                    'Priority', 'Status', 'Risk Type', 'Entity', 'Exposure Rating',
+                    'AI Explanation', 'Suggested Mitigations', 'Data', 'Row',
+                    'Created At', 'Updated At', 'Tenant ID'
+                ]
+                writer.writerow(headers)
+               
+                # Write data rows
+                for risk in risks:
+                    data_value = risk.get('data')
+                    if isinstance(data_value, (dict, list)):
+                        import json
+                        data_value = json.dumps(data_value)
+                   
+                    created_at = risk.get('created_at')
+                    if created_at and isinstance(created_at, datetime):
+                        created_at = created_at.strftime('%Y-%m-%d %H:%M:%S')
+                   
+                    updated_at = risk.get('updated_at')
+                    if updated_at and isinstance(updated_at, datetime):
+                        updated_at = updated_at.strftime('%Y-%m-%d %H:%M:%S')
+                   
+                    writer.writerow([
+                        risk.get('id', ''),
+                        risk.get('title', ''),
+                        risk.get('description', ''),
+                        risk.get('likelihood', ''),
+                        risk.get('impact', ''),
+                        risk.get('score', ''),
+                        risk.get('priority', ''),
+                        risk.get('status', ''),
+                        risk.get('risk_type', ''),
+                        risk.get('entity', ''),
+                        risk.get('exposure_rating', ''),
+                        risk.get('ai_explanation', ''),
+                        risk.get('suggested_mitigations', ''),
+                        data_value,
+                        risk.get('row', ''),
+                        created_at,
+                        updated_at,
+                        risk.get('tenant_id', '')
+                    ])
+               
+                logger.info(f"[VendorRisksExportExcelView] CSV export completed: {total_count} risks exported")
+                return response
+           
+        except Exception as e:
+            logger.exception(f"[VendorRisksExportExcelView] Unexpected error: {e}")
+            return Response({
+                'success': False,
+                'error': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

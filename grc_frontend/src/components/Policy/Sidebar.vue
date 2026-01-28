@@ -688,6 +688,7 @@
             <span>Select Direct</span>
           </div>
         </div>
+        
         <!-- Emergency -->
         <div @click="toggleSubmenu('emergencyManagement')" class="menu-item has-submenu" :class="{'expanded': openMenus.emergencyManagement}">
           <i class="fas fa-exclamation-triangle icon"></i>
@@ -796,6 +797,10 @@
         <div class="menu-item" @click="navigate('/tprm/all-vendors')" :class="{'active': isActive('/tprm/all-vendors')}">
           <i class="fas fa-list icon"></i>
           <span>All Vendors</span>
+        </div>
+        <div class="menu-item" @click="navigate('/tprm/vendor-risks')" :class="{'active': isActive('/tprm/vendor-risks')}">
+          <i class="fas fa-shield-alt icon"></i>
+          <span>Vendor Risks</span>
         </div>
       </div>
       <div @click="toggleSubmenu('contractManagement')" class="menu-item has-submenu" :class="{'expanded': openMenus.contractManagement}">

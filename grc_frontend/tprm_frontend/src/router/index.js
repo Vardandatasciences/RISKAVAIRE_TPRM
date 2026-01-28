@@ -538,6 +538,12 @@ const router = createRouter({
       component: () => import('@/pages/management/AllVendors.vue'),
       meta: { requiresAuth: true, permission: 'vendor_view' }
     },
+    {
+      path: '/vendor-risks',
+      name: 'VendorRisks',
+      component: () => import('@/pages/management/VendorRisks.vue'),
+      meta: { requiresAuth: true, permission: 'vendor_view' }
+    },
     
     // RFP Management Routes
     {
