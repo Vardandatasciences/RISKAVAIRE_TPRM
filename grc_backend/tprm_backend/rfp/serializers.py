@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.db import transaction
 from django.contrib.auth.models import User
+import logging
 from .models import RFP, RFPEvaluationCriteria, CustomUser, RFPTypeCustomFields
 from .validators import validate_rfp_data
 
@@ -337,6 +338,13 @@ class RFPListSerializer(serializers.ModelSerializer):
     
     def get_criteria_count(self, obj):
         try:
+            # Use len() instead of count() when prefetch_related is used
+            # This avoids additional database queries
+            if hasattr(obj, '_prefetched_objects_cache') and 'evaluation_criteria' in obj._prefetched_objects_cache:
+                return len(obj._prefetched_objects_cache['evaluation_criteria'])
             return obj.evaluation_criteria.count()
-        except Exception:
+        except Exception as e:
+            # Log the error for debugging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error getting criteria count for RFP {obj.rfp_id}: {str(e)}")
             return 0

@@ -88,18 +88,24 @@ class RFPViewSet(RFPAuthenticationMixin, viewsets.ModelViewSet):
         try:
             return super().list(request, *args, **kwargs)
         except Exception as e:
-            print("Exception during RFP listing:", str(e))
+            import logging
             import traceback
-            print(traceback.format_exc())
+            logger = logging.getLogger(__name__)
+            error_traceback = traceback.format_exc()
+            logger.error(f"Exception during RFP listing: {str(e)}\n{error_traceback}")
+            print("Exception during RFP listing:", str(e))
+            print(error_traceback)
             return Response({"error": "Error retrieving RFPs", "detail": str(e)}, 
                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def get_queryset(self):
         """
         Filter RFPs based on user role and permissions
+        Optimize queries with prefetch_related to avoid N+1 problems
         """
         # For development, return all RFPs
-        return RFP.objects.all()
+        # Use prefetch_related to optimize evaluation_criteria queries
+        return RFP.objects.prefetch_related('evaluation_criteria').all()
         
         # In production, we would filter by user
         # user = self.request.user
