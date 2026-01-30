@@ -1,0 +1,200 @@
+/* src/pages/vendor/VendorDashboard.css */
+
+/* Import KPI cards styles from main.css */
+@import '@/assets/components/main.css';
+
+/* Import badge styles */
+@import '@/assets/components/badge.css';
+
+/* Main Content Grid */
+.vendor_main-content-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1.5rem !important;
+  margin-top: 2rem !important;
+}
+
+@media (min-width: 1024px) {
+  .vendor_main-content-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* Activity Card Styling */
+.vendor_activity-card,
+.vendor_compliance-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.3s ease !important;
+  overflow: hidden !important;
+}
+
+.vendor_card-header {
+  padding: 1.5rem 1.5rem 1rem 1.5rem !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5) !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+}
+
+.vendor_card-title {
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin: 0 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.vendor_activity-content,
+.vendor_compliance-content {
+  padding: 1.5rem !important;
+}
+
+/* Vendor Activity Items */
+.vendor_vendor-activity-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 1rem !important;
+  border: 1px solid rgba(226, 232, 240, 0.6) !important;
+  border-radius: 12px !important;
+  margin-bottom: 0.75rem !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  transition: all 0.2s ease !important;
+}
+
+.vendor_vendor-activity-item:hover {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  background: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-1px) !important;
+}
+
+.vendor_vendor-activity-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+.vendor_vendor-info {
+  flex: 1 !important;
+}
+
+.vendor_vendor-name {
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  font-size: 0.875rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.vendor_vendor-meta {
+  font-size: 0.75rem !important;
+  color: #64748b !important;
+}
+
+.vendor_vendor-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+}
+
+/* Badge styles are now imported from badge.css */
+/* Status and risk badges use badge classes directly */
+
+.vendor_view-button {
+  border-radius: 8px !important;
+  padding: 0.5rem !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  transition: all 0.2s ease !important;
+}
+
+.vendor_view-button:hover {
+  background: rgba(59, 130, 246, 0.05) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Compliance Progress */
+.vendor_compliance-progress {
+  margin-bottom: 1.5rem !important;
+}
+
+.vendor_compliance-progress:last-child {
+  margin-bottom: 0 !important;
+}
+
+.vendor_progress-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.vendor_progress-label {
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+}
+
+.vendor_progress-value {
+  font-size: 0.875rem !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+}
+
+.vendor_progress-bar {
+  height: 8px !important;
+  border-radius: 4px !important;
+  background: rgba(226, 232, 240, 0.5) !important;
+}
+
+.vendor_compliance-summary {
+  margin-top: 1.5rem !important;
+  padding-top: 1.5rem !important;
+  border-top: 1px solid rgba(226, 232, 240, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+}
+
+.vendor_compliance-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 0.75rem !important;
+  border-radius: 8px !important;
+  background: rgba(248, 250, 252, 0.8) !important;
+  transition: all 0.2s ease !important;
+}
+
+.vendor_compliance-item:hover {
+  background: rgba(248, 250, 252, 1) !important;
+  transform: translateX(2px) !important;
+}
+
+.vendor_compliance-icon {
+  width: 1rem !important;
+  height: 1rem !important;
+  margin-right: 0.75rem !important;
+}
+
+.vendor_compliance-text {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .vendor_activity-content,
+  .vendor_compliance-content {
+    padding: 1rem !important;
+  }
+  
+  .vendor_vendor-activity-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+  
+  .vendor_vendor-actions {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+}

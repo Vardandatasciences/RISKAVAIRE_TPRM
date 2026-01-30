@@ -1,0 +1,673 @@
+/* ============================================
+   CONTRACT MODULE COLOUR BLINDNESS OVERRIDES
+   These styles apply color-blindness variables to all contract module components
+   Automatically applies when any color-blind mode is active
+   ============================================ */
+
+/* Apply overrides to all color-blind modes (not dark theme, not "off") */
+html:not(.dark-theme)[data-colorblind="protanopia"],
+html:not(.dark-theme)[data-colorblind="deuteranopia"],
+html:not(.dark-theme)[data-colorblind="tritanopia"],
+body:not(.dark-theme)[data-colorblind="protanopia"],
+body:not(.dark-theme)[data-colorblind="deuteranopia"],
+body:not(.dark-theme)[data-colorblind="tritanopia"] {
+  
+  /* ====================================
+     CONTRACT RISK LEVEL COLORS
+     ==================================== */
+  
+  .contract-risk-low,
+  .risk-low,
+  .badge-risk-low {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .contract-risk-medium,
+  .risk-medium,
+  .badge-risk-medium {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .contract-risk-high,
+  .risk-high,
+  .badge-risk-high {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .contract-risk-critical,
+  .risk-critical,
+  .badge-risk-critical {
+    background-color: var(--cb-error-dark) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     CONTRACT STATUS COLORS
+     ==================================== */
+  
+  .contract-status-active,
+  .status-active,
+  .badge-status-active {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .contract-status-pending,
+  .status-pending,
+  .badge-status-pending {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .contract-status-expired,
+  .status-expired,
+  .badge-status-expired {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .contract-status-terminated,
+  .status-terminated,
+  .badge-status-terminated {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-secondary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  /* ====================================
+     CONTRACT COMPLIANCE COLORS
+     ==================================== */
+  
+  .contract-compliant,
+  .compliant,
+  .badge-compliant {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .contract-non-compliant,
+  .non-compliant,
+  .badge-non-compliant {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     CONTRACT EXPIRATION COLORS
+     ==================================== */
+  
+  .contract-expiring-urgent,
+  .expiring-urgent {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .contract-expiring-soon,
+  .expiring-soon {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .contract-expiring-later,
+  .expiring-later {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  .contract-expiring-future,
+  .expiring-future {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     CONTRACT CRITICALITY COLORS
+     ==================================== */
+  
+  .contract-criticality-critical,
+  .criticality-critical {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .contract-criticality-high,
+  .criticality-high {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .contract-criticality-medium,
+  .criticality-medium {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  .contract-criticality-low,
+  .criticality-low {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     CONTRACT APPROVAL STATUS COLORS
+     ==================================== */
+  
+  .contract-approval-approved,
+  .approval-approved {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .contract-approval-pending,
+  .approval-pending {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .contract-approval-rejected,
+  .approval-rejected {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     CONTRACT AMENDMENT COLORS
+     ==================================== */
+  
+  .contract-amendment-pending,
+  .amendment-pending {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .contract-amendment-approved,
+  .amendment-approved {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     CONTRACT TERMINATION COLORS
+     ==================================== */
+  
+  .contract-termination-rate-high,
+  .termination-rate-high {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .contract-termination-rate-medium,
+  .termination-rate-medium {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .contract-termination-rate-low,
+  .termination-rate-low {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     CONTRACT LIABILITY COLORS
+     ==================================== */
+  
+  .contract-liability-high,
+  .liability-high {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .contract-liability-medium,
+  .liability-medium {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .contract-liability-low,
+  .liability-low {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     CONTRACT VALUE COLORS
+     ==================================== */
+  
+  .contract-value-high,
+  .value-high {
+    color: var(--cb-primary) !important;
+  }
+  
+  .contract-value-medium,
+  .value-medium {
+    color: var(--cb-warning) !important;
+  }
+  
+  .contract-value-low,
+  .value-low {
+    color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     CONTRACT BUTTON COLORS
+     ==================================== */
+  
+  .button--approve,
+  .btn-approve {
+    background-color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+    color: white !important;
+  }
+  
+  .button--approve:hover {
+    background-color: var(--cb-success-hover) !important;
+  }
+  
+  .button--reject,
+  .btn-reject {
+    background-color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+    color: white !important;
+  }
+  
+  .button--reject:hover {
+    background-color: var(--cb-error-hover) !important;
+  }
+  
+  .button--review,
+  .btn-review {
+    background-color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+    color: white !important;
+  }
+  
+  .button--review:hover {
+    background-color: var(--cb-primary-hover) !important;
+  }
+  
+  /* ====================================
+     CONTRACT TAG COLORS
+     ==================================== */
+  
+  .tag-success,
+  .tag-compliant {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .tag-danger,
+  .tag-non-compliant {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .tag-warning,
+  .tag-pending {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .tag-info,
+  .tag-primary {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     CONTRACT PROGRESS BAR COLORS
+     ==================================== */
+  
+  .progress-bar-success,
+  .progress-bar .progress-fill.success {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .progress-bar-warning,
+  .progress-bar .progress-fill.warning {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .progress-bar-error,
+  .progress-bar .progress-fill.error {
+    background-color: var(--cb-error) !important;
+  }
+  
+  .progress-bar-primary,
+  .progress-bar .progress-fill.primary {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     CONTRACT TABLE ROW COLORS
+     ==================================== */
+  
+  .table-row-highlight-success,
+  tr.success-row {
+    background-color: var(--cb-success-light) !important;
+  }
+  
+  .table-row-highlight-warning,
+  tr.warning-row {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .table-row-highlight-error,
+  tr.error-row {
+    background-color: var(--cb-error-light) !important;
+  }
+  
+  /* ====================================
+     CONTRACT ICON COLORS
+     ==================================== */
+  
+  .icon-success svg,
+  .icon-success {
+    color: var(--cb-success) !important;
+  }
+  
+  .icon-warning svg,
+  .icon-warning {
+    color: var(--cb-warning) !important;
+  }
+  
+  .icon-error svg,
+  .icon-error {
+    color: var(--cb-error) !important;
+  }
+  
+  .icon-primary svg,
+  .icon-primary {
+    color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     CONTRACT DETAIL VIEW STATUS COLORS
+     ==================================== */
+  
+  .status--active {
+    background: linear-gradient(135deg, var(--cb-success-light) 0%, var(--cb-success) 100%) !important;
+    color: var(--cb-success) !important;
+  }
+  
+  .status--under_review {
+    background: linear-gradient(135deg, var(--cb-warning-light) 0%, var(--cb-warning) 100%) !important;
+    color: var(--cb-warning) !important;
+  }
+  
+  .status--expired {
+    background: linear-gradient(135deg, var(--cb-error-light) 0%, var(--cb-error) 100%) !important;
+    color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     CONTRACT REVIEW EDIT STATUS COLORS
+     ==================================== */
+  
+  .status-badge.active {
+    background: linear-gradient(135deg, var(--cb-success-light) 0%, var(--cb-success) 100%) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .status-badge.pending {
+    background: linear-gradient(135deg, var(--cb-warning-light) 0%, var(--cb-warning) 100%) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .status-badge.reviewed {
+    background: linear-gradient(135deg, var(--cb-primary-light) 0%, var(--cb-primary) 100%) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  .status-badge.expired {
+    background: linear-gradient(135deg, var(--cb-error-light) 0%, var(--cb-error) 100%) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     CONTRACT APPROVAL ASSIGNMENT COLORS
+     ==================================== */
+  
+  .approval-status.approved {
+    color: var(--cb-success) !important;
+  }
+  
+  .approval-status.pending {
+    color: var(--cb-warning) !important;
+  }
+  
+  .approval-status.rejected {
+    color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     CONTRACT MY APPROVALS COLORS
+     ==================================== */
+  
+  .contract-card.approved {
+    border-left-color: var(--cb-success) !important;
+  }
+  
+  .contract-card.pending {
+    border-left-color: var(--cb-warning) !important;
+  }
+  
+  .contract-card.rejected {
+    border-left-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     CONTRACT STATUS BADGE CLASSES (from badge.css)
+     ==================================== */
+  
+  .badge-approved,
+  .status-approved,
+  .approved-text {
+    color: var(--cb-success) !important;
+  }
+  
+  .badge-active,
+  .status-active,
+  .active-text {
+    color: var(--cb-success) !important;
+  }
+  
+  .badge-draft,
+  .status-draft,
+  .draft-text {
+    color: var(--cb-neutral-text-tertiary) !important;
+  }
+  
+  .badge-in-review,
+  .status-in-review,
+  .badge-in_review,
+  .status-in_review,
+  .in-review-text,
+  .in_review-text {
+    color: var(--cb-warning) !important;
+  }
+  
+  .badge-pending-assignment,
+  .status-pending-assignment,
+  .pending-assignment-text {
+    color: var(--cb-warning) !important;
+  }
+  
+  .badge-assigned,
+  .status-assigned,
+  .assigned-text {
+    color: var(--cb-primary) !important;
+  }
+  
+  .badge-rejected,
+  .status-rejected,
+  .rejected-text {
+    color: var(--cb-error) !important;
+  }
+  
+  .badge-expired,
+  .status-expired,
+  .expired-text {
+    color: var(--cb-error) !important;
+  }
+  
+  .badge-terminated,
+  .status-terminated,
+  .terminated-text {
+    color: var(--cb-error) !important;
+  }
+  
+  .badge-cancelled,
+  .status-cancelled,
+  .cancelled-text {
+    color: var(--cb-neutral-text-tertiary) !important;
+  }
+  
+  .badge-submitted,
+  .status-submitted,
+  .submitted-text {
+    color: var(--cb-warning) !important;
+  }
+  
+  .badge-completed,
+  .status-completed,
+  .completed-text {
+    color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     PRESERVE BUILDING ICONS IN VENDOR CONTRACTS
+     Keep Building2 icons blue regardless of color blindness mode
+     ==================================== */
+  
+  /* Preserve Building icons in VendorContracts page - Override colourblindness-components.css */
+  .vendor-contracts-page svg.text-primary,
+  .vendor-contracts-page svg[class*="text-primary"],
+  .vendor-contracts-page .text-primary svg,
+  .vendor-contracts-page [class*="text-primary"] svg,
+  .vendor-contracts-page div svg.text-primary,
+  .vendor-contracts-page div .text-primary svg {
+    color: #3b82f6 !important;
+    fill: none !important;
+    stroke: #3b82f6 !important;
+    stroke-width: 2 !important;
+  }
+  
+  /* Preserve icon wrapper backgrounds with primary color */
+  .vendor-contracts-page [class*="bg-primary/10"],
+  .vendor-contracts-page div[class*="bg-primary/10"] {
+    background-color: rgba(59, 130, 246, 0.1) !important;
+  }
+  
+  /* Preserve KPI card icon colors and backgrounds - Override main.css color blindness rules */
+  .vendor-contracts-page .kpi-card-icon-blue {
+    background-color: #dbeafe !important;
+  }
+  
+  /* Override main.css color blindness rules for KPI card blue icons - Higher specificity than main.css */
+  .vendor-contracts-page .kpi-card-icon-blue svg,
+  .vendor-contracts-page .kpi-card-icon-wrapper.kpi-card-icon-blue svg,
+  .vendor-contracts-page .kpi-card-icon-blue svg[data-lucide],
+  .vendor-contracts-page .kpi-card-icon-wrapper.kpi-card-icon-blue svg[data-lucide] {
+    color: #3b82f6 !important;
+    fill: #3b82f6 !important;
+    stroke: #3b82f6 !important;
+  }
+  
+  /* Preserve all Building2 icons in KPI cards even without text-primary class - High specificity */
+  .vendor-contracts-page .kpi-card-icon-wrapper svg[data-lucide="building2"],
+  .vendor-contracts-page .kpi-card-icon-wrapper [data-lucide="building2"],
+  .vendor-contracts-page .kpi-card-icon-wrapper.kpi-card-icon-blue svg[data-lucide="building2"] {
+    color: #3b82f6 !important;
+    fill: #3b82f6 !important;
+    stroke: #3b82f6 !important;
+  }
+  
+  /* Preserve all Building2 icons specifically - Multiple selector patterns to catch all cases */
+  .vendor-contracts-page svg[data-lucide="building2"],
+  .vendor-contracts-page [data-lucide="building2"],
+  /* General SVG override for all icons with text-primary in vendor contracts page */
+  .vendor-contracts-page svg.text-primary {
+    color: #3b82f6 !important;
+    fill: none !important; /* Ensure fill is transparent for stroke-based icons */
+    stroke: #3b82f6 !important;
+    stroke-width: 2 !important;
+  }
+  
+  /* Specifically override for blue icon contexts - All containers */
+  .vendor-contracts-page .kpi-card-icon-blue svg,
+  .vendor-contracts-page [class*="bg-primary/10"] svg,
+  .vendor-contracts-page [class*="bg-primary/10"] svg.text-primary {
+    color: #3b82f6 !important;
+    fill: none !important;
+    stroke: #3b82f6 !important;
+    stroke-width: 2 !important;
+  }
+  
+  /* Preserve icons in flex containers with rounded backgrounds */
+  .vendor-contracts-page [class*="rounded-lg"][class*="flex"] svg.text-primary,
+  .vendor-contracts-page [class*="rounded-lg"][class*="items-center"] svg.text-primary,
+  .vendor-contracts-page [class*="rounded-lg"][class*="justify-center"] svg.text-primary,
+  .vendor-contracts-page [class*="rounded-lg"][class*="flex"] svg[class*="text-primary"],
+  .vendor-contracts-page [class*="rounded-lg"][class*="items-center"] svg[class*="text-primary"],
+  .vendor-contracts-page [class*="rounded-lg"][class*="justify-center"] svg[class*="text-primary"] {
+    color: #3b82f6 !important;
+    fill: none !important;
+    stroke: #3b82f6 !important;
+    stroke-width: 2 !important;
+  }
+  
+  /* Preserve icons in specific size containers */
+  .vendor-contracts-page [class*="w-10"][class*="h-10"] svg.text-primary,
+  .vendor-contracts-page [class*="w-12"][class*="h-12"] svg.text-primary,
+  .vendor-contracts-page [class*="w-5"][class*="h-5"] svg.text-primary,
+  .vendor-contracts-page [class*="w-6"][class*="h-6"] svg.text-primary,
+  .vendor-contracts-page [class*="w-10"][class*="h-10"] svg[class*="text-primary"],
+  .vendor-contracts-page [class*="w-12"][class*="h-12"] svg[class*="text-primary"],
+  .vendor-contracts-page [class*="w-5"][class*="h-5"] svg[class*="text-primary"],
+  .vendor-contracts-page [class*="w-6"][class*="h-6"] svg[class*="text-primary"] {
+    color: #3b82f6 !important;
+    fill: none !important;
+    stroke: #3b82f6 !important;
+    stroke-width: 2 !important;
+  }
+}

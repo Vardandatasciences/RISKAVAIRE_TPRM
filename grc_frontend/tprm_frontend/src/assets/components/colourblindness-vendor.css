@@ -1,0 +1,658 @@
+/* ============================================
+   VENDOR MODULE COLOUR BLINDNESS OVERRIDES
+   These styles apply color-blindness variables to all vendor module components
+   Automatically applies when any color-blind mode is active
+   ============================================ */
+
+/* Apply overrides to all color-blind modes (not dark theme, not "off") */
+html:not(.dark-theme)[data-colorblind="protanopia"],
+html:not(.dark-theme)[data-colorblind="deuteranopia"],
+html:not(.dark-theme)[data-colorblind="tritanopia"],
+body:not(.dark-theme)[data-colorblind="protanopia"],
+body:not(.dark-theme)[data-colorblind="deuteranopia"],
+body:not(.dark-theme)[data-colorblind="tritanopia"] {
+  
+  /* ====================================
+     VENDOR RISK LEVEL BADGES
+     ==================================== */
+  
+  .badge-risk-low,
+  .badge-risk-low-text,
+  .risk-low-text {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .badge-risk-medium,
+  .badge-risk-medium-text,
+  .risk-medium-text {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .badge-risk-high,
+  .badge-risk-high-text,
+  .risk-high-text {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .badge-risk-critical,
+  .badge-risk-critical-text,
+  .risk-critical-text {
+    background-color: var(--cb-error-dark) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .badge-risk-unknown,
+  .badge-risk-unknown-text {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-secondary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  /* ====================================
+     VENDOR STATUS BADGES
+     ==================================== */
+  
+  .badge-status-active,
+  .badge-status-active-text,
+  .status-active-text {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .badge-status-inactive,
+  .badge-status-inactive-text,
+  .status-inactive-text {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-secondary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  .badge-status-pending,
+  .badge-status-pending-text,
+  .status-pending-text {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .badge-status-suspended,
+  .badge-status-suspended-text,
+  .status-suspended-text {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .badge-status-terminated,
+  .badge-status-terminated-text,
+  .status-terminated-text {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-secondary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  .badge-status-unknown,
+  .badge-status-unknown-text {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-secondary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  /* ====================================
+     VENDOR PRIORITY BADGES
+     ==================================== */
+  
+  .badge-priority-low,
+  .badge-priority-low-text,
+  .priority-low-text {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .badge-priority-medium,
+  .badge-priority-medium-text,
+  .priority-medium-text {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .badge-priority-high,
+  .badge-priority-high-text,
+  .priority-high-text {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .badge-priority-critical,
+  .badge-priority-critical-text,
+  .priority-critical-text {
+    background-color: var(--cb-error-dark) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .badge-priority-unknown,
+  .badge-priority-unknown-text {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-secondary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  /* ====================================
+     VENDOR RISK STATUS BADGES
+     ==================================== */
+  
+  .badge-risk-status-open,
+  .badge-risk-status-open-text,
+  .risk-status-open-text {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .badge-risk-status-progress,
+  .badge-risk-status-progress-text,
+  .risk-status-progress-text {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  .badge-risk-status-mitigated,
+  .badge-risk-status-mitigated-text,
+  .risk-status-mitigated-text {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .badge-risk-status-unknown,
+  .badge-risk-status-unknown-text {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-secondary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  /* ====================================
+     VENDOR QUESTIONNAIRE STATUS BADGES
+     ==================================== */
+  
+  .badge-submitted,
+  .badge-submitted-text,
+  .submitted-text {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  .badge-completed,
+  .badge-completed-text,
+  .completed-text {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .badge-draft,
+  .badge-draft-text,
+  .draft-text {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-secondary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  /* ====================================
+     VENDOR SPECIAL BADGES
+     ==================================== */
+  
+  .badge-vendor-code,
+  .badge-vendor-code-text {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  .badge-critical,
+  .badge-critical-text,
+  .critical-text {
+    background-color: var(--cb-error-dark) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     VENDOR KPI DASHBOARD CHART COLORS
+     ==================================== */
+  
+  /* Bar Chart Colors */
+  .vendor_simple-bar-detailed,
+  .vendor_chart-bar {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  .vendor_simple-bar-detailed.vendor_variant-success,
+  .vendor_chart-bar.vendor_variant-success {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .vendor_simple-bar-detailed.vendor_variant-warning,
+  .vendor_chart-bar.vendor_variant-warning {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .vendor_simple-bar-detailed.vendor_variant-error,
+  .vendor_chart-bar.vendor_variant-error {
+    background-color: var(--cb-error) !important;
+  }
+  
+  /* Stacked Bar Chart Colors */
+  .vendor_chart-bar-overdue {
+    fill: var(--cb-error) !important;
+  }
+  
+  .vendor_chart-bar-overdue:hover {
+    fill: var(--cb-error-dark) !important;
+  }
+  
+  .vendor_chart-bar-ontime {
+    fill: var(--cb-success) !important;
+  }
+  
+  .vendor_chart-bar-ontime:hover {
+    fill: var(--cb-success-dark) !important;
+  }
+  
+  /* Circular Chart Colors */
+  .vendor_circle {
+    stroke: var(--cb-primary) !important;
+  }
+  
+  .vendor_circle.vendor_variant-success {
+    stroke: var(--cb-success) !important;
+  }
+  
+  .vendor_circle.vendor_variant-warning {
+    stroke: var(--cb-warning) !important;
+  }
+  
+  .vendor_circle.vendor_variant-error {
+    stroke: var(--cb-error) !important;
+  }
+  
+  /* Donut Chart Colors */
+  .vendor_chart-svg path[fill*="vendor_primary"],
+  .vendor_chart-svg path[fill*="--vendor_primary"] {
+    fill: var(--cb-primary) !important;
+  }
+  
+  /* Line Chart Colors */
+  .vendor_line-chart-line {
+    stroke: var(--cb-primary) !important;
+  }
+  
+  .vendor_line-chart-fill {
+    fill: var(--cb-primary-light) !important;
+  }
+  
+  /* OFAC/PEP Line Chart Colors */
+  .vendor_chart-line.vendor_chart-line-ofac {
+    stroke: var(--cb-error) !important;
+  }
+  
+  .vendor_chart-dot.vendor_chart-dot-ofac {
+    fill: var(--cb-error) !important;
+  }
+  
+  .vendor_chart-dot.vendor_chart-dot-ofac:hover {
+    fill: var(--cb-error-dark) !important;
+  }
+  
+  /* Score Bar Colors */
+  .score-fill.score-high,
+  .score-bar.score-high .score-fill {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .score-fill.score-medium,
+  .score-bar.score-medium .score-fill {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .score-fill.score-low,
+  .score-bar.score-low .score-fill {
+    background-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     VENDOR KPI VALUE COLORS
+     ==================================== */
+  
+  .vendor_kpi-value-large.vendor_variant-success,
+  .vendor_value-success {
+    color: var(--cb-success) !important;
+  }
+  
+  .vendor_kpi-value-large.vendor_variant-warning,
+  .vendor_value-warning {
+    color: var(--cb-warning) !important;
+  }
+  
+  .vendor_kpi-value-large.vendor_variant-error,
+  .vendor_value-error {
+    color: var(--cb-error) !important;
+  }
+  
+  .vendor_kpi-value-large.vendor_variant-primary,
+  .vendor_value-primary {
+    color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     VENDOR RISK SCORING COLORS
+     ==================================== */
+  
+  .risk-score-high,
+  .risk-score-high-text {
+    color: var(--cb-success) !important;
+  }
+  
+  .risk-score-medium,
+  .risk-score-medium-text {
+    color: var(--cb-warning) !important;
+  }
+  
+  .risk-score-low,
+  .risk-score-low-text {
+    color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     VENDOR LIFECYCLE TRACKER COLORS
+     ==================================== */
+  
+  .lifecycle-stage-active,
+  .lifecycle-stage-active-text {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  .lifecycle-stage-completed,
+  .lifecycle-stage-completed-text {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .lifecycle-stage-pending,
+  .lifecycle-stage-pending-text {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  /* ====================================
+     VENDOR EXTERNAL SCREENING COLORS
+     ==================================== */
+  
+  .screening-match,
+  .screening-match-text {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .screening-clear,
+  .screening-clear-text {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .screening-pending,
+  .screening-pending-text {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  /* ====================================
+     VENDOR APPROVAL STATUS COLORS
+     ==================================== */
+  
+  .approval-approved,
+  .approval-approved-text {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .approval-rejected,
+  .approval-rejected-text {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .approval-pending,
+  .approval-pending-text {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  /* ====================================
+     VENDOR BUTTON COLORS
+     ==================================== */
+  
+  .button--save,
+  .btn-save {
+    background-color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+    color: white !important;
+  }
+  
+  .button--save:hover {
+    background-color: var(--cb-success-hover) !important;
+  }
+  
+  .button--reject,
+  .btn-reject {
+    background-color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+    color: white !important;
+  }
+  
+  .button--reject:hover {
+    background-color: var(--cb-error-hover) !important;
+  }
+  
+  .button--approve,
+  .btn-approve {
+    background-color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+    color: white !important;
+  }
+  
+  .button--approve:hover {
+    background-color: var(--cb-success-hover) !important;
+  }
+  
+  /* ====================================
+     VENDOR TAG COLORS
+     ==================================== */
+  
+  .tag-success,
+  .tag-success-text {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .tag-danger,
+  .tag-danger-text {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .tag-warning,
+  .tag-warning-text {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .tag-info,
+  .tag-info-text {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     VENDOR PROGRESS BAR COLORS
+     ==================================== */
+  
+  .progress-bar-success,
+  .progress-bar .progress-fill.success {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .progress-bar-warning,
+  .progress-bar .progress-fill.warning {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .progress-bar-error,
+  .progress-bar .progress-fill.error {
+    background-color: var(--cb-error) !important;
+  }
+  
+  .progress-bar-primary,
+  .progress-bar .progress-fill.primary {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     VENDOR TABLE ROW COLORS
+     ==================================== */
+  
+  .table-row-highlight-success,
+  tr.success-row {
+    background-color: var(--cb-success-light) !important;
+  }
+  
+  .table-row-highlight-warning,
+  tr.warning-row {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .table-row-highlight-error,
+  tr.error-row {
+    background-color: var(--cb-error-light) !important;
+  }
+  
+  /* ====================================
+     VENDOR ICON COLORS
+     ==================================== */
+  
+  .icon-success svg,
+  .icon-success {
+    color: var(--cb-success) !important;
+  }
+  
+  .icon-warning svg,
+  .icon-warning {
+    color: var(--cb-warning) !important;
+  }
+  
+  .icon-error svg,
+  .icon-error {
+    color: var(--cb-error) !important;
+  }
+  
+  .icon-primary svg,
+  .icon-primary {
+    color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     VENDOR APPROVAL DASHBOARD PRIORITY COLORS
+     ==================================== */
+  
+  .priority-high {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+  }
+  
+  .priority-medium {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+  }
+  
+  .priority-low {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+  }
+  
+  .priority-urgent {
+    background-color: var(--cb-error-dark) !important;
+    color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     VENDOR REGISTRATION STATUS BADGES
+     ==================================== */
+  
+  .vendor_data-badge-low {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+  }
+  
+  .vendor_data-badge-medium {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+  }
+  
+  .vendor_data-badge-high {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+  }
+  
+  .vendor_data-badge-critical {
+    background-color: var(--cb-error-dark) !important;
+    color: var(--cb-error) !important;
+  }
+  
+  .vendor_data-badge-pending {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+  }
+  
+  .vendor_data-badge-active {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+  }
+  
+  .vendor_data-badge-suspended {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+  }
+  
+  .vendor_data-badge-inactive {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-secondary) !important;
+  }
+}

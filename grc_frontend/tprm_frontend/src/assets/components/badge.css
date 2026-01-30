@@ -1,0 +1,456 @@
+/* Badge Status Styles - Import this file in Vue components to use badge classes */
+
+/* Approved - Green text without any badge background */
+.badge-approved,
+.status-approved,
+.approved-text {
+  color: #10b981 !important; /* Green color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* In Review - Light orange color text */
+.badge-in-review,
+.status-in-review,
+.badge-in_review,
+.status-in_review,
+.in-review-text,
+.in_review-text {
+  color: #fb923c; /* Light orange color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Draft - Neutral gray color text */
+.badge-draft,
+.status-draft,
+.draft-text {
+  color: #6b7280; /* Neutral gray color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Active - Green color text (same as approved) */
+.badge-active,
+.status-active,
+.active-text {
+  color: #10b981; /* Green color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Pending Assignment - Light orange color text */
+.badge-pending-assignment,
+.status-pending-assignment,
+.pending-assignment-text {
+  color: #fb923c; /* Light orange color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Assigned - Blue color text */
+.badge-assigned,
+.status-assigned,
+.assigned-text {
+  color: #3b82f6; /* Blue color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* High Priority - Red color text */
+.badge-priority-high,
+.priority-high-text {
+  color: #ef4444; /* Red color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Medium Priority - Orange/amber color text */
+.badge-priority-medium,
+.priority-medium-text {
+  color: #f59e0b; /* Orange/amber color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Low Priority - Blue color text */
+.badge-priority-low,
+.priority-low-text {
+  color: #3b82f6; /* Blue color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Early Termination - Red color text */
+.badge-early-termination,
+.early-termination-text {
+  color: #ef4444; /* Red color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Completed - Green color text */
+.badge-completed,
+.completed-text {
+  color: #10b981; /* Green color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Terminated - Red color text */
+.badge-terminated,
+.terminated-text {
+  color: #ef4444; /* Red color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Expired - Gray color text */
+.badge-expired,
+.expired-text {
+  color: #880505; /* Gray color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Cancelled - Gray color text */
+.badge-cancelled,
+.cancelled-text {
+  color: #6b7280; /* Gray color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Created - Blue color text */
+.badge-created,
+.created-text {
+  color: #3b82f6; /* Blue color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Rejected - Red color text */
+.badge-rejected,
+.rejected-text {
+  color: #ef4444; /* Red color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Submitted - Light orange/yellow color text */
+.badge-submitted,
+.submitted-text {
+  color: #f59e0b; /* Orange/amber color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Compliant - Green color text */
+.badge-compliant,
+.compliant-text {
+  color: #10b981; /* Green color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* At Risk - Orange color text */
+.badge-at-risk,
+.at-risk-text {
+  color: #d62929; /* Orange color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Non-Compliant - Red color text */
+.badge-non-compliant,
+.non-compliant-text {
+  color: #ef4444; /* Red color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Excellent - Green color text */
+.badge-excellent,
+.excellent-text {
+  color: #10b981; /* Green color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Good - Blue color text */
+.badge-good,
+.good-text {
+  color: #3b82f6; /* Blue color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Warning - Orange color text */
+.badge-warning,
+.warning-text {
+  color: #f59e0b; /* Orange/amber color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Critical - Red color text */
+.badge-critical,
+.critical-text {
+  color: #ef4444; /* Red color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Alert Badge - Green for no alerts */
+.badge-alert-none,
+.alert-none-text {
+  color: #10b981; /* Green color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Alert Badge - Orange for low alerts */
+.badge-alert-low,
+.alert-low-text {
+  color: #fb923c; /* Orange color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Alert Badge - Red for high alerts */
+.badge-alert-high,
+.alert-high-text {
+  color: #ef4444; /* Red color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* High Risk - Red color text */
+.badge-high-risk,
+.high-risk-text,
+.badge-high,
+.high-text {
+  color: #ef4444; /* Red color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Medium Risk - Orange color text */
+.badge-medium-risk,
+.medium-risk-text,
+.badge-medium,
+.medium-text {
+  color: #f97316; /* Orange color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Low Risk - Green color text */
+.badge-low-risk,
+.low-risk-text,
+.badge-low,
+.low-text {
+  color: #10b981; /* Green color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Contract Kind Badges - Text only, no colored containers */
+.badge-main-contract,
+.main-contract-text {
+  color: #3b82f6; /* Blue color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+.badge-amendment,
+.amendment-text {
+  color: #8b5cf6; /* Purple color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+.badge-subcontract,
+.subcontract-text {
+  color: #6366f1; /* Indigo color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}
+
+/* Overdue - Red color text */
+.badge-overdue,
+.overdue-text {
+  color: #ef4444; /* Red color */
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+}

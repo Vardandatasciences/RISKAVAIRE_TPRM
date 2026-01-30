@@ -1,0 +1,234 @@
+/* Global KPI Cards Styles
+   Matches the design from the screenshot with icons, headings, counts, and subheadings */
+
+.kpi-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  min-height: auto;
+}
+
+.kpi-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* KPI Card Container - Flex layout with icon on left */
+.kpi-card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  min-height: 60px;
+}
+
+/* Left side - Icon wrapper (vertically centered) */
+.kpi-card-icon-wrapper {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Right side - Text content */
+.kpi-card-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* KPI Title/Heading - Uppercase, dark gray */
+.kpi-card-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #374151;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* KPI Value/Count - Large, bold, dark gray */
+.kpi-card-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  line-height: 1;
+}
+
+/* KPI Subheading/Description - Smaller, light gray */
+.kpi-card-subheading {
+  font-size: 11px;
+  font-weight: 400;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Icon styles */
+.kpi-card-icon-wrapper svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+}
+
+/* Color variants for icons based on KPI type */
+.kpi-card-icon-green {
+  background-color: #d1fae5;
+}
+
+.kpi-card-icon-green svg {
+  color: #10b981;
+}
+
+.kpi-card-icon-orange {
+  background-color: #fed7aa;
+}
+
+.kpi-card-icon-orange svg {
+  color: #f97316;
+}
+
+.kpi-card-icon-red {
+  background-color: #fee2e2;
+}
+
+.kpi-card-icon-red svg {
+  color: #ef4444;
+}
+
+.kpi-card-icon-blue {
+  background-color: #dbeafe;
+}
+
+.kpi-card-icon-blue svg {
+  color: #3b82f6;
+}
+
+/* Additional color variants for flexibility */
+.kpi-card-icon-purple {
+  background-color: #e9d5ff;
+}
+
+.kpi-card-icon-purple svg {
+  color: #a855f7;
+}
+
+.kpi-card-icon-yellow {
+  background-color: #fef3c7;
+}
+
+.kpi-card-icon-yellow svg {
+  color: #f59e0b;
+}
+
+.kpi-card-icon-gray {
+  background-color: #f3f4f6;
+}
+
+.kpi-card-icon-gray svg {
+  color: #6b7280;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .kpi-card-value {
+    font-size: 28px;
+  }
+  
+  .kpi-card-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .kpi-card-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .kpi-card {
+    padding: 10px;
+  }
+  
+  .kpi-card-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .kpi-card-icon-wrapper {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .kpi-card-icon-wrapper svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .kpi-card-value {
+    font-size: 24px;
+  }
+}
+
+/* Utility classes for grid layout */
+.kpi-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .kpi-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .kpi-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Custom grid for Contract Audits - 5 cards in a row */
+.kpi-cards-grid-audits {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .kpi-cards-grid-audits {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .kpi-cards-grid-audits {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .kpi-cards-grid-audits {
+    grid-template-columns: 1fr;
+  }
+}
+

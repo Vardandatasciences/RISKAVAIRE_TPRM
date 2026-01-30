@@ -1,0 +1,2853 @@
+/* RFP Module Dark Theme Styles
+   Specific dark theme implementation for RFP-related pages
+   Import this file in RFP components: Dashboard.vue, RFPList.vue, etc.
+*/
+
+/* ============================================
+   RFP DASHBOARD PAGE - DARK THEME
+   ============================================ */
+
+/* Page Container - Force dark background for entire page - Lighter dark gray */
+.dark-theme .space-y-4 {
+  /* background-color: #1f2937 !important; */
+  color: #e5e7eb !important;
+}
+
+/* Force dark background on parent containers - Lighter dark gray */
+.dark-theme [class*="Dashboard"],
+.dark-theme [class*="dashboard"],
+.dark-theme body:has(.space-y-4),
+.dark-theme html:has(.space-y-4) {
+  background-color: #1f2937 !important;
+}
+
+/* Page Header */
+.dark-theme .text-3xl.font-bold,
+.dark-theme .text-3xl.font-bold.tracking-tight {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* ============================================
+   KPI CARDS - DARK THEME
+   ============================================ */
+
+/* KPI Cards Grid */
+.dark-theme .kpi-cards-grid {
+  background-color: transparent !important;
+}
+
+/* KPI Card - Force dark background - Slightly lighter than page background */
+.dark-theme .kpi-card {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Override inline styles and computed styles for KPI cards */
+.dark-theme .kpi-card[style*="background"],
+.dark-theme .kpi-card[style*="background-color"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+.dark-theme .kpi-card:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* KPI Card Content */
+.dark-theme .kpi-card-content {
+  color: #e5e7eb !important;
+}
+
+/* KPI Card Icon Wrapper */
+.dark-theme .kpi-card-icon-wrapper {
+  background-color: #374151 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-theme .kpi-card-icon-wrapper svg {
+  color: #e5e7eb !important;
+}
+
+/* KPI Card Icon Colors */
+.dark-theme .kpi-card-icon-blue {
+  background-color: #1e3a5f !important;
+}
+
+.dark-theme .kpi-card-icon-blue svg {
+  color: #60a5fa !important;
+}
+
+.dark-theme .kpi-card-icon-green {
+  background-color: #064e3b !important;
+}
+
+.dark-theme .kpi-card-icon-green svg {
+  color: #34d399 !important;
+}
+
+.dark-theme .kpi-card-icon-orange {
+  background-color: #7c2d12 !important;
+}
+
+.dark-theme .kpi-card-icon-orange svg {
+  color: #fb923c !important;
+}
+
+.dark-theme .kpi-card-icon-red {
+  background-color: #7f1d1d !important;
+}
+
+.dark-theme .kpi-card-icon-red svg {
+  color: #f87171 !important;
+}
+
+.dark-theme .kpi-card-icon-purple {
+  background-color: #581c87 !important;
+}
+
+.dark-theme .kpi-card-icon-purple svg {
+  color: #a78bfa !important;
+}
+
+.dark-theme .kpi-card-icon-yellow {
+  background-color: #78350f !important;
+}
+
+.dark-theme .kpi-card-icon-yellow svg {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .kpi-card-icon-gray {
+  background-color: #374151 !important;
+}
+
+.dark-theme .kpi-card-icon-gray svg {
+  color: #9ca3af !important;
+}
+
+/* KPI Card Text */
+.dark-theme .kpi-card-text {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .kpi-card-title {
+  color: #d1d5db !important;
+}
+
+.dark-theme .kpi-card-value {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .kpi-card-subheading {
+  color: #9ca3af !important;
+}
+
+/* ============================================
+   PHASE CARDS & RFP LIST - DARK THEME
+   ============================================ */
+
+/* Phase Card - Recent RFPs Card - Force dark background - Slightly lighter */
+.dark-theme .phase-card {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .phase-card.bg-white {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+.dark-theme .phase-card.border.border-gray-200 {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .phase-card > div {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .phase-card .p-6 {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .phase-card .text-lg.font-semibold {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .phase-card .text-sm.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Override shadow-sm to be darker */
+.dark-theme .phase-card.shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Force override for phase-card with @apply directive */
+.dark-theme .phase-card.bg-white.border.border-gray-200 {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+/* RFP List Items inside phase-card - Keep transparent for proper nesting */
+.dark-theme .phase-card .space-y-4 > div {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Individual RFP items should have distinct background */
+.dark-theme .phase-card .hover-lift {
+  background-color: #2d3748 !important;
+  background: #2d3748 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .phase-card .hover-lift:hover {
+  background-color: #4b5563 !important;
+  background: #4b5563 !important;
+  border-color: #6b7280 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Override any white backgrounds in RFP list items */
+.dark-theme .phase-card .p-4 {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.dark-theme .phase-card .border.border-border {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .hover-lift .font-medium {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .hover-lift .text-sm.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .hover-lift svg {
+  color: #9ca3af !important;
+}
+
+.dark-theme .hover-lift .flex.items-center.gap-4 {
+  color: #9ca3af !important;
+}
+
+/* ============================================
+   RFP BUTTONS - DARK THEME
+   ============================================ */
+
+/* Dashboard Action Links */
+.dark-theme .dashboard-action-link {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .dashboard-action-link:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #93c5fd !important;
+  transform: translateY(-1px) !important;
+}
+
+.dark-theme .dashboard-action-link svg {
+  color: #60a5fa !important;
+}
+
+.dark-theme .dashboard-action-link:hover svg {
+  color: #93c5fd !important;
+}
+
+/* Button Create */
+.dark-theme .button--create {
+  background-color: #2563eb !important;
+  border-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .button--create:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1e40af !important;
+}
+
+.dark-theme .button--create svg {
+  color: #ffffff !important;
+}
+
+/* Button View */
+.dark-theme .button--view {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .button--view:hover {
+  background-color: #374151 !important;
+  border-color: #6b7280 !important;
+  color: #93c5fd !important;
+}
+
+.dark-theme .button--view svg {
+  color: #60a5fa !important;
+}
+
+.dark-theme .button--view:hover svg {
+  color: #93c5fd !important;
+}
+
+/* ============================================
+   STATUS BADGES - DARK THEME
+   ============================================ */
+
+/* Status Badges in Dashboard */
+.dark-theme .badge-draft {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .badge-in-review {
+  background-color: #78350f !important;
+  color: #fb923c !important;
+}
+
+.dark-theme .badge-approved {
+  background-color: #064e3b !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .status-badge.rejected {
+  background-color: #7f1d1d !important;
+  color: #fca5a5 !important;
+}
+
+/* ============================================
+   PROGRESS BARS - DARK THEME
+   ============================================ */
+
+/* Progress Component */
+.dark-theme .h-2 {
+  background-color: #374151 !important;
+}
+
+.dark-theme [class*="progress"] {
+  background-color: #374151 !important;
+}
+
+
+/* ============================================
+   RFP TEXT UTILITIES - DARK THEME
+   ============================================ */
+
+/* Text Utilities */
+.dark-theme .text-success {
+  color: #34d399 !important;
+}
+
+.dark-theme .text-destructive {
+  color: #f87171 !important;
+}
+
+.dark-theme .text-warning {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .text-info {
+  color: #60a5fa !important;
+}
+
+.dark-theme .text-primary {
+  color: #60a5fa !important;
+}
+
+.dark-theme .bg-destructive {
+  background-color: #7f1d1d !important;
+}
+
+.dark-theme .text-destructive-foreground {
+  color: #fca5a5 !important;
+}
+
+.dark-theme .bg-warning {
+  background-color: #78350f !important;
+}
+
+.dark-theme .text-warning-foreground {
+  color: #fde047 !important;
+}
+
+.dark-theme .bg-muted {
+  background-color: #374151 !important;
+}
+
+/* Icon Colors in Dashboard */
+.dark-theme .text-blue-600,
+.dark-theme svg.text-blue-600 {
+  color: #60a5fa !important;
+}
+
+/* ============================================
+   RFP CARD VARIANTS - DARK THEME
+   ============================================ */
+
+/* Enhanced Card */
+.dark-theme .enhanced-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .enhanced-card:hover {
+  border-color: #6b7280 !important;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Compact Card */
+.dark-theme .compact-card {
+  background: linear-gradient(145deg, #374151 0%, #2d3748 100%) !important;
+}
+
+/* Icon Wrapper */
+.dark-theme .icon-wrapper-compact {
+  background-color: #4b5563 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-theme .enhanced-card:hover .icon-wrapper-compact {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .icon-wrapper {
+  background-color: #4b5563 !important;
+}
+
+/* Gradient Primary */
+.dark-theme .gradient-primary {
+  background: linear-gradient(to right, #1e40af, #1e3a8a) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .gradient-primary:hover {
+  background: linear-gradient(to right, #1e3a8a, #1e3a5f) !important;
+}
+
+/* ============================================
+   RFP SPECIFIC OVERRIDES - DARK THEME
+   ============================================ */
+
+/* Ensure all text in cards is visible */
+.dark-theme .phase-card span,
+.dark-theme .phase-card div,
+.dark-theme .phase-card p,
+.dark-theme .phase-card h3 {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .kpi-card span,
+.dark-theme .kpi-card div,
+.dark-theme .kpi-card p,
+.dark-theme .kpi-card h3 {
+  color: #e5e7eb !important;
+}
+
+/* RFP List Items - Additional styling */
+.dark-theme .flex.flex-col.sm\:flex-row {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .space-y-2.sm\:space-y-1 {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .flex.items-center.gap-2 {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .flex.items-center.gap-4 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .text-xs.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Border utilities */
+.dark-theme .border.border-border {
+  border-color: #4b5563 !important;
+}
+
+/* ============================================
+   RFP LIST PAGE - SEARCH CONTAINER
+   ============================================ */
+
+/* Remove ash/gray background from RFP List search container */
+.dark-theme .phase-card .p-6 {
+  background-color: transparent !important;
+}
+
+/* Remove background from all nested elements in phase-card */
+.dark-theme .phase-card .p-6 > *,
+.dark-theme .phase-card .p-6 .flex,
+.dark-theme .phase-card .p-6 .flex-1,
+.dark-theme .phase-card .p-6 .search-container,
+.dark-theme .phase-card .p-6 .search-input-wrapper {
+  background-color: transparent !important;
+}
+
+/* Remove background from all descendants */
+.dark-theme .phase-card .p-6 * {
+  background-color: transparent !important;
+}
+
+/* Only apply dark background to the actual input field */
+.dark-theme .phase-card .p-6 .search-input {
+  background-color: #374151 !important;
+}
+
+/* Dropdown buttons in RFP filters */
+.dark-theme .phase-card .p-6 button {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .phase-card .p-6 button:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+}
+
+/* ============================================
+   CHANGE REQUEST MANAGER - DARK THEME
+   ============================================ */
+
+/* Main Container */
+.dark-theme .change-request-manager {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Card */
+.dark-theme .change-request-manager .bg-white.rounded-lg {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .change-request-manager .bg-white.rounded-lg .border-b.border-gray-200 {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .change-request-manager .text-2xl.font-bold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .change-request-manager .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+/* Change Requests List Card */
+.dark-theme .change-request-manager .bg-white.rounded-lg.border.border-gray-200 {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .change-request-manager .px-6.py-4.border-b.border-gray-200 {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .change-request-manager .text-lg.font-semibold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .change-request-manager .text-sm.text-gray-600 {
+  color: #9ca3af !important;
+}
+
+/* Loading State */
+.dark-theme .change-request-manager .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .change-request-manager .border-blue-600 {
+  border-color: #60a5fa !important;
+}
+
+/* Empty State */
+.dark-theme .change-request-manager .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+.dark-theme .change-request-manager .text-lg.font-medium.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+/* Change Request Items */
+.dark-theme .change-request-manager .divide-y.divide-gray-200 > * {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .change-request-manager .hover\:bg-gray-50:hover {
+  background-color: #4b5563 !important;
+}
+
+/* Badge - Change Request */
+.dark-theme .change-request-manager .bg-amber-100.text-amber-800 {
+  background-color:  #7b5e3a!important;
+  color: #fb923c !important;
+}
+
+/* Text Colors */
+.dark-theme .change-request-manager .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .change-request-manager .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+.dark-theme .change-request-manager .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .change-request-manager .text-xs.text-gray-500 {
+  color: #9ca3af !important;
+}
+
+/* Info Boxes */
+.dark-theme .change-request-manager .bg-amber-50 {
+  background-color: #78350f !important;
+  border-color: #92400e !important;
+}
+
+.dark-theme .change-request-manager .bg-amber-50 .text-amber-900 {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .change-request-manager .bg-amber-50 .text-amber-800 {
+  color: #fcd34d !important;
+}
+
+.dark-theme .change-request-manager .bg-amber-50 .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .change-request-manager .border-amber-200 {
+  border-color: #92400e !important;
+}
+
+.dark-theme .change-request-manager .bg-blue-50 {
+  background-color: #1e3a5f !important;
+  border-color: #1e40af !important;
+}
+
+.dark-theme .change-request-manager .bg-blue-50 .text-gray-900 {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .change-request-manager .bg-blue-50 .text-blue-500 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .change-request-manager .border-blue-200 {
+  border-color: #1e40af !important;
+}
+
+/* Buttons */
+.dark-theme .change-request-manager .button--back {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .change-request-manager .button--back:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+}
+
+.dark-theme .change-request-manager .button--edit {
+  background-color: #2563eb !important;
+  border-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .change-request-manager .button--edit:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1e40af !important;
+}
+
+.dark-theme .change-request-manager .button--view {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .change-request-manager .button--view:hover {
+  background-color: #374151 !important;
+  border-color: #6b7280 !important;
+  color: #93c5fd !important;
+}
+
+/* Decline Button */
+.dark-theme .change-request-manager .bg-red-100.text-red-700 {
+  background-color: #7f1d1d !important;
+  color: #fca5a5 !important;
+}
+
+.dark-theme .change-request-manager .bg-red-100.text-red-700:hover {
+  background-color: #991b1b !important;
+  color: #f87171 !important;
+}
+
+/* Modal */
+.dark-theme .change-request-manager .fixed.inset-0.bg-black.bg-opacity-50 {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.dark-theme .change-request-manager .bg-white.rounded-lg.shadow-xl {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .change-request-manager .bg-white.rounded-lg.shadow-xl .border-b.border-gray-200 {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .change-request-manager .bg-white.rounded-lg.shadow-xl .text-lg.font-semibold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .change-request-manager .text-gray-400:hover {
+  color: #d1d5db !important;
+}
+
+.dark-theme .change-request-manager .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+/* Modal Form Elements */
+.dark-theme .change-request-manager .bg-amber-50.rounded-lg.border.border-amber-200 {
+  background-color: #7b5e3a !important;
+  border-color: #e0d9d4 !important;
+}
+
+.dark-theme .change-request-manager .bg-amber-50 .text-sm.font-semibold.text-amber-900 {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .change-request-manager .bg-amber-50 .text-sm.text-amber-800 {
+  color: #fcd34d !important;
+}
+
+.dark-theme .change-request-manager label.block.text-sm.font-medium.text-gray-700 {
+  color: #d1d5db !important;
+}
+
+.dark-theme .change-request-manager textarea.border.border-gray-300 {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .change-request-manager textarea.border.border-gray-300:focus {
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+.dark-theme .change-request-manager textarea.border.border-gray-300::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Modal Buttons */
+.dark-theme .change-request-manager .bg-gray-100.text-gray-700 {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .change-request-manager .bg-gray-100.text-gray-700:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .change-request-manager .bg-green-600 {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .change-request-manager .bg-green-600:hover {
+  background-color: #047857 !important;
+}
+
+.dark-theme .change-request-manager .bg-green-600:disabled {
+  background-color: #1f2937 !important;
+  color: #6b7280 !important;
+  opacity: 0.6 !important;
+}
+
+/* ============================================
+   RFP CREATION PAGE (PHASE1) - DARK THEME
+   Scoped to .rfp-creation-page to prevent overlap with other sections
+   ============================================ */
+
+/* Main Container */
+.dark-theme .rfp-creation-page.min-h-screen.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #1f2937, #1f2937, #1f2937) !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Card */
+.dark-theme .rfp-creation-page .bg-white.rounded-xl.shadow-sm.border.border-gray-200 {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Title */
+.dark-theme .rfp-creation-page .text-2xl.font-bold.tracking-tight.text-gray-900,
+.dark-theme .rfp-creation-page .text-3xl.font-bold.tracking-tight.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-creation-page .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-creation-page .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+/* Icon Container - Gradient */
+.dark-theme .rfp-creation-page .bg-gradient-to-br.from-purple-600.to-blue-600 {
+  background: linear-gradient(to bottom right, #7c3aed, #2563eb) !important;
+}
+
+/* Action Buttons */
+.dark-theme .rfp-creation-page .border-orange-200.bg-orange-50.text-orange-700 {
+  background-color: #78350f !important;
+  border-color: #92400e !important;
+  color: #fb923c !important;
+}
+
+.dark-theme .rfp-creation-page .border-orange-200.bg-orange-50.text-orange-700:hover {
+  background-color: #92400e !important;
+  border-color: #b45309 !important;
+}
+
+.dark-theme .rfp-creation-page .border-gray-200.bg-white.text-gray-700 {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-creation-page .border-gray-200.bg-white.text-gray-700:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+}
+
+.dark-theme .rfp-creation-page .bg-blue-600.text-white {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-creation-page .bg-blue-600.text-white:hover {
+  background-color: #1d4ed8 !important;
+}
+
+.dark-theme .rfp-creation-page .bg-blue-600.text-white:disabled {
+  background-color: #1f2937 !important;
+  color: #6b7280 !important;
+  opacity: 0.6 !important;
+}
+
+/* Divider */
+.dark-theme .rfp-creation-page .bg-gray-300 {
+  background-color: #4b5563 !important;
+}
+
+/* Form Container Cards */
+.dark-theme .rfp-creation-page .bg-white.rounded-xl.shadow-sm.border.border-gray-200.hover\:shadow-md {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+/* Tabs */
+.dark-theme .rfp-creation-page .bg-blue-50.text-blue-700.border.border-blue-100 {
+  background-color: #1e3a5f !important;
+  border-color: #1e40af !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-creation-page .bg-transparent.text-gray-600.border.border-transparent {
+  background-color: transparent !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-creation-page .bg-transparent.text-gray-600.border.border-transparent:hover {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-creation-page .border-blue-600.text-blue-600.bg-white {
+  background-color: #1f2937 !important;
+  border-color: #60a5fa !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-creation-page .border-gray-300.text-gray-500.bg-white {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-creation-page .text-sm.font-semibold {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-creation-page .text-xs.text-gray-500 {
+  color: #9ca3af !important;
+}
+
+/* Card Header */
+.dark-theme .rfp-creation-page .bg-gradient-to-r.from-gray-50.to-white {
+  background: linear-gradient(to right, #374151, #1f2937) !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-creation-page .border-b.border-gray-100 {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-creation-page .text-lg.font-semibold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-creation-page .text-sm.text-gray-600 {
+  color: #9ca3af !important;
+}
+
+/* Icon Gradients in Cards */
+.dark-theme .rfp-creation-page .bg-gradient-to-br.from-blue-500.to-blue-600 {
+  background: linear-gradient(to bottom right, #3b82f6, #2563eb) !important;
+}
+
+/* Form Inputs - Scoped to RFP Creation Page */
+.dark-theme .rfp-creation-page input[type="text"],
+.dark-theme .rfp-creation-page input[type="email"],
+.dark-theme .rfp-creation-page input[type="number"],
+.dark-theme .rfp-creation-page input[type="date"],
+.dark-theme .rfp-creation-page textarea,
+.dark-theme .rfp-creation-page select {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-creation-page input[type="text"]:focus,
+.dark-theme .rfp-creation-page input[type="email"]:focus,
+.dark-theme .rfp-creation-page input[type="number"]:focus,
+.dark-theme .rfp-creation-page input[type="date"]:focus,
+.dark-theme .rfp-creation-page textarea:focus,
+.dark-theme .rfp-creation-page select:focus {
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+.dark-theme .rfp-creation-page input[type="text"]::placeholder,
+.dark-theme .rfp-creation-page input[type="email"]::placeholder,
+.dark-theme .rfp-creation-page input[type="number"]::placeholder,
+.dark-theme .rfp-creation-page textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Labels */
+.dark-theme .rfp-creation-page label {
+  color: #d1d5db !important;
+}
+
+/* Remove Field Buttons */
+.dark-theme .rfp-creation-page .hover\:bg-gray-100:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-creation-page .text-gray-500.hover\:text-red-500:hover {
+  color: #f87171 !important;
+}
+
+/* Section Headers */
+.dark-theme .rfp-creation-page .text-lg.font-semibold {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-creation-page .text-sm.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Borders - Scoped to RFP Creation Page */
+.dark-theme .rfp-creation-page .border-t {
+  border-top-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-creation-page .border-gray-200 {
+  border-color: #4b5563 !important;
+}
+
+/* Required Field Asterisk */
+.dark-theme .rfp-creation-page .text-red-500 {
+  color: #f87171 !important;
+}
+
+/* Primary Color Icons */
+.dark-theme .rfp-creation-page .text-primary {
+  color: #a78bfa !important;
+}
+
+/* Success/Check Icons */
+.dark-theme .rfp-creation-page .text-green-500 {
+  color: #34d399 !important;
+}
+
+/* Card Content */
+.dark-theme .rfp-creation-page .p-6 {
+  color: #e5e7eb !important;
+}
+
+/* Space Y - Scoped to RFP Creation Page */
+.dark-theme .rfp-creation-page .space-y-6 > * {
+  color: inherit;
+}
+
+.dark-theme .rfp-creation-page .space-y-4 > * {
+  color: inherit;
+}
+
+.dark-theme .rfp-creation-page .space-y-2 > * {
+  color: inherit;
+}
+
+/* Grid Items */
+.dark-theme .rfp-creation-page .grid > * {
+  color: inherit;
+}
+
+/* Disabled States */
+.dark-theme .rfp-creation-page .disabled\:opacity-50:disabled {
+  opacity: 0.6 !important;
+}
+
+.dark-theme .rfp-creation-page .disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed !important;
+}
+
+/* Button Save */
+.dark-theme .rfp-creation-page .button--save {
+  background-color: #059669 !important;
+  border-color: #047857 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-creation-page .button--save:hover {
+  background-color: #047857 !important;
+}
+
+.dark-theme .rfp-creation-page .button--save:disabled {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #6b7280 !important;
+  opacity: 0.6 !important;
+}
+
+/* ============================================
+   PHASE 2 APPROVAL - DROPDOWN MENU - DARK THEME
+   ============================================ */
+
+/* Dropdown Menu Container - Make it opaque with dark background */
+.dark-theme .phase-card .dropdown__menu {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dropdown Menu Items */
+.dark-theme .phase-card .dropdown__item {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .phase-card .dropdown__item:hover {
+  background-color: #4b5563 !important;
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .phase-card .dropdown__item--selected {
+  background-color: #1e3a5f !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .phase-card .dropdown__item--selected:hover {
+  background-color: #1e40af !important;
+  color: #93c5fd !important;
+}
+
+/* Dropdown Item Text */
+.dark-theme .phase-card .dropdown__item-text {
+  color: inherit !important;
+}
+
+/* Dropdown Check Icon */
+.dark-theme .phase-card .dropdown__check-icon {
+  color: #60a5fa !important;
+}
+
+/* Dropdown No Results */
+.dark-theme .phase-card .dropdown__no-results {
+  color: #9ca3af !important;
+}
+
+/* Dropdown Scrollbar */
+.dark-theme .phase-card .dropdown__menu::-webkit-scrollbar-track {
+  background: #2d3748 !important;
+}
+
+.dark-theme .phase-card .dropdown__menu::-webkit-scrollbar-thumb {
+  background: #4b5563 !important;
+}
+
+.dark-theme .phase-card .dropdown__menu::-webkit-scrollbar-thumb:hover {
+  background: #6b7280 !important;
+}
+
+/* ============================================
+   PHASE 4 URL GENERATION - DARK THEME
+   Scoped to .rfp-url-generation-page to prevent overlap with other sections
+   ============================================ */
+
+/* Main Container */
+.dark-theme .rfp-url-generation-page.phase-container {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .rfp-url-generation-page .header-section {
+  background: linear-gradient(to right, #374151, #2d3748, #374151) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .page-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .page-description {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .phase-badge {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .badge-number {
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-url-generation-page .badge-text {
+  color: #9ca3af !important;
+}
+
+/* Back Button */
+.dark-theme .rfp-url-generation-page .button--back {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .button--back:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+}
+
+/* Tabs */
+.dark-theme .rfp-url-generation-page .tabs-container {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .tab-button {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .tab-active {
+  color: #60a5fa !important;
+  border-bottom-color: #60a5fa !important;
+}
+
+.dark-theme .rfp-url-generation-page .tab-inactive {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .tab-inactive:hover {
+  color: #d1d5db !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .tab-indicator {
+  background-color: #60a5fa !important;
+}
+
+/* Content Cards */
+.dark-theme .rfp-url-generation-page .content-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .card-header {
+  background: linear-gradient(to right, #374151, #2d3748) !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .card-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .card-subtitle {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .card-body {
+  color: #e5e7eb !important;
+}
+
+/* Info Section */
+.dark-theme .rfp-url-generation-page .info-box {
+  background: linear-gradient(to bottom right, #374151, #2d3748) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .info-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .info-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .info-list li {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .info-note {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .info-footer {
+  border-top-color: #4b5563 !important;
+}
+
+/* Form Elements */
+.dark-theme .rfp-url-generation-page .form-textarea {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-url-generation-page .form-textarea:focus {
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+.dark-theme .rfp-url-generation-page .form-textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .label-text {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .label-hint {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .checkbox-text {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .checkbox-custom {
+  border-color: #4b5563 !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .rfp-url-generation-page .checkbox-input:checked + .checkbox-custom {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+/* Action Cards */
+.dark-theme .rfp-url-generation-page .action-card {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .action-primary {
+  background: #1e3a5f !important;
+  background-color: #445e80 !important;
+  background-image: none !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .action-success {
+  background: #064e3b !important;
+  background-color: #48695f !important;
+  background-image: none !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .rfp-url-generation-page .action-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .action-description {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .action-hint {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .status-message {
+  color: inherit !important;
+}
+
+.dark-theme .rfp-url-generation-page .status-error {
+  color: #f87171 !important;
+}
+
+.dark-theme .rfp-url-generation-page .status-warning {
+  color: #fb923c !important;
+}
+
+.dark-theme .rfp-url-generation-page .status-success {
+  color: #34d399 !important;
+}
+
+/* Buttons */
+.dark-theme .rfp-url-generation-page .btn-primary {
+  background: linear-gradient(to right, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-url-generation-page .btn-primary:hover {
+  background: linear-gradient(to right, #1d4ed8, #1e40af) !important;
+}
+
+.dark-theme .rfp-url-generation-page .btn-secondary {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .btn-secondary:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+}
+
+.dark-theme .rfp-url-generation-page .btn-success {
+  background-color: #374151 !important;
+  border-color: #059669 !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-url-generation-page .btn-success:hover {
+  background-color: #047857 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-url-generation-page .btn-copy {
+  background-color: #047857 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-url-generation-page .btn-copy:hover {
+  background-color: #059669 !important;
+}
+
+/* URL Display */
+.dark-theme .rfp-url-generation-page .url-display {
+  background-color: #374151 !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-text {
+  background-color: #2d3748 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-badge-active {
+  background-color: #047857 !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-badge-info {
+  background-color: #1e3a5f !important;
+  color: #60a5fa !important;
+}
+
+/* Loading & Empty States */
+.dark-theme .rfp-url-generation-page .loading-text {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .empty-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .empty-description {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .empty-action-button {
+  background: linear-gradient(to right, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-url-generation-page .empty-action-button:hover {
+  background: linear-gradient(to right, #1d4ed8, #1e40af) !important;
+}
+
+/* Bulk Actions Bar */
+.dark-theme .rfp-url-generation-page .bulk-actions-bar {
+  background: linear-gradient(to right, #374151, #374151, #374151) !important;
+  border-color: #374151 !important;
+}
+
+.dark-theme .rfp-url-generation-page .bulk-actions-label {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .bulk-action-button {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .bulk-action-button:hover {
+  background: linear-gradient(to right, #2563eb, #1d4ed8) !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-url-generation-page .count-badge {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .count-badge-success {
+  background: linear-gradient(to right, #047857, #059669) !important;
+  border-color: #059669 !important;
+  color: #34d399 !important;
+}
+
+/* Invitations Table */
+.dark-theme .rfp-url-generation-page .invitations-table-wrapper {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .table-header-row {
+  background: linear-gradient(to right, #1f2937, #111827) !important;
+}
+
+.dark-theme .rfp-url-generation-page .table-header-cell {
+  color: #f3f4f6 !important;
+  border-right-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .table-body {
+  background-color: #374151 !important;
+}
+
+.dark-theme .rfp-url-generation-page .table-row {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .table-row:hover {
+  background: linear-gradient(to right, #1e3a5f, #1e40af) !important;
+}
+
+.dark-theme .rfp-url-generation-page .table-cell {
+  border-right-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+/* Vendor Cell */
+.dark-theme .rfp-url-generation-page .vendor-name {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .vendor-company {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .vendor-email {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .vendor-badge-public {
+  background: linear-gradient(to bottom right, #1e3a5f, #1e40af) !important;
+  border-color: #2563eb !important;
+  color: #60a5fa !important;
+}
+
+/* URL Cell */
+.dark-theme .rfp-url-generation-page .url-token {
+  background: linear-gradient(to bottom right, #2d3748, #374151) !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-badge-generated {
+  background-color: #047857 !important;
+  border-color: #059669 !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-badge-pending {
+  background-color: #78350f !important;
+  border-color: #92400e !important;
+  color: #fb923c !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-note {
+  color: #9ca3af !important;
+}
+
+/* Timeline Cell */
+.dark-theme .rfp-url-generation-page .timeline-sent {
+  background-color: #374151 !important;
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .timeline-acknowledged {
+  background-color: #047857 !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-url-generation-page .timeline-declined {
+  background-color: #7f1d1d !important;
+  color: #f87171 !important;
+}
+
+/* Action Icon Buttons */
+.dark-theme .rfp-url-generation-page .action-icon-button {
+  background: linear-gradient(to bottom right, #1e3a5f, #1e40af) !important;
+  border-color: #2563eb !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-url-generation-page .action-icon-button:hover {
+  background: linear-gradient(to bottom right, #2563eb, #1d4ed8) !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+/* Analytics Content */
+.dark-theme .rfp-url-generation-page .analytics-metric-card {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .metric-total {
+  background: linear-gradient(to bottom right, #1e3a5f, #1e40af) !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .metric-open {
+  background: linear-gradient(to bottom right, #047857, #059669) !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .rfp-url-generation-page .metric-acknowledged {
+  background: linear-gradient(to bottom right, #047857, #059669) !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .rfp-url-generation-page .metric-pending {
+  background: linear-gradient(to bottom right, #78350f, #92400e) !important;
+  border-color: #92400e !important;
+}
+
+.dark-theme .rfp-url-generation-page .metric-rate {
+  background: linear-gradient(to bottom right, #581c87, #6b21a8) !important;
+  border-color: #7c3aed !important;
+}
+
+.dark-theme .rfp-url-generation-page .metric-label {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .metric-number {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .analytics-detail-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .detail-card-header {
+  background: linear-gradient(to right, #374151, #2d3748) !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .detail-card-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .status-name {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .status-count {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .activity-description {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .activity-time {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-performance-item {
+  background: linear-gradient(to bottom right, #374151, #2d3748) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-performance-number {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .url-performance-label {
+  color: #9ca3af !important;
+}
+
+/* Modal Styles */
+.dark-theme .rfp-url-generation-page .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-container {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-header {
+  background: linear-gradient(to right, #1e3a5f, #1e40af, #1e3a5f) !important;
+  border-bottom-color: #2563eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-subtitle {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-close-button {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-close-button:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-description {
+  background-color: #1e3a5f !important;
+  border-bottom-color: #2563eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .description-text {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-body {
+  background-color: #374151 !important;
+}
+
+/* Contact Cards */
+.dark-theme .rfp-url-generation-page .contact-error-card {
+  background: linear-gradient(to bottom right, #7f1d1d, #991b1b) !important;
+  border-color: #dc2626 !important;
+}
+
+.dark-theme .rfp-url-generation-page .error-title {
+  color: #fca5a5 !important;
+}
+
+.dark-theme .rfp-url-generation-page .error-message {
+  color: #f87171 !important;
+}
+
+.dark-theme .rfp-url-generation-page .contact-success-card {
+  background-color: #374151 !important;
+}
+
+.dark-theme .rfp-url-generation-page .contact-header {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .contact-name {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .contact-badge {
+  background-color: #047857 !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-url-generation-page .detail-item {
+  background-color: #2d3748 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .detail-item:hover {
+  background-color: #374151 !important;
+}
+
+.dark-theme .rfp-url-generation-page .detail-label {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .detail-value {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .detail-email-value {
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-footer {
+  background-color: #2d3748 !important;
+  border-top-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-button-primary {
+  background: linear-gradient(to right, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-button-primary:hover {
+  background: linear-gradient(to right, #1d4ed8, #1e40af) !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-button-secondary {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .modal-button-secondary:hover {
+  background-color: #4b5563 !important;
+}
+
+/* Success Modal */
+.dark-theme .rfp-url-generation-page .success-modal-container {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .success-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .success-subtitle {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .stat-card {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .stat-success {
+  background-color: #047857 !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .rfp-url-generation-page .stat-warning {
+  background-color: #78350f !important;
+  border-color: #92400e !important;
+}
+
+.dark-theme .rfp-url-generation-page .stat-value {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .stat-label {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .vendors-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .vendor-item {
+  background-color: #2d3748 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-url-generation-page .vendor-name {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-url-generation-page .vendor-email {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-url-generation-page .vendor-status.success {
+  background-color: #047857 !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-url-generation-page .failed-emails-section {
+  background-color: #7f1d1d !important;
+  border-color: #dc2626 !important;
+}
+
+.dark-theme .rfp-url-generation-page .failed-title {
+  color: #fca5a5 !important;
+}
+
+.dark-theme .rfp-url-generation-page .failed-item {
+  background-color: #991b1b !important;
+  border-color: #dc2626 !important;
+}
+
+.dark-theme .rfp-url-generation-page .failed-email {
+  color: #fca5a5 !important;
+}
+
+.dark-theme .rfp-url-generation-page .failed-reason {
+  color: #f87171 !important;
+}
+
+.dark-theme .rfp-url-generation-page .success-button-primary {
+  background: linear-gradient(to right, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-url-generation-page .success-button-primary:hover {
+  background: linear-gradient(to right, #1d4ed8, #1e40af) !important;
+}
+
+.dark-theme .rfp-url-generation-page .success-button-secondary {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-url-generation-page .success-button-secondary:hover {
+  background-color: #4b5563 !important;
+}
+
+/* ============================================
+   PHASE 6 EVALUATION - DARK THEME
+   Scoped to .rfp-evaluation-page to prevent overlap with other sections
+   ============================================ */
+
+/* Main Container */
+.dark-theme .rfp-evaluation-page.min-h-screen.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #1f2937, #111827, #1f2937) !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .rfp-evaluation-page .bg-white.shadow-sm.border-b {
+  background-color: #374151 !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-3xl.font-bold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-lg.text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-blue-50.text-blue-700 {
+  background-color: #1e3a5f !important;
+  border-color: #2563eb !important;
+  color: #60a5fa !important;
+}
+
+/* Buttons */
+.dark-theme .rfp-evaluation-page .button--previous {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-evaluation-page .button--previous:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+}
+
+.dark-theme .rfp-evaluation-page .button--approvals {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-evaluation-page .button--approvals:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-gradient-to-r.from-blue-600.to-indigo-600 {
+  background: linear-gradient(to right, #2563eb, #4f46e5) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-gradient-to-r.from-blue-600.to-indigo-600:hover {
+  background: linear-gradient(to right, #1d4ed8, #4338ca) !important;
+}
+
+/* Progress Steps Card */
+.dark-theme .rfp-evaluation-page .bg-white.rounded-xl.shadow-sm.border {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-lg.font-semibold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-sm.font-medium.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-xs.text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-gray-200 {
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+/* RFP Selection Card */
+.dark-theme .rfp-evaluation-page .text-xl.font-semibold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-sm.text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-evaluation-page .border-b.border-gray-200 {
+  border-bottom-color: #4b5563 !important;
+}
+
+/* Radio Button Selection */
+.dark-theme .rfp-evaluation-page .border-2.rounded-lg {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-evaluation-page .border-blue-500 {
+  border-color: #2563eb !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-blue-50 {
+  background-color: #1e3a5f !important;
+}
+
+.dark-theme .rfp-evaluation-page .hover\:bg-blue-50:hover {
+  background-color: #1e3a5f !important;
+}
+
+.dark-theme .rfp-evaluation-page .border-gray-200 {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-evaluation-page .border-gray-300 {
+  border-color: #6b7280 !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-blue-500 {
+  background-color: #2563eb !important;
+}
+
+/* RFP Details Card */
+.dark-theme .rfp-evaluation-page .bg-gradient-to-r.from-blue-50.to-indigo-50 {
+  background: linear-gradient(to right, #1e3a5f, #1e40af) !important;
+  background-image: none !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .rfp-evaluation-page .border-blue-200 {
+  border-color: #2563eb !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-white.rounded-lg.p-3 {
+  background-color: #2d3748 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-gray-500.uppercase {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+/* Status Banner */
+.dark-theme .rfp-evaluation-page .bg-gradient-to-r.from-green-50.to-blue-50 {
+  background: linear-gradient(to right, #064e3b, #1e3a5f) !important;
+  background-image: none !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .rfp-evaluation-page .border-green-200 {
+  border-color: #059669 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-green-800 {
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-green-700 {
+  color: #6ee7b7 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-green-500 {
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-yellow-700 {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-blue-100.text-blue-800 {
+  background-color: #1e3a5f !important;
+  color: #60a5fa !important;
+}
+
+/* Proposals Section */
+.dark-theme .rfp-evaluation-page .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-evaluation-page .button--assign {
+  background-color: #2563eb !important;
+  border-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-evaluation-page .button--assign:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1e40af !important;
+}
+
+/* Proposal Cards */
+.dark-theme .rfp-evaluation-page .bg-white.border-2.rounded-xl {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-evaluation-page .border-blue-500.bg-blue-50 {
+  background-color: #1e3a5f !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .rfp-evaluation-page .border-gray-200 {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-evaluation-page .hover\:border-gray-300:hover {
+  border-color: #6b7280 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-evaluation-page .button--view {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-evaluation-page .button--view:hover {
+  background-color: #374151 !important;
+  border-color: #6b7280 !important;
+  color: #93c5fd !important;
+}
+
+/* Status Badges */
+.dark-theme .rfp-evaluation-page .bg-blue-100.text-blue-800 {
+  background-color: #1e3a5f !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-yellow-100.text-yellow-800 {
+  background-color: #78350f !important;
+  color: #fb923c !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-green-100.text-green-800 {
+  background-color: #064e3b !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-red-100.text-red-800 {
+  background-color: #7f1d1d !important;
+  color: #f87171 !important;
+}
+
+.dark-theme .rfp-evaluation-page .bg-gray-100.text-gray-800 {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+}
+
+/* Loading State */
+.dark-theme .rfp-evaluation-page .border-blue-200 {
+  border-color: #1e3a5f !important;
+}
+
+.dark-theme .rfp-evaluation-page .border-t-blue-600 {
+  border-top-color: #2563eb !important;
+}
+
+/* Empty State */
+.dark-theme .rfp-evaluation-page .bg-gray-100 {
+  background-color: #374151 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+.dark-theme .rfp-evaluation-page .text-gray-500.text-left {
+  color: #9ca3af !important;
+}
+
+/* Checkbox */
+.dark-theme .rfp-evaluation-page input[type="checkbox"] {
+  border-color: #4b5563 !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .rfp-evaluation-page input[type="checkbox"]:checked {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .rfp-evaluation-page input[type="checkbox"]:focus {
+  outline-color: #2563eb !important;
+}
+
+/* Dropdown */
+.dark-theme .rfp-evaluation-page .dropdown__menu {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-evaluation-page .dropdown__item {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-evaluation-page .dropdown__item:hover {
+  background-color: #4b5563 !important;
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-evaluation-page .dropdown__item--selected {
+  background-color: #1e3a5f !important;
+  color: #60a5fa !important;
+}
+
+/* Progress Steps - Active State */
+.dark-theme .rfp-evaluation-page .bg-gradient-to-r.from-blue-600.to-indigo-600.text-white {
+  background: linear-gradient(to right, #2563eb, #4f46e5) !important;
+  color: #ffffff !important;
+}
+
+/* Hover Effects */
+.dark-theme .rfp-evaluation-page .hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ============================================
+   RFP KPIs/ANALYTICS DASHBOARD - DARK THEME
+   Scoped to .rfp-kpis-page to prevent overlap with other sections
+   ============================================ */
+
+/* Main Container */
+.dark-theme .rfp-kpis-page.min-h-screen.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #1f2937, #111827, #1f2937) !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .rfp-kpis-page .bg-white.border-b.border-gray-200 {
+  background-color: #374151 !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-4xl.font-bold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-lg.text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page .text-sm.text-gray-500 {
+  background-color: #2d3748 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page .font-medium.text-gray-700 {
+  color: #d1d5db !important;
+}
+
+/* Export Button */
+.dark-theme .rfp-kpis-page .button--export {
+  background-color: #2563eb !important;
+  border-color: #1d4ed8 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-kpis-page .button--export:hover {
+  background-color: #1d4ed8 !important;
+}
+
+.dark-theme .rfp-kpis-page .button--export:disabled {
+  background-color: #1f2937 !important;
+  color: #6b7280 !important;
+  opacity: 0.6 !important;
+}
+
+/* Section Headers */
+.dark-theme .rfp-kpis-page .w-1.h-8.bg-blue-600 {
+  background-color: #2563eb !important;
+}
+
+.dark-theme .rfp-kpis-page .w-1.h-8.bg-green-600 {
+  background-color: #059669 !important;
+}
+
+.dark-theme .rfp-kpis-page .w-1.h-8.bg-purple-600 {
+  background-color: #7c3aed !important;
+}
+
+.dark-theme .rfp-kpis-page .w-1.h-8.bg-orange-600 {
+  background-color: #ea580c !important;
+}
+
+.dark-theme .rfp-kpis-page .w-1.h-8.bg-red-600 {
+  background-color: #dc2626 !important;
+}
+
+.dark-theme .rfp-kpis-page .w-1.h-8.bg-indigo-600 {
+  background-color: #4f46e5 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-2xl.font-bold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+/* Chart Cards */
+.dark-theme .rfp-kpis-page .bg-white.rounded-xl.shadow-sm.border {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-kpis-page .hover\:shadow-md:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .rfp-kpis-page .border-b.border-gray-100 {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-lg.font-semibold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-sm.text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page .text-sm.text-gray-600 {
+  color: #9ca3af !important;
+}
+
+/* Timeline Selector Buttons */
+.dark-theme .rfp-kpis-page .bg-blue-600.text-white {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-gray-100.text-gray-600 {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-gray-100.text-gray-600:hover {
+  background-color: #4b5563 !important;
+  color: #d1d5db !important;
+}
+
+/* Chart Backgrounds */
+.dark-theme .rfp-kpis-page .bg-gradient-to-br.from-slate-50.to-white {
+  background: linear-gradient(to bottom right, #2d3748, #374151) !important;
+  background-image: none !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-gray-50 {
+  background-color: #2d3748 !important;
+}
+
+.dark-theme .rfp-kpis-page .border-2.border-dashed.border-gray-300 {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+/* Empty State Messages */
+.dark-theme .rfp-kpis-page .text-sm.font-medium.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-xs.text-gray-400 {
+  color: #6b7280 !important;
+}
+
+/* Gantt Chart */
+.dark-theme .rfp-kpis-page .bg-gray-100 {
+  background-color: #2d3748 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-gradient-to-r.from-blue-500.to-blue-600 {
+  background: linear-gradient(to right, #2563eb, #1d4ed8) !important;
+}
+
+.dark-theme .rfp-kpis-page .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-kpis-page .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page .border-t.border-gray-200 {
+  border-top-color: #4b5563 !important;
+}
+
+/* Lifecycle Summary */
+.dark-theme .rfp-kpis-page .text-xs.text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page .text-lg.font-semibold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-green-600 {
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-red-600 {
+  color: #f87171 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+/* Vendor Metrics Legend */
+.dark-theme .rfp-kpis-page .bg-emerald-600 {
+  background-color: #059669 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-blue-600 {
+  background-color: #2563eb !important;
+}
+
+/* Process Flow */
+.dark-theme .rfp-kpis-page .bg-gradient-to-r.from-emerald-400.to-emerald-500 {
+  background: linear-gradient(to right, #34d399, #10b981) !important;
+}
+
+/* Efficiency Cards */
+.dark-theme .rfp-kpis-page .bg-gradient-to-r.from-blue-50.to-indigo-50 {
+  background: linear-gradient(to right, #1e3a5f, #1e40af) !important;
+  background-image: none !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-gradient-to-r.from-green-50.to-emerald-50 {
+  background: linear-gradient(to right, #064e3b, #047857) !important;
+  background-image: none !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-gradient-to-r.from-red-50.to-rose-50 {
+  background: linear-gradient(to right, #7f1d1d, #991b1b) !important;
+  background-image: none !important;
+  border-color: #dc2626 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-gradient-to-r.from-purple-50.to-pink-50 {
+  background: linear-gradient(to right, #581c87, #6b21a8) !important;
+  background-image: none !important;
+  border-color: #7c3aed !important;
+}
+
+.dark-theme .rfp-kpis-page .border-blue-100 {
+  border-color: #2563eb !important;
+}
+
+.dark-theme .rfp-kpis-page .border-green-100 {
+  border-color: #059669 !important;
+}
+
+.dark-theme .rfp-kpis-page .border-red-100 {
+  border-color: #dc2626 !important;
+}
+
+.dark-theme .rfp-kpis-page .border-purple-100 {
+  border-color: #7c3aed !important;
+}
+
+.dark-theme .rfp-kpis-page .text-blue-700 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-kpis-page .text-blue-900 {
+  color: #93c5fd !important;
+}
+
+.dark-theme .rfp-kpis-page .text-green-700 {
+  color: #6ee7b7 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-green-900 {
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-red-700 {
+  color: #fca5a5 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-red-900 {
+  color: #f87171 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-purple-700 {
+  color: #c084fc !important;
+}
+
+.dark-theme .rfp-kpis-page .text-purple-900 {
+  color: #a78bfa !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-blue-500 {
+  background-color: #2563eb !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-green-500 {
+  background-color: #10b981 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-red-500 {
+  background-color: #ef4444 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-purple-500 {
+  background-color: #7c3aed !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-indigo-50 {
+  background-color: #1e3a5f !important;
+}
+
+.dark-theme .rfp-kpis-page .text-indigo-600 {
+  color: #818cf8 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-green-50 {
+  background-color: #064e3b !important;
+}
+
+.dark-theme .rfp-kpis-page .text-green-600 {
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-blue-50 {
+  background-color: #1e3a5f !important;
+}
+
+.dark-theme .rfp-kpis-page .text-blue-600 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-purple-50 {
+  background-color: #581c87 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-purple-600 {
+  color: #a78bfa !important;
+}
+
+/* Price Spread Summary Cards */
+.dark-theme .rfp-kpis-page .text-blue-600 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-kpis-page .text-yellow-600 {
+  color: #fbbf24 !important;
+}
+
+/* Process Funnel Summary */
+.dark-theme .rfp-kpis-page .text-indigo-600 {
+  color: #818cf8 !important;
+}
+
+/* Info Icon Tooltips */
+.dark-theme .rfp-kpis-page .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-gray-400:hover {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-gray-900 {
+  background-color: #1f2937 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-white {
+  color: #ffffff !important;
+}
+
+/* Chart SVG Elements - Text Colors */
+.dark-theme .rfp-kpis-page svg .fill-gray-700 {
+  fill: #d1d5db !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-gray-600 {
+  fill: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-gray-900 {
+  fill: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-white {
+  fill: #ffffff !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-blue-300 {
+  fill: #93c5fd !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-blue-400 {
+  fill: #60a5fa !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-green-300 {
+  fill: #6ee7b7 !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-green-400 {
+  fill: #34d399 !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-gray-300 {
+  fill: #6b7280 !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-gray-400 {
+  fill: #6b7280 !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-blue-800 {
+  fill: #1e40af !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-blue-500 {
+  fill: #3b82f6 !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-blue-600 {
+  fill: #2563eb !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-emerald-500 {
+  fill: #10b981 !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-emerald-400 {
+  fill: #34d399 !important;
+}
+
+.dark-theme .rfp-kpis-page svg .fill-blue-700 {
+  fill: #1d4ed8 !important;
+}
+
+/* Chart Grid Lines and Axes */
+.dark-theme .rfp-kpis-page svg line[stroke="#e5e7eb"] {
+  stroke: #4b5563 !important;
+}
+
+.dark-theme .rfp-kpis-page svg line[stroke="#6b7280"] {
+  stroke: #6b7280 !important;
+}
+
+.dark-theme .rfp-kpis-page svg line[stroke="#e2e8f0"] {
+  stroke: #4b5563 !important;
+}
+
+/* Chart Tooltips */
+.dark-theme .rfp-kpis-page svg rect[fill="#1f2937"] {
+  fill: #1f2937 !important;
+}
+
+.dark-theme .rfp-kpis-page svg polygon[fill="#1f2937"] {
+  fill: #1f2937 !important;
+}
+
+/* Donut Chart */
+.dark-theme .rfp-kpis-page .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-blue-700 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .rfp-kpis-page svg circle[stroke="#e2e8f0"] {
+  stroke: #4b5563 !important;
+}
+
+.dark-theme .rfp-kpis-page svg circle[stroke="#3b82f6"] {
+  stroke: #3b82f6 !important;
+}
+
+.dark-theme .rfp-kpis-page svg circle[stroke="#2563eb"] {
+  stroke: #2563eb !important;
+}
+
+/* Pie Chart Legend */
+.dark-theme .rfp-kpis-page .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-kpis-page svg circle[stroke="#10b981"] {
+  stroke: #10b981 !important;
+}
+
+.dark-theme .rfp-kpis-page svg circle[stroke="#f59e0b"] {
+  stroke: #f59e0b !important;
+}
+
+.dark-theme .rfp-kpis-page svg circle[stroke="#ef4444"] {
+  stroke: #ef4444 !important;
+}
+
+/* Box Plot */
+.dark-theme .rfp-kpis-page .bg-blue-500 {
+  background-color: #2563eb !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-emerald-500 {
+  background-color: #10b981 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-blue-700 {
+  background-color: #1d4ed8 !important;
+}
+
+/* Heatmap */
+.dark-theme .rfp-kpis-page .bg-blue-400 {
+  background-color: #60a5fa !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-blue-300 {
+  background-color: #93c5fd !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-blue-200 {
+  background-color: #bfdbfe !important;
+}
+
+/* Correlation Matrix */
+.dark-theme .rfp-kpis-page .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+/* Process Funnel Data */
+.dark-theme .rfp-kpis-page .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+/* Price Spread Items */
+.dark-theme .rfp-kpis-page .text-green-600 {
+  color: #34d399 !important;
+}
+
+.dark-theme .rfp-kpis-page .text-yellow-600 {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-green-500 {
+  background-color: #10b981 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-yellow-500 {
+  background-color: #eab308 !important;
+}
+
+.dark-theme .rfp-kpis-page .bg-red-500 {
+  background-color: #ef4444 !important;
+}
+
+/* Budget Variance */
+.dark-theme .rfp-kpis-page .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-kpis-page .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+/* Buttons */
+.dark-theme .rfp-kpis-page button {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-kpis-page .button {
+  color: #e5e7eb !important;
+}
+
+/* KPI Card Icons - Use existing KPI card styles from earlier in the file */
+.dark-theme .rfp-kpis-page .kpi-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .rfp-kpis-page .kpi-card-content {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-kpis-page .kpi-card-title {
+  color: #d1d5db !important;
+}
+
+.dark-theme .rfp-kpis-page .kpi-card-value {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .rfp-kpis-page .kpi-card-subheading {
+  color: #9ca3af !important;
+}
+
+/* Tooltip Background */
+.dark-theme .rfp-kpis-page .bg-gray-900.text-white {
+  background-color: #1f2937 !important;
+  color: #ffffff !important;
+}
+
+/* Chart Container Borders */
+.dark-theme .rfp-kpis-page .border.border-gray-100 {
+  border-color: #4b5563 !important;
+}
+
+/* Text Colors in Charts */
+.dark-theme .rfp-kpis-page .text-sm.font-medium.text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page .text-xs.text-gray-500 {
+  color: #9ca3af !important;
+}
+
+/* Process Flow Percentage Text */
+.dark-theme .rfp-kpis-page .text-sm.font-bold.text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+/* Summary Stats */
+.dark-theme .rfp-kpis-page .text-xs.text-gray-500.uppercase {
+  color: #9ca3af !important;
+}
+
+.dark-theme .rfp-kpis-page .text-2xl.font-bold {
+  color: #f3f4f6 !important;
+}
+
+/* All text elements */
+.dark-theme .rfp-kpis-page p,
+.dark-theme .rfp-kpis-page span,
+.dark-theme .rfp-kpis-page div,
+.dark-theme .rfp-kpis-page h1,
+.dark-theme .rfp-kpis-page h2,
+.dark-theme .rfp-kpis-page h3,
+.dark-theme .rfp-kpis-page h4,
+.dark-theme .rfp-kpis-page h5 {
+  color: inherit;
+}
+
+/* Ensure chart containers have proper backgrounds */
+.dark-theme .rfp-kpis-page .p-6 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .rfp-kpis-page .p-4 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+

@@ -1,0 +1,807 @@
+/* ============================================
+   SLA MODULE COLOUR BLINDNESS OVERRIDES
+   These styles apply color-blindness variables to all SLA module components
+   Automatically applies when any color-blind mode is active
+   ============================================ */
+
+/* Apply overrides to all color-blind modes (not dark theme, not "off") */
+html:not(.dark-theme)[data-colorblind="protanopia"],
+html:not(.dark-theme)[data-colorblind="deuteranopia"],
+html:not(.dark-theme)[data-colorblind="tritanopia"],
+body:not(.dark-theme)[data-colorblind="protanopia"],
+body:not(.dark-theme)[data-colorblind="deuteranopia"],
+body:not(.dark-theme)[data-colorblind="tritanopia"] {
+  
+  /* ====================================
+     SLA STATUS COLORS
+     ==================================== */
+  
+  .sla-status-active,
+  .status-active,
+  .badge-status-active {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .sla-status-at-risk,
+  .status-at-risk,
+  .badge-status-at-risk {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .sla-status-breach,
+  .sla-status-breach,
+  .status-breach,
+  .badge-status-breach {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .sla-status-pending,
+  .status-pending,
+  .badge-status-pending {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .sla-status-draft,
+  .status-draft,
+  .badge-status-draft {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-tertiary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  /* ====================================
+     SLA RISK LEVEL COLORS
+     ==================================== */
+  
+  .risk-low,
+  .sla-risk-low,
+  .badge-risk-low {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .risk-medium,
+  .sla-risk-medium,
+  .badge-risk-medium {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .risk-high,
+  .sla-risk-high,
+  .badge-risk-high {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .risk-critical,
+  .sla-risk-critical,
+  .badge-risk-critical {
+    background-color: var(--cb-error-dark) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     SLA COMPLIANCE COLORS
+     ==================================== */
+  
+  .compliance-excellent,
+  .compliance-good,
+  .compliance-compliant {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .compliance-fair,
+  .compliance-at-risk {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .compliance-poor,
+  .compliance-breach {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     SLA METRIC STATUS COLORS
+     ==================================== */
+  
+  .metric-compliant,
+  .metric-status-compliant {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .metric-at-risk,
+  .metric-status-at-risk {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .metric-breach,
+  .metric-status-breach {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     SLA APPROVAL STATUS COLORS
+     ==================================== */
+  
+  .approval-status-approved,
+  .sla-approval-approved {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .approval-status-pending,
+  .sla-approval-pending {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .approval-status-rejected,
+  .sla-approval-rejected {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     CHART COLORS - Override hardcoded Tailwind classes
+     ==================================== */
+  
+  /* Bar Chart Colors - All variations */
+  .bg-green-500,
+  [class*="bg-green-500"],
+  .bg-green-600,
+  [class*="bg-green-600"],
+  .bg-green-100,
+  [class*="bg-green-100"],
+  .bg-green-200,
+  [class*="bg-green-200"],
+  .bg-green-50,
+  [class*="bg-green-50"] {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .bg-green-100,
+  [class*="bg-green-100"] {
+    background-color: var(--cb-success-light) !important;
+  }
+  
+  .bg-yellow-500,
+  [class*="bg-yellow-500"],
+  .bg-yellow-600,
+  [class*="bg-yellow-600"],
+  .bg-yellow-100,
+  [class*="bg-yellow-100"],
+  .bg-yellow-200,
+  [class*="bg-yellow-200"],
+  .bg-yellow-50,
+  [class*="bg-yellow-50"] {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .bg-yellow-100,
+  [class*="bg-yellow-100"] {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .bg-orange-500,
+  [class*="bg-orange-500"],
+  .bg-orange-600,
+  [class*="bg-orange-600"],
+  .bg-orange-100,
+  [class*="bg-orange-100"],
+  .bg-orange-200,
+  [class*="bg-orange-200"],
+  .bg-orange-50,
+  [class*="bg-orange-50"] {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .bg-orange-100,
+  [class*="bg-orange-100"] {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .bg-red-500,
+  [class*="bg-red-500"],
+  .bg-red-600,
+  [class*="bg-red-600"],
+  .bg-red-100,
+  [class*="bg-red-100"],
+  .bg-red-200,
+  [class*="bg-red-200"],
+  .bg-red-50,
+  [class*="bg-red-50"] {
+    background-color: var(--cb-error) !important;
+  }
+  
+  .bg-red-100,
+  [class*="bg-red-100"] {
+    background-color: var(--cb-error-light) !important;
+  }
+  
+  .bg-blue-500,
+  [class*="bg-blue-500"],
+  .bg-blue-600,
+  [class*="bg-blue-600"],
+  .bg-blue-100,
+  [class*="bg-blue-100"],
+  .bg-blue-200,
+  [class*="bg-blue-200"],
+  .bg-blue-50,
+  [class*="bg-blue-50"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  .bg-blue-100,
+  [class*="bg-blue-100"] {
+    background-color: var(--cb-primary-light) !important;
+  }
+  
+  .bg-purple-500,
+  [class*="bg-purple-500"],
+  .bg-purple-100,
+  [class*="bg-purple-100"],
+  .bg-purple-200,
+  [class*="bg-purple-200"],
+  .bg-purple-50,
+  [class*="bg-purple-50"] {
+    background-color: var(--cb-accent-purple) !important;
+  }
+  
+  .bg-purple-100,
+  [class*="bg-purple-100"] {
+    background-color: var(--cb-accent-purple-light) !important;
+  }
+  
+  /* Text Colors */
+  .text-green-500,
+  [class*="text-green-500"] {
+    color: var(--cb-success) !important;
+  }
+  
+  .text-yellow-500,
+  [class*="text-yellow-500"] {
+    color: var(--cb-warning) !important;
+  }
+  
+  .text-orange-500,
+  [class*="text-orange-500"] {
+    color: var(--cb-warning) !important;
+  }
+  
+  .text-red-500,
+  [class*="text-red-500"] {
+    color: var(--cb-error) !important;
+  }
+  
+  .text-blue-500,
+  [class*="text-blue-500"],
+  .text-blue-600,
+  [class*="text-blue-600"],
+  .text-blue-700,
+  [class*="text-blue-700"] {
+    color: var(--cb-primary) !important;
+  }
+  
+  .text-green-600,
+  [class*="text-green-600"],
+  .text-green-700,
+  [class*="text-green-700"],
+  .text-green-800,
+  [class*="text-green-800"] {
+    color: var(--cb-success) !important;
+  }
+  
+  .text-yellow-600,
+  [class*="text-yellow-600"],
+  .text-yellow-700,
+  [class*="text-yellow-700"],
+  .text-yellow-800,
+  [class*="text-yellow-800"] {
+    color: var(--cb-warning) !important;
+  }
+  
+  .text-orange-600,
+  [class*="text-orange-600"],
+  .text-orange-700,
+  [class*="text-orange-700"],
+  .text-orange-800,
+  [class*="text-orange-800"] {
+    color: var(--cb-warning) !important;
+  }
+  
+  .text-red-600,
+  [class*="text-red-600"],
+  .text-red-700,
+  [class*="text-red-700"],
+  .text-red-800,
+  [class*="text-red-800"] {
+    color: var(--cb-error) !important;
+  }
+  
+  /* Border Colors */
+  .border-green-500,
+  [class*="border-green-500"] {
+    border-color: var(--cb-success) !important;
+  }
+  
+  .border-yellow-500,
+  [class*="border-yellow-500"] {
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .border-orange-500,
+  [class*="border-orange-500"] {
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .border-red-500,
+  [class*="border-red-500"] {
+    border-color: var(--cb-error) !important;
+  }
+  
+  .border-blue-500,
+  [class*="border-blue-500"],
+  .border-blue-600,
+  [class*="border-blue-600"] {
+    border-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     SLA KPI CARD COLORS
+     ==================================== */
+  
+  .text-metric-excellent,
+  .text-status-excellent {
+    color: var(--cb-success) !important;
+  }
+  
+  .text-metric-good,
+  .text-status-good {
+    color: var(--cb-success) !important;
+  }
+  
+  .text-metric-fair,
+  .text-status-fair {
+    color: var(--cb-warning) !important;
+  }
+  
+  .text-metric-poor,
+  .text-status-poor {
+    color: var(--cb-error) !important;
+  }
+  
+  .text-status-critical {
+    color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     PROGRESS BAR COLORS
+     ==================================== */
+  
+  .progress-bar-success,
+  .progress-bar-compliant {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .progress-bar-warning,
+  .progress-bar-at-risk {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .progress-bar-error,
+  .progress-bar-breach {
+    background-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     BUTTONS AND ACTIONS
+     ==================================== */
+  
+  .button-success,
+  .btn-success {
+    background-color: var(--cb-success) !important;
+    color: var(--cb-text-white) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .button-warning,
+  .btn-warning {
+    background-color: var(--cb-warning) !important;
+    color: var(--cb-text-white) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .button-error,
+  .btn-error,
+  .button-danger,
+  .btn-danger {
+    background-color: var(--cb-error) !important;
+    color: var(--cb-text-white) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     TABLE ROW COLORS
+     ==================================== */
+  
+  .table-row-success,
+  tr.success-row {
+    background-color: var(--cb-success-light) !important;
+  }
+  
+  .table-row-warning,
+  tr.warning-row {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .table-row-error,
+  tr.error-row {
+    background-color: var(--cb-error-light) !important;
+  }
+  
+  /* ====================================
+     ICON COLORS
+     ==================================== */
+  
+  .icon-success svg,
+  .icon-success {
+    color: var(--cb-success) !important;
+  }
+  
+  .icon-warning svg,
+  .icon-warning {
+    color: var(--cb-warning) !important;
+  }
+  
+  .icon-error svg,
+  .icon-error {
+    color: var(--cb-error) !important;
+  }
+  
+  .icon-primary svg,
+  .icon-primary {
+    color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     ACKNOWLEDGMENT COLUMN - Preserve vibrant blue
+     ==================================== */
+  
+  /* Preserve vibrant blue for acknowledgment badges and progress bars in KPI Dashboard */
+  .kpi-dashboard-page .bg-info,
+  .kpi-dashboard-page [class*="bg-info"],
+  .kpi-dashboard-page table .bg-info,
+  .kpi-dashboard-page table [class*="bg-info"],
+  .kpi-dashboard-page [class*="Table"] .bg-info,
+  .kpi-dashboard-page [class*="Table"] [class*="bg-info"],
+  .kpi-dashboard-page [class*="table"] .bg-info,
+  .kpi-dashboard-page [class*="table"] [class*="bg-info"] {
+    background-color: #3b82f6 !important; /* Original vibrant blue */
+  }
+  
+  .kpi-dashboard-page .text-info,
+  .kpi-dashboard-page [class*="text-info"],
+  .kpi-dashboard-page table .text-info,
+  .kpi-dashboard-page table [class*="text-info"],
+  .kpi-dashboard-page [class*="Table"] .text-info,
+  .kpi-dashboard-page [class*="Table"] [class*="text-info"],
+  .kpi-dashboard-page [class*="table"] .text-info,
+  .kpi-dashboard-page [class*="table"] [class*="text-info"] {
+    color: #3b82f6 !important; /* Original vibrant blue */
+  }
+  
+  /* Specifically target acknowledgment progress bars in vendor scorecard table */
+  .kpi-dashboard-page table [class*="bg-info"].rounded-full,
+  .kpi-dashboard-page [class*="Table"] [class*="bg-info"].rounded-full,
+  .kpi-dashboard-page [class*="table"] [class*="bg-info"].rounded-full,
+  .kpi-dashboard-page div[class*="bg-info"].rounded-full {
+    background-color: #3b82f6 !important; /* Original vibrant blue */
+  }
+  
+  /* Target acknowledgment badges with white text */
+  .kpi-dashboard-page .bg-info.text-white,
+  .kpi-dashboard-page [class*="bg-info"].text-white,
+  .kpi-dashboard-page table .bg-info.text-white,
+  .kpi-dashboard-page table [class*="bg-info"].text-white,
+  .kpi-dashboard-page [class*="Table"] .bg-info.text-white,
+  .kpi-dashboard-page [class*="Table"] [class*="bg-info"].text-white {
+    background-color: #3b82f6 !important; /* Original vibrant blue */
+    color: #ffffff !important; /* White text */
+  }
+  
+  /* Override any color-blindness variables that might affect acknowledgment elements */
+  .kpi-dashboard-page [class*="TableCell"] [class*="bg-info"],
+  .kpi-dashboard-page [class*="table-cell"] [class*="bg-info"],
+  .kpi-dashboard-page td [class*="bg-info"],
+  .kpi-dashboard-page [class*="TableCell"] div[class*="bg-info"],
+  .kpi-dashboard-page [class*="table-cell"] div[class*="bg-info"],
+  .kpi-dashboard-page td div[class*="bg-info"] {
+    background-color: #3b82f6 !important; /* Original vibrant blue */
+  }
+  
+  /* ====================================
+     ACTIONS COLUMN - Preserve white text on red buttons
+     ==================================== */
+  
+  /* Preserve white text on destructive/red buttons in Actions column */
+  table button[class*="destructive"],
+  table [class*="Button"][class*="destructive"],
+  [class*="Table"] button[class*="destructive"],
+  [class*="Table"] [class*="Button"][class*="destructive"],
+  [class*="TableCell"] button[class*="destructive"],
+  [class*="TableCell"] [class*="Button"][class*="destructive"],
+  td button[class*="destructive"],
+  td [class*="Button"][class*="destructive"] {
+    color: #ffffff !important; /* White text on red buttons */
+  }
+  
+  /* Preserve white icons on destructive buttons */
+  table button[class*="destructive"] svg,
+  table [class*="Button"][class*="destructive"] svg,
+  [class*="Table"] button[class*="destructive"] svg,
+  [class*="Table"] [class*="Button"][class*="destructive"] svg,
+  [class*="TableCell"] button[class*="destructive"] svg,
+  [class*="TableCell"] [class*="Button"][class*="destructive"] svg,
+  td button[class*="destructive"] svg,
+  td [class*="Button"][class*="destructive"] svg {
+    color: #ffffff !important; /* White icons */
+    stroke: #ffffff !important;
+    fill: none !important;
+  }
+  
+  /* Ensure destructive button backgrounds remain red */
+  table button[class*="destructive"],
+  table [class*="Button"][class*="destructive"],
+  [class*="Table"] button[class*="destructive"],
+  [class*="Table"] [class*="Button"][class*="destructive"],
+  [class*="TableCell"] button[class*="destructive"],
+  [class*="TableCell"] [class*="Button"][class*="destructive"],
+  td button[class*="destructive"],
+  td [class*="Button"][class*="destructive"] {
+    background-color: var(--cb-error) !important; /* Red background */
+  }
+  
+  /* ====================================
+     SLA CREATE/EDIT PAGE BUTTONS - Preserve white text
+     ==================================== */
+  
+  /* Preserve white text on Save as Draft button (green) */
+  .button--save,
+  button.button--save,
+  [class*="button--save"] {
+    color: #ffffff !important; /* White text */
+    background-color: var(--cb-success) !important; /* Green background using color-blind friendly */
+  }
+  
+  .button--save:hover:not(:disabled),
+  button.button--save:hover:not(:disabled),
+  [class*="button--save"]:hover:not(:disabled) {
+    background-color: var(--cb-success-hover) !important;
+  }
+  
+  .button--save svg,
+  button.button--save svg,
+  [class*="button--save"] svg {
+    color: #ffffff !important; /* White icons */
+    stroke: #ffffff !important;
+    fill: none !important;
+  }
+  
+  /* Preserve white text on Submit for Approval button (blue) */
+  .button--submit,
+  button.button--submit,
+  [class*="button--submit"] {
+    color: #ffffff !important; /* White text */
+    background-color: var(--cb-primary) !important; /* Blue background using color-blind friendly */
+  }
+  
+  .button--submit:hover:not(:disabled),
+  button.button--submit:hover:not(:disabled),
+  [class*="button--submit"]:hover:not(:disabled) {
+    background-color: var(--cb-primary-hover) !important;
+  }
+  
+  .button--submit svg,
+  button.button--submit svg,
+  [class*="button--submit"] svg {
+    color: #ffffff !important; /* White icons */
+    stroke: #ffffff !important;
+    fill: none !important;
+  }
+  
+  /* Preserve white text on Add Metric button (blue) */
+  .button--add,
+  button.button--add,
+  [class*="button--add"] {
+    color: #ffffff !important; /* White text */
+    background-color: var(--cb-primary) !important; /* Blue background using color-blind friendly */
+  }
+  
+  .button--add:hover:not(:disabled),
+  button.button--add:hover:not(:disabled),
+  [class*="button--add"]:hover:not(:disabled) {
+    background-color: var(--cb-primary-hover) !important;
+  }
+  
+  .button--add svg,
+  button.button--add svg,
+  [class*="button--add"] svg {
+    color: #ffffff !important; /* White icons */
+    stroke: #ffffff !important;
+    fill: none !important;
+  }
+  
+  /* Preserve blue info box colors in SLA Create/Edit page */
+  .bg-blue-50.border-blue-200,
+  [class*="bg-blue-50"][class*="border-blue-200"] {
+    background-color: #eff6ff !important; /* Original light blue */
+    border-color: #bfdbfe !important; /* Original blue-200 border */
+  }
+  
+  /* Preserve blue text colors in info boxes */
+  .text-blue-600,
+  .text-blue-700,
+  .text-blue-900,
+  [class*="text-blue-600"],
+  [class*="text-blue-700"],
+  [class*="text-blue-900"] {
+    color: inherit !important; /* Let the original color show through */
+  }
+  
+  /* Specifically preserve blue colors in info boxes */
+  .bg-blue-50 .text-blue-600,
+  .bg-blue-50 .text-blue-700,
+  .bg-blue-50 .text-blue-900,
+  [class*="bg-blue-50"] .text-blue-600,
+  [class*="bg-blue-50"] .text-blue-700,
+  [class*="bg-blue-50"] .text-blue-900 {
+    color: #1e40af !important; /* Original dark blue for text-blue-900 */
+  }
+  
+  .bg-blue-50 .text-blue-700,
+  [class*="bg-blue-50"] .text-blue-700 {
+    color: #1d4ed8 !important; /* Original text-blue-700 */
+  }
+  
+  .bg-blue-50 .text-blue-600,
+  [class*="bg-blue-50"] .text-blue-600 {
+    color: #2563eb !important; /* Original text-blue-600 */
+  }
+  
+  /* Preserve blue icon colors in info boxes */
+  .bg-blue-50 svg.text-blue-600,
+  [class*="bg-blue-50"] svg.text-blue-600,
+  .bg-blue-50 svg[class*="text-blue-600"],
+  [class*="bg-blue-50"] svg[class*="text-blue-600"] {
+    color: #2563eb !important; /* Original blue-600 */
+    stroke: #2563eb !important;
+  }
+  
+  /* ====================================
+     AUDIT CARD - Metrics and Evidence boxes
+     ==================================== */
+  
+  /* Preserve text visibility in Metrics box (blue) */
+  .audit-metrics-box,
+  [class*="audit-metrics-box"] {
+    background-color: #eff6ff !important; /* Original bg-blue-50 */
+    color: #111827 !important; /* Dark text for visibility */
+  }
+  
+  .audit-metrics-box .text-foreground,
+  .audit-metrics-box strong,
+  [class*="audit-metrics-box"] .text-foreground,
+  [class*="audit-metrics-box"] strong {
+    color: #111827 !important; /* Dark text */
+  }
+  
+  .audit-metrics-icon,
+  .audit-metrics-box svg,
+  [class*="audit-metrics-box"] svg {
+    color: #2563eb !important; /* Blue icon */
+    stroke: #2563eb !important;
+  }
+  
+  /* Preserve text visibility in Evidence Docs box (purple) */
+  .audit-evidence-box,
+  [class*="audit-evidence-box"] {
+    background-color: #faf5ff !important; /* Original bg-purple-50 */
+    color: #111827 !important; /* Dark text for visibility */
+  }
+  
+  .audit-evidence-box .text-foreground,
+  .audit-evidence-box strong,
+  [class*="audit-evidence-box"] .text-foreground,
+  [class*="audit-evidence-box"] strong {
+    color: #111827 !important; /* Dark text */
+  }
+  
+  .audit-evidence-icon,
+  .audit-evidence-box svg,
+  [class*="audit-evidence-box"] svg {
+    color: #9333ea !important; /* Purple icon */
+    stroke: #9333ea !important;
+  }
+  
+  /* Ensure all text in colored boxes is visible */
+  .bg-blue-50 .text-foreground,
+  .bg-blue-50 strong,
+  [class*="bg-blue-50"] .text-foreground,
+  [class*="bg-blue-50"] strong,
+  .bg-purple-50 .text-foreground,
+  .bg-purple-50 strong,
+  [class*="bg-purple-50"] .text-foreground,
+  [class*="bg-purple-50"] strong {
+    color: #111827 !important; /* Dark text for visibility */
+  }
+  
+  /* ====================================
+     AUDIT BADGES - Preserve text colors
+     ==================================== */
+  
+  /* Completed badge - Green text */
+  .badge-completed,
+  .completed-text {
+    color: var(--cb-success) !important; /* Color-blind friendly green */
+  }
+  
+  /* Rejected badge - Red text */
+  .badge-rejected,
+  .rejected-text {
+    color: var(--cb-error) !important; /* Color-blind friendly red */
+  }
+  
+  /* Created badge - Blue text */
+  .badge-created,
+  .created-text {
+    color: var(--cb-primary) !important; /* Color-blind friendly blue */
+  }
+  
+  /* In Review badge - Orange text */
+  .badge-in-review,
+  .badge-in_review,
+  .in-review-text,
+  .in_review-text {
+    color: var(--cb-warning) !important; /* Color-blind friendly orange */
+  }
+  
+  /* Draft badge - Gray text */
+  .badge-draft,
+  .draft-text {
+    color: var(--cb-neutral-text-tertiary) !important; /* Color-blind friendly gray */
+  }
+  
+  /* Priority High badge - Red text */
+  .badge-priority-high,
+  .priority-high-text {
+    color: var(--cb-error) !important; /* Color-blind friendly red */
+  }
+}

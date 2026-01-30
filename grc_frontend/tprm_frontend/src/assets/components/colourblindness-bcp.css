@@ -1,0 +1,706 @@
+/* ============================================
+   BCP MODULE COLOUR BLINDNESS OVERRIDES
+   These styles apply color-blindness variables to all BCP module components
+   Automatically applies when any color-blind mode is active
+   ============================================ */
+
+/* Apply overrides to all color-blind modes (not dark theme, not "off") */
+html:not(.dark-theme)[data-colorblind="protanopia"],
+html:not(.dark-theme)[data-colorblind="deuteranopia"],
+html:not(.dark-theme)[data-colorblind="tritanopia"],
+body:not(.dark-theme)[data-colorblind="protanopia"],
+body:not(.dark-theme)[data-colorblind="deuteranopia"],
+body:not(.dark-theme)[data-colorblind="tritanopia"] {
+  
+  /* ====================================
+     BCP STATUS COLORS
+     ==================================== */
+  
+  .bcp-status-approved,
+  .status-approved,
+  .badge-status-approved {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .bcp-status-in-review,
+  .status-in-review,
+  .badge-status-in-review {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .bcp-status-rejected,
+  .status-rejected,
+  .badge-status-rejected {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .bcp-status-draft,
+  .status-draft,
+  .badge-status-draft {
+    background-color: var(--cb-neutral-gray-light) !important;
+    color: var(--cb-neutral-text-tertiary) !important;
+    border-color: var(--cb-neutral-gray) !important;
+  }
+  
+  .bcp-status-submitted,
+  .status-submitted,
+  .badge-status-submitted {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .bcp-status-completed,
+  .status-completed,
+  .badge-status-completed {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  .bcp-status-created,
+  .status-created,
+  .badge-status-created {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     BCP RISK LEVEL COLORS
+     ==================================== */
+  
+  .risk-critical,
+  .bcp-risk-critical,
+  .badge-risk-critical {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .risk-high,
+  .bcp-risk-high,
+  .badge-risk-high {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .risk-medium,
+  .bcp-risk-medium,
+  .badge-risk-medium {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .risk-low,
+  .bcp-risk-low,
+  .badge-risk-low {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     BCP CRITICALITY LEVELS
+     ==================================== */
+  
+  .criticality-critical,
+  .bcp-criticality-critical {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .criticality-high,
+  .bcp-criticality-high {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error) !important;
+  }
+  
+  .criticality-medium,
+  .bcp-criticality-medium {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .criticality-low,
+  .bcp-criticality-low {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     BCP BADGE CLASSES
+     ==================================== */
+  
+  .badge-approved,
+  .badge-completed {
+    color: var(--cb-success) !important;
+  }
+  
+  .badge-rejected,
+  .badge-cancelled {
+    color: var(--cb-error) !important;
+  }
+  
+  .badge-in-review,
+  .badge-in_review,
+  .badge-submitted {
+    color: var(--cb-warning) !important;
+  }
+  
+  .badge-created,
+  .badge-assigned {
+    color: var(--cb-primary) !important;
+  }
+  
+  .badge-draft {
+    color: var(--cb-neutral-text-tertiary) !important;
+  }
+  
+  /* ====================================
+     BCP KPI CARD ICONS
+     ==================================== */
+  
+  .kpi-card-icon-blue,
+  [class*="kpi-card-icon-blue"] {
+    background-color: var(--cb-primary-light) !important;
+  }
+  
+  .kpi-card-icon-blue svg,
+  [class*="kpi-card-icon-blue"] svg {
+    color: var(--cb-primary) !important;
+    stroke: var(--cb-primary) !important;
+  }
+  
+  .kpi-card-icon-green,
+  [class*="kpi-card-icon-green"] {
+    background-color: var(--cb-success-light) !important;
+  }
+  
+  .kpi-card-icon-green svg,
+  [class*="kpi-card-icon-green"] svg {
+    color: var(--cb-success) !important;
+    stroke: var(--cb-success) !important;
+  }
+  
+  .kpi-card-icon-purple,
+  [class*="kpi-card-icon-purple"] {
+    background-color: var(--cb-primary-light) !important;
+  }
+  
+  .kpi-card-icon-purple svg,
+  [class*="kpi-card-icon-purple"] svg {
+    color: var(--cb-primary) !important;
+    stroke: var(--cb-primary) !important;
+  }
+  
+  .kpi-card-icon-yellow,
+  [class*="kpi-card-icon-yellow"] {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .kpi-card-icon-yellow svg,
+  [class*="kpi-card-icon-yellow"] svg {
+    color: var(--cb-warning) !important;
+    stroke: var(--cb-warning) !important;
+  }
+  
+  .kpi-card-icon-red,
+  [class*="kpi-card-icon-red"] {
+    background-color: var(--cb-error-light) !important;
+  }
+  
+  .kpi-card-icon-red svg,
+  [class*="kpi-card-icon-red"] svg {
+    color: var(--cb-error) !important;
+    stroke: var(--cb-error) !important;
+  }
+  
+  .kpi-card-icon-orange,
+  [class*="kpi-card-icon-orange"] {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .kpi-card-icon-orange svg,
+  [class*="kpi-card-icon-orange"] svg {
+    color: var(--cb-warning) !important;
+    stroke: var(--cb-warning) !important;
+  }
+  
+  /* ====================================
+     BCP STAT CARDS
+     ==================================== */
+  
+  .stat-card--primary {
+    background-color: var(--cb-primary-light) !important;
+    border-color: var(--cb-primary-border) !important;
+  }
+  
+  .stat-card--primary .stat-card__icon {
+    color: var(--cb-primary) !important;
+  }
+  
+  .stat-card--success {
+    background-color: var(--cb-success-light) !important;
+    border-color: var(--cb-success-border) !important;
+  }
+  
+  .stat-card--success .stat-card__icon {
+    color: var(--cb-success) !important;
+  }
+  
+  .stat-card--warning {
+    background-color: var(--cb-warning-light) !important;
+    border-color: var(--cb-warning-border) !important;
+  }
+  
+  .stat-card--warning .stat-card__icon {
+    color: var(--cb-warning) !important;
+  }
+  
+  .stat-card--danger {
+    background-color: var(--cb-error-light) !important;
+    border-color: var(--cb-error-border) !important;
+  }
+  
+  .stat-card--danger .stat-card__icon {
+    color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     BCP KPI ICONS
+     ==================================== */
+  
+  .kpi-icon.green,
+  .kpi-icon[class*="green"] {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+  }
+  
+  .kpi-icon.purple,
+  .kpi-icon[class*="purple"] {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+  }
+  
+  .kpi-icon.blue,
+  .kpi-icon[class*="blue"] {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+  }
+  
+  .kpi-icon.red,
+  .kpi-icon[class*="red"] {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+  }
+  
+  .kpi-icon.orange,
+  .kpi-icon[class*="orange"] {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+  }
+  
+  .kpi-icon.yellow,
+  .kpi-icon[class*="yellow"] {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+  }
+  
+  /* ====================================
+     BCP PROGRESS BARS AND CHARTS
+     ==================================== */
+  
+  .progress-ring-fill[stroke="#10b981"],
+  .progress-ring-fill[stroke*="10b981"],
+  circle[stroke="#10b981"],
+  circle[stroke*="10b981"] {
+    stroke: var(--cb-success) !important;
+  }
+  
+  .progress-ring-fill[stroke="#3b82f6"],
+  .progress-ring-fill[stroke*="3b82f6"],
+  circle[stroke="#3b82f6"],
+  circle[stroke*="3b82f6"] {
+    stroke: var(--cb-primary) !important;
+  }
+  
+  .progress-ring-fill[stroke="#ef4444"],
+  .progress-ring-fill[stroke*="ef4444"],
+  circle[stroke="#ef4444"],
+  circle[stroke*="ef4444"] {
+    stroke: var(--cb-error) !important;
+  }
+  
+  .progress-ring-fill[stroke="#f59e0b"],
+  .progress-ring-fill[stroke*="f59e0b"],
+  circle[stroke="#f59e0b"],
+  circle[stroke*="f59e0b"] {
+    stroke: var(--cb-warning) !important;
+  }
+  
+  .progress-ring-fill[stroke="#8b5cf6"],
+  .progress-ring-fill[stroke*="8b5cf6"],
+  circle[stroke="#8b5cf6"],
+  circle[stroke*="8b5cf6"] {
+    stroke: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     BCP CHART COLORS
+     ==================================== */
+  
+  /* Donut chart slices */
+  .donut-slice[stroke="#10b981"],
+  .donut-slice[stroke*="10b981"] {
+    stroke: var(--cb-success) !important;
+  }
+  
+  .donut-slice[stroke="#3b82f6"],
+  .donut-slice[stroke*="3b82f6"] {
+    stroke: var(--cb-primary) !important;
+  }
+  
+  .donut-slice[stroke="#ef4444"],
+  .donut-slice[stroke*="ef4444"] {
+    stroke: var(--cb-error) !important;
+  }
+  
+  .donut-slice[stroke="#f59e0b"],
+  .donut-slice[stroke*="f59e0b"] {
+    stroke: var(--cb-warning) !important;
+  }
+  
+  .donut-slice[stroke="#8b5cf6"],
+  .donut-slice[stroke*="8b5cf6"] {
+    stroke: var(--cb-primary) !important;
+  }
+  
+  /* Bar chart bars */
+  .bar[style*="background-color: #10b981"],
+  .bar[style*="background: #10b981"],
+  .bar[style*="background-color: rgb(16, 185, 129)"] {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .bar[style*="background-color: #3b82f6"],
+  .bar[style*="background: #3b82f6"],
+  .bar[style*="background-color: rgb(59, 130, 246)"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  .bar[style*="background-color: #ef4444"],
+  .bar[style*="background: #ef4444"],
+  .bar[style*="background-color: rgb(239, 68, 68)"] {
+    background-color: var(--cb-error) !important;
+  }
+  
+  .bar[style*="background-color: #f59e0b"],
+  .bar[style*="background: #f59e0b"],
+  .bar[style*="background-color: rgb(245, 158, 11)"] {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .bar[style*="background-color: #8b5cf6"],
+  .bar[style*="background: #8b5cf6"],
+  .bar[style*="background-color: rgb(139, 92, 246)"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  /* Area chart gradients */
+  stop[style*="stop-color:#3b82f6"],
+  stop[style*="stop-color:#8b5cf6"] {
+    stop-color: var(--cb-primary) !important;
+  }
+  
+  stop[style*="stop-color:#10b981"] {
+    stop-color: var(--cb-success) !important;
+  }
+  
+  stop[style*="stop-color:#ef4444"] {
+    stop-color: var(--cb-error) !important;
+  }
+  
+  stop[style*="stop-color:#f59e0b"] {
+    stop-color: var(--cb-warning) !important;
+  }
+  
+  /* Line chart lines */
+  line[stroke="#3b82f6"],
+  line[stroke*="3b82f6"],
+  polyline[stroke="#3b82f6"],
+  polyline[stroke*="3b82f6"],
+  path[stroke="#3b82f6"],
+  path[stroke*="3b82f6"] {
+    stroke: var(--cb-primary) !important;
+  }
+  
+  line[stroke="#10b981"],
+  line[stroke*="10b981"],
+  polyline[stroke="#10b981"],
+  polyline[stroke*="10b981"],
+  path[stroke="#10b981"],
+  path[stroke*="10b981"] {
+    stroke: var(--cb-success) !important;
+  }
+  
+  line[stroke="#ef4444"],
+  line[stroke*="ef4444"],
+  polyline[stroke="#ef4444"],
+  polyline[stroke*="ef4444"],
+  path[stroke="#ef4444"],
+  path[stroke*="ef4444"] {
+    stroke: var(--cb-error) !important;
+  }
+  
+  line[stroke="#f59e0b"],
+  line[stroke*="f59e0b"],
+  polyline[stroke="#f59e0b"],
+  polyline[stroke*="f59e0b"],
+  path[stroke="#f59e0b"],
+  path[stroke*="f59e0b"] {
+    stroke: var(--cb-warning) !important;
+  }
+  
+  /* Legend dots */
+  .legend-dot[style*="background-color: #10b981"],
+  .legend-dot[style*="background: #10b981"] {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .legend-dot[style*="background-color: #3b82f6"],
+  .legend-dot[style*="background: #3b82f6"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  .legend-dot[style*="background-color: #ef4444"],
+  .legend-dot[style*="background: #ef4444"] {
+    background-color: var(--cb-error) !important;
+  }
+  
+  .legend-dot[style*="background-color: #f59e0b"],
+  .legend-dot[style*="background: #f59e0b"] {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .legend-dot[style*="background-color: #8b5cf6"],
+  .legend-dot[style*="background: #8b5cf6"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     BCP STATUS BADGES (from badge.css)
+     ==================================== */
+  
+  .badge-approved,
+  .badge-completed {
+    color: var(--cb-success) !important;
+  }
+  
+  .badge-rejected,
+  .badge-cancelled {
+    color: var(--cb-error) !important;
+  }
+  
+  .badge-in-review,
+  .badge-in_review,
+  .badge-submitted {
+    color: var(--cb-warning) !important;
+  }
+  
+  .badge-created,
+  .badge-assigned {
+    color: var(--cb-primary) !important;
+  }
+  
+  .badge-draft {
+    color: var(--cb-neutral-text-tertiary) !important;
+  }
+  
+  /* ====================================
+     BCP PLAN TYPE COLORS
+     ==================================== */
+  
+  .bg-blue-100.text-blue-800,
+  [class*="bg-blue-100"][class*="text-blue-800"] {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+  }
+  
+  .bg-purple-100.text-purple-800,
+  [class*="bg-purple-100"][class*="text-purple-800"] {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     BCP KPI CHANGE INDICATORS
+     ==================================== */
+  
+  .kpi-change.positive {
+    color: var(--cb-success) !important;
+  }
+  
+  .kpi-change.negative {
+    color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     BCP BUTTONS
+     ==================================== */
+  
+  .button--export {
+    background-color: var(--cb-primary) !important;
+    color: #ffffff !important;
+  }
+  
+  .button--export:hover:not(:disabled) {
+    background-color: var(--cb-primary-hover) !important;
+  }
+  
+  .button--create {
+    background-color: var(--cb-primary) !important;
+    color: #ffffff !important;
+  }
+  
+  .button--create:hover:not(:disabled) {
+    background-color: var(--cb-primary-hover) !important;
+  }
+  
+  /* ====================================
+     QUESTIONNAIRE ASSIGNMENT BUTTONS
+     Preserve neutral white/gray appearance for outline buttons
+     ==================================== */
+  
+  /* Preserve neutral appearance for Save Draft and Submit Answers buttons */
+  .questionnaire-assignment-page .button--save,
+  .questionnaire-assignment-page button.button--save,
+  [class*="questionnaire-assignment"] .button--save,
+  [class*="questionnaire-assignment"] button.button--save {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db !important;
+  }
+  
+  .questionnaire-assignment-page .button--save:hover:not(:disabled),
+  .questionnaire-assignment-page button.button--save:hover:not(:disabled),
+  [class*="questionnaire-assignment"] .button--save:hover:not(:disabled),
+  [class*="questionnaire-assignment"] button.button--save:hover:not(:disabled) {
+    background-color: #f9fafb !important;
+    border-color: #9ca3af !important;
+  }
+  
+  .questionnaire-assignment-page .button--save svg,
+  .questionnaire-assignment-page button.button--save svg,
+  [class*="questionnaire-assignment"] .button--save svg,
+  [class*="questionnaire-assignment"] button.button--save svg {
+    color: #111827 !important;
+    stroke: #111827 !important;
+  }
+  
+  .questionnaire-assignment-page .button--submit,
+  .questionnaire-assignment-page button.button--submit,
+  [class*="questionnaire-assignment"] .button--submit,
+  [class*="questionnaire-assignment"] button.button--submit {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db !important;
+  }
+  
+  .questionnaire-assignment-page .button--submit:hover:not(:disabled),
+  .questionnaire-assignment-page button.button--submit:hover:not(:disabled),
+  [class*="questionnaire-assignment"] .button--submit:hover:not(:disabled),
+  [class*="questionnaire-assignment"] button.button--submit:hover:not(:disabled) {
+    background-color: #f9fafb !important;
+    border-color: #9ca3af !important;
+  }
+  
+  .questionnaire-assignment-page .button--submit svg,
+  .questionnaire-assignment-page button.button--submit svg,
+  [class*="questionnaire-assignment"] .button--submit svg,
+  [class*="questionnaire-assignment"] button.button--submit svg {
+    color: #111827 !important;
+    stroke: #111827 !important;
+  }
+  
+  /* Preserve neutral appearance for outline buttons */
+  .questionnaire-assignment-page .btn--outline,
+  .questionnaire-assignment-page button.btn--outline,
+  [class*="questionnaire-assignment"] .btn--outline,
+  [class*="questionnaire-assignment"] button.btn--outline {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db !important;
+  }
+  
+  .questionnaire-assignment-page .btn--outline:hover:not(:disabled),
+  .questionnaire-assignment-page button.btn--outline:hover:not(:disabled),
+  [class*="questionnaire-assignment"] .btn--outline:hover:not(:disabled),
+  [class*="questionnaire-assignment"] button.btn--outline:hover:not(:disabled) {
+    background-color: #f9fafb !important;
+    border-color: #9ca3af !important;
+  }
+  
+  .questionnaire-assignment-page .btn--outline svg,
+  .questionnaire-assignment-page button.btn--outline svg,
+  [class*="questionnaire-assignment"] .btn--outline svg,
+  [class*="questionnaire-assignment"] button.btn--outline svg {
+    color: #111827 !important;
+    stroke: #111827 !important;
+  }
+  
+  /* ====================================
+     BCP RISK DONUT CHART
+     ==================================== */
+  
+  .risk-donut-chart .donut-slice[stroke="#ef4444"],
+  .risk-donut-chart .donut-slice[stroke*="ef4444"] {
+    stroke: var(--cb-error) !important;
+  }
+  
+  .risk-donut-chart .donut-slice[stroke="#f59e0b"],
+  .risk-donut-chart .donut-slice[stroke*="f59e0b"] {
+    stroke: var(--cb-warning) !important;
+  }
+  
+  .risk-donut-chart .donut-slice[stroke="#3b82f6"],
+  .risk-donut-chart .donut-slice[stroke*="3b82f6"] {
+    stroke: var(--cb-primary) !important;
+  }
+  
+  .risk-donut-chart .donut-slice[stroke="#10b981"],
+  .risk-donut-chart .donut-slice[stroke*="10b981"] {
+    stroke: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     BCP COMPLIANCE BAR CHART
+     ==================================== */
+  
+  .compliance-bar-chart .bar[style*="background-color: #10b981"],
+  .compliance-bar-chart .bar[style*="background: #10b981"] {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .compliance-bar-chart .bar[style*="background-color: #f59e0b"],
+  .compliance-bar-chart .bar[style*="background: #f59e0b"] {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .compliance-bar-chart .bar[style*="background-color: #ef4444"],
+  .compliance-bar-chart .bar[style*="background: #ef4444"] {
+    background-color: var(--cb-error) !important;
+  }
+}

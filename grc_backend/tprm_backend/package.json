@@ -1,0 +1,9 @@
+{
+  "name": "tprm_backend",
+  "version": "1.0.0",
+  "description": "Django backend for TPRM",
+  "private": true,
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,47 @@
+<template>
+  <div class="h-screen">
+    <AppSidebar @sidebar-toggle="handleSidebarToggle" />
+    <div class="main-content" :class="{ 'sidebar-collapsed': isSidebarCollapsed }">
+      <AppHeader />
+      <main class="flex-1 overflow-x-auto overflow-y-auto bg-background">
+        <div class="container mx-auto px-6 py-8">
+          <slot />
+        </div>
+      </main>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import AppSidebar from './AppSidebar.vue'
+import AppHeader from './AppHeader.vue'
+
+const isSidebarCollapsed = ref(false)
+
+const handleSidebarToggle = (collapsed) => {
+  isSidebarCollapsed.value = collapsed
+}
+</script>
+
+<style scoped>
+.main-content {
+  margin-left: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: margin-left 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .main-content {
+    margin-left: 16.8rem; /* 268.8px - sidebar width + 5% spacing */
+  }
+  
+  .main-content.sidebar-collapsed {
+    margin-left: 4.2rem; /* 67.2px - collapsed sidebar width + 5% spacing */
+  }
+}
+</style>

@@ -1,0 +1,947 @@
+/* ViewInstance.css - Styling for the Risk Instance Details View */
+:root {
+  --risk-primary: #7B6FDD;
+  --risk-primary-light: #8F84E8;
+  --risk-primary-dark: #6A5ED4;
+  --risk-secondary: #f72585;
+  --risk-success: #4cc9f0;
+  --risk-warning: #f8961e;
+  --risk-danger: #e63946;
+  --risk-light: #f8f9fa;
+  --risk-dark: #212529;
+  --risk-gray-100: #f8f9fa;
+  --risk-gray-200: #e9ecef;
+  --risk-gray-300: #dee2e6;
+  --risk-gray-400: #ced4da;
+  --risk-gray-500: #adb5bd;
+  --risk-gray-600: #6c757d;
+  --risk-gray-700: #495057;
+  --risk-gray-800: #343a40;
+  --risk-gray-900: #212529;
+}
+
+.instance-view-container {
+  padding: 24px 24px 24px 250px;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--risk-gray-800);
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 250px);
+  max-width: 100%;
+  box-sizing: border-box;
+  min-height: calc(100vh - 32px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.instance-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.instance-view-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Button Styles */
+.instance-view-edit-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--risk-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.instance-view-edit-button:hover {
+  background-color: var(--risk-primary-dark);
+  transform: translateY(-1px);
+}
+
+.instance-view-save-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.instance-view-save-button:hover:not(:disabled) {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
+.instance-view-save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.instance-view-cancel-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.instance-view-cancel-button:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Form Input Styles */
+.instance-view-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--risk-gray-300);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--risk-gray-800);
+  background-color: white;
+  transition: border-color 0.2s ease;
+}
+
+.instance-view-input:focus {
+  outline: none;
+  border-color: var(--risk-primary);
+}
+
+.instance-view-input:read-only {
+  background-color: #f8f9fa;
+  color: var(--risk-gray-600);
+}
+
+.instance-view-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--risk-gray-300);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--risk-gray-800);
+  background-color: white;
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.instance-view-textarea:focus {
+  outline: none;
+  border-color: var(--risk-primary);
+}
+
+.instance-view-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--risk-gray-300);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--risk-gray-800);
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  min-width: 120px;
+}
+
+.instance-view-select:focus {
+  outline: none;
+  border-color: var(--risk-primary);
+}
+
+/* Message Styles */
+.instance-view-success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  z-index: 1000;
+  animation: slideInRight 0.3s ease;
+}
+
+.instance-view-error-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  z-index: 1000;
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.instance-view-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+  margin: 0;
+  padding-bottom: 8px;
+  position: relative;
+}
+
+.instance-view-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 60px;
+  background-color: #7B6FDD;
+  border-radius: 2px;
+}
+
+.instance-view-icon {
+  margin-right: 8px;
+  color: #7B6FDD;
+}
+
+.instance-view-back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f0f2f5;
+  color: var(--risk-gray-700);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.instance-view-back-button:hover {
+  background-color: #e4e6e9;
+  color: var(--risk-gray-900);
+}
+
+.instance-view-details-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 32px;
+  margin: 0 auto 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  width: 100%;
+}
+
+.instance-view-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.instance-view-content-row {
+  display: flex;
+  gap: 24px;
+}
+
+.instance-view-content-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.instance-view-section-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--risk-gray-700);
+  margin: 0;
+}
+
+.instance-view-section-content {
+  font-size: 1rem;
+  color: var(--risk-gray-800);
+  line-height: 1.5;
+  background-color: #f8f9fa;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--risk-gray-200);
+  min-height: 24px;
+}
+
+.instance-view-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--risk-gray-200);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.instance-view-id-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.instance-view-id-label {
+  font-weight: 600;
+  color: var(--risk-gray-700);
+  font-size: 0.9rem;
+}
+
+.instance-view-id-value {
+  color: var(--risk-primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.instance-view-meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.instance-view-meta-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Unified Badge Base Styling - All badges use these exact same properties */
+.instance-view-origin-badge,
+.instance-view-category-badge,
+.instance-view-priority-critical,
+.instance-view-priority-high,
+.instance-view-priority-medium,
+.instance-view-priority-low,
+.instance-view-status-open,
+.instance-view-status-in-progress,
+.instance-view-status-mitigated,
+.instance-view-status-closed,
+.instance-view-status-transferred {
+  background-color: transparent;
+  color: black;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  font-weight: 400;
+  font-size: 0.875rem;
+  display: inline-block;
+  text-align: center;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: normal;
+  line-height: 1.5;
+  text-transform: none;
+  font-style: normal;
+  vertical-align: baseline;
+}
+
+/* Individual badge classes inherit from unified styling above */
+
+.instance-view-no-data {
+  text-align: center;
+  padding: 40px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: none;
+  color: var(--risk-gray-600);
+  font-style: italic;
+}
+
+/* All priority and status badge styles are defined by the unified rule above */
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .instance-view-container {
+    padding: 20px 20px 20px 240px;
+    width: calc(100% - 240px);
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .instance-view-container {
+    padding: 16px 16px 16px 220px;
+    width: calc(100% - 220px);
+    max-width: 100%;
+  }
+  
+  .instance-view-content-row {
+    flex-direction: column;
+  }
+  
+  .instance-view-header-actions {
+    flex-wrap: wrap;
+  }
+  
+  .instance-view-meta {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .instance-view-container {
+    padding: 16px;
+    width: 100%;
+    margin-left: 0;
+    max-width: 100%;
+  }
+  
+  .instance-view-details-card {
+    padding: 24px;
+  }
+  
+  .instance-view-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .instance-view-header-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .instance-view-details-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .instance-view-meta {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .instance-view-success-message,
+  .instance-view-error-message {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+  }
+} 
+
+/* Risk Instance Rectification Modal Styles */
+.instance-rectification-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: instanceRectificationFadeIn 0.2s ease;
+}
+
+.instance-rectification-modal-content {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: instanceRectificationSlideUp 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes instanceRectificationFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes instanceRectificationSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.instance-rectification-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 2px solid #e5e7eb;
+  background: linear-gradient(135deg, #7B6FDD, #6A5ED4);
+  color: white;
+  border-radius: 16px 16px 0 0;
+}
+
+.instance-rectification-modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.instance-rectification-modal-close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.instance-rectification-modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.instance-rectification-modal-body {
+  padding: 32px;
+  overflow-y: auto;
+  flex: 1;
+  max-height: calc(90vh - 200px);
+}
+
+.instance-rectification-modal-message {
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.instance-rectification-changes-summary {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.instance-rectification-changes-summary h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.instance-rectification-changes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.instance-rectification-changes-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.instance-rectification-changes-list li:last-child {
+  border-bottom: none;
+}
+
+.instance-rectification-changes-list li strong {
+  color: #374151;
+  min-width: 150px;
+}
+
+.instance-rectification-old-value {
+  color: #dc2626;
+  text-decoration: line-through;
+  padding: 4px 8px;
+  background: #fee2e2;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.instance-rectification-new-value {
+  color: #16a34a;
+  padding: 4px 8px;
+  background: #d1fae5;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.instance-rectification-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 24px 32px;
+  border-top: 2px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 0 0 16px 16px;
+}
+
+.instance-rectification-modal-cancel-btn {
+  padding: 12px 24px;
+  background: #e5e7eb;
+  color: #374151;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.instance-rectification-modal-cancel-btn:hover {
+  background: #d1d5db;
+}
+
+.instance-rectification-modal-request-btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #7B6FDD, #6A5ED4);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.instance-rectification-modal-request-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(123, 111, 221, 0.3);
+}
+
+.instance-rectification-modal-request-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.instance-view-request-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.instance-view-request-button:hover:not(:disabled) {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.instance-view-request-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Risk Instance Impact Analysis Panel */
+.instance-impact-analysis-panel {
+  margin-top: 24px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 2px solid #3b82f6;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
+}
+
+.instance-impact-analysis-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.instance-impact-analysis-header h4 {
+  margin: 0;
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.instance-impact-analysis-header i {
+  font-size: 18px;
+}
+
+.instance-impact-toggle-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.instance-impact-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.instance-impact-analysis-content {
+  padding: 20px;
+  background: white;
+  border-radius: 0 0 10px 10px;
+}
+
+.instance-impact-loading {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.instance-impact-loading i {
+  margin-right: 8px;
+  color: #3b82f6;
+}
+
+.instance-impact-risk-level {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.instance-impact-risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.instance-impact-risk-badge.risk-level-high {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 2px solid #dc2626;
+}
+
+.instance-impact-risk-badge.risk-level-medium {
+  background: #fef3c7;
+  color: #92400e;
+  border: 2px solid #f59e0b;
+}
+
+.instance-impact-risk-badge.risk-level-low {
+  background: #d1fae5;
+  color: #065f46;
+  border: 2px solid #10b981;
+}
+
+.instance-impact-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.instance-impact-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.instance-impact-section h5 {
+  margin: 0 0 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.instance-impact-section h5 i {
+  color: #3b82f6;
+  font-size: 16px;
+}
+
+.instance-impact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.instance-impact-list li {
+  padding: 10px 0;
+  padding-left: 24px;
+  position: relative;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.instance-impact-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+.instance-impact-list li strong {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.instance-impact-report {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.instance-impact-report-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: #f9fafb;
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
+}
+
+.instance-impact-report-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.instance-impact-report-value {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.instance-impact-report-value.risk-assessment-high {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.instance-impact-report-value.risk-assessment-medium {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.instance-impact-report-value.risk-assessment-low {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.instance-impact-warning {
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #92400e;
+}
+
+.instance-impact-warning i {
+  color: #f59e0b;
+  font-size: 18px;
+  margin-top: 2px;
+}
+
+.instance-impact-warning strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #78350f;
+}
+
+.instance-impact-warning ul {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+} 

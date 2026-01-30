@@ -1,0 +1,273 @@
+/* ============================================
+   COLOUR BLINDNESS THEME STYLES
+   Color-blind friendly palettes for light theme
+   Supports: Protanopia, Deuteranopia, Tritanopia
+   ============================================ */
+ 
+/*
+   Color Palette for Color-Blind Friendly Design:
+   - Primary Blue: #2563eb (works for all types)
+   - Orange: #f97316 (distinguishable)
+   - Purple: #7c3aed (distinguishable)
+   - Teal/Cyan: #0ea5e9 (distinguishable)
+   - Yellow: #eab308 (distinguishable)
+   - Success: #16a34a (green - distinguishable)
+   - Warning: #f59e0b (amber - distinguishable)
+   - Error: #dc2626 (red - distinguishable with patterns)
+   - Neutral: Gray scale
+*/
+ 
+/* ============================================
+   PROTANOPIA (Red-Green Color Blindness)
+   Most common type - affects red perception
+   Condition: [data-colorblind="protanopia"] or [data-theme="light"][data-colorblind="protanopia"]
+   ============================================ */
+ 
+/* Color Variables - Protanopia */
+html:not(.dark-theme)[data-colorblind="protanopia"],
+body:not(.dark-theme)[data-colorblind="protanopia"],
+[data-theme="light"][data-colorblind="protanopia"],
+html[data-colorblind="protanopia"]:not([data-theme="dark"]):not(.dark-theme),
+body[data-colorblind="protanopia"]:not([data-theme="dark"]):not(.dark-theme) {
+  /* Primary Colors */
+  --cb-primary: #2563eb;
+  --cb-primary-hover: #1d4ed8;
+  --cb-primary-light: #eff6ff;
+  --cb-primary-shadow: rgba(37, 99, 235, 0.35);
+  --cb-primary-shadow-hover: rgba(37, 99, 235, 0.4);
+  --cb-primary-shadow-focus: rgba(37, 99, 235, 0.15);
+  --cb-primary-border: #2563eb;
+ 
+  /* Success Colors */
+  --cb-success: #16a34a;
+  --cb-success-hover: #15803d;
+  --cb-success-light: #ecfdf3;
+  --cb-success-border: #15803d;
+  --cb-success-shadow: rgba(22, 163, 74, 0.3);
+  --cb-success-shadow-hover: rgba(22, 163, 74, 0.4);
+ 
+  /* Error/Danger Colors */
+  --cb-error: #dc2626;
+  --cb-error-hover: #b91c1c;
+  --cb-error-light: #fef2f2;
+  --cb-error-border: #991b1b;
+  --cb-error-shadow: rgba(220, 38, 38, 0.3);
+  --cb-error-shadow-hover: rgba(220, 38, 38, 0.4);
+  --cb-error-shadow-focus: rgba(220, 38, 38, 0.2);
+ 
+  /* Warning Colors */
+  --cb-warning: #f97316;
+  --cb-warning-hover: #ea580c;
+  --cb-warning-light: #fff7ed;
+  --cb-warning-shadow: rgba(249, 115, 22, 0.3);
+ 
+  /* Accent Colors */
+  --cb-accent-cyan: #0ea5e9;
+  --cb-accent-cyan-hover: #0284c7;
+  --cb-accent-cyan-shadow: rgba(14, 165, 233, 0.3);
+ 
+  --cb-accent-purple: #7c3aed;
+  --cb-accent-purple-hover: #6d28d9;
+  --cb-accent-purple-light: #f3e8ff;
+  --cb-accent-purple-shadow: rgba(124, 58, 237, 0.3);
+ 
+  --cb-accent-teal: #0f766e;
+  --cb-accent-teal-hover: #115e59;
+  --cb-accent-teal-shadow: rgba(15, 118, 110, 0.3);
+ 
+  /* Neutral Colors */
+  --cb-neutral-bg: #ffffff;
+  --cb-neutral-border: #e2e8f0;
+  --cb-neutral-border-light: #cbd5e1;
+  --cb-neutral-border-hover: #d1d5db;
+  --cb-neutral-text: #1e293b;
+  --cb-neutral-text-secondary: #64748b;
+  --cb-neutral-text-tertiary: #6b7280;
+  --cb-neutral-text-dark: #0f172a;
+  --cb-neutral-gray: #f3f4f6;
+  --cb-neutral-gray-hover: #e5e7eb;
+  --cb-neutral-gray-text: #4b5563;
+  --cb-neutral-gray-text-hover: #374151;
+  --cb-neutral-gray-border: #d1d5db;
+  --cb-neutral-gray-border-hover: #9ca3af;
+  --cb-neutral-inactive: #cbd5e1;
+  --cb-neutral-hover: #f1f5f9;
+  --cb-neutral-select-hover: #f3f4ff;
+  --cb-neutral-breadcrumb: #f8f9fa;
+ 
+  /* Text Colors */
+  --cb-text-primary: #0f172a;
+  --cb-text-secondary: #64748b;
+  --cb-text-tertiary: #6b7280;
+  --cb-text-white: #ffffff;
+}
+ 
+/* ============================================
+   DEUTERANOPIA (Red-Green Color Blindness)
+   Similar to Protanopia but affects green perception
+   Condition: [data-colorblind="deuteranopia"] or [data-theme="light"][data-colorblind="deuteranopia"]
+   ============================================ */
+ 
+/* Color Variables - Deuteranopia */
+html:not(.dark-theme)[data-colorblind="deuteranopia"],
+body:not(.dark-theme)[data-colorblind="deuteranopia"],
+[data-theme="light"][data-colorblind="deuteranopia"],
+html[data-colorblind="deuteranopia"]:not([data-theme="dark"]):not(.dark-theme),
+body[data-colorblind="deuteranopia"]:not([data-theme="dark"]):not(.dark-theme) {
+  /* Primary Colors */
+  --cb-primary: #2563eb;
+  --cb-primary-hover: #1d4ed8;
+  --cb-primary-light: #eff6ff;
+  --cb-primary-shadow: rgba(37, 99, 235, 0.35);
+  --cb-primary-shadow-hover: rgba(37, 99, 235, 0.4);
+  --cb-primary-shadow-focus: rgba(37, 99, 235, 0.15);
+  --cb-primary-border: #2563eb;
+ 
+  /* Success Colors (using teal instead of green for better distinction) */
+  --cb-success: #0f766e;
+  --cb-success-hover: #115e59;
+  --cb-success-light: #ecfdf3;
+  --cb-success-border: #115e59;
+  --cb-success-shadow: rgba(15, 118, 110, 0.3);
+  --cb-success-shadow-hover: rgba(15, 118, 110, 0.4);
+ 
+  /* Error/Danger Colors */
+  --cb-error: #dc2626;
+  --cb-error-hover: #b91c1c;
+  --cb-error-light: #fef2f2;
+  --cb-error-border: #991b1b;
+  --cb-error-shadow: rgba(220, 38, 38, 0.3);
+  --cb-error-shadow-hover: rgba(220, 38, 38, 0.4);
+  --cb-error-shadow-focus: rgba(220, 38, 38, 0.2);
+ 
+  /* Warning Colors */
+  --cb-warning: #f97316;
+  --cb-warning-hover: #ea580c;
+  --cb-warning-light: #fff7ed;
+  --cb-warning-shadow: rgba(249, 115, 22, 0.3);
+ 
+  /* Accent Colors */
+  --cb-accent-cyan: #0ea5e9;
+  --cb-accent-cyan-hover: #0284c7;
+  --cb-accent-cyan-shadow: rgba(14, 165, 233, 0.3);
+ 
+  --cb-accent-purple: #7c3aed;
+  --cb-accent-purple-hover: #6d28d9;
+  --cb-accent-purple-light: #f3e8ff;
+  --cb-accent-purple-shadow: rgba(124, 58, 237, 0.3);
+ 
+  --cb-accent-teal: #0f766e;
+  --cb-accent-teal-hover: #115e59;
+  --cb-accent-teal-shadow: rgba(15, 118, 110, 0.3);
+ 
+  /* Neutral Colors */
+  --cb-neutral-bg: #ffffff;
+  --cb-neutral-border: #e2e8f0;
+  --cb-neutral-border-light: #cbd5e1;
+  --cb-neutral-border-hover: #d1d5db;
+  --cb-neutral-text: #1e293b;
+  --cb-neutral-text-secondary: #64748b;
+  --cb-neutral-text-tertiary: #6b7280;
+  --cb-neutral-text-dark: #0f172a;
+  --cb-neutral-gray: #f3f4f6;
+  --cb-neutral-gray-hover: #e5e7eb;
+  --cb-neutral-gray-text: #4b5563;
+  --cb-neutral-gray-text-hover: #374151;
+  --cb-neutral-gray-border: #d1d5db;
+  --cb-neutral-gray-border-hover: #9ca3af;
+  --cb-neutral-inactive: #cbd5e1;
+  --cb-neutral-hover: #f1f5f9;
+  --cb-neutral-select-hover: #f3f4ff;
+  --cb-neutral-breadcrumb: #f8f9fa;
+ 
+  /* Text Colors */
+  --cb-text-primary: #0f172a;
+  --cb-text-secondary: #64748b;
+  --cb-text-tertiary: #6b7280;
+  --cb-text-white: #ffffff;
+}
+ 
+/* ============================================
+   TRITANOPIA (Blue-Yellow Color Blindness)
+   Less common - affects blue/yellow perception
+   Condition: [data-colorblind="tritanopia"] or [data-theme="light"][data-colorblind="tritanopia"]
+   ============================================ */
+ 
+/* Color Variables - Tritanopia */
+html:not(.dark-theme)[data-colorblind="tritanopia"],
+body:not(.dark-theme)[data-colorblind="tritanopia"],
+[data-theme="light"][data-colorblind="tritanopia"],
+html[data-colorblind="tritanopia"]:not([data-theme="dark"]):not(.dark-theme),
+body[data-colorblind="tritanopia"]:not([data-theme="dark"]):not(.dark-theme) {
+  /* Primary Colors (using purple instead of blue) */
+  --cb-primary: #7c3aed;
+  --cb-primary-hover: #6d28d9;
+  --cb-primary-light: #f3e8ff;
+  --cb-primary-shadow: rgba(124, 58, 237, 0.35);
+  --cb-primary-shadow-hover: rgba(124, 58, 237, 0.4);
+  --cb-primary-shadow-focus: rgba(124, 58, 237, 0.15);
+  --cb-primary-border: #7c3aed;
+ 
+  /* Success Colors */
+  --cb-success: #16a34a;
+  --cb-success-hover: #15803d;
+  --cb-success-light: #ecfdf3;
+  --cb-success-border: #15803d;
+  --cb-success-shadow: rgba(22, 163, 74, 0.3);
+  --cb-success-shadow-hover: rgba(22, 163, 74, 0.4);
+ 
+  /* Error/Danger Colors */
+  --cb-error: #dc2626;
+  --cb-error-hover: #b91c1c;
+  --cb-error-light: #fef2f2;
+  --cb-error-border: #991b1b;
+  --cb-error-shadow: rgba(220, 38, 38, 0.3);
+  --cb-error-shadow-hover: rgba(220, 38, 38, 0.4);
+  --cb-error-shadow-focus: rgba(220, 38, 38, 0.2);
+ 
+  /* Warning Colors */
+  --cb-warning: #f97316;
+  --cb-warning-hover: #ea580c;
+  --cb-warning-light: #fff7ed;
+  --cb-warning-shadow: rgba(249, 115, 22, 0.3);
+ 
+  /* Accent Colors */
+  --cb-accent-cyan: #0ea5e9;
+  --cb-accent-cyan-hover: #0284c7;
+  --cb-accent-cyan-shadow: rgba(14, 165, 233, 0.3);
+ 
+  --cb-accent-purple: #7c3aed;
+  --cb-accent-purple-hover: #6d28d9;
+  --cb-accent-purple-light: #f3e8ff;
+  --cb-accent-purple-shadow: rgba(124, 58, 237, 0.3);
+ 
+  --cb-accent-teal: #0f766e;
+  --cb-accent-teal-hover: #115e59;
+  --cb-accent-teal-shadow: rgba(15, 118, 110, 0.3);
+ 
+  /* Neutral Colors */
+  --cb-neutral-bg: #ffffff;
+  --cb-neutral-border: #e2e8f0;
+  --cb-neutral-border-light: #cbd5e1;
+  --cb-neutral-border-hover: #d1d5db;
+  --cb-neutral-text: #1e293b;
+  --cb-neutral-text-secondary: #64748b;
+  --cb-neutral-text-tertiary: #6b7280;
+  --cb-neutral-text-dark: #0f172a;
+  --cb-neutral-gray: #f3f4f6;
+  --cb-neutral-gray-hover: #e5e7eb;
+  --cb-neutral-gray-text: #4b5563;
+  --cb-neutral-gray-text-hover: #374151;
+  --cb-neutral-gray-border: #d1d5db;
+  --cb-neutral-gray-border-hover: #9ca3af;
+  --cb-neutral-inactive: #cbd5e1;
+  --cb-neutral-hover: #f1f5f9;
+  --cb-neutral-select-hover: #f3f4ff;
+  --cb-neutral-breadcrumb: #f8f9fa;
+ 
+  /* Text Colors */
+  --cb-text-primary: #0f172a;
+  --cb-text-secondary: #64748b;
+  --cb-text-tertiary: #6b7280;
+  --cb-text-white: #ffffff;
+}

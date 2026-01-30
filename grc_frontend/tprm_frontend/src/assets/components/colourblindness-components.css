@@ -1,0 +1,1335 @@
+/* ============================================
+   COLOUR BLINDNESS COMPONENT OVERRIDES
+   These styles apply color-blindness variables to all UI components
+   Automatically applies when any color-blind mode is active
+   ============================================ */
+
+/* Apply overrides to all color-blind modes (not dark theme, not "off") */
+html:not(.dark-theme)[data-colorblind="protanopia"],
+html:not(.dark-theme)[data-colorblind="deuteranopia"],
+html:not(.dark-theme)[data-colorblind="tritanopia"],
+body:not(.dark-theme)[data-colorblind="protanopia"],
+body:not(.dark-theme)[data-colorblind="deuteranopia"],
+body:not(.dark-theme)[data-colorblind="tritanopia"] {
+  
+  /* ====================================
+     BADGES & STATUS INDICATORS
+     ==================================== */
+  
+  /* Success/Approved - Green */
+  .badge-approved,
+  .status-approved,
+  .approved-text,
+  .badge-active,
+  .status-active,
+  .active-text {
+    color: var(--cb-success) !important;
+  }
+  
+  /* Warning/In Review - Orange */
+  .badge-in-review,
+  .status-in-review,
+  .badge-in_review,
+  .status-in_review,
+  .in-review-text,
+  .in_review-text,
+  .badge-pending-assignment,
+  .status-pending-assignment,
+  .pending-assignment-text,
+  .badge-pending,
+  .status-pending,
+  .pending-text {
+    color: var(--cb-warning) !important;
+  }
+  
+  /* Primary/Assigned - Blue */
+  .badge-assigned,
+  .status-assigned,
+  .assigned-text,
+  .badge-info,
+  .status-info,
+  .info-text {
+    color: var(--cb-primary) !important;
+  }
+  
+  /* Error/High Priority/Rejected - Red */
+  .badge-priority-high,
+  .priority-high-text,
+  .badge-rejected,
+  .status-rejected,
+  .rejected-text,
+  .badge-failed,
+  .status-failed,
+  .failed-text {
+    color: var(--cb-error) !important;
+  }
+  
+  /* Neutral/Draft - Gray */
+  .badge-draft,
+  .status-draft,
+  .draft-text,
+  .badge-inactive,
+  .status-inactive,
+  .inactive-text {
+    color: var(--cb-neutral-text-tertiary) !important;
+  }
+  
+  /* ====================================
+     BUTTONS
+     ==================================== */
+  
+  /* Primary Buttons */
+  button.btn-primary,
+  .btn-primary,
+  button[class*="bg-blue"]:not([class*="bg-blue-50"]):not([class*="bg-blue-100"]),
+  [class*="bg-blue-500"],
+  [class*="bg-blue-600"],
+  [class*="bg-blue-700"] {
+    background-color: var(--cb-primary) !important;
+    border-color: var(--cb-primary-border) !important;
+  }
+  
+  button.btn-primary:hover,
+  .btn-primary:hover {
+    background-color: var(--cb-primary-hover) !important;
+    box-shadow: 0 4px 6px var(--cb-primary-shadow-hover) !important;
+  }
+  
+  button.btn-primary:focus,
+  .btn-primary:focus {
+    box-shadow: 0 0 0 3px var(--cb-primary-shadow-focus) !important;
+  }
+  
+  /* Success Buttons */
+  button.btn-success,
+  .btn-success,
+  button[class*="bg-green"]:not([class*="bg-green-50"]):not([class*="bg-green-100"]),
+  [class*="bg-green-500"],
+  [class*="bg-green-600"],
+  [class*="bg-green-700"] {
+    background-color: var(--cb-success) !important;
+    border-color: var(--cb-success-border) !important;
+  }
+  
+  button.btn-success:hover,
+  .btn-success:hover {
+    background-color: var(--cb-success-hover) !important;
+    box-shadow: 0 4px 6px var(--cb-success-shadow-hover) !important;
+  }
+  
+  /* Error/Danger Buttons */
+  button.btn-danger,
+  .btn-danger,
+  button.btn-error,
+  .btn-error,
+  button[class*="bg-red"]:not([class*="bg-red-50"]):not([class*="bg-red-100"]),
+  [class*="bg-red-500"],
+  [class*="bg-red-600"],
+  [class*="bg-red-700"] {
+    background-color: var(--cb-error) !important;
+    border-color: var(--cb-error-border) !important;
+  }
+  
+  button.btn-danger:hover,
+  .btn-danger:hover,
+  button.btn-error:hover,
+  .btn-error:hover {
+    background-color: var(--cb-error-hover) !important;
+    box-shadow: 0 4px 6px var(--cb-error-shadow-hover) !important;
+  }
+  
+  /* Warning Buttons */
+  button.btn-warning,
+  .btn-warning,
+  button[class*="bg-orange"]:not([class*="bg-orange-50"]):not([class*="bg-orange-100"]),
+  button[class*="bg-amber"]:not([class*="bg-amber-50"]):not([class*="bg-amber-100"]),
+  button[class*="bg-yellow"]:not([class*="bg-yellow-50"]):not([class*="bg-yellow-100"]),
+  [class*="bg-orange-500"],
+  [class*="bg-orange-600"],
+  [class*="bg-amber-500"],
+  [class*="bg-amber-600"],
+  [class*="bg-yellow-500"],
+  [class*="bg-yellow-600"] {
+    background-color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  button.btn-warning:hover,
+  .btn-warning:hover {
+    background-color: var(--cb-warning-hover) !important;
+    box-shadow: 0 4px 6px var(--cb-warning-shadow) !important;
+  }
+  
+  /* ====================================
+     FORMS & INPUTS
+     ==================================== */
+  
+  /* Input Focus States */
+  input:focus,
+  textarea:focus,
+  select:focus,
+  .global-form-input:focus,
+  .global-form-textarea:focus,
+  .global-form-select:focus {
+    border-color: var(--cb-primary) !important;
+    box-shadow: 0 0 0 3px var(--cb-primary-shadow-focus) !important;
+    outline: none !important;
+  }
+  
+  /* Input Error States */
+  input.error,
+  textarea.error,
+  select.error,
+  input[aria-invalid="true"],
+  textarea[aria-invalid="true"],
+  select[aria-invalid="true"],
+  .global-form-input.error,
+  .global-form-textarea.error,
+  .global-form-select.error {
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* Error Messages */
+  .error-message,
+  .form-error,
+  .validation-error,
+  [class*="error-text"],
+  .global-form-error {
+    color: var(--cb-error) !important;
+  }
+  
+  /* Success Messages */
+  .success-message,
+  .form-success,
+  [class*="success-text"] {
+    color: var(--cb-success) !important;
+  }
+  
+  /* ====================================
+     DROPDOWNS & SELECTS
+     ==================================== */
+  
+  select.dropdown__select:hover,
+  .dropdown__select--form:hover {
+    border-color: var(--cb-primary) !important;
+    background-color: var(--cb-primary-light) !important;
+  }
+  
+  select.dropdown__select:focus,
+  .dropdown__select--form:focus {
+    border-color: var(--cb-primary) !important;
+    box-shadow: 0 0 0 3px var(--cb-primary-shadow-focus) !important;
+  }
+  
+  /* ====================================
+     ALERTS & NOTIFICATIONS
+     ==================================== */
+  
+  /* Success Alerts */
+  .alert-success,
+  [class*="alert-success"],
+  .notification-success,
+  [class*="bg-green-100"],
+  [class*="bg-green-50"] {
+    background-color: var(--cb-success-light) !important;
+    border-color: var(--cb-success-border) !important;
+    color: var(--cb-success) !important;
+  }
+  
+  /* Error Alerts */
+  .alert-error,
+  .alert-danger,
+  [class*="alert-error"],
+  [class*="alert-danger"],
+  .notification-error,
+  [class*="bg-red-100"],
+  [class*="bg-red-50"] {
+    background-color: var(--cb-error-light) !important;
+    border-color: var(--cb-error-border) !important;
+    color: var(--cb-error) !important;
+  }
+  
+  /* Warning Alerts */
+  .alert-warning,
+  [class*="alert-warning"],
+  .notification-warning,
+  [class*="bg-orange-100"],
+  [class*="bg-orange-50"],
+  [class*="bg-amber-100"],
+  [class*="bg-amber-50"],
+  [class*="bg-yellow-100"],
+  [class*="bg-yellow-50"] {
+    background-color: var(--cb-warning-light) !important;
+    border-color: var(--cb-warning) !important;
+    color: var(--cb-warning) !important;
+  }
+  
+  /* Info Alerts */
+  .alert-info,
+  [class*="alert-info"],
+  .notification-info,
+  [class*="bg-blue-100"],
+  [class*="bg-blue-50"] {
+    background-color: var(--cb-primary-light) !important;
+    border-color: var(--cb-primary-border) !important;
+    color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     LINKS & TEXT COLORS
+     ==================================== */
+  
+  /* Primary Links */
+  a[class*="text-blue"],
+  .link-primary,
+  [class*="text-blue-500"],
+  [class*="text-blue-600"],
+  [class*="text-blue-700"] {
+    color: var(--cb-primary) !important;
+  }
+  
+  a[class*="text-blue"]:hover,
+  .link-primary:hover {
+    color: var(--cb-primary-hover) !important;
+  }
+  
+  /* Success Text Colors */
+  [class*="text-green-500"],
+  [class*="text-green-600"],
+  [class*="text-green-700"] {
+    color: var(--cb-success) !important;
+  }
+  
+  /* Error Text Colors */
+  [class*="text-red-500"],
+  [class*="text-red-600"],
+  [class*="text-red-700"] {
+    color: var(--cb-error) !important;
+  }
+  
+  /* Warning Text Colors */
+  [class*="text-orange-500"],
+  [class*="text-orange-600"],
+  [class*="text-amber-500"],
+  [class*="text-amber-600"],
+  [class*="text-yellow-500"],
+  [class*="text-yellow-600"] {
+    color: var(--cb-warning) !important;
+  }
+  
+  /* ====================================
+     BORDERS
+     ==================================== */
+  
+  /* Primary Borders */
+  [class*="border-blue-500"],
+  [class*="border-blue-600"] {
+    border-color: var(--cb-primary) !important;
+  }
+  
+  /* Success Borders */
+  [class*="border-green-500"],
+  [class*="border-green-600"] {
+    border-color: var(--cb-success) !important;
+  }
+  
+  /* Error Borders */
+  [class*="border-red-500"],
+  [class*="border-red-600"] {
+    border-color: var(--cb-error) !important;
+  }
+  
+  /* Warning Borders */
+  [class*="border-orange-500"],
+  [class*="border-orange-600"],
+  [class*="border-amber-500"],
+  [class*="border-amber-600"],
+  [class*="border-yellow-500"],
+  [class*="border-yellow-600"] {
+    border-color: var(--cb-warning) !important;
+  }
+  
+  /* ====================================
+     PROGRESS BARS & METERS
+     ==================================== */
+  
+  /* Progress Bars */
+  .progress-bar,
+  [role="progressbar"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  .progress-bar.success,
+  .progress-bar--success {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .progress-bar.error,
+  .progress-bar.danger,
+  .progress-bar--error,
+  .progress-bar--danger {
+    background-color: var(--cb-error) !important;
+  }
+  
+  .progress-bar.warning,
+  .progress-bar--warning {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  /* ====================================
+     CHARTS & DATA VISUALIZATION
+     ==================================== */
+  
+  /* Chart colors should use color-blind friendly palette */
+  .chart-primary {
+    fill: var(--cb-primary) !important;
+    stroke: var(--cb-primary) !important;
+  }
+  
+  .chart-success {
+    fill: var(--cb-success) !important;
+    stroke: var(--cb-success) !important;
+  }
+  
+  .chart-error,
+  .chart-danger {
+    fill: var(--cb-error) !important;
+    stroke: var(--cb-error) !important;
+  }
+  
+  .chart-warning {
+    fill: var(--cb-warning) !important;
+    stroke: var(--cb-warning) !important;
+  }
+  
+  .chart-accent-1 {
+    fill: var(--cb-accent-purple) !important;
+    stroke: var(--cb-accent-purple) !important;
+  }
+  
+  .chart-accent-2 {
+    fill: var(--cb-accent-cyan) !important;
+    stroke: var(--cb-accent-cyan) !important;
+  }
+  
+  .chart-accent-3 {
+    fill: var(--cb-accent-teal) !important;
+    stroke: var(--cb-accent-teal) !important;
+  }
+  
+  /* ====================================
+     TABLES
+     ==================================== */
+  
+  /* Table Row Hover */
+  table tr:hover td,
+  .table-row:hover {
+    background-color: var(--cb-neutral-hover) !important;
+  }
+  
+  /* Table Header */
+  table th,
+  .table-header {
+    border-color: var(--cb-neutral-border) !important;
+  }
+  
+  /* Table Borders */
+  table td,
+  .table-cell {
+    border-color: var(--cb-neutral-border-light) !important;
+  }
+  
+  /* ====================================
+     CARDS & CONTAINERS
+     ==================================== */
+  
+  /* Card Borders */
+  .card,
+  .global-form-box {
+    border-color: var(--cb-neutral-border) !important;
+  }
+  
+  /* ====================================
+     CHECKBOXES & RADIO BUTTONS
+     ==================================== */
+  
+  /* Checked State */
+  input[type="checkbox"]:checked,
+  input[type="radio"]:checked {
+    background-color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  input[type="checkbox"]:focus,
+  input[type="radio"]:focus {
+    box-shadow: 0 0 0 3px var(--cb-primary-shadow-focus) !important;
+  }
+  
+  /* ====================================
+     SWITCHES & TOGGLES
+     ==================================== */
+  
+  /* Toggle Switch Active */
+  .toggle-switch:checked,
+  .switch-input:checked,
+  [role="switch"][aria-checked="true"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     TOOLTIPS & POPOVERS
+     ==================================== */
+  
+  .tooltip {
+    background-color: var(--cb-neutral-text-dark) !important;
+    color: var(--cb-text-white) !important;
+  }
+  
+  /* ====================================
+     LOADING STATES & SPINNERS
+     ==================================== */
+  
+  .spinner,
+  .loading-spinner {
+    border-color: var(--cb-primary-light) !important;
+    border-top-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     BREADCRUMBS
+     ==================================== */
+  
+  .breadcrumb-link,
+  [class*="breadcrumb"] a {
+    color: var(--cb-primary) !important;
+  }
+  
+  .breadcrumb-link:hover,
+  [class*="breadcrumb"] a:hover {
+    color: var(--cb-primary-hover) !important;
+  }
+  
+  /* ====================================
+     RFP MODULE - TAILWIND UTILITY CLASSES
+     ==================================== */
+  
+  /* Success/Green Backgrounds (50-200 range - light backgrounds) */
+  .bg-green-50,
+  [class*="bg-green-50"] {
+    background-color: var(--cb-success-light) !important;
+  }
+  
+  .bg-green-100,
+  [class*="bg-green-100"] {
+    background-color: var(--cb-success-light) !important;
+  }
+  
+  .bg-green-200,
+  [class*="bg-green-200"] {
+    background-color: var(--cb-success-light) !important;
+  }
+  
+  /* Success/Green Text (600-900 range - readable text) */
+  .text-green-600,
+  .text-green-700,
+  .text-green-800,
+  .text-green-900,
+  [class*="text-green-6"],
+  [class*="text-green-7"],
+  [class*="text-green-8"],
+  [class*="text-green-9"] {
+    color: var(--cb-success) !important;
+  }
+  
+  /* Success/Green Borders */
+  .border-green-200,
+  .border-green-300,
+  .border-green-400,
+  [class*="border-green-2"],
+  [class*="border-green-3"],
+  [class*="border-green-4"] {
+    border-color: var(--cb-success-border) !important;
+  }
+  
+  /* Warning/Yellow Backgrounds */
+  .bg-yellow-50,
+  [class*="bg-yellow-50"] {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .bg-yellow-100,
+  [class*="bg-yellow-100"] {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .bg-yellow-200,
+  [class*="bg-yellow-200"] {
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  /* Warning/Yellow Text */
+  .text-yellow-600,
+  .text-yellow-700,
+  .text-yellow-800,
+  .text-yellow-900,
+  [class*="text-yellow-6"],
+  [class*="text-yellow-7"],
+  [class*="text-yellow-8"],
+  [class*="text-yellow-9"] {
+    color: var(--cb-warning) !important;
+  }
+  
+  /* Warning/Yellow Borders */
+  .border-yellow-200,
+  .border-yellow-300,
+  .border-yellow-400,
+  [class*="border-yellow-2"],
+  [class*="border-yellow-3"],
+  [class*="border-yellow-4"] {
+    border-color: var(--cb-warning) !important;
+  }
+  
+  /* Info/Blue Backgrounds */
+  .bg-blue-50,
+  [class*="bg-blue-50"] {
+    background-color: var(--cb-primary-light) !important;
+  }
+  
+  /* Preserve sidebar navigation selection colors - original light blue background */
+  aside .bg-blue-50,
+  aside [class*="bg-blue-50"],
+  aside a.bg-blue-50,
+  aside a[class*="bg-blue-50"],
+  [class*="sidebar"] .bg-blue-50,
+  [class*="sidebar"] [class*="bg-blue-50"],
+  nav .bg-blue-50,
+  nav [class*="bg-blue-50"],
+  aside nav .bg-blue-50,
+  aside nav [class*="bg-blue-50"],
+  aside nav a.bg-blue-50,
+  aside nav a[class*="bg-blue-50"] {
+    background-color: #eff6ff !important; /* Original bg-blue-50 color */
+  }
+  
+  .bg-blue-100,
+  [class*="bg-blue-100"] {
+    background-color: var(--cb-primary-light) !important;
+  }
+  
+  .bg-blue-200,
+  [class*="bg-blue-200"] {
+    background-color: var(--cb-primary-light) !important;
+  }
+  
+  /* Info/Blue Text */
+  .text-blue-600,
+  .text-blue-700,
+  .text-blue-800,
+  .text-blue-900,
+  [class*="text-blue-6"],
+  [class*="text-blue-7"],
+  [class*="text-blue-8"],
+  [class*="text-blue-9"] {
+    color: var(--cb-primary) !important;
+  }
+  
+  /* Preserve sidebar navigation selection text colors - original dark blue text */
+  aside .text-blue-700,
+  aside [class*="text-blue-700"],
+  aside a.text-blue-700,
+  aside a[class*="text-blue-700"],
+  aside RouterLink.text-blue-700,
+  aside RouterLink[class*="text-blue-700"],
+  [class*="sidebar"] .text-blue-700,
+  [class*="sidebar"] [class*="text-blue-700"],
+  nav .text-blue-700,
+  nav [class*="text-blue-700"],
+  aside nav .text-blue-700,
+  aside nav [class*="text-blue-700"],
+  aside nav a.text-blue-700,
+  aside nav a[class*="text-blue-700"],
+  aside nav RouterLink.text-blue-700,
+  aside nav RouterLink[class*="text-blue-700"] {
+    color: #1d4ed8 !important; /* Original text-blue-700 color */
+  }
+  
+  /* Info/Blue Borders */
+  .border-blue-200,
+  .border-blue-300,
+  .border-blue-400,
+  [class*="border-blue-2"],
+  [class*="border-blue-3"],
+  [class*="border-blue-4"] {
+    border-color: var(--cb-primary-border) !important;
+  }
+  
+  /* Error/Red Backgrounds */
+  .bg-red-50,
+  [class*="bg-red-50"] {
+    background-color: var(--cb-error-light) !important;
+  }
+  
+  .bg-red-100,
+  [class*="bg-red-100"] {
+    background-color: var(--cb-error-light) !important;
+  }
+  
+  .bg-red-200,
+  [class*="bg-red-200"] {
+    background-color: var(--cb-error-light) !important;
+  }
+  
+  /* Error/Red Text */
+  .text-red-600,
+  .text-red-700,
+  .text-red-800,
+  .text-red-900,
+  [class*="text-red-6"],
+  [class*="text-red-7"],
+  [class*="text-red-8"],
+  [class*="text-red-9"] {
+    color: var(--cb-error) !important;
+  }
+  
+  /* Error/Red Borders */
+  .border-red-200,
+  .border-red-300,
+  .border-red-400,
+  [class*="border-red-2"],
+  [class*="border-red-3"],
+  [class*="border-red-4"] {
+    border-color: var(--cb-error-border) !important;
+  }
+  
+  /* ====================================
+     RFP SEMANTIC COLOR CLASSES
+     ==================================== */
+  
+  /* Primary Colors */
+  .bg-primary,
+  [class*="bg-primary"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  .text-primary,
+  [class*="text-primary"] {
+    color: var(--cb-primary) !important;
+  }
+  
+  .border-primary {
+    border-color: var(--cb-primary) !important;
+  }
+  
+  /* Secondary Colors */
+  .bg-secondary {
+    background-color: var(--cb-neutral-gray) !important;
+  }
+  
+  .text-secondary {
+    color: var(--cb-neutral-text-secondary) !important;
+  }
+  
+  /* Destructive/Error Colors */
+  .bg-destructive,
+  [class*="bg-destructive"] {
+    background-color: var(--cb-error) !important;
+  }
+  
+  .text-destructive {
+    color: var(--cb-error) !important;
+  }
+  
+  /* Preserve white text on destructive buttons - text-destructive-foreground should be white */
+  .text-destructive-foreground,
+  button[class*="destructive"] .text-destructive-foreground,
+  button[class*="destructive"],
+  button[class*="variant-destructive"],
+  [class*="Button"][class*="destructive"],
+  [class*="button"][class*="destructive"],
+  .bg-destructive.text-destructive-foreground,
+  .bg-destructive.text-white,
+  [class*="bg-destructive"].text-destructive-foreground,
+  [class*="bg-destructive"].text-white,
+  [class*="bg-destructive"][class*="text-destructive-foreground"],
+  [class*="bg-destructive"][class*="text-white"],
+  button.bg-destructive,
+  button[class*="bg-destructive"],
+  button.bg-destructive.text-destructive-foreground,
+  button[class*="bg-destructive"].text-destructive-foreground {
+    color: #ffffff !important; /* White text on destructive buttons */
+  }
+  
+  /* Preserve white text for destructive button icons */
+  button[class*="destructive"] svg,
+  button[class*="variant-destructive"] svg,
+  [class*="Button"][class*="destructive"] svg,
+  [class*="button"][class*="destructive"] svg,
+  .bg-destructive svg,
+  [class*="bg-destructive"] svg,
+  button[class*="destructive"] .text-destructive-foreground svg,
+  button[class*="destructive"] svg.text-destructive-foreground {
+    color: #ffffff !important; /* White icons on destructive buttons */
+    stroke: #ffffff !important;
+  }
+  
+  .border-destructive {
+    border-color: var(--cb-error-border) !important;
+  }
+  
+  /* Success Colors */
+  .bg-success {
+    background-color: var(--cb-success) !important;
+  }
+  
+  .text-success {
+    color: var(--cb-success) !important;
+  }
+  
+  /* Warning Colors */
+  .bg-warning,
+  [class*="bg-warning"] {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  .text-warning,
+  .text-warning-foreground {
+    color: var(--cb-warning) !important;
+  }
+  
+  /* Info Colors */
+  .bg-info {
+    background-color: var(--cb-primary-light) !important;
+  }
+  
+  .text-info {
+    color: var(--cb-primary) !important;
+  }
+  
+  /* Muted Colors */
+  .bg-muted {
+    background-color: var(--cb-neutral-gray) !important;
+  }
+  
+  .text-muted,
+  .text-muted-foreground {
+    color: var(--cb-neutral-text-secondary) !important;
+  }
+  
+  /* Foreground Text Colors */
+  .text-primary-foreground {
+    color: var(--cb-text-white) !important;
+  }
+  
+  .text-secondary-foreground {
+    color: var(--cb-neutral-text) !important;
+  }
+  
+  /* ====================================
+     RFP GRADIENT BACKGROUNDS
+     ==================================== */
+  
+  /* Gradient Backgrounds */
+  .gradient-primary,
+  [class*="gradient-primary"] {
+    background: var(--cb-primary) !important;
+  }
+  
+  .gradient-primary:hover {
+    background: var(--cb-primary-hover) !important;
+  }
+  
+  /* From-To Gradient Buttons */
+  [class*="from-blue-"],
+  [class*="to-blue-"] {
+    background: var(--cb-primary) !important;
+  }
+  
+  [class*="from-blue-"]:hover,
+  [class*="to-blue-"]:hover {
+    background: var(--cb-primary-hover) !important;
+  }
+  
+  [class*="from-green-"],
+  [class*="to-green-"] {
+    background: var(--cb-success) !important;
+  }
+  
+  [class*="from-green-"]:hover,
+  [class*="to-green-"]:hover {
+    background: var(--cb-success-hover) !important;
+  }
+  
+  [class*="from-red-"],
+  [class*="to-red-"] {
+    background: var(--cb-error) !important;
+  }
+  
+  [class*="from-red-"]:hover,
+  [class*="to-red-"]:hover {
+    background: var(--cb-error-hover) !important;
+  }
+  
+  [class*="from-yellow-"],
+  [class*="to-yellow-"],
+  [class*="from-orange-"],
+  [class*="to-orange-"],
+  [class*="from-amber-"],
+  [class*="to-amber-"] {
+    background: var(--cb-warning) !important;
+  }
+  
+  [class*="from-yellow-"]:hover,
+  [class*="to-yellow-"]:hover,
+  [class*="from-orange-"]:hover,
+  [class*="to-orange-"]:hover,
+  [class*="from-amber-"]:hover,
+  [class*="to-amber-"]:hover {
+    background: var(--cb-warning-hover) !important;
+  }
+  
+  /* ====================================
+     RFP WORKFLOW PROGRESS INDICATORS
+     ==================================== */
+  
+  /* Progress Step Indicators */
+  .progress-step.completed,
+  .progress-step.active {
+    background-color: var(--cb-primary) !important;
+    border-color: var(--cb-primary) !important;
+  }
+  
+  .progress-step.pending {
+    background-color: var(--cb-neutral-gray) !important;
+    border-color: var(--cb-neutral-border) !important;
+  }
+  
+  .progress-line.completed {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  /* ====================================
+     RFP STATUS BADGES (Custom Classes)
+     ==================================== */
+  
+  /* Awarded Status */
+  .status-badge.awarded {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success-border) !important;
+  }
+  
+  /* Evaluation Status */
+  .status-badge.evaluation {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary-border) !important;
+  }
+  
+  /* Active/Pending Status */
+  .status-badge.active {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  /* Draft Status */
+  .status-badge.draft {
+    background-color: var(--cb-neutral-gray) !important;
+    color: var(--cb-neutral-text-tertiary) !important;
+    border-color: var(--cb-neutral-border) !important;
+  }
+  
+  /* Rejected Status */
+  .status-badge.rejected {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error-border) !important;
+  }
+  
+  /* ====================================
+     RFP FOCUS & RING STATES
+     ==================================== */
+  
+  /* Focus outlines */
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus {
+    outline-color: var(--cb-primary) !important;
+  }
+  
+  /* Ring colors for focus */
+  .focus\:ring-blue-500:focus,
+  .focus\:ring-blue-600:focus,
+  [class*="focus:ring-blue"]:focus {
+    --tw-ring-color: var(--cb-primary-shadow-focus) !important;
+  }
+  
+  .focus\:ring-green-500:focus,
+  .focus\:ring-green-600:focus,
+  [class*="focus:ring-green"]:focus {
+    --tw-ring-color: var(--cb-success-shadow) !important;
+  }
+  
+  .focus\:ring-red-500:focus,
+  .focus\:ring-red-600:focus,
+  [class*="focus:ring-red"]:focus {
+    --tw-ring-color: var(--cb-error-shadow-focus) !important;
+  }
+  
+  .focus\:ring-yellow-500:focus,
+  .focus\:ring-yellow-600:focus,
+  [class*="focus:ring-yellow"]:focus {
+    --tw-ring-color: var(--cb-warning-shadow) !important;
+  }
+  
+  /* ====================================
+     RFP KPI CARDS & DATA VISUALIZATION
+     ==================================== */
+  
+  /* KPI Cards */
+  .kpi-card.success,
+  .kpi-increase {
+    color: var(--cb-success) !important;
+  }
+  
+  .kpi-card.error,
+  .kpi-decrease {
+    color: var(--cb-error) !important;
+  }
+  
+  .kpi-card.warning {
+    color: var(--cb-warning) !important;
+  }
+  
+  .kpi-card.info {
+    color: var(--cb-primary) !important;
+  }
+  
+  /* Score Indicators */
+  .score-high {
+    color: var(--cb-success) !important;
+    background-color: var(--cb-success-light) !important;
+  }
+  
+  .score-medium {
+    color: var(--cb-warning) !important;
+    background-color: var(--cb-warning-light) !important;
+  }
+  
+  .score-low {
+    color: var(--cb-error) !important;
+    background-color: var(--cb-error-light) !important;
+  }
+  
+  /* ====================================
+     RFP PROPOSAL & VENDOR BADGES
+     ==================================== */
+  
+  .proposal-count-badge {
+    background-color: var(--cb-primary) !important;
+    color: var(--cb-text-white) !important;
+  }
+  
+  /* Match Score Badges */
+  .match-score-high {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+  }
+  
+  .match-score-medium {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+  }
+  
+  .match-score-low {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+  }
+  
+  /* ====================================
+     RFP CARD HOVER EFFECTS
+     ==================================== */
+  
+  .rfp-card:hover {
+    border-color: var(--cb-primary) !important;
+  }
+  
+  .rfp-card.active {
+    border-color: var(--cb-primary) !important;
+    background-color: var(--cb-primary-light) !important;
+  }
+  
+  /* ====================================
+     RFP VENDOR PORTAL SPECIFIC
+     ==================================== */
+  
+  /* Submission Status */
+  .submission-status.submitted {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+  }
+  
+  .submission-status.pending {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+  }
+  
+  .submission-status.draft {
+    background-color: var(--cb-neutral-gray) !important;
+    color: var(--cb-neutral-text-tertiary) !important;
+  }
+  
+  /* ====================================
+     RFP EVALUATION SCORES
+     ==================================== */
+  
+  /* Evaluation Score Badges */
+  .eval-score-excellent {
+    background-color: var(--cb-success-light) !important;
+    color: var(--cb-success) !important;
+    border-color: var(--cb-success-border) !important;
+  }
+  
+  .eval-score-good {
+    background-color: var(--cb-primary-light) !important;
+    color: var(--cb-primary) !important;
+    border-color: var(--cb-primary-border) !important;
+  }
+  
+  .eval-score-fair {
+    background-color: var(--cb-warning-light) !important;
+    color: var(--cb-warning) !important;
+    border-color: var(--cb-warning) !important;
+  }
+  
+  .eval-score-poor {
+    background-color: var(--cb-error-light) !important;
+    color: var(--cb-error) !important;
+    border-color: var(--cb-error-border) !important;
+  }
+  
+  /* ====================================
+     RFP COMPARISON VIEW
+     ==================================== */
+  
+  /* Comparison Highlights */
+  .comparison-best {
+    background-color: var(--cb-success-light) !important;
+    border-left: 4px solid var(--cb-success) !important;
+  }
+  
+  .comparison-worst {
+    background-color: var(--cb-error-light) !important;
+    border-left: 4px solid var(--cb-error) !important;
+  }
+  
+  .comparison-average {
+    background-color: var(--cb-warning-light) !important;
+    border-left: 4px solid var(--cb-warning) !important;
+  }
+  
+  /* ====================================
+     RFP AWARD STATUS
+     ==================================== */
+  
+  .award-winner {
+    background-color: var(--cb-success-light) !important;
+    border: 2px solid var(--cb-success) !important;
+    color: var(--cb-success) !important;
+  }
+  
+  .award-runner-up {
+    background-color: var(--cb-primary-light) !important;
+    border: 2px solid var(--cb-primary) !important;
+    color: var(--cb-primary) !important;
+  }
+  
+  .award-not-selected {
+    background-color: var(--cb-neutral-gray) !important;
+    border: 2px solid var(--cb-neutral-border) !important;
+    color: var(--cb-neutral-text-tertiary) !important;
+  }
+  
+  /* ====================================
+     RFP TIMELINE & MILESTONES
+     ==================================== */
+  
+  .milestone-completed {
+    background-color: var(--cb-success) !important;
+    color: var(--cb-text-white) !important;
+  }
+  
+  .milestone-current {
+    background-color: var(--cb-primary) !important;
+    color: var(--cb-text-white) !important;
+  }
+  
+  .milestone-upcoming {
+    background-color: var(--cb-neutral-gray) !important;
+    color: var(--cb-neutral-text) !important;
+    border: 2px solid var(--cb-neutral-border) !important;
+  }
+  
+  /* ====================================
+     RFP ACTION BUTTONS
+     ==================================== */
+  
+  /* Approve/Accept Actions */
+  .action-approve,
+  .action-accept {
+    background-color: var(--cb-success) !important;
+    color: var(--cb-text-white) !important;
+  }
+  
+  .action-approve:hover,
+  .action-accept:hover {
+    background-color: var(--cb-success-hover) !important;
+  }
+  
+  /* Reject/Decline Actions */
+  .action-reject,
+  .action-decline {
+    background-color: var(--cb-error) !important;
+    color: var(--cb-text-white) !important;
+  }
+  
+  .action-reject:hover,
+  .action-decline:hover {
+    background-color: var(--cb-error-hover) !important;
+  }
+  
+  /* Review/Pending Actions */
+  .action-review,
+  .action-pending {
+    background-color: var(--cb-warning) !important;
+    color: var(--cb-text-white) !important;
+  }
+  
+  .action-review:hover,
+  .action-pending:hover {
+    background-color: var(--cb-warning-hover) !important;
+  }
+  
+  /* ====================================
+     KPI DASHBOARD CHARTS
+     ==================================== */
+  
+  /* PieChart - Award Acceptance Rate */
+  /* Override SVG stroke colors for pie chart segments */
+  svg circle[stroke="#10b981"],
+  svg circle[stroke="#059669"],
+  svg circle[stroke="#16a34a"] {
+    stroke: var(--cb-success) !important;
+  }
+  
+  svg circle[stroke="#f59e0b"],
+  svg circle[stroke="#f97316"],
+  svg circle[stroke="#ea580c"] {
+    stroke: var(--cb-warning) !important;
+  }
+  
+  svg circle[stroke="#ef4444"],
+  svg circle[stroke="#dc2626"],
+  svg circle[stroke="#b91c1c"] {
+    stroke: var(--cb-error) !important;
+  }
+  
+  /* PieChart legend dots */
+  div[style*="background-color: #10b981"],
+  div[style*="background-color: #059669"],
+  div[style*="background-color: #16a34a"] {
+    background-color: var(--cb-success) !important;
+  }
+  
+  div[style*="background-color: #f59e0b"],
+  div[style*="background-color: #f97316"],
+  div[style*="background-color: #ea580c"] {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  div[style*="background-color: #ef4444"],
+  div[style*="background-color: #dc2626"],
+  div[style*="background-color: #b91c1c"] {
+    background-color: var(--cb-error) !important;
+  }
+  
+  /* ScatterPlot - Category Performance */
+  /* Override hardcoded green colors in scatter plot */
+  svg circle[fill="#10b981"],
+  svg circle[fill="#059669"] {
+    fill: var(--cb-success) !important;
+  }
+  
+  /* Vendor Conversion Funnel - Emerald gradient */
+  .bg-gradient-to-r.from-emerald-400,
+  .bg-gradient-to-r.from-emerald-500,
+  [class*="from-emerald-400"],
+  [class*="from-emerald-500"],
+  [class*="to-emerald-400"],
+  [class*="to-emerald-500"] {
+    background: var(--cb-success) !important;
+  }
+  
+  /* Budget Variance Chart - Progress bars with inline colors */
+  div[style*="background-color: #10b981"],
+  div[style*="background-color: #16a34a"],
+  div[style*="background-color: #059669"] {
+    background-color: var(--cb-success) !important;
+  }
+  
+  div[style*="background-color: #3b82f6"],
+  div[style*="background-color: #2563eb"],
+  div[style*="background-color: #1d4ed8"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  div[style*="background-color: #ef4444"],
+  div[style*="background-color: #dc2626"],
+  div[style*="background-color: #b91c1c"] {
+    background-color: var(--cb-error) !important;
+  }
+  
+  /* RFP Process Funnel Chart - Progress bars and legend dots */
+  div[style*="background-color: #3b82f6"],
+  div[style*="background-color: #2563eb"],
+  div[style*="background-color: #1d4ed8"] {
+    background-color: var(--cb-primary) !important;
+  }
+  
+  div[style*="background-color: #8b5cf6"],
+  div[style*="background-color: #7c3aed"],
+  div[style*="background-color: #6d28d9"] {
+    background-color: var(--cb-accent-purple) !important;
+  }
+  
+  div[style*="background-color: #10b981"],
+  div[style*="background-color: #16a34a"],
+  div[style*="background-color: #059669"] {
+    background-color: var(--cb-success) !important;
+  }
+  
+  div[style*="background-color: #f59e0b"],
+  div[style*="background-color: #f97316"],
+  div[style*="background-color: #ea580c"] {
+    background-color: var(--cb-warning) !important;
+  }
+  
+  div[style*="background-color: #ec4899"],
+  div[style*="background-color: #db2777"],
+  div[style*="background-color: #be185d"] {
+    background-color: var(--cb-accent-pink) !important;
+  }
+  
+  div[style*="background-color: #14b8a6"],
+  div[style*="background-color: #0d9488"],
+  div[style*="background-color: #0f766e"] {
+    background-color: var(--cb-accent-teal) !important;
+  }
+  
+  div[style*="background-color: #ef4444"],
+  div[style*="background-color: #dc2626"],
+  div[style*="background-color: #b91c1c"] {
+    background-color: var(--cb-error) !important;
+  }
+}

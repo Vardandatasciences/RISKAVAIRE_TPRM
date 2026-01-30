@@ -1,0 +1,171 @@
+/* Vendor Approval Dashboard Styles */
+
+/* Import KPI Cards from main.css */
+@import '@/assets/components/main.css';
+
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-title {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.dashboard-subtitle {
+  margin: 0 0 32px 0;
+  color: #64748b;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Stats grid now uses kpi-cards-grid from main.css */
+
+.actions-row { margin-bottom: 30px; }
+
+.actions-card {
+  border: none;
+  border-radius: 8px;
+  background: hsl(var(--vendor_card));
+}
+
+.actions-card h3 {
+  margin: 0;
+  color: #303133;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.activity-row { margin-bottom: 30px; }
+
+.activity-card {
+  border: none;
+  border-radius: 8px;
+  height: 400px;
+  background: hsl(var(--vendor_card));
+}
+
+.activity-card h3 {
+  margin: 0;
+  color: #303133;
+}
+
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.request-list,
+.task-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.request-item,
+.task-item {
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: hsl(var(--vendor_card));
+}
+
+.request-item:hover,
+.task-item:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 14px -10px rgba(148, 163, 184, 0.45);
+}
+
+.request-header,
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.request-tags { display: flex; gap: 8px; }
+
+.request-title,
+.task-name {
+  font-weight: 600;
+  color: #303133;
+  font-size: 14px;
+}
+
+.request-meta,
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #909399;
+  margin-bottom: 8px;
+}
+
+.request-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #606266;
+}
+
+.priority {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.priority-high { background-color: #ffe4e6; color: #f87171; }
+.priority-medium { background-color: #fef9c3; color: #d97706; }
+.priority-low { background-color: #dcfce7; color: #16a34a; }
+.priority-urgent { background-color: #ffe4e6; color: #be123c; font-weight: 700; }
+
+.task-tags { display: flex; gap: 8px; }
+
+.task-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #606266;
+}
+
+.deadline-warning {
+  color: #e6a23c;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+
+.workflow-name,
+.deadline { color: #606266; }
+
+.card-header-with-dropdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.card-header-with-dropdown h3 {
+  margin: 0;
+  flex: 1;
+}
+
+/* Responsive grid handled by kpi-cards-grid from main.css */

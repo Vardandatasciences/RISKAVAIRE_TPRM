@@ -1,0 +1,6026 @@
+/* ============================================
+   GLOBAL CARD AND PANEL OVERRIDES FOR CONTRACT PAGES
+   ============================================ */
+
+html.dark-theme [class*="card"],
+html.dark-theme [class*="panel"],
+html.dark-theme [class*="Card"],
+html.dark-theme [class*="Panel"] {
+  /* background-color: #1f2937 !important; */
+  border-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+/* ============================================
+   CONTRACT DASHBOARD PAGE - DARK THEME
+   Specific dark theme implementation for ContractDashboard.vue only
+   ============================================ */
+
+/* Remove dark backgrounds from Cards and Panels in Contracts page */
+html.dark-theme .contracts-container [class*="card"],
+html.dark-theme .contracts-container [class*="panel"],
+html.dark-theme .contracts-container [class*="Card"],
+html.dark-theme .contracts-container [class*="Panel"],
+.dark-theme .contracts-container [class*="card"],
+.dark-theme .contracts-container [class*="panel"],
+.dark-theme .contracts-container [class*="Card"],
+.dark-theme .contracts-container [class*="Panel"],
+.dark-theme .contracts-container .rounded-lg.border.bg-card,
+.dark-theme .contracts-container [class*="bg-card"] {
+  background-color: transparent !important;
+  border-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+/* Remove dark backgrounds from dropdowns in Contracts page */
+.dark-theme .contracts-container [class*="dropdown"],
+.dark-theme .contracts-container [class*="select"],
+.dark-theme .contracts-container input,
+.dark-theme .contracts-container select {
+  background-color: transparent !important;
+}
+
+/* Remove dark backgrounds from table headers in Contracts page */
+.dark-theme .contracts-container table thead,
+.dark-theme .contracts-container [class*="table"] thead,
+.dark-theme .contracts-container th {
+  background-color: transparent !important;
+}
+
+/* Remove white/light backgrounds from pagination and match page background */
+.dark-theme .contracts-container [class*="bg-slate-50"],
+.dark-theme .contracts-container [class*="bg-gray-50"],
+.dark-theme .contracts-container [class*="bg-white"],
+.dark-theme .contracts-container .bg-slate-50,
+.dark-theme .contracts-container .bg-gray-50,
+.dark-theme .contracts-container .bg-white {
+  background-color: #1f2937 !important;
+}
+
+/* Pagination component - match page background */
+.dark-theme .contracts-container .border-t.bg-slate-50,
+.dark-theme .contracts-container .border-t[class*="bg-slate"],
+.dark-theme .contracts-container .flex.flex-col.sm\:flex-row.items-center.justify-between.px-6.py-4.border-t {
+  background-color: #1f2937 !important;
+  border-top-color: #374151 !important;
+}
+
+/* Table rows - remove white backgrounds */
+.dark-theme .contracts-container table tbody tr,
+.dark-theme .contracts-container [class*="table"] tbody tr,
+.dark-theme .contracts-container [class*="TableRow"],
+.dark-theme .contracts-container tr {
+  background-color: transparent !important;
+}
+
+.dark-theme .contracts-container table tbody tr:hover,
+.dark-theme .contracts-container [class*="table"] tbody tr:hover,
+.dark-theme .contracts-container tr:hover {
+  background-color: rgba(55, 65, 81, 0.5) !important;
+}
+
+/* Table cells - remove white backgrounds */
+.dark-theme .contracts-container table td,
+.dark-theme .contracts-container [class*="table"] td,
+.dark-theme .contracts-container [class*="TableCell"],
+.dark-theme .contracts-container td {
+  background-color: transparent !important;
+}
+
+/* Override any inline white/light backgrounds */
+.dark-theme .contracts-container [style*="background-color: #F8FAFC"],
+.dark-theme .contracts-container [style*="background-color:#F8FAFC"],
+.dark-theme .contracts-container [style*="background-color: #f8fafc"],
+.dark-theme .contracts-container [style*="background-color:#f8fafc"],
+.dark-theme .contracts-container [style*="background: #F8FAFC"],
+.dark-theme .contracts-container [style*="background:#F8FAFC"],
+.dark-theme .contracts-container [style*="background: #f8fafc"],
+.dark-theme .contracts-container [style*="background:#f8fafc"],
+.dark-theme .contracts-container [style*="background-color: rgb(248, 250, 252)"],
+.dark-theme .contracts-container [style*="background-color:rgb(248, 250, 252)"] {
+  background-color: #1f2937 !important;
+}
+
+/* Override Tailwind bg-slate-50 and similar light backgrounds */
+.dark-theme .contracts-container .bg-slate-50,
+.dark-theme .contracts-container .bg-slate-100,
+.dark-theme .contracts-container .bg-gray-50,
+.dark-theme .contracts-container .bg-gray-100,
+.dark-theme .contracts-container [class*="bg-slate-50"],
+.dark-theme .contracts-container [class*="bg-slate-100"],
+.dark-theme .contracts-container [class*="bg-gray-50"],
+.dark-theme .contracts-container [class*="bg-gray-100"] {
+  background-color: #1f2937 !important;
+}
+
+/* Ensure all divs in contracts container match page background */
+.dark-theme .contracts-container > div,
+.dark-theme .contracts-container div {
+  background-color: transparent !important;
+}
+
+/* Specific override for pagination with dark:bg-slate-800/50 */
+.dark-theme .contracts-container .dark\:bg-slate-800\/50,
+.dark-theme .contracts-container [class*="dark:bg-slate-800"] {
+  background-color: #1f2937 !important;
+}
+
+/* All cards and panels - Contract Dashboard specific */
+html.dark-theme .contract-dashboard-page [class*="card"],
+html.dark-theme .contract-dashboard-page [class*="panel"],
+html.dark-theme .contract-dashboard-page [class*="Card"],
+html.dark-theme .contract-dashboard-page [class*="Panel"],
+.dark-theme .contract-dashboard-page [class*="card"],
+.dark-theme .contract-dashboard-page [class*="panel"],
+.dark-theme .contract-dashboard-page [class*="Card"],
+.dark-theme .contract-dashboard-page [class*="Panel"] {
+  /* background-color: #1f2937 !important; */
+  border-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+/* Page Container - Force dark background */
+.dark-theme .contract-dashboard-page,
+.dark-theme [class*="ContractDashboard"] {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+/* Main container wrapper */
+.dark-theme .space-y-6:has(.kpi-cards-grid),
+.dark-theme .space-y-8:has(.kpi-cards-grid) {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+/* ============================================
+   HEADER SECTION - DARK THEME
+   ============================================ */
+
+/* Page Title */
+.dark-theme h1.text-4xl.font-bold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+/* Page Description */
+.dark-theme p.text-lg.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* ============================================
+   KPI CARDS - DARK THEME (Contract Dashboard Specific)
+   ============================================ */
+
+/* KPI Cards Grid */
+.dark-theme .kpi-cards-grid {
+  background-color: transparent !important;
+}
+
+/* KPI Card - Dark background */
+.dark-theme .kpi-card {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border: 1px solid #4b5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Override inline styles for KPI cards */
+.dark-theme .kpi-card[style*="background"],
+.dark-theme .kpi-card[style*="background-color"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+.dark-theme .kpi-card:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* KPI Card Content */
+.dark-theme .kpi-card-content {
+  color: #e5e7eb !important;
+}
+
+/* KPI Card Icon Wrapper - Dark theme adjustments */
+.dark-theme .kpi-card-icon-wrapper {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* KPI Card Icon Colors - Adjusted for dark theme */
+.dark-theme .kpi-card-icon-blue {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .kpi-card-icon-blue svg {
+  color: #60a5fa !important;
+}
+
+.dark-theme .kpi-card-icon-green {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.dark-theme .kpi-card-icon-green svg {
+  color: #34d399 !important;
+}
+
+.dark-theme .kpi-card-icon-orange {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+}
+
+.dark-theme .kpi-card-icon-orange svg {
+  color: #fb923c !important;
+}
+
+.dark-theme .kpi-card-icon-purple {
+  background-color: rgba(168, 85, 247, 0.2) !important;
+}
+
+.dark-theme .kpi-card-icon-purple svg {
+  color: #a78bfa !important;
+}
+
+/* KPI Card Text Elements */
+.dark-theme .kpi-card-text {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .kpi-card-title {
+  color: #9ca3af !important;
+}
+
+.dark-theme .kpi-card-value {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .kpi-card-subheading {
+  color: #6b7280 !important;
+}
+
+/* ============================================
+   RECENT CONTRACTS CARD - DARK THEME
+   ============================================ */
+
+/* Card Component - Transparent background (removed dark background) */
+.dark-theme .contract-dashboard-page .rounded-lg.border.bg-card,
+.dark-theme .contract-dashboard-page [class*="bg-card"],
+.dark-theme .rounded-lg.border.bg-card,
+.dark-theme [class*="bg-card"] {
+  background-color: transparent !important;
+  border-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+/* Card foreground text */
+.dark-theme [class*="text-card-foreground"] {
+  color: #e5e7eb !important;
+}
+
+/* Card Shadow */
+.dark-theme .shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Card Header */
+.dark-theme .border-b {
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .flex.justify-between.items-center {
+  color: #e5e7eb !important;
+}
+
+/* Card Title */
+.dark-theme .text-xl.font-semibold {
+  color: #f3f4f6 !important;
+}
+
+/* Card Description */
+.dark-theme .text-base {
+  color: #9ca3af !important;
+}
+
+/* Card Content */
+.dark-theme .p-0 {
+  background-color: transparent !important;
+}
+
+/* Recent Contracts List Items */
+.dark-theme .divide-y > * {
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .divide-y > *:not(:last-child) {
+  border-bottom-color: #4b5563 !important;
+}
+
+/* Contract Item Row */
+.dark-theme .flex.items-center.justify-between.p-6 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .flex.items-center.justify-between.p-6:hover {
+  background-color: #4b5563 !important;
+}
+
+/* Contract Icon Wrapper */
+.dark-theme .w-12.h-12.bg-gradient-to-br,
+.dark-theme .bg-gradient-to-br.from-primary\/10 {
+  background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1)) !important;
+}
+
+.dark-theme .w-12.h-12.bg-gradient-to-br svg,
+.dark-theme .bg-gradient-to-br svg.text-primary {
+  color: #60a5fa !important;
+}
+
+/* Primary color utilities */
+.dark-theme .text-primary {
+  color: #60a5fa !important;
+}
+
+.dark-theme .border-primary\/20 {
+  border-color: rgba(96, 165, 250, 0.2) !important;
+}
+
+.dark-theme .hover\:border-primary\/20:hover {
+  border-color: rgba(96, 165, 250, 0.3) !important;
+}
+
+/* Contract Title */
+.dark-theme .font-semibold.text-foreground.text-lg {
+  color: #f3f4f6 !important;
+}
+
+/* Contract Details Text */
+.dark-theme .text-sm.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Contract Value */
+.dark-theme .font-semibold.text-foreground.text-lg {
+  color: #f3f4f6 !important;
+}
+
+/* View Button (Eye icon) */
+.dark-theme button.opacity-0.group-hover\:opacity-100 {
+  color: #e5e7eb !important;
+}
+
+.dark-theme button.opacity-0.group-hover\:opacity-100:hover {
+  background-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+/* ============================================
+   QUICK ACTIONS CARDS - DARK THEME
+   ============================================ */
+
+/* Quick Actions Grid */
+.dark-theme .grid.grid-cols-1.md\:grid-cols-3 {
+  background-color: transparent !important;
+}
+
+/* Quick Action Card */
+.dark-theme .cursor-pointer.hover\:shadow-lg {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .cursor-pointer.hover\:shadow-lg:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Quick Action Card Header */
+.dark-theme .pb-4 {
+  color: #e5e7eb !important;
+}
+
+/* Quick Action Icon Backgrounds - Adjusted for dark theme */
+.dark-theme .w-10.h-10.bg-gradient-to-br.from-green-500 {
+  background: linear-gradient(to bottom right, #059669, #047857) !important;
+}
+
+.dark-theme .w-10.h-10.bg-gradient-to-br.from-blue-500 {
+  background: linear-gradient(to bottom right, #2563eb, #1d4ed8) !important;
+}
+
+.dark-theme .w-10.h-10.bg-gradient-to-br.from-purple-500 {
+  background: linear-gradient(to bottom right, #7c3aed, #6d28d9) !important;
+}
+
+/* Quick Action Card Title */
+.dark-theme .text-lg.font-semibold.group-hover\:text-primary {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .text-lg.font-semibold.group-hover\:text-primary:hover {
+  color: #60a5fa !important;
+}
+
+/* Quick Action Card Description */
+.dark-theme .text-sm {
+  color: #9ca3af !important;
+}
+
+/* ============================================
+   LOADING STATE - DARK THEME
+   ============================================ */
+
+/* Loading Container */
+.dark-theme .flex.flex-col.items-center.justify-center.py-20 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Loading Spinner */
+.dark-theme .animate-spin.rounded-full {
+  border-color: rgba(59, 130, 246, 0.2) !important;
+  border-top-color: #3b82f6 !important;
+}
+
+/* Loading Icon */
+.dark-theme .h-6.w-6.text-primary {
+  color: #60a5fa !important;
+}
+
+/* Loading Text */
+.dark-theme h3.text-xl.font-semibold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme p.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Loading Dots */
+.dark-theme .w-2.h-2.bg-primary.rounded-full {
+  background-color: #3b82f6 !important;
+}
+
+/* ============================================
+   ERROR STATE - DARK THEME
+   ============================================ */
+
+/* Error Container */
+.dark-theme .flex.flex-col.items-center.justify-center.py-20 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Error Icon Background */
+.dark-theme .w-20.h-20.bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.dark-theme .w-20.h-20.bg-red-50 svg {
+  color: #f87171 !important;
+}
+
+/* Error Text */
+.dark-theme h3.text-xl.font-semibold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme p.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* ============================================
+   BUTTONS - DARK THEME
+   ============================================ */
+
+/* Create Button */
+.dark-theme .button.button--create {
+  background-color: #1d71ef !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.dark-theme .button.button--create:hover {
+  background-color: #155fcf !important;
+}
+
+/* Ghost Button */
+.dark-theme button[class*="variant-ghost"] {
+  color: #e5e7eb !important;
+}
+
+.dark-theme button[class*="variant-ghost"]:hover {
+  background-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+/* Outline Button */
+.dark-theme button[class*="variant-outline"] {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme button[class*="variant-outline"]:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+/* Default Button */
+.dark-theme button:not([class*="variant"]):not([class*="button--"]) {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme button:not([class*="variant"]):not([class*="button--"]):hover {
+  background-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+/* Button Icons */
+.dark-theme button svg,
+.dark-theme button .w-4.h-4,
+.dark-theme button .h-4.w-4 {
+  color: inherit !important;
+}
+
+/* Button with gap */
+.dark-theme .gap-2 svg {
+  color: inherit !important;
+}
+
+/* ============================================
+   TEXT ELEMENTS - DARK THEME
+   ============================================ */
+
+/* All text-foreground classes */
+.dark-theme .text-foreground {
+  color: #f3f4f6 !important;
+}
+
+/* All text-muted-foreground classes */
+.dark-theme .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* All headings */
+.dark-theme h1, .dark-theme h2, .dark-theme h3, .dark-theme h4, .dark-theme h5, .dark-theme h6 {
+  color: #f3f4f6 !important;
+}
+
+/* All paragraphs */
+.dark-theme p {
+  color: #d1d5db !important;
+}
+
+/* ============================================
+   BADGES - DARK THEME (Status and Priority)
+   ============================================ */
+
+/* Badge text colors remain the same but ensure visibility */
+.dark-theme .badge-active,
+.dark-theme .badge-approved {
+  color: #34d399 !important;
+}
+
+.dark-theme .badge-in-review,
+.dark-theme .badge-pending-assignment {
+  color: #fb923c !important;
+}
+
+.dark-theme .badge-draft {
+  color: #9ca3af !important;
+}
+
+.dark-theme .badge-priority-high {
+  color: #f87171 !important;
+}
+
+.dark-theme .badge-priority-medium {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .badge-priority-low {
+  color: #60a5fa !important;
+}
+
+/* Badge text size */
+.dark-theme .text-xs {
+  color: inherit !important;
+}
+
+/* ============================================
+   UTILITY CLASSES - DARK THEME
+   ============================================ */
+
+/* Space utilities */
+.dark-theme .space-y-6,
+.dark-theme .space-y-8,
+.dark-theme .space-y-4,
+.dark-theme .space-y-2,
+.dark-theme .space-y-1,
+.dark-theme .space-x-4,
+.dark-theme .space-x-1 {
+  color: #e5e7eb !important;
+}
+
+/* Flex and Grid containers */
+.dark-theme .flex,
+.dark-theme .grid {
+  color: #e5e7eb !important;
+}
+
+/* Border utilities - Contract Dashboard specific */
+.dark-theme .contract-dashboard-page .border,
+.dark-theme .contract-dashboard-page .border-t,
+.dark-theme .contract-dashboard-page .border-b,
+.dark-theme .contract-dashboard-page .border-l,
+.dark-theme .contract-dashboard-page .border-r,
+.dark-theme .contract-dashboard-page [class*="border"] {
+  border-color: #374151 !important;
+}
+
+/* Shadow utilities - Contract Dashboard specific */
+html.dark-theme .contract-dashboard-page [class*="shadow"] {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-dashboard-page .shadow-sm,
+.dark-theme .contract-dashboard-page .shadow,
+.dark-theme .contract-dashboard-page .shadow-md,
+.dark-theme .contract-dashboard-page .shadow-lg,
+.dark-theme .contract-dashboard-page .shadow-xl {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Space utilities with color inheritance - Contract Dashboard specific */
+.dark-theme .contract-dashboard-page .space-y-6 > *,
+.dark-theme .contract-dashboard-page .space-y-4 > *,
+.dark-theme .contract-dashboard-page .space-y-2 > * {
+  color: inherit;
+}
+
+/* Structural elements - Contract Dashboard specific */
+html.dark-theme .contract-dashboard-page div,
+html.dark-theme .contract-dashboard-page section,
+html.dark-theme .contract-dashboard-page article,
+html.dark-theme .contract-dashboard-page main,
+html.dark-theme .contract-dashboard-page header,
+html.dark-theme .contract-dashboard-page footer {
+  color: inherit;
+}
+
+/* Global transitions - Contract Dashboard specific */
+html.dark-theme .contract-dashboard-page,
+body.dark-theme .contract-dashboard-page,
+.dark-theme .contract-dashboard-page,
+.dark-theme .contract-dashboard-page * {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ============================================
+   INLINE STYLE OVERRIDES
+   ============================================ */
+
+/* Override any white backgrounds */
+.dark-theme [style*="background-color: white"],
+.dark-theme [style*="background-color:white"],
+.dark-theme [style*="background: white"],
+.dark-theme [style*="background:white"],
+.dark-theme [style*="background-color: #ffffff"],
+.dark-theme [style*="background-color:#ffffff"],
+.dark-theme [style*="background-color: #fff"],
+.dark-theme [style*="background-color:#fff"] {
+  background-color: #374151 !important;
+}
+
+/* Override any light gray backgrounds */
+.dark-theme [style*="background-color: #f9fafb"],
+.dark-theme [style*="background-color:#f9fafb"],
+.dark-theme [style*="background-color: #f3f4f6"],
+.dark-theme [style*="background-color:#f3f4f6"] {
+  background-color: #374151 !important;
+}
+
+/* Override any white text colors that should be dark */
+.dark-theme [style*="color: #111827"],
+.dark-theme [style*="color:#111827"],
+.dark-theme [style*="color: #374151"],
+.dark-theme [style*="color:#374151"] {
+  color: #e5e7eb !important;
+}
+
+/* ============================================
+   TRANSITIONS AND ANIMATIONS
+   ============================================ */
+
+.dark-theme .transition-colors,
+.dark-theme .transition-all,
+.dark-theme .transition-opacity,
+.dark-theme .transition-transform {
+  transition-duration: 0.2s;
+}
+
+/* ============================================
+   ADDITIONAL ELEMENT COVERAGE
+   ============================================ */
+
+/* Ensure all divs in dashboard are dark */
+.dark-theme .contract-dashboard-page > div,
+.dark-theme .contract-dashboard-page div {
+  color: #e5e7eb !important;
+}
+
+/* Group hover effects */
+.dark-theme .group:hover .group-hover\:scale-105 {
+  transform: scale(1.05) !important;
+}
+
+.dark-theme .group:hover .group-hover\:scale-110 {
+  transform: scale(1.1) !important;
+}
+
+.dark-theme .group:hover .group-hover\:text-primary {
+  color: #60a5fa !important;
+}
+
+/* Scale utilities */
+.dark-theme .hover\:scale-\[1\.02\]:hover {
+  transform: scale(1.02) !important;
+}
+
+/* Duration utilities */
+.dark-theme .duration-200 {
+  transition-duration: 200ms !important;
+}
+
+/* ============================================
+   CSS VARIABLE OVERRIDES FOR CARD COMPONENT
+   ============================================ */
+
+.dark-theme .contract-dashboard-page {
+  --card: 55 65 81; /* #374151 */
+  --card-foreground: 229 231 235; /* #e5e7eb */
+  --border: 75 85 99; /* #4b5563 */
+  --foreground: 243 244 246; /* #f3f4f6 */
+  --muted-foreground: 156 163 175; /* #9ca3af */
+  --primary: 96 165 250; /* #60a5fa */
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .dark-theme .kpi-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .dark-theme .kpi-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .dark-theme h1.text-4xl.font-bold {
+    font-size: 2rem !important;
+  }
+}
+
+/* ============================================
+   CONTRACT DETAIL PAGE - DARK THEME
+   Specific dark theme implementation for ContractDetail.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .contract-detail-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Gradient Background - Remove light gradient */
+.dark-theme .contract-detail-page .bg-gradient-to-r.from-slate-50,
+.dark-theme .contract-detail-page .bg-gradient-to-r.from-slate-50.to-slate-100,
+.dark-theme .contract-detail-page [class*="from-slate-50"],
+.dark-theme .contract-detail-page [class*="to-slate-100"] {
+  background: linear-gradient(to right, #1f2937, #374151) !important;
+  border-color: #4b5563 !important;
+}
+
+/* Override dark:from-slate-900 and dark:to-slate-800 */
+.dark-theme .contract-detail-page .dark\:from-slate-900,
+.dark-theme .contract-detail-page .dark\:to-slate-800,
+.dark-theme .contract-detail-page [class*="dark:from-slate-900"],
+.dark-theme .contract-detail-page [class*="dark:to-slate-800"] {
+  background: linear-gradient(to right, #1f2937, #374151) !important;
+}
+
+/* Cards - Remove white/light backgrounds */
+.dark-theme .contract-detail-page [class*="card"],
+.dark-theme .contract-detail-page [class*="Card"],
+.dark-theme .contract-detail-page .rounded-lg.border.bg-card,
+.dark-theme .contract-detail-page [class*="bg-card"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+/* Tabs List - Remove light background */
+.dark-theme .contract-detail-page .bg-slate-100,
+.dark-theme .contract-detail-page [class*="bg-slate-100"],
+.dark-theme .contract-detail-page .dark\:bg-slate-800,
+.dark-theme .contract-detail-page [class*="dark:bg-slate-800"] {
+  background-color: #374151 !important;
+}
+
+/* Tabs Trigger Active State */
+.dark-theme .contract-detail-page .data-\[state\=active\]\:bg-white,
+.dark-theme .contract-detail-page [class*="data-[state=active]:bg-white"],
+.dark-theme .contract-detail-page .dark\:data-\[state\=active\]\:bg-slate-700,
+.dark-theme .contract-detail-page [class*="dark:data-[state=active]:bg-slate-700"] {
+  background-color: #4b5563 !important;
+}
+
+/* Badges - Remove light backgrounds */
+.dark-theme .contract-detail-page .bg-slate-50,
+.dark-theme .contract-detail-page .bg-emerald-50,
+.dark-theme .contract-detail-page .bg-amber-50,
+.dark-theme .contract-detail-page .bg-red-50,
+.dark-theme .contract-detail-page .bg-blue-50,
+.dark-theme .contract-detail-page .bg-green-50,
+.dark-theme .contract-detail-page [class*="bg-slate-50"],
+.dark-theme .contract-detail-page [class*="bg-emerald-50"],
+.dark-theme .contract-detail-page [class*="bg-amber-50"],
+.dark-theme .contract-detail-page [class*="bg-red-50"],
+.dark-theme .contract-detail-page [class*="bg-blue-50"],
+.dark-theme .contract-detail-page [class*="bg-green-50"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+/* Badge Text Colors - Ensure visibility */
+.dark-theme .contract-detail-page .text-slate-700,
+.dark-theme .contract-detail-page .text-emerald-700,
+.dark-theme .contract-detail-page .text-amber-700,
+.dark-theme .contract-detail-page .text-amber-800,
+.dark-theme .contract-detail-page .text-red-700,
+.dark-theme .contract-detail-page .text-blue-700,
+.dark-theme .contract-detail-page .text-green-700 {
+  color: #e5e7eb !important;
+}
+
+/* Status Banner - Expiring Soon */
+.dark-theme .contract-detail-page .border-amber-200,
+.dark-theme .contract-detail-page .bg-gradient-to-r.from-amber-50,
+.dark-theme .contract-detail-page .bg-gradient-to-r.to-orange-50,
+.dark-theme .contract-detail-page [class*="from-amber-50"],
+.dark-theme .contract-detail-page [class*="to-orange-50"] {
+  background: linear-gradient(to right, rgba(217, 119, 6, 0.2), rgba(234, 88, 12, 0.2)) !important;
+  border-color: #92400e !important;
+}
+
+.dark-theme .contract-detail-page .dark\:from-amber-900\/20,
+.dark-theme .contract-detail-page .dark\:to-orange-900\/20,
+.dark-theme .contract-detail-page [class*="dark:from-amber-900/20"],
+.dark-theme .contract-detail-page [class*="dark:to-orange-900/20"] {
+  background: linear-gradient(to right, rgba(217, 119, 6, 0.2), rgba(234, 88, 12, 0.2)) !important;
+}
+
+.dark-theme .contract-detail-page .bg-amber-100,
+.dark-theme .contract-detail-page .dark\:bg-amber-900\/30,
+.dark-theme .contract-detail-page [class*="bg-amber-100"],
+.dark-theme .contract-detail-page [class*="dark:bg-amber-900/30"] {
+  background-color: rgba(217, 119, 6, 0.3) !important;
+}
+
+.dark-theme .contract-detail-page .text-amber-600,
+.dark-theme .contract-detail-page .text-amber-700,
+.dark-theme .contract-detail-page .text-amber-800,
+.dark-theme .contract-detail-page .dark\:text-amber-200,
+.dark-theme .contract-detail-page .dark\:text-amber-300,
+.dark-theme .contract-detail-page .dark\:text-amber-400 {
+  color: #fbbf24 !important;
+}
+
+/* Icon Backgrounds in Cards */
+.dark-theme .contract-detail-page .bg-blue-100,
+.dark-theme .contract-detail-page .bg-green-100,
+.dark-theme .contract-detail-page .bg-purple-100,
+.dark-theme .contract-detail-page .bg-orange-100,
+.dark-theme .contract-detail-page .bg-indigo-100,
+.dark-theme .contract-detail-page .bg-red-100,
+.dark-theme .contract-detail-page [class*="bg-blue-100"],
+.dark-theme .contract-detail-page [class*="bg-green-100"],
+.dark-theme .contract-detail-page [class*="bg-purple-100"],
+.dark-theme .contract-detail-page [class*="bg-orange-100"],
+.dark-theme .contract-detail-page [class*="bg-indigo-100"],
+.dark-theme .contract-detail-page [class*="bg-red-100"] {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-detail-page .dark\:bg-blue-900\/30,
+.dark-theme .contract-detail-page .dark\:bg-green-900\/30,
+.dark-theme .contract-detail-page .dark\:bg-purple-900\/30,
+.dark-theme .contract-detail-page .dark\:bg-orange-900\/30,
+.dark-theme .contract-detail-page .dark\:bg-indigo-900\/30,
+.dark-theme .contract-detail-page .dark\:bg-red-900\/30,
+.dark-theme .contract-detail-page [class*="dark:bg-blue-900/30"],
+.dark-theme .contract-detail-page [class*="dark:bg-green-900/30"],
+.dark-theme .contract-detail-page [class*="dark:bg-purple-900/30"],
+.dark-theme .contract-detail-page [class*="dark:bg-orange-900/30"],
+.dark-theme .contract-detail-page [class*="dark:bg-indigo-900/30"],
+.dark-theme .contract-detail-page [class*="dark:bg-red-900/30"] {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Icon Colors */
+.dark-theme .contract-detail-page .text-blue-600,
+.dark-theme .contract-detail-page .text-green-600,
+.dark-theme .contract-detail-page .text-purple-600,
+.dark-theme .contract-detail-page .text-orange-600,
+.dark-theme .contract-detail-page .text-indigo-600,
+.dark-theme .contract-detail-page .text-red-600,
+.dark-theme .contract-detail-page .dark\:text-blue-400,
+.dark-theme .contract-detail-page .dark\:text-green-400,
+.dark-theme .contract-detail-page .dark\:text-purple-400,
+.dark-theme .contract-detail-page .dark\:text-orange-400,
+.dark-theme .contract-detail-page .dark\:text-indigo-400,
+.dark-theme .contract-detail-page .dark\:text-red-400 {
+  color: #60a5fa !important;
+}
+
+/* Border Colors */
+.dark-theme .contract-detail-page .border-slate-200,
+.dark-theme .contract-detail-page .border-slate-100,
+.dark-theme .contract-detail-page .border-emerald-200,
+.dark-theme .contract-detail-page .border-amber-200,
+.dark-theme .contract-detail-page .border-red-200,
+.dark-theme .contract-detail-page .border-blue-200,
+.dark-theme .contract-detail-page .border-green-200,
+.dark-theme .contract-detail-page [class*="border-slate-200"],
+.dark-theme .contract-detail-page [class*="border-slate-100"],
+.dark-theme .contract-detail-page .dark\:border-slate-700,
+.dark-theme .contract-detail-page [class*="dark:border-slate-700"] {
+  border-color: #4b5563 !important;
+}
+
+/* Text Backgrounds (like contract number badges) */
+.dark-theme .contract-detail-page .bg-white\/50,
+.dark-theme .contract-detail-page .dark\:bg-slate-800\/50,
+.dark-theme .contract-detail-page [class*="bg-white/50"],
+.dark-theme .contract-detail-page [class*="dark:bg-slate-800/50"] {
+  background-color: rgba(55, 65, 81, 0.8) !important;
+}
+
+.dark-theme .contract-detail-page .bg-slate-100,
+.dark-theme .contract-detail-page .dark\:bg-slate-800,
+.dark-theme .contract-detail-page [class*="bg-slate-100"],
+.dark-theme .contract-detail-page [class*="dark:bg-slate-800"] {
+  background-color: #374151 !important;
+}
+
+/* Text Areas with Light Backgrounds */
+.dark-theme .contract-detail-page .bg-slate-50,
+.dark-theme .contract-detail-page .dark\:bg-slate-800,
+.dark-theme .contract-detail-page [class*="bg-slate-50"],
+.dark-theme .contract-detail-page [class*="dark:bg-slate-800"] {
+  background-color: #374151 !important;
+}
+
+/* Hover States */
+.dark-theme .contract-detail-page .hover\:bg-white\/50,
+.dark-theme .contract-detail-page .dark\:hover\:bg-slate-700\/50,
+.dark-theme .contract-detail-page [class*="hover:bg-white/50"],
+.dark-theme .contract-detail-page [class*="dark:hover:bg-slate-700/50"] {
+  background-color: rgba(75, 85, 99, 0.5) !important;
+}
+
+.dark-theme .contract-detail-page .hover\:bg-slate-100,
+.dark-theme .contract-detail-page .dark\:hover\:bg-slate-700,
+.dark-theme .contract-detail-page [class*="hover:bg-slate-100"],
+.dark-theme .contract-detail-page [class*="dark:hover:bg-slate-700"] {
+  background-color: #4b5563 !important;
+}
+
+/* Empty State Circles */
+.dark-theme .contract-detail-page .bg-slate-100.dark\:bg-slate-800,
+.dark-theme .contract-detail-page [class*="bg-slate-100"][class*="dark:bg-slate-800"] {
+  background-color: #374151 !important;
+}
+
+/* Expandable Terms/Clauses - White backgrounds */
+.dark-theme .contract-detail-page .bg-white,
+.dark-theme .contract-detail-page .dark\:bg-slate-900,
+.dark-theme .contract-detail-page [class*="bg-white"],
+.dark-theme .contract-detail-page [class*="dark:bg-slate-900"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+/* Permission Denied Card */
+.dark-theme .contract-detail-page .bg-amber-50,
+.dark-theme .contract-detail-page .dark\:bg-amber-900\/20,
+.dark-theme .contract-detail-page [class*="bg-amber-50"],
+.dark-theme .contract-detail-page [class*="dark:bg-amber-900/20"] {
+  background-color: rgba(217, 119, 6, 0.2) !important;
+  border-color: #92400e !important;
+}
+
+.dark-theme .contract-detail-page .border-amber-200,
+.dark-theme .contract-detail-page .dark\:border-amber-800,
+.dark-theme .contract-detail-page [class*="border-amber-200"],
+.dark-theme .contract-detail-page [class*="dark:border-amber-800"] {
+  border-color: #92400e !important;
+}
+
+/* Error State */
+.dark-theme .contract-detail-page .bg-red-50,
+.dark-theme .contract-detail-page .dark\:bg-red-900\/20,
+.dark-theme .contract-detail-page [class*="bg-red-50"],
+.dark-theme .contract-detail-page [class*="dark:bg-red-900/20"] {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Text Colors */
+.dark-theme .contract-detail-page .text-slate-400,
+.dark-theme .contract-detail-page .text-slate-500,
+.dark-theme .contract-detail-page .text-slate-600,
+.dark-theme .contract-detail-page .dark\:text-slate-400,
+.dark-theme .contract-detail-page [class*="text-slate-400"],
+.dark-theme .contract-detail-page [class*="text-slate-500"],
+.dark-theme .contract-detail-page [class*="text-slate-600"] {
+  color: #9ca3af !important;
+}
+
+/* Green Text Colors */
+.dark-theme .contract-detail-page .text-green-600,
+.dark-theme .contract-detail-page .dark\:text-green-400,
+.dark-theme .contract-detail-page [class*="text-green-600"],
+.dark-theme .contract-detail-page [class*="dark:text-green-400"] {
+  color: #34d399 !important;
+}
+
+/* Ensure all divs inherit dark theme */
+.dark-theme .contract-detail-page > div,
+.dark-theme .contract-detail-page div {
+  color: #e5e7eb !important;
+}
+
+/* All headings */
+.dark-theme .contract-detail-page h1,
+.dark-theme .contract-detail-page h2,
+.dark-theme .contract-detail-page h3,
+.dark-theme .contract-detail-page h4,
+.dark-theme .contract-detail-page h5,
+.dark-theme .contract-detail-page h6 {
+  color: #f3f4f6 !important;
+}
+
+/* All paragraphs and text */
+.dark-theme .contract-detail-page p,
+.dark-theme .contract-detail-page span {
+  color: #d1d5db !important;
+}
+
+/* Muted foreground */
+.dark-theme .contract-detail-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Foreground text */
+.dark-theme .contract-detail-page .text-foreground {
+  color: #f3f4f6 !important;
+}
+
+/* Additional overrides to remove ALL white backgrounds */
+.dark-theme .contract-detail-page .bg-white,
+.dark-theme .contract-detail-page [class*="bg-white"],
+.dark-theme .contract-detail-page div.bg-white,
+.dark-theme .contract-detail-page .Card.bg-white,
+.dark-theme .contract-detail-page .CardContent.bg-white,
+.dark-theme .contract-detail-page .CardHeader.bg-white {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* Override all nested elements that might have white backgrounds */
+.dark-theme .contract-detail-page .Card *,
+.dark-theme .contract-detail-page .CardContent *,
+.dark-theme .contract-detail-page .CardHeader * {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.dark-theme .contract-detail-page .Card,
+.dark-theme .contract-detail-page .CardContent,
+.dark-theme .contract-detail-page .CardHeader {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+/* Override any element that might be causing white background */
+.dark-theme .contract-detail-page details,
+.dark-theme .contract-detail-page summary,
+.dark-theme .contract-detail-page .group {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Override ALL possible white background sources */
+.dark-theme .contract-detail-page [class*="bg-white"],
+.dark-theme .contract-detail-page [class*="bg-slate-50"],
+.dark-theme .contract-detail-page [class*="bg-slate-100"],
+.dark-theme .contract-detail-page [class*="bg-gray-50"],
+.dark-theme .contract-detail-page [class*="bg-gray-100"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* Override any element with computed white background */
+.dark-theme .contract-detail-page *[style*="background-color: white"],
+.dark-theme .contract-detail-page *[style*="background-color:white"],
+.dark-theme .contract-detail-page *[style*="background: white"],
+.dark-theme .contract-detail-page *[style*="background:white"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* Override any remaining white backgrounds more specifically */
+.dark-theme .contract-detail-page .text-xs.bg-white,
+.dark-theme .contract-detail-page .text-xs.dark\:bg-slate-900,
+.dark-theme .contract-detail-page [class*="text-xs"][class*="bg-white"],
+.dark-theme .contract-detail-page [class*="text-xs"][class*="dark:bg-slate-900"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+/* Override common container classes that might have white backgrounds */
+.dark-theme .contract-detail-page .container,
+.dark-theme .contract-detail-page .mx-auto,
+.dark-theme .contract-detail-page .px-6,
+.dark-theme .contract-detail-page .py-6,
+.dark-theme .contract-detail-page .p-4,
+.dark-theme .contract-detail-page .p-6 {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Override any parent containers that might have white backgrounds */
+.dark-theme .contract-detail-page .space-y-8,
+.dark-theme .contract-detail-page .space-y-6,
+.dark-theme .contract-detail-page .space-y-4 {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Force dark background on all possible white background sources */
+.dark-theme .contract-detail-page [class*="bg-white"],
+.dark-theme .contract-detail-page [class*="bg-slate-50"],
+.dark-theme .contract-detail-page [class*="bg-slate-100"],
+.dark-theme .contract-detail-page [class*="bg-gray-50"],
+.dark-theme .contract-detail-page [class*="bg-gray-100"],
+.dark-theme .contract-detail-page [class*="bg-zinc-50"],
+.dark-theme .contract-detail-page [class*="bg-zinc-100"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* Ensure TabsList and TabsTrigger are dark */
+.dark-theme .contract-detail-page .TabsList,
+.dark-theme .contract-detail-page [class*="TabsList"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+.dark-theme .contract-detail-page .TabsTrigger,
+.dark-theme .contract-detail-page [class*="TabsTrigger"] {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-detail-page .TabsTrigger[data-state="active"],
+.dark-theme .contract-detail-page [class*="TabsTrigger"][data-state="active"] {
+  background-color: #4b5563 !important;
+  background: #4b5563 !important;
+  color: #f3f4f6 !important;
+}
+
+/* Override any remaining badge backgrounds */
+.dark-theme .contract-detail-page .Badge,
+.dark-theme .contract-detail-page [class*="Badge"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+/* Ensure all buttons are dark themed */
+.dark-theme .contract-detail-page .button,
+.dark-theme .contract-detail-page .Button,
+.dark-theme .contract-detail-page [class*="button"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-page .button:hover,
+.dark-theme .contract-detail-page .Button:hover {
+  background-color: #4b5563 !important;
+  background: #4b5563 !important;
+}
+
+/* ============================================
+   CONTRACT APPROVAL ASSIGNMENT PAGE - DARK THEME
+   Specific dark theme implementation for ContractApprovalAssignment.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .contract-approval-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .contract-approval-page .approval-header {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .page-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page .page-subtitle {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .status-badge {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .badge-icon {
+  color: #9ca3af !important;
+}
+
+/* Filters Card */
+.dark-theme .contract-approval-page .filters-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-approval-page .filters-header {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approval-page .filters-title h3 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page .filters-icon {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-approval-page .count-badge {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-approval-page .filters-content {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-approval-page .filter-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-approval-page .label-icon {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .filter-input {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .filter-input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Contracts Card */
+.dark-theme .contract-approval-page .contracts-card {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-approval-page .contracts-card .stat-item {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+.dark-theme .contract-approval-page .contracts-header {
+  background-color: transparent !important;
+  background: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approval-page .contracts-header * {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.dark-theme .contract-approval-page .contracts-title h3 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page .contracts-subtitle {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .contracts-icon {
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-approval-page .contracts-stats {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.dark-theme .contract-approval-page .stat-item {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border: 1px solid #4b5563 !important;
+  border-radius: 8px !important;
+  padding: 1rem 1.5rem !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Override any white backgrounds on stat items */
+.dark-theme .contract-approval-page .stat-item,
+.dark-theme .contract-approval-page .stat-item *,
+.dark-theme .contract-approval-page [class*="stat-item"],
+.dark-theme .contract-approval-page [class*="stat"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+.dark-theme .contract-approval-page .stat-number {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page .stat-label {
+  color: #9ca3af !important;
+}
+
+/* Contracts Table */
+.dark-theme .contract-approval-page .contracts-table th {
+  background-color: transparent !important;
+  color: #d1d5db !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approval-page .contracts-table td {
+  background-color: transparent !important;
+  border-bottom-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .contract-row:hover {
+  background-color: #4b5563 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .contract-approval-page .contract-id {
+  background-color: transparent !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .contract-name {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page .contract-number {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .type-badge {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark-theme .contract-approval-page .kind-badge.kind-main {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.dark-theme .contract-approval-page .kind-badge.kind-amendment {
+  background-color: transparent !important;
+  color: #fbbf24 !important;
+  border-color: #f59e0b !important;
+}
+
+.dark-theme .contract-approval-page .kind-badge.kind-subcontract {
+  background-color: rgba(99, 102, 241, 0.2) !important;
+  color: #818cf8 !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+.dark-theme .contract-approval-page .kind-badge.kind-renewal {
+  background-color: transparent !important;
+  color: #a78bfa !important;
+  border-color: #8b5cf6 !important;
+}
+
+.dark-theme .contract-approval-page .kind-badge.kind-default {
+  background-color: transparent !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approval-page .vendor-name {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .value-amount {
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-approval-page .date-text {
+  color: #9ca3af !important;
+}
+
+/* Approvals Card */
+.dark-theme .contract-approval-page .approvals-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-approval-page .approvals-header {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approval-page .approvals-title h3 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page .approvals-subtitle {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .approvals-icon {
+  color: #60a5fa !important;
+  background-color: transparent !important;
+}
+
+/* Approvals Table */
+.dark-theme .contract-approval-page .approvals-table th {
+  background-color: transparent !important;
+  color: #d1d5db !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approval-page .approvals-table td {
+  background-color: transparent !important;
+  border-bottom-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .approval-row:hover {
+  background-color: #4b5563 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .contract-approval-page .approval-id {
+  background-color: transparent !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .workflow-name {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .type-creation {
+  background-color: rgba(99, 102, 241, 0.2) !important;
+  color: #818cf8 !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+.dark-theme .contract-approval-page .contract-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page .contract-number {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .user-name {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .date-label {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .date-value {
+  color: #e5e7eb !important;
+}
+
+/* Loading and Empty States */
+.dark-theme .contract-approval-page .loading-state,
+.dark-theme .contract-approval-page .empty-state {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .loading-spinner {
+  border-color: #4b5563 !important;
+  border-top-color: #3b82f6 !important;
+}
+
+.dark-theme .contract-approval-page .loading-text {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approval-page .empty-icon {
+  color: #6b7280 !important;
+}
+
+.dark-theme .contract-approval-page .empty-state h4 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page .empty-state p {
+  color: #9ca3af !important;
+}
+
+/* Create Form Card */
+.dark-theme .contract-approval-page .card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-approval-page .card-header {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approval-page .card-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page .card-content {
+  background-color: transparent !important;
+}
+
+/* Selected Contract Info */
+.dark-theme .contract-approval-page .bg-blue-50,
+.dark-theme .contract-approval-page [class*="bg-blue-50"] {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-approval-page .border-blue-200,
+.dark-theme .contract-approval-page [class*="border-blue-200"] {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-theme .contract-approval-page .text-blue-700,
+.dark-theme .contract-approval-page .text-blue-900,
+.dark-theme .contract-approval-page [class*="text-blue-700"],
+.dark-theme .contract-approval-page [class*="text-blue-900"] {
+  color: #60a5fa !important;
+}
+
+/* Form Elements */
+.dark-theme .contract-approval-page .global-form-input,
+.dark-theme .contract-approval-page .global-form-select {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .global-form-input:focus,
+.dark-theme .contract-approval-page .global-form-select:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-approval-page .global-form-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-approval-page .global-form-helper-text {
+  color: #9ca3af !important;
+}
+
+/* Buttons */
+.dark-theme .contract-approval-page .btn--outline {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .btn--outline:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-approval-page .btn--view {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .btn--view:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-approval-page .btn--edit {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .btn--edit:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+/* Search Input */
+.dark-theme .contract-approval-page .search-input {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approval-page .search-input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-approval-page .search-icon {
+  color: #9ca3af !important;
+}
+
+/* Ensure all text elements are visible */
+.dark-theme .contract-approval-page h1,
+.dark-theme .contract-approval-page h2,
+.dark-theme .contract-approval-page h3,
+.dark-theme .contract-approval-page h4 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approval-page p,
+.dark-theme .contract-approval-page span {
+  color: #d1d5db !important;
+}
+
+/* Text utilities */
+.dark-theme .contract-approval-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Override any white backgrounds */
+.dark-theme .contract-approval-page [style*="background-color: white"],
+.dark-theme .contract-approval-page [style*="background-color:white"],
+.dark-theme .contract-approval-page [style*="background: white"],
+.dark-theme .contract-approval-page [style*="background:white"] {
+  background-color: #374151 !important;
+}
+
+/* ============================================
+   CONTRACT APPROVALS PAGE - DARK THEME
+   Specific dark theme implementation for ContractApproval.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .contract-approvals-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page .container {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .contract-approvals-page h1.text-3xl.font-bold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approvals-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Cards */
+.dark-theme .contract-approvals-page [class*="card"],
+.dark-theme .contract-approvals-page [class*="Card"],
+.dark-theme .contract-approvals-page .rounded-lg.border.bg-card,
+.dark-theme .contract-approvals-page [class*="bg-card"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+/* Card Header */
+.dark-theme .contract-approvals-page [class*="CardHeader"] {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approvals-page [class*="CardTitle"] {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approvals-page [class*="CardDescription"] {
+  color: #9ca3af !important;
+}
+
+/* Table */
+.dark-theme .contract-approvals-page [class*="Table"] {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page [class*="TableHeader"] {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-approvals-page [class*="TableHead"] {
+  background-color: transparent !important;
+  color: #d1d5db !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approvals-page [class*="TableRow"] {
+  background-color: transparent !important;
+  border-bottom-color: #374151 !important;
+}
+
+.dark-theme .contract-approvals-page [class*="TableRow"]:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approvals-page [class*="TableCell"] {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Badges */
+.dark-theme .contract-approvals-page [class*="Badge"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Badge"][class*="variant-outline"] {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Badge"][class*="variant-secondary"] {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Badge"][class*="variant-destructive"] {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  border-color: #dc2626 !important;
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Badge"][class*="variant-default"] {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  border-color: #10b981 !important;
+  color: #34d399 !important;
+}
+
+/* Status Icon Colors */
+.dark-theme .contract-approvals-page .text-green-500 {
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-approvals-page .text-red-500 {
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-approvals-page .text-blue-500 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-approvals-page .text-yellow-500 {
+  color: #fbbf24 !important;
+}
+
+/* Select Dropdowns */
+.dark-theme .contract-approvals-page [class*="Select"],
+.dark-theme .contract-approvals-page [class*="SelectTrigger"],
+.dark-theme .contract-approvals-page [class*="SelectContent"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page [class*="SelectItem"] {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page [class*="SelectItem"]:hover {
+  background-color: #4b5563 !important;
+}
+
+/* Tabs */
+.dark-theme .contract-approvals-page [class*="TabsList"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-approvals-page [class*="TabsTrigger"] {
+  background-color: transparent !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-approvals-page [class*="TabsTrigger"][class*="data-[state=active]"] {
+  background-color: #4b5563 !important;
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approvals-page [class*="TabsContent"] {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Labels */
+.dark-theme .contract-approvals-page [class*="Label"] {
+  color: #d1d5db !important;
+}
+
+/* Textarea */
+.dark-theme .contract-approvals-page [class*="Textarea"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Textarea"]:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Buttons */
+.dark-theme .contract-approvals-page [class*="Button"][class*="variant-ghost"] {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Button"][class*="variant-ghost"]:hover {
+  background-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Button"][class*="variant-destructive"] {
+  background-color: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Button"][class*="variant-destructive"]:hover {
+  background-color: #b91c1c !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Button"]:not([class*="variant"]) {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-approvals-page [class*="Button"]:not([class*="variant"]):hover {
+  background-color: #2563eb !important;
+}
+
+/* Code/Pre elements */
+.dark-theme .contract-approvals-page pre,
+.dark-theme .contract-approvals-page code {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-approvals-page .bg-muted {
+  background-color: #374151 !important;
+}
+
+/* Border utilities */
+.dark-theme .contract-approvals-page .border-l-2,
+.dark-theme .contract-approvals-page .border-muted {
+  border-color: #4b5563 !important;
+}
+
+/* Text elements */
+.dark-theme .contract-approvals-page .font-medium {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-approvals-page .text-sm {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-approvals-page .text-xs {
+  color: #9ca3af !important;
+}
+
+/* Capitalize class */
+.dark-theme .contract-approvals-page .capitalize {
+  color: inherit !important;
+}
+
+/* Grid and spacing */
+.dark-theme .contract-approvals-page .grid,
+.dark-theme .contract-approvals-page .space-y-6,
+.dark-theme .contract-approvals-page .space-y-4,
+.dark-theme .contract-approvals-page .space-y-2,
+.dark-theme .contract-approvals-page .space-y-3 {
+  color: #e5e7eb !important;
+}
+
+/* Flex utilities */
+.dark-theme .contract-approvals-page .flex {
+  color: #e5e7eb !important;
+}
+
+/* Gap, width, height, padding, and margin utilities don't need specific dark theme overrides */
+
+/* Text center */
+.dark-theme .contract-approvals-page .text-center {
+  color: #9ca3af !important;
+}
+
+/* Override any white backgrounds */
+.dark-theme .contract-approvals-page [style*="background-color: white"],
+.dark-theme .contract-approvals-page [style*="background-color:white"],
+.dark-theme .contract-approvals-page [style*="background: white"],
+.dark-theme .contract-approvals-page [style*="background:white"] {
+  background-color: #374151 !important;
+}
+
+/* ============================================
+   MY CONTRACT APPROVALS PAGE - DARK THEME
+   Specific dark theme implementation for MyContractApprovals.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .my-contract-approvals-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .my-approvals-container {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .my-contract-approvals-page .my-approvals-header {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .header-content {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .my-approvals-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .my-approvals-description {
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .header-icon {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .my-contract-approvals-page .header-icon:hover {
+  background-color: #2563eb !important;
+}
+
+/* Filters Section */
+.dark-theme .my-contract-approvals-page .filters-section {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .filters-header {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .filters-icon {
+  background-color: #8b5cf6 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .my-contract-approvals-page .filters-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .filters-subtitle {
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .clear-filters-btn {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .clear-filters-btn:hover {
+  background-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .my-contract-approvals-page .filters-content {
+  background-color: transparent !important;
+}
+
+.dark-theme .my-contract-approvals-page .filter-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .my-contract-approvals-page .filter-label svg {
+  color: #9ca3af !important;
+}
+
+/* Tab Navigation */
+.dark-theme .my-contract-approvals-page .tab-navigation {
+  background-color: transparent !important;
+}
+
+.dark-theme .my-contract-approvals-page .tab-buttons {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .tab-button {
+  background-color: transparent !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .tab-button:hover {
+  background-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .tab-button--active {
+  background-color: #4b5563 !important;
+  color: #f3f4f6 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .my-contract-approvals-page .tab-badge {
+  background-color: #4b5563 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .tab-button--active .tab-badge {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+/* Approvals Section */
+.dark-theme .my-contract-approvals-page .approvals-section {
+  background-color: transparent !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-header {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-icon {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-subtitle {
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .count-badge {
+  background-color: transparent !important;
+}
+
+.dark-theme .my-contract-approvals-page .count-number {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .count-text {
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-content {
+  background-color: transparent !important;
+}
+
+/* Table Container */
+.dark-theme .my-contract-approvals-page .table-container {
+  background-color: transparent !important;
+}
+
+.dark-theme .my-contract-approvals-page .table-wrapper {
+  background-color: transparent !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-table {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-table th {
+  background-color: #374151 !important;
+  color: #d1d5db !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-table td {
+  background-color: transparent !important;
+  border-bottom-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-table tbody tr {
+  background-color: transparent !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-table tbody tr:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-table tbody tr:nth-child(even) {
+  background-color: rgba(55, 65, 81, 0.3) !important;
+}
+
+.dark-theme .my-contract-approvals-page .approvals-table tbody tr:nth-child(even):hover {
+  background-color: #4b5563 !important;
+}
+
+/* Priority Badges */
+.dark-theme .my-contract-approvals-page .priority-badge--overdue {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dark-theme .my-contract-approvals-page .priority-badge--urgent {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+.dark-theme .my-contract-approvals-page .priority-badge--normal {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-theme .my-contract-approvals-page .priority-badge--low {
+  background-color: rgba(14, 165, 233, 0.2) !important;
+  color: #38bdf8 !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+}
+
+/* Row Highlighting */
+.dark-theme .my-contract-approvals-page .approval-row--overdue {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  border-left-color: #ef4444 !important;
+}
+
+.dark-theme .my-contract-approvals-page .approval-row--overdue:hover {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.dark-theme .my-contract-approvals-page .approval-row--urgent {
+  background-color: rgba(249, 115, 22, 0.1) !important;
+  border-left-color: #f59e0b !important;
+}
+
+.dark-theme .my-contract-approvals-page .approval-row--urgent:hover {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+}
+
+.dark-theme .my-contract-approvals-page .approval-row--completed {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+.dark-theme .my-contract-approvals-page .approval-row--commented {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Workflow Info */
+.dark-theme .my-contract-approvals-page .workflow-name {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .workflow-comment {
+  color: #9ca3af !important;
+}
+
+/* Type Badge */
+.dark-theme .my-contract-approvals-page .type-badge {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+/* Contract Info */
+.dark-theme .my-contract-approvals-page .contract-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .contract-number {
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .contract-id {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #9ca3af !important;
+}
+
+/* Assigner Info */
+.dark-theme .my-contract-approvals-page .assigner-name {
+  color: #e5e7eb !important;
+}
+
+/* Status Badges */
+.dark-theme .my-contract-approvals-page .status-badge--assigned {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-theme .my-contract-approvals-page .status-badge--in-progress {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+.dark-theme .my-contract-approvals-page .status-badge--commented {
+  background-color: rgba(14, 165, 233, 0.2) !important;
+  color: #38bdf8 !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+}
+
+.dark-theme .my-contract-approvals-page .status-badge--skipped {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .status-badge--expired {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dark-theme .my-contract-approvals-page .status-badge--cancelled {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .badge-approved {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .my-contract-approvals-page .badge-draft {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .badge-in-review {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+/* Timeline Info */
+.dark-theme .my-contract-approvals-page .timeline-info {
+  background-color: transparent !important;
+}
+
+.dark-theme .my-contract-approvals-page .date-label {
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .date-value {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .date-overdue {
+  color: #f87171 !important;
+}
+
+.dark-theme .my-contract-approvals-page .timeline-status {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .days-overdue {
+  color: #f87171 !important;
+}
+
+.dark-theme .my-contract-approvals-page .days-urgent {
+  color: #fb923c !important;
+}
+
+.dark-theme .my-contract-approvals-page .days-warning {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .my-contract-approvals-page .days-none {
+  color: #6b7280 !important;
+}
+
+/* Action Buttons */
+.dark-theme .my-contract-approvals-page .action-buttons {
+  background-color: transparent !important;
+}
+
+.dark-theme .my-contract-approvals-page .button--view {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .button--view:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .action-btn--start {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .my-contract-approvals-page .action-btn--start:hover {
+  background-color: #059669 !important;
+}
+
+.dark-theme .my-contract-approvals-page .action-btn--approve {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .my-contract-approvals-page .action-btn--approve:hover {
+  background-color: #059669 !important;
+}
+
+.dark-theme .my-contract-approvals-page .action-btn--reject {
+  background-color: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .my-contract-approvals-page .action-btn--reject:hover {
+  background-color: #dc2626 !important;
+}
+
+/* Loading State */
+.dark-theme .my-contract-approvals-page .loading-state {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .loading-spinner {
+  border-color: #4b5563 !important;
+  border-top-color: #3b82f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .loading-state h4 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .loading-state p {
+  color: #9ca3af !important;
+}
+
+/* Empty State */
+.dark-theme .my-contract-approvals-page .empty-state {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .empty-icon {
+  color: #6b7280 !important;
+}
+
+.dark-theme .my-contract-approvals-page .empty-state h4 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .empty-state p {
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .empty-subtitle {
+  color: #6b7280 !important;
+}
+
+.dark-theme .my-contract-approvals-page .retry-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+
+.dark-theme .my-contract-approvals-page .retry-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  border-color: #1e40af !important;
+}
+
+/* Modal Styles */
+.dark-theme .my-contract-approvals-page .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-content {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-header {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-title {
+  color: #f3f4f6 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #f3f4f6 !important;
+  background-clip: unset !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-close {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  border-color: #6b7280 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-close:hover {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-body {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-body label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-body p {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-body .text-lg {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-body .badge {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-body .font-mono {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-body .bg-muted {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-body .whitespace-pre-wrap {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .modal-footer {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  border-top-color: #4b5563 !important;
+}
+
+/* Modal Buttons */
+.dark-theme .my-contract-approvals-page .btn--primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+
+.dark-theme .my-contract-approvals-page .btn--primary:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  border-color: #1e40af !important;
+}
+
+.dark-theme .my-contract-approvals-page .btn--outline {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .btn--outline:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .my-contract-approvals-page .btn--secondary {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%) !important;
+  color: #ffffff !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .my-contract-approvals-page .btn--secondary:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  border-color: #374151 !important;
+}
+
+/* Input Elements */
+.dark-theme .my-contract-approvals-page .input {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .my-contract-approvals-page .input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .my-contract-approvals-page .input::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Text Colors */
+.dark-theme .my-contract-approvals-page .text-red-600 {
+  color: #f87171 !important;
+}
+
+.dark-theme .my-contract-approvals-page .text-orange-600 {
+  color: #fb923c !important;
+}
+
+.dark-theme .my-contract-approvals-page .text-yellow-600 {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .my-contract-approvals-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Override any white/light backgrounds */
+.dark-theme .my-contract-approvals-page [style*="background-color: white"],
+.dark-theme .my-contract-approvals-page [style*="background-color:white"],
+.dark-theme .my-contract-approvals-page [style*="background: white"],
+.dark-theme .my-contract-approvals-page [style*="background:white"],
+.dark-theme .my-contract-approvals-page [style*="background-color: #ffffff"],
+.dark-theme .my-contract-approvals-page [style*="background-color:#ffffff"],
+.dark-theme .my-contract-approvals-page [style*="background-color: #fff"],
+.dark-theme .my-contract-approvals-page [style*="background-color:#fff"],
+.dark-theme .my-contract-approvals-page [style*="background-color: #F8FAFC"],
+.dark-theme .my-contract-approvals-page [style*="background-color:#F8FAFC"],
+.dark-theme .my-contract-approvals-page [style*="background-color: #f8fafc"],
+.dark-theme .my-contract-approvals-page [style*="background-color:#f8fafc"],
+.dark-theme .my-contract-approvals-page [style*="background-color: #f1f5f9"],
+.dark-theme .my-contract-approvals-page [style*="background-color:#f1f5f9"],
+.dark-theme .my-contract-approvals-page [style*="background-color: #e2e8f0"],
+.dark-theme .my-contract-approvals-page [style*="background-color:#e2e8f0"] {
+  background-color: #374151 !important;
+}
+
+/* Override Tailwind light background classes */
+.dark-theme .my-contract-approvals-page .bg-white,
+.dark-theme .my-contract-approvals-page .bg-slate-50,
+.dark-theme .my-contract-approvals-page .bg-slate-100,
+.dark-theme .my-contract-approvals-page .bg-gray-50,
+.dark-theme .my-contract-approvals-page .bg-gray-100,
+.dark-theme .my-contract-approvals-page [class*="bg-white"],
+.dark-theme .my-contract-approvals-page [class*="bg-slate-50"],
+.dark-theme .my-contract-approvals-page [class*="bg-slate-100"],
+.dark-theme .my-contract-approvals-page [class*="bg-gray-50"],
+.dark-theme .my-contract-approvals-page [class*="bg-gray-100"] {
+  background-color: #374151 !important;
+}
+
+/* Ensure all text elements are visible */
+.dark-theme .my-contract-approvals-page h1,
+.dark-theme .my-contract-approvals-page h2,
+.dark-theme .my-contract-approvals-page h3,
+.dark-theme .my-contract-approvals-page h4,
+.dark-theme .my-contract-approvals-page h5,
+.dark-theme .my-contract-approvals-page h6 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .my-contract-approvals-page p,
+.dark-theme .my-contract-approvals-page span {
+  color: #d1d5db !important;
+}
+
+/* ============================================
+   CONTRACT REVIEW EDIT PAGE - DARK THEME
+   Specific dark theme implementation for ContractReviewEdit.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .contract-review-edit-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-review-edit-page .contract-review-container {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .contract-review-edit-page .review-header {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-review-edit-page .header-content {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-review-edit-page .back-button {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-review-edit-page .back-button:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-review-edit-page .review-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-review-edit-page .review-subtitle {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-review-edit-page .approval-status {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-review-edit-page .status-commented {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+.dark-theme .contract-review-edit-page .status-assigned {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-theme .contract-review-edit-page .status-approved {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .contract-review-edit-page .status-rejected {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+/* Loading and Error States */
+.dark-theme .contract-review-edit-page .loading-state,
+.dark-theme .contract-review-edit-page .error-state {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-review-edit-page .loading-spinner {
+  border-color: #4b5563 !important;
+  border-top-color: #3b82f6 !important;
+}
+
+.dark-theme .contract-review-edit-page .error-icon {
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-review-edit-page .loading-state h4,
+.dark-theme .contract-review-edit-page .error-state h4 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-review-edit-page .loading-state p,
+.dark-theme .contract-review-edit-page .error-state p {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-review-edit-page .retry-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+
+.dark-theme .contract-review-edit-page .retry-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  border-color: #1e40af !important;
+}
+
+/* Review Content */
+.dark-theme .contract-review-edit-page .review-content {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Section Styles */
+.dark-theme .contract-review-edit-page .contract-info-section,
+.dark-theme .contract-review-edit-page .contract-terms-section,
+.dark-theme .contract-review-edit-page .contract-clauses-section,
+.dark-theme .contract-review-edit-page .subcontracts-section,
+.dark-theme .contract-review-edit-page .comments-section {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-review-edit-page .section-header {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-review-edit-page .section-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-review-edit-page .button--add {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .contract-review-edit-page .button--add:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  border-color: #047857 !important;
+}
+
+/* Contract Details */
+.dark-theme .contract-review-edit-page .contract-details {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-review-edit-page .detail-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-review-edit-page .detail-input,
+.dark-theme .contract-review-edit-page .detail-select,
+.dark-theme .contract-review-edit-page .detail-textarea {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-review-edit-page .detail-input:focus,
+.dark-theme .contract-review-edit-page .detail-select:focus,
+.dark-theme .contract-review-edit-page .detail-textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-review-edit-page .detail-input::placeholder,
+.dark-theme .contract-review-edit-page .detail-textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Terms and Clauses */
+.dark-theme .contract-review-edit-page .terms-list,
+.dark-theme .contract-review-edit-page .clauses-list {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-review-edit-page .term-item,
+.dark-theme .contract-review-edit-page .clause-item {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-review-edit-page .term-item:hover,
+.dark-theme .contract-review-edit-page .clause-item:hover {
+  background-color: #374151 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .contract-review-edit-page .term-title,
+.dark-theme .contract-review-edit-page .clause-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-review-edit-page .remove-button {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  color: #ffffff !important;
+  border-color: #dc2626 !important;
+}
+
+.dark-theme .contract-review-edit-page .remove-button:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+  border-color: #b91c1c !important;
+}
+
+.dark-theme .contract-review-edit-page .term-label,
+.dark-theme .contract-review-edit-page .clause-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-review-edit-page .term-input,
+.dark-theme .contract-review-edit-page .clause-input,
+.dark-theme .contract-review-edit-page .term-textarea,
+.dark-theme .contract-review-edit-page .clause-textarea {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-review-edit-page .term-input:focus,
+.dark-theme .contract-review-edit-page .clause-input:focus,
+.dark-theme .contract-review-edit-page .term-textarea:focus,
+.dark-theme .contract-review-edit-page .clause-textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-review-edit-page .term-input::placeholder,
+.dark-theme .contract-review-edit-page .clause-input::placeholder,
+.dark-theme .contract-review-edit-page .term-textarea::placeholder,
+.dark-theme .contract-review-edit-page .clause-textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+.dark-theme .contract-review-edit-page .term-checkbox,
+.dark-theme .contract-review-edit-page .clause-checkbox {
+  accent-color: #3b82f6 !important;
+}
+
+/* Subcontracts Section */
+.dark-theme .contract-review-edit-page .subcontracts-list {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-review-edit-page .subcontract-count {
+  background-color: #1f2937 !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-review-edit-page .subcontract-item {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-review-edit-page .subcontract-item:hover {
+  background-color: #374151 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-review-edit-page .subcontract-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-review-edit-page .subcontract-status {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-review-edit-page .status-draft {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-review-edit-page .status-under-review {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+  color: #fb923c !important;
+}
+
+.dark-theme .contract-review-edit-page .status-approved {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-review-edit-page .status-rejected {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-review-edit-page .info-label {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-review-edit-page .info-value {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-review-edit-page .summary-label {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-review-edit-page .summary-value {
+  color: #f3f4f6 !important;
+}
+
+/* Comments Section */
+.dark-theme .contract-review-edit-page .comments-list {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-review-edit-page .comment-item {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-review-edit-page .comment-author {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-review-edit-page .comment-date {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-review-edit-page .comment-content {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-review-edit-page .comment-form {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-review-edit-page .comment-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-review-edit-page .comment-textarea {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-review-edit-page .comment-textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-review-edit-page .comment-textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Action Buttons */
+.dark-theme .contract-review-edit-page .action-buttons {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-review-edit-page .action-btn--approve {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+}
+
+.dark-theme .contract-review-edit-page .action-btn--approve:hover:not(:disabled) {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .contract-review-edit-page .action-btn:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Select Options */
+.dark-theme .contract-review-edit-page select option {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+/* Override any white/light backgrounds */
+.dark-theme .contract-review-edit-page [style*="background-color: white"],
+.dark-theme .contract-review-edit-page [style*="background-color:white"],
+.dark-theme .contract-review-edit-page [style*="background: white"],
+.dark-theme .contract-review-edit-page [style*="background:white"],
+.dark-theme .contract-review-edit-page [style*="background-color: #ffffff"],
+.dark-theme .contract-review-edit-page [style*="background-color:#ffffff"],
+.dark-theme .contract-review-edit-page [style*="background-color: #fff"],
+.dark-theme .contract-review-edit-page [style*="background-color:#fff"],
+.dark-theme .contract-review-edit-page [style*="background-color: #F8FAFC"],
+.dark-theme .contract-review-edit-page [style*="background-color:#F8FAFC"],
+.dark-theme .contract-review-edit-page [style*="background-color: #f8fafc"],
+.dark-theme .contract-review-edit-page [style*="background-color:#f8fafc"],
+.dark-theme .contract-review-edit-page [style*="background-color: #f1f5f9"],
+.dark-theme .contract-review-edit-page [style*="background-color:#f1f5f9"],
+.dark-theme .contract-review-edit-page [style*="background-color: #e2e8f0"],
+.dark-theme .contract-review-edit-page [style*="background-color:#e2e8f0"] {
+  background-color: #374151 !important;
+}
+
+/* Override Tailwind light background classes */
+.dark-theme .contract-review-edit-page .bg-white,
+.dark-theme .contract-review-edit-page .bg-slate-50,
+.dark-theme .contract-review-edit-page .bg-slate-100,
+.dark-theme .contract-review-edit-page .bg-gray-50,
+.dark-theme .contract-review-edit-page .bg-gray-100,
+.dark-theme .contract-review-edit-page [class*="bg-white"],
+.dark-theme .contract-review-edit-page [class*="bg-slate-50"],
+.dark-theme .contract-review-edit-page [class*="bg-slate-100"],
+.dark-theme .contract-review-edit-page [class*="bg-gray-50"],
+.dark-theme .contract-review-edit-page [class*="bg-gray-100"] {
+  background-color: #374151 !important;
+}
+
+/* Ensure all text elements are visible */
+.dark-theme .contract-review-edit-page h1,
+.dark-theme .contract-review-edit-page h2,
+.dark-theme .contract-review-edit-page h3,
+.dark-theme .contract-review-edit-page h4,
+.dark-theme .contract-review-edit-page h5,
+.dark-theme .contract-review-edit-page h6 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-review-edit-page p,
+.dark-theme .contract-review-edit-page span {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-review-edit-page label {
+  color: #d1d5db !important;
+}
+
+/* ============================================
+   CONTRACT DETAIL VIEW PAGE - DARK THEME
+   Specific dark theme implementation for ContractDetailView.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .contract-detail-view-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .contract-detail-container {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .contract-detail-view-page .contract-header {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-detail-view-page .header-content {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .button--back {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .button--back:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-detail-view-page .contract-title {
+  color: #f3f4f6 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #f3f4f6 !important;
+  background-clip: unset !important;
+}
+
+.dark-theme .contract-detail-view-page .contract-number {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .contract-type {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%) !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-detail-view-page .contract-status {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .action-button {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+
+.dark-theme .contract-detail-view-page .action-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  border-color: #1e40af !important;
+}
+
+/* Loading and Error States */
+.dark-theme .contract-detail-view-page .loading-container,
+.dark-theme .contract-detail-view-page .error-container {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .loading-spinner {
+  border-color: #4b5563 !important;
+  border-top-color: #3b82f6 !important;
+}
+
+.dark-theme .contract-detail-view-page .error-icon {
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-detail-view-page .error-container h3 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-detail-view-page .error-container p {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .retry-button {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+
+.dark-theme .contract-detail-view-page .retry-button:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  border-color: #1e40af !important;
+}
+
+/* Main Content */
+.dark-theme .contract-detail-view-page .contract-content {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Summary Cards */
+.dark-theme .contract-detail-view-page .summary-cards {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-detail-view-page .summary-card {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-detail-view-page .summary-card:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .contract-detail-view-page .summary-icon {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-detail-view-page .summary-value {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-detail-view-page .summary-label {
+  color: #9ca3af !important;
+}
+
+/* Sections */
+.dark-theme .contract-detail-view-page .contract-info-section,
+.dark-theme .contract-detail-view-page .terms-section,
+.dark-theme .contract-detail-view-page .clauses-section,
+.dark-theme .contract-detail-view-page .sub-contracts-section,
+.dark-theme .contract-detail-view-page .comments-section {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-detail-view-page .section-title {
+  color: #f3f4f6 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #f3f4f6 !important;
+  background-clip: unset !important;
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+/* Contract Information */
+.dark-theme .contract-detail-view-page .info-grid {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-detail-view-page .info-item label {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .info-value {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .priority-badge,
+.dark-theme .contract-detail-view-page .compliance-badge {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .priority--low {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%) !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-detail-view-page .priority--medium {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+  color: #fb923c !important;
+}
+
+.dark-theme .contract-detail-view-page .priority--high {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%) !important;
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-detail-view-page .compliance--compliant {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%) !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-detail-view-page .compliance--non_compliant {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%) !important;
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-detail-view-page .compliance--under_review {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+  color: #fb923c !important;
+}
+
+/* Terms and Clauses */
+.dark-theme .contract-detail-view-page .terms-list,
+.dark-theme .contract-detail-view-page .clauses-list {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-detail-view-page .term-card,
+.dark-theme .contract-detail-view-page .clause-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .term-card:hover,
+.dark-theme .contract-detail-view-page .clause-card:hover {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .contract-detail-view-page .term-title,
+.dark-theme .contract-detail-view-page .clause-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-detail-view-page .term-category,
+.dark-theme .contract-detail-view-page .clause-type {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%) !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-detail-view-page .risk-level {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .risk--low {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .risk--medium {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .risk--high {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .term-content p,
+.dark-theme .contract-detail-view-page .clause-content p {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-detail-view-page .compliance-status,
+.dark-theme .contract-detail-view-page .approval-status {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .compliance--pending,
+.dark-theme .contract-detail-view-page .approval--pending {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .compliance--compliant,
+.dark-theme .contract-detail-view-page .approval--approved {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .compliance--rejected,
+.dark-theme .contract-detail-view-page .approval--rejected {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .clause-details {
+  border-top-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .detail-item {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .detail-item strong {
+  color: #e5e7eb !important;
+}
+
+/* Sub Contracts */
+.dark-theme .contract-detail-view-page .sub-contracts-list {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-card:hover {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-header {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-header:hover {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-number {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .stat-badge {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%) !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-detail-view-page .expand-button {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .expand-button:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .expand-button.expanded {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+
+.dark-theme .contract-detail-view-page .info-row .label {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .info-row .value {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .status-badge {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .status--pending_assignment {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .status--under_review {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .status--active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .status--expired {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-details {
+  border-top-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .subsection-title {
+  color: #f3f4f6 !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .empty-subsection {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-terms .term-card,
+.dark-theme .contract-detail-view-page .sub-contract-clauses .clause-card {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-terms .term-card:hover,
+.dark-theme .contract-detail-view-page .sub-contract-clauses .clause-card:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-terms .term-title,
+.dark-theme .contract-detail-view-page .sub-contract-clauses .clause-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-terms .term-category,
+.dark-theme .contract-detail-view-page .sub-contract-clauses .clause-type {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%) !important;
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-terms .term-content p,
+.dark-theme .contract-detail-view-page .sub-contract-clauses .clause-content p {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-clauses .clause-details {
+  border-top-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-clauses .detail-item {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-clauses .detail-item strong {
+  color: #e5e7eb !important;
+}
+
+/* Comments Section */
+.dark-theme .contract-detail-view-page .comments-container {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-detail-view-page .comments-subtitle {
+  color: #f3f4f6 !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-item {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-item:hover {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .contract-detail-view-page .author-name {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-date {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-status {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .status--draft {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .status--commented {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%) !important;
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-detail-view-page .status--in_progress {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+  color: #fb923c !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-content p {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-form {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .no-approval-warning {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .warning-icon {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-detail-view-page .warning-content h4 {
+  color: #fb923c !important;
+}
+
+.dark-theme .contract-detail-view-page .warning-content p {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .contract-detail-view-page .form-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-textarea {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-textarea:disabled {
+  background-color: #374151 !important;
+  color: #6b7280 !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+.dark-theme .contract-detail-view-page .character-count {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .button--save {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%) !important;
+  color: #ffffff !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .button--save:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  border-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .button--submit {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .contract-detail-view-page .button--submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  border-color: #047857 !important;
+}
+
+.dark-theme .contract-detail-view-page .assigner-info-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-theme .contract-detail-view-page .assigner-info-card .info-icon {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-detail-view-page .assigner-info-card .info-content h4 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-detail-view-page .assigner-info-card .info-content p {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .assigner-info-card .info-content strong {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-detail-view-page .go-to-approvals-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+
+.dark-theme .contract-detail-view-page .go-to-approvals-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  border-color: #1e40af !important;
+}
+
+.dark-theme .contract-detail-view-page .empty-state {
+  background-color: transparent !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-detail-view-page .empty-state p {
+  color: #9ca3af !important;
+}
+
+/* Debug Info */
+.dark-theme .contract-detail-view-page .debug-info {
+  color: #6b7280 !important;
+}
+
+/* Override any white/light backgrounds */
+.dark-theme .contract-detail-view-page [style*="background-color: white"],
+.dark-theme .contract-detail-view-page [style*="background-color:white"],
+.dark-theme .contract-detail-view-page [style*="background: white"],
+.dark-theme .contract-detail-view-page [style*="background:white"],
+.dark-theme .contract-detail-view-page [style*="background-color: #ffffff"],
+.dark-theme .contract-detail-view-page [style*="background-color:#ffffff"],
+.dark-theme .contract-detail-view-page [style*="background-color: #fff"],
+.dark-theme .contract-detail-view-page [style*="background-color:#fff"],
+.dark-theme .contract-detail-view-page [style*="background-color: #F8FAFC"],
+.dark-theme .contract-detail-view-page [style*="background-color:#F8FAFC"],
+.dark-theme .contract-detail-view-page [style*="background-color: #f8fafc"],
+.dark-theme .contract-detail-view-page [style*="background-color:#f8fafc"],
+.dark-theme .contract-detail-view-page [style*="background-color: #f1f5f9"],
+.dark-theme .contract-detail-view-page [style*="background-color:#f1f5f9"],
+.dark-theme .contract-detail-view-page [style*="background-color: #e2e8f0"],
+.dark-theme .contract-detail-view-page [style*="background-color:#e2e8f0"] {
+  background-color: #374151 !important;
+}
+
+/* Override Tailwind light background classes */
+.dark-theme .contract-detail-view-page .bg-white,
+.dark-theme .contract-detail-view-page .bg-slate-50,
+.dark-theme .contract-detail-view-page .bg-slate-100,
+.dark-theme .contract-detail-view-page .bg-gray-50,
+.dark-theme .contract-detail-view-page .bg-gray-100,
+.dark-theme .contract-detail-view-page [class*="bg-white"],
+.dark-theme .contract-detail-view-page [class*="bg-slate-50"],
+.dark-theme .contract-detail-view-page [class*="bg-slate-100"],
+.dark-theme .contract-detail-view-page [class*="bg-gray-50"],
+.dark-theme .contract-detail-view-page [class*="bg-gray-100"] {
+  background-color: #374151 !important;
+}
+
+/* Ensure all text elements are visible */
+.dark-theme .contract-detail-view-page h1,
+.dark-theme .contract-detail-view-page h2,
+.dark-theme .contract-detail-view-page h3,
+.dark-theme .contract-detail-view-page h4,
+.dark-theme .contract-detail-view-page h5,
+.dark-theme .contract-detail-view-page h6 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-detail-view-page p,
+.dark-theme .contract-detail-view-page span {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-detail-view-page label {
+  color: #d1d5db !important;
+}
+
+/* Additional overrides to remove ALL white backgrounds from CSS file */
+.dark-theme .contract-detail-view-page * {
+  background-image: none !important;
+}
+
+/* Override ALL gradient backgrounds that use white/light colors */
+.dark-theme .contract-detail-view-page [style*="linear-gradient"][style*="#ffffff"],
+.dark-theme .contract-detail-view-page [style*="linear-gradient"][style*="#f8fafc"],
+.dark-theme .contract-detail-view-page [style*="linear-gradient"][style*="#f1f5f9"],
+.dark-theme .contract-detail-view-page [style*="linear-gradient"][style*="#e2e8f0"],
+.dark-theme .contract-detail-view-page [style*="linear-gradient"][style*="#fffbeb"],
+.dark-theme .contract-detail-view-page [style*="linear-gradient"][style*="#fef3c7"] {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+}
+
+/* Override all elements with background gradients from CSS file */
+.dark-theme .contract-detail-view-page .contract-detail-container {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  background-color: #1f2937 !important;
+}
+
+.dark-theme .contract-detail-view-page .contract-header {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .back-button {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .back-button:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .contract-number {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .loading-container,
+.dark-theme .contract-detail-view-page .error-container {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .summary-card {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .contract-info-section,
+.dark-theme .contract-detail-view-page .terms-section,
+.dark-theme .contract-detail-view-page .clauses-section,
+.dark-theme .contract-detail-view-page .sub-contracts-section,
+.dark-theme .contract-detail-view-page .comments-section {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .term-card,
+.dark-theme .contract-detail-view-page .clause-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  background-color: #1f2937 !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  background-color: #1f2937 !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-number {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .expand-button {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .expand-button:hover {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%) !important;
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .contract-detail-view-page .empty-subsection {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .sub-contract-terms .term-card,
+.dark-theme .contract-detail-view-page .sub-contract-clauses .clause-card {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-item {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  background-color: #1f2937 !important;
+}
+
+.dark-theme .contract-detail-view-page .comment-form {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .no-approval-warning {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%) !important;
+  background-color: rgba(249, 115, 22, 0.2) !important;
+}
+
+/* Override section title background color from CSS */
+.dark-theme .contract-detail-view-page .section-title {
+  background-color: transparent !important;
+  background: none !important;
+}
+
+/* Override all divs and containers */
+.dark-theme .contract-detail-view-page > div,
+.dark-theme .contract-detail-view-page div[class*="container"],
+.dark-theme .contract-detail-view-page div[class*="section"],
+.dark-theme .contract-detail-view-page div[class*="content"],
+.dark-theme .contract-detail-view-page div[class*="list"],
+.dark-theme .contract-detail-view-page div[class*="grid"] {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Override all nested elements that might have white backgrounds */
+.dark-theme .contract-detail-view-page .header-content,
+.dark-theme .contract-detail-view-page .header-left,
+.dark-theme .contract-detail-view-page .contract-title-section,
+.dark-theme .contract-detail-view-page .contract-meta,
+.dark-theme .contract-detail-view-page .header-actions,
+.dark-theme .contract-detail-view-page .info-grid,
+.dark-theme .contract-detail-view-page .info-item,
+.dark-theme .contract-detail-view-page .terms-list,
+.dark-theme .contract-detail-view-page .clauses-list,
+.dark-theme .contract-detail-view-page .sub-contracts-list,
+.dark-theme .contract-detail-view-page .comments-container,
+.dark-theme .contract-detail-view-page .comments-list,
+.dark-theme .contract-detail-view-page .existing-comments,
+.dark-theme .contract-detail-view-page .form-group,
+.dark-theme .contract-detail-view-page .form-actions,
+.dark-theme .contract-detail-view-page .comment-header,
+.dark-theme .contract-detail-view-page .comment-author,
+.dark-theme .contract-detail-view-page .term-header,
+.dark-theme .contract-detail-view-page .clause-header,
+.dark-theme .contract-detail-view-page .term-meta,
+.dark-theme .contract-detail-view-page .clause-meta,
+.dark-theme .contract-detail-view-page .term-footer,
+.dark-theme .contract-detail-view-page .sub-contract-header,
+.dark-theme .contract-detail-view-page .sub-contract-title-section,
+.dark-theme .contract-detail-view-page .sub-contract-actions,
+.dark-theme .contract-detail-view-page .sub-contract-stats,
+.dark-theme .contract-detail-view-page .sub-contract-info,
+.dark-theme .contract-detail-view-page .info-row,
+.dark-theme .contract-detail-view-page .sub-contract-details,
+.dark-theme .contract-detail-view-page .sub-contract-terms,
+.dark-theme .contract-detail-view-page .sub-contract-clauses {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Override any remaining background colors from CSS file that use white/light colors */
+.dark-theme .contract-detail-view-page [class*="gradient"][style*="135deg"][style*="#ffffff"],
+.dark-theme .contract-detail-view-page [class*="gradient"][style*="135deg"][style*="#f8fafc"],
+.dark-theme .contract-detail-view-page [class*="gradient"][style*="135deg"][style*="#f1f5f9"],
+.dark-theme .contract-detail-view-page [class*="gradient"][style*="135deg"][style*="#e2e8f0"],
+.dark-theme .contract-detail-view-page [class*="gradient"][style*="135deg"][style*="#fffbeb"],
+.dark-theme .contract-detail-view-page [class*="gradient"][style*="135deg"][style*="#fef3c7"] {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+}
+
+/* Force override for any element with background-color from CSS */
+.dark-theme .contract-detail-view-page [style*="background-color: #f8fafc"],
+.dark-theme .contract-detail-view-page [style*="background-color:#f8fafc"],
+.dark-theme .contract-detail-view-page [style*="background-color: #ffffff"],
+.dark-theme .contract-detail-view-page [style*="background-color:#ffffff"],
+.dark-theme .contract-detail-view-page [style*="background-color: #f1f5f9"],
+.dark-theme .contract-detail-view-page [style*="background-color:#f1f5f9"],
+.dark-theme .contract-detail-view-page [style*="background-color: #e2e8f0"],
+.dark-theme .contract-detail-view-page [style*="background-color:#e2e8f0"] {
+  background-color: #374151 !important;
+}
+
+/* Override any element that might be causing white background */
+.dark-theme .contract-detail-view-page body,
+.dark-theme .contract-detail-view-page html {
+  background-color: #1f2937 !important;
+}
+
+/* Ensure all sections and containers have dark backgrounds */
+.dark-theme .contract-detail-view-page section,
+.dark-theme .contract-detail-view-page article,
+.dark-theme .contract-detail-view-page main,
+.dark-theme .contract-detail-view-page aside {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Override ALL possible white background sources */
+.dark-theme .contract-detail-view-page * {
+  background-image: none !important;
+}
+
+.dark-theme .contract-detail-view-page *[style*="background"] {
+  background: #374151 !important;
+  background-color: #374151 !important;
+  background-image: none !important;
+}
+
+/* Override any element with computed white background */
+.dark-theme .contract-detail-view-page div:not([class*="spinner"]):not([class*="icon"]) {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-detail-view-page div[class*="card"],
+.dark-theme .contract-detail-view-page div[class*="section"],
+.dark-theme .contract-detail-view-page div[class*="container"],
+.dark-theme .contract-detail-view-page div[class*="content"],
+.dark-theme .contract-detail-view-page div[class*="list"],
+.dark-theme .contract-detail-view-page div[class*="grid"],
+.dark-theme .contract-detail-view-page div[class*="header"],
+.dark-theme .contract-detail-view-page div[class*="footer"],
+.dark-theme .contract-detail-view-page div[class*="body"],
+.dark-theme .contract-detail-view-page div[class*="form"],
+.dark-theme .contract-detail-view-page div[class*="item"],
+.dark-theme .contract-detail-view-page div[class*="meta"],
+.dark-theme .contract-detail-view-page div[class*="info"],
+.dark-theme .contract-detail-view-page div[class*="detail"],
+.dark-theme .contract-detail-view-page div[class*="term"],
+.dark-theme .contract-detail-view-page div[class*="clause"],
+.dark-theme .contract-detail-view-page div[class*="comment"],
+.dark-theme .contract-detail-view-page div[class*="sub"],
+.dark-theme .contract-detail-view-page div[class*="summary"],
+.dark-theme .contract-detail-view-page div[class*="warning"],
+.dark-theme .contract-detail-view-page div[class*="assigner"] {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Force dark background on all direct children of container */
+.dark-theme .contract-detail-view-page > * {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Override any remaining gradient backgrounds that might be applied via CSS classes */
+.dark-theme .contract-detail-view-page [class*="gradient"][class*="white"],
+.dark-theme .contract-detail-view-page [class*="gradient"][class*="slate"],
+.dark-theme .contract-detail-view-page [class*="gradient"][class*="gray"],
+.dark-theme .contract-detail-view-page [class*="gradient"][class*="amber"],
+.dark-theme .contract-detail-view-page [class*="gradient"][class*="yellow"] {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+/* Override any remaining white backgrounds more specifically */
+.dark-theme .contract-detail-view-page div:not(.loading-spinner):not(.error-icon):not(.summary-icon):not(.warning-icon):not(.info-icon) {
+  background-color: transparent !important;
+}
+
+/* Then specifically set dark backgrounds for elements that need them */
+.dark-theme .contract-detail-view-page .contract-detail-container {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  background-color: #1f2937 !important;
+}
+
+.dark-theme .contract-detail-view-page .contract-header,
+.dark-theme .contract-detail-view-page .loading-container,
+.dark-theme .contract-detail-view-page .error-container,
+.dark-theme .contract-detail-view-page .summary-card,
+.dark-theme .contract-detail-view-page .contract-info-section,
+.dark-theme .contract-detail-view-page .terms-section,
+.dark-theme .contract-detail-view-page .clauses-section,
+.dark-theme .contract-detail-view-page .sub-contracts-section,
+.dark-theme .contract-detail-view-page .comments-section,
+.dark-theme .contract-detail-view-page .term-card,
+.dark-theme .contract-detail-view-page .clause-card,
+.dark-theme .contract-detail-view-page .sub-contract-card,
+.dark-theme .contract-detail-view-page .comment-item,
+.dark-theme .contract-detail-view-page .comment-form {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-detail-view-page .term-card,
+.dark-theme .contract-detail-view-page .clause-card,
+.dark-theme .contract-detail-view-page .sub-contract-card,
+.dark-theme .contract-detail-view-page .comment-item {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  background-color: #1f2937 !important;
+}
+
+/* Override common container classes that might have white backgrounds */
+.dark-theme .contract-detail-view-page .container,
+.dark-theme .contract-detail-view-page .mx-auto,
+.dark-theme .contract-detail-view-page [class*="container"],
+.dark-theme .contract-detail-view-page [class*="mx-auto"],
+.dark-theme .contract-detail-view-page [class*="px-"],
+.dark-theme .contract-detail-view-page [class*="py-"],
+.dark-theme .contract-detail-view-page [class*="p-6"],
+.dark-theme .contract-detail-view-page [class*="p-8"] {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Ensure the page wrapper itself has dark background */
+.dark-theme .contract-detail-view-page,
+.dark-theme .contract-detail-view-page::before,
+.dark-theme .contract-detail-view-page::after {
+  background-color: #1f2937 !important;
+  background: #1f2937 !important;
+}
+
+/* Override any parent containers that might have white backgrounds */
+.dark-theme body:has(.contract-detail-view-page),
+.dark-theme html:has(.contract-detail-view-page),
+.dark-theme [class*="page-wrapper"]:has(.contract-detail-view-page),
+.dark-theme [class*="app-container"]:has(.contract-detail-view-page),
+.dark-theme [class*="main-content"]:has(.contract-detail-view-page) {
+  background-color: #1f2937 !important;
+}
+
+/* Override any element that might be a sidebar or panel on the right */
+.dark-theme .contract-detail-view-page ~ *,
+.dark-theme .contract-detail-view-page + *,
+.dark-theme [class*="sidebar"]:has(.contract-detail-view-page),
+.dark-theme [class*="panel"]:has(.contract-detail-view-page),
+.dark-theme [class*="aside"]:has(.contract-detail-view-page) {
+  background-color: #1f2937 !important;
+}
+
+/* Force dark background on all possible white background sources */
+.dark-theme .contract-detail-view-page [class*="bg-white"],
+.dark-theme .contract-detail-view-page [class*="bg-slate"],
+.dark-theme .contract-detail-view-page [class*="bg-gray"],
+.dark-theme .contract-detail-view-page [class*="bg-zinc"],
+.dark-theme .contract-detail-view-page [class*="bg-stone"],
+.dark-theme .contract-detail-view-page [class*="bg-neutral"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* ============================================
+   CONTRACT ARCHIVE PAGE - DARK THEME
+   Specific dark theme implementation for ContractArchive.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .contract-archive-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-archive-page .space-y-6 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .contract-archive-page h1.text-3xl.font-bold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-archive-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-archive-page .button--export {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+.dark-theme .contract-archive-page .button--export:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+/* KPI Cards */
+.dark-theme .contract-archive-page .kpi-cards-grid {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-content {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-icon-wrapper {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-icon-blue {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-icon-blue svg {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-icon-green {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-icon-green svg {
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-icon-red {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-icon-red svg {
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-icon-orange {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-icon-orange svg {
+  color: #fb923c !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-title {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-value {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-archive-page .kpi-card-subheading {
+  color: #6b7280 !important;
+}
+
+/* Filter Card */
+.dark-theme .contract-archive-page [class*="Card"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-archive-page [class*="CardHeader"] {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-archive-page [class*="CardTitle"] {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-archive-page [class*="CardDescription"] {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-archive-page [class*="CardContent"] {
+  background-color: transparent !important;
+}
+
+/* Select Dropdown */
+.dark-theme .contract-archive-page [class*="Select"],
+.dark-theme .contract-archive-page [class*="SelectTrigger"],
+.dark-theme .contract-archive-page [class*="SelectContent"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-archive-page [class*="SelectItem"] {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-archive-page [class*="SelectItem"]:hover {
+  background-color: #4b5563 !important;
+}
+
+/* Loading State */
+.dark-theme .contract-archive-page .text-center.py-12 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-archive-page .animate-spin.rounded-full {
+  border-color: #4b5563 !important;
+  border-top-color: #3b82f6 !important;
+}
+
+.dark-theme .contract-archive-page .border-primary {
+  border-color: #3b82f6 !important;
+}
+
+/* Error State */
+.dark-theme .contract-archive-page .text-destructive {
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-archive-page .text-lg.font-semibold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+/* Archive Table Card */
+.dark-theme .contract-archive-page [class*="Table"] {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-archive-page [class*="TableHeader"] {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-archive-page [class*="TableHead"] {
+  background-color: transparent !important;
+  color: #d1d5db !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-archive-page [class*="TableRow"] {
+  background-color: transparent !important;
+  border-bottom-color: #374151 !important;
+}
+
+.dark-theme .contract-archive-page [class*="TableRow"]:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .contract-archive-page [class*="TableCell"] {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-archive-page .bg-muted {
+  background-color: #374151 !important;
+}
+
+.dark-theme .contract-archive-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-archive-page .font-medium.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-archive-page .text-sm.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-archive-page .text-xs.text-muted-foreground {
+  color: #6b7280 !important;
+}
+
+/* Badges */
+.dark-theme .contract-archive-page .badge-completed {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .contract-archive-page .badge-terminated {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dark-theme .contract-archive-page .badge-expired {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-archive-page .badge-approved {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .contract-archive-page .badge-pending-assignment {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+.dark-theme .contract-archive-page .badge-draft {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .contract-archive-page .badge-early-termination {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+/* Buttons */
+.dark-theme .contract-archive-page [class*="Button"][class*="variant-outline"] {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-archive-page [class*="Button"][class*="variant-outline"]:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-archive-page [class*="Button"]:not([class*="variant"]) {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-archive-page [class*="Button"]:not([class*="variant"]):hover {
+  background-color: #2563eb !important;
+}
+
+.dark-theme .contract-archive-page [class*="Button"]:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Empty State */
+.dark-theme .contract-archive-page .text-center.py-12 .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-archive-page .text-sm.font-semibold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+/* Icon Colors */
+.dark-theme .contract-archive-page svg {
+  color: inherit !important;
+}
+
+.dark-theme .contract-archive-page .w-3.h-3,
+.dark-theme .contract-archive-page .w-4.h-4,
+.dark-theme .contract-archive-page .w-5.h-5 {
+  color: inherit !important;
+}
+
+/* Override any white/light backgrounds */
+.dark-theme .contract-archive-page [style*="background-color: white"],
+.dark-theme .contract-archive-page [style*="background-color:white"],
+.dark-theme .contract-archive-page [style*="background: white"],
+.dark-theme .contract-archive-page [style*="background:white"],
+.dark-theme .contract-archive-page [style*="background-color: #ffffff"],
+.dark-theme .contract-archive-page [style*="background-color:#ffffff"],
+.dark-theme .contract-archive-page [style*="background-color: #fff"],
+.dark-theme .contract-archive-page [style*="background-color:#fff"],
+.dark-theme .contract-archive-page [style*="background-color: #F8FAFC"],
+.dark-theme .contract-archive-page [style*="background-color:#F8FAFC"],
+.dark-theme .contract-archive-page [style*="background-color: #f8fafc"],
+.dark-theme .contract-archive-page [style*="background-color:#f8fafc"],
+.dark-theme .contract-archive-page [style*="background-color: #f1f5f9"],
+.dark-theme .contract-archive-page [style*="background-color:#f1f5f9"],
+.dark-theme .contract-archive-page [style*="background-color: #e2e8f0"],
+.dark-theme .contract-archive-page [style*="background-color:#e2e8f0"] {
+  background-color: #374151 !important;
+}
+
+/* Override Tailwind light background classes */
+.dark-theme .contract-archive-page .bg-white,
+.dark-theme .contract-archive-page .bg-slate-50,
+.dark-theme .contract-archive-page .bg-slate-100,
+.dark-theme .contract-archive-page .bg-gray-50,
+.dark-theme .contract-archive-page .bg-gray-100,
+.dark-theme .contract-archive-page [class*="bg-white"],
+.dark-theme .contract-archive-page [class*="bg-slate-50"],
+.dark-theme .contract-archive-page [class*="bg-slate-100"],
+.dark-theme .contract-archive-page [class*="bg-gray-50"],
+.dark-theme .contract-archive-page [class*="bg-gray-100"] {
+  background-color: #374151 !important;
+}
+
+/* Ensure all text elements are visible */
+.dark-theme .contract-archive-page h1,
+.dark-theme .contract-archive-page h2,
+.dark-theme .contract-archive-page h3,
+.dark-theme .contract-archive-page h4,
+.dark-theme .contract-archive-page h5,
+.dark-theme .contract-archive-page h6 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-archive-page p,
+.dark-theme .contract-archive-page span {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-archive-page label {
+  color: #d1d5db !important;
+}
+
+/* ============================================
+   CONTRACT KPI DASHBOARD PAGE - DARK THEME
+   Specific dark theme implementation for ContractKPIDashboard.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .contract-kpi-dashboard-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .space-y-6 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .contract-kpi-dashboard-page h1.text-3xl.font-bold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page h2.text-xl.font-semibold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+/* KPI Cards - Remove white hover background and all hover effects */
+.dark-theme .contract-kpi-dashboard-page .kpi-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  --card: 55 65 81 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover * {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover [class*="Card"],
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover [class*="CardHeader"],
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover [class*="CardContent"],
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover [class*="CardTitle"],
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover [class*="CardDescription"] {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover .bg-card {
+  background-color: transparent !important;
+}
+
+/* Global override for kpi-card hover in dark theme - prevent white backgrounds */
+.dark-theme :global(.kpi-card:hover) {
+  background-color: #374151 !important;
+  --card: 55 65 81 !important;
+}
+
+.dark-theme :global(.kpi-card:hover *) {
+  background-color: transparent !important;
+}
+
+.dark-theme :global(.kpi-card:hover .bg-card) {
+  background-color: transparent !important;
+}
+
+/* Override any white background from scoped styles */
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover {
+  background-color: #374151 !important;
+  --card: 55 65 81 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .kpi-card:hover * {
+  background-color: transparent !important;
+}
+
+/* Card Components */
+.dark-theme .contract-kpi-dashboard-page [class*="Card"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page [class*="CardHeader"] {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page [class*="CardTitle"] {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page [class*="CardTitle"].text-primary {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page [class*="CardDescription"] {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page [class*="CardContent"] {
+  background-color: transparent !important;
+}
+
+/* Border Primary */
+.dark-theme .contract-kpi-dashboard-page .border-primary\/20 {
+  border-color: rgba(96, 165, 250, 0.2) !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .border-2 {
+  border-width: 2px !important;
+}
+
+/* Text Colors */
+.dark-theme .contract-kpi-dashboard-page .text-primary {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .text-2xl.font-bold.text-primary {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .text-xs.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .text-red-600 {
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .text-yellow-600 {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .text-orange-600 {
+  color: #fb923c !important;
+}
+
+/* Border Utilities */
+.dark-theme .contract-kpi-dashboard-page .border-t {
+  border-top-color: #4b5563 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .border-border {
+  border-color: #4b5563 !important;
+}
+
+/* Statistics Sections */
+.dark-theme .contract-kpi-dashboard-page .font-semibold.text-primary {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .font-semibold.text-red-600 {
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .font-semibold.text-yellow-600 {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .font-semibold.text-orange-600 {
+  color: #fb923c !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page .font-bold.text-lg.text-primary {
+  color: #60a5fa !important;
+}
+
+/* Chart Canvas Background */
+.dark-theme .contract-kpi-dashboard-page canvas {
+  background-color: transparent !important;
+}
+
+/* Override any white/light backgrounds */
+.dark-theme .contract-kpi-dashboard-page [style*="background-color: white"],
+.dark-theme .contract-kpi-dashboard-page [style*="background-color:white"],
+.dark-theme .contract-kpi-dashboard-page [style*="background: white"],
+.dark-theme .contract-kpi-dashboard-page [style*="background:white"],
+.dark-theme .contract-kpi-dashboard-page [style*="background-color: #ffffff"],
+.dark-theme .contract-kpi-dashboard-page [style*="background-color:#ffffff"],
+.dark-theme .contract-kpi-dashboard-page [style*="background-color: #fff"],
+.dark-theme .contract-kpi-dashboard-page [style*="background-color:#fff"] {
+  background-color: #374151 !important;
+}
+
+/* Override Tailwind light background classes */
+.dark-theme .contract-kpi-dashboard-page .bg-white,
+.dark-theme .contract-kpi-dashboard-page .bg-slate-50,
+.dark-theme .contract-kpi-dashboard-page .bg-slate-100,
+.dark-theme .contract-kpi-dashboard-page .bg-gray-50,
+.dark-theme .contract-kpi-dashboard-page .bg-gray-100,
+.dark-theme .contract-kpi-dashboard-page [class*="bg-white"],
+.dark-theme .contract-kpi-dashboard-page [class*="bg-slate-50"],
+.dark-theme .contract-kpi-dashboard-page [class*="bg-slate-100"],
+.dark-theme .contract-kpi-dashboard-page [class*="bg-gray-50"],
+.dark-theme .contract-kpi-dashboard-page [class*="bg-gray-100"] {
+  background-color: #374151 !important;
+}
+
+/* Ensure all text elements are visible */
+.dark-theme .contract-kpi-dashboard-page h1,
+.dark-theme .contract-kpi-dashboard-page h2,
+.dark-theme .contract-kpi-dashboard-page h3,
+.dark-theme .contract-kpi-dashboard-page h4,
+.dark-theme .contract-kpi-dashboard-page h5,
+.dark-theme .contract-kpi-dashboard-page h6 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page p,
+.dark-theme .contract-kpi-dashboard-page span {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-kpi-dashboard-page label {
+  color: #d1d5db !important;
+}
+
+/* ============================================
+   CONTRACT RENEWAL PAGE - DARK THEME
+   Specific dark theme implementation for ContractRenewal.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .contract-renewal-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-renewal-page .space-y-6 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .contract-renewal-page h1.text-3xl.font-bold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-renewal-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-renewal-page .button--back {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-renewal-page .button--back:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+/* Cards */
+.dark-theme .contract-renewal-page [class*="Card"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-renewal-page [class*="CardHeader"] {
+  background-color: transparent !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .contract-renewal-page [class*="CardTitle"] {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-renewal-page [class*="CardDescription"] {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-renewal-page [class*="CardContent"] {
+  background-color: transparent !important;
+}
+
+/* Loading State */
+.dark-theme .contract-renewal-page .animate-spin.rounded-full {
+  border-color: #4b5563 !important;
+  border-top-color: #3b82f6 !important;
+}
+
+.dark-theme .contract-renewal-page .border-primary {
+  border-color: #3b82f6 !important;
+}
+
+/* Contract Information Grid */
+.dark-theme .contract-renewal-page .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-renewal-page .text-sm.font-medium {
+  color: #d1d5db !important;
+}
+
+/* Renewal Overview Card - View Mode */
+.dark-theme .contract-renewal-page .border-l-4.border-l-primary {
+  border-left-color: #3b82f6 !important;
+}
+
+/* Status Badges */
+.dark-theme .contract-renewal-page .bg-blue-100,
+.dark-theme .contract-renewal-page [class*="bg-blue-100"] {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-theme .contract-renewal-page .text-blue-800,
+.dark-theme .contract-renewal-page [class*="text-blue-800"] {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-renewal-page .border-blue-200,
+.dark-theme .contract-renewal-page [class*="border-blue-200"] {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.dark-theme .contract-renewal-page .bg-yellow-100,
+.dark-theme .contract-renewal-page [class*="bg-yellow-100"] {
+  background-color: rgba(251, 191, 36, 0.2) !important;
+  border-color: rgba(251, 191, 36, 0.4) !important;
+}
+
+.dark-theme .contract-renewal-page .text-yellow-800,
+.dark-theme .contract-renewal-page [class*="text-yellow-800"] {
+  color: #fbbf24 !important;
+}
+
+.dark-theme .contract-renewal-page .border-yellow-200,
+.dark-theme .contract-renewal-page [class*="border-yellow-200"] {
+  border-color: rgba(251, 191, 36, 0.4) !important;
+}
+
+.dark-theme .contract-renewal-page .bg-green-100,
+.dark-theme .contract-renewal-page [class*="bg-green-100"] {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .contract-renewal-page .text-green-800,
+.dark-theme .contract-renewal-page [class*="text-green-800"] {
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-renewal-page .border-green-200,
+.dark-theme .contract-renewal-page [class*="border-green-200"] {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .contract-renewal-page .bg-red-100,
+.dark-theme .contract-renewal-page [class*="bg-red-100"] {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dark-theme .contract-renewal-page .text-red-800,
+.dark-theme .contract-renewal-page [class*="text-red-800"] {
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-renewal-page .border-red-200,
+.dark-theme .contract-renewal-page [class*="border-red-200"] {
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dark-theme .contract-renewal-page .bg-red-300,
+.dark-theme .contract-renewal-page [class*="bg-red-300"] {
+  background-color: rgba(239, 68, 68, 0.3) !important;
+  border-color: rgba(239, 68, 68, 0.5) !important;
+}
+
+.dark-theme .contract-renewal-page .border-red-300,
+.dark-theme .contract-renewal-page [class*="border-red-300"] {
+  border-color: rgba(239, 68, 68, 0.5) !important;
+}
+
+/* Gradient Backgrounds - Renewal Overview Cards */
+.dark-theme .contract-renewal-page .bg-gradient-to-br.from-blue-50.to-blue-100,
+.dark-theme .contract-renewal-page [class*="from-blue-50"],
+.dark-theme .contract-renewal-page [class*="to-blue-100"] {
+  background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.2)) !important;
+}
+
+.dark-theme .contract-renewal-page .text-blue-900,
+.dark-theme .contract-renewal-page [class*="text-blue-900"] {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-renewal-page .text-blue-700,
+.dark-theme .contract-renewal-page [class*="text-blue-700"] {
+  color: #93c5fd !important;
+}
+
+.dark-theme .contract-renewal-page .bg-gradient-to-br.from-green-50.to-green-100,
+.dark-theme .contract-renewal-page [class*="from-green-50"],
+.dark-theme .contract-renewal-page [class*="to-green-100"] {
+  background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2)) !important;
+}
+
+.dark-theme .contract-renewal-page .text-green-900,
+.dark-theme .contract-renewal-page [class*="text-green-900"] {
+  color: #34d399 !important;
+}
+
+.dark-theme .contract-renewal-page .text-green-700,
+.dark-theme .contract-renewal-page [class*="text-green-700"] {
+  color: #6ee7b7 !important;
+}
+
+.dark-theme .contract-renewal-page .bg-gradient-to-br.from-purple-50.to-purple-100,
+.dark-theme .contract-renewal-page [class*="from-purple-50"],
+.dark-theme .contract-renewal-page [class*="to-purple-100"] {
+  background: linear-gradient(to bottom right, rgba(168, 85, 247, 0.2), rgba(147, 51, 234, 0.2)) !important;
+}
+
+.dark-theme .contract-renewal-page .text-purple-900,
+.dark-theme .contract-renewal-page [class*="text-purple-900"] {
+  color: #a78bfa !important;
+}
+
+.dark-theme .contract-renewal-page .text-purple-700,
+.dark-theme .contract-renewal-page [class*="text-purple-700"] {
+  color: #c4b5fd !important;
+}
+
+/* Contract Details Gradient */
+.dark-theme .contract-renewal-page .bg-gradient-to-r.from-slate-50.to-slate-100,
+.dark-theme .contract-renewal-page [class*="from-slate-50"],
+.dark-theme .contract-renewal-page [class*="to-slate-100"] {
+  background: linear-gradient(to right, #374151, #4b5563) !important;
+}
+
+.dark-theme .contract-renewal-page .text-slate-900,
+.dark-theme .contract-renewal-page [class*="text-slate-900"] {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-renewal-page .text-slate-600,
+.dark-theme .contract-renewal-page [class*="text-slate-600"] {
+  color: #9ca3af !important;
+}
+
+/* Additional Information Sections */
+.dark-theme .contract-renewal-page .bg-slate-50,
+.dark-theme .contract-renewal-page [class*="bg-slate-50"],
+.dark-theme .contract-renewal-page div.bg-slate-50,
+.dark-theme .contract-renewal-page .p-4.bg-slate-50,
+.dark-theme .contract-renewal-page .rounded-lg.bg-slate-50 {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+.dark-theme .contract-renewal-page .border-slate-200,
+.dark-theme .contract-renewal-page [class*="border-slate-200"],
+.dark-theme .contract-renewal-page .border.border-slate-200 {
+  border-color: #4b5563 !important;
+}
+
+/* Specific overrides for content boxes with bg-slate-50 */
+.dark-theme .contract-renewal-page .bg-slate-50.p-4.rounded-lg,
+.dark-theme .contract-renewal-page div.bg-slate-50.p-4.rounded-lg.border.border-slate-200 {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+/* Font mono text styling */
+.dark-theme .contract-renewal-page .font-mono {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-renewal-page .font-mono.text-sm {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-renewal-page span.font-mono.text-sm.text-foreground {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-renewal-page .text-foreground {
+  color: #e5e7eb !important;
+}
+
+/* Form Elements */
+.dark-theme .contract-renewal-page .global-form-container {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-box {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-section {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-section-title {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-label {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-label-required {
+  color: #f87171 !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-input,
+.dark-theme .contract-renewal-page .global-form-select,
+.dark-theme .contract-renewal-page .global-form-textarea,
+.dark-theme .contract-renewal-page .global-form-date-input {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-input:focus,
+.dark-theme .contract-renewal-page .global-form-select:focus,
+.dark-theme .contract-renewal-page .global-form-textarea:focus,
+.dark-theme .contract-renewal-page .global-form-date-input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-input:disabled,
+.dark-theme .contract-renewal-page .global-form-select:disabled,
+.dark-theme .contract-renewal-page .global-form-textarea:disabled,
+.dark-theme .contract-renewal-page .global-form-date-input:disabled {
+  background-color: #4b5563 !important;
+  color: #9ca3af !important;
+  opacity: 0.6 !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-helper-text {
+  color: #9ca3af !important;
+}
+
+.dark-theme .contract-renewal-page .global-form-input::placeholder,
+.dark-theme .contract-renewal-page .global-form-textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Form Select Options */
+.dark-theme .contract-renewal-page select option {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+/* Avatar Circles */
+.dark-theme .contract-renewal-page .bg-primary\/10 {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .contract-renewal-page .text-primary {
+  color: #60a5fa !important;
+}
+
+.dark-theme .contract-renewal-page .bg-secondary\/10 {
+  background-color: rgba(107, 114, 128, 0.2) !important;
+}
+
+.dark-theme .contract-renewal-page .text-secondary-foreground {
+  color: #d1d5db !important;
+}
+
+/* Buttons */
+.dark-theme .contract-renewal-page .button--view {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .contract-renewal-page .button--view:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .contract-renewal-page .button--create {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+.dark-theme .contract-renewal-page .button--create:hover:not(:disabled) {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .contract-renewal-page .button--edit {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+}
+
+.dark-theme .contract-renewal-page .button--edit:hover {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+}
+
+.dark-theme .contract-renewal-page .button:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Error Display */
+.dark-theme .contract-renewal-page .bg-destructive\/10 {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.dark-theme .contract-renewal-page .border-destructive\/20 {
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dark-theme .contract-renewal-page .text-destructive {
+  color: #f87171 !important;
+}
+
+/* Muted Background */
+.dark-theme .contract-renewal-page .bg-muted {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+}
+
+/* Text Sizes and Weights */
+.dark-theme .contract-renewal-page .text-2xl.font-bold {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-renewal-page .text-lg.font-semibold {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-renewal-page .text-sm.font-medium {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-renewal-page .font-semibold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+/* Icon Colors */
+.dark-theme .contract-renewal-page svg {
+  color: inherit !important;
+}
+
+.dark-theme .contract-renewal-page .w-4.h-4,
+.dark-theme .contract-renewal-page .w-5.h-5 {
+  color: inherit !important;
+}
+
+/* Override any white/light backgrounds */
+.dark-theme .contract-renewal-page [style*="background-color: white"],
+.dark-theme .contract-renewal-page [style*="background-color:white"],
+.dark-theme .contract-renewal-page [style*="background: white"],
+.dark-theme .contract-renewal-page [style*="background:white"],
+.dark-theme .contract-renewal-page [style*="background-color: #ffffff"],
+.dark-theme .contract-renewal-page [style*="background-color:#ffffff"],
+.dark-theme .contract-renewal-page [style*="background-color: #fff"],
+.dark-theme .contract-renewal-page [style*="background-color:#fff"],
+.dark-theme .contract-renewal-page [style*="background-color: #F8FAFC"],
+.dark-theme .contract-renewal-page [style*="background-color:#F8FAFC"],
+.dark-theme .contract-renewal-page [style*="background-color: #f8fafc"],
+.dark-theme .contract-renewal-page [style*="background-color:#f8fafc"],
+.dark-theme .contract-renewal-page [style*="background-color: #f1f5f9"],
+.dark-theme .contract-renewal-page [style*="background-color:#f1f5f9"],
+.dark-theme .contract-renewal-page [style*="background-color: #e2e8f0"],
+.dark-theme .contract-renewal-page [style*="background-color:#e2e8f0"] {
+  background-color: #374151 !important;
+}
+
+/* Override Tailwind light background classes */
+.dark-theme .contract-renewal-page .bg-white,
+.dark-theme .contract-renewal-page .bg-slate-50,
+.dark-theme .contract-renewal-page .bg-slate-100,
+.dark-theme .contract-renewal-page .bg-gray-50,
+.dark-theme .contract-renewal-page .bg-gray-100,
+.dark-theme .contract-renewal-page [class*="bg-white"],
+.dark-theme .contract-renewal-page [class*="bg-slate-50"],
+.dark-theme .contract-renewal-page [class*="bg-slate-100"],
+.dark-theme .contract-renewal-page [class*="bg-gray-50"],
+.dark-theme .contract-renewal-page [class*="bg-gray-100"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* Force override for all divs with bg-slate-50 in any combination */
+.dark-theme .contract-renewal-page div[class*="bg-slate-50"],
+.dark-theme .contract-renewal-page div.bg-slate-50,
+.dark-theme .contract-renewal-page .bg-slate-50.p-4,
+.dark-theme .contract-renewal-page .bg-slate-50.rounded-lg,
+.dark-theme .contract-renewal-page .bg-slate-50.border,
+.dark-theme .contract-renewal-page .p-4.rounded-lg.bg-slate-50,
+.dark-theme .contract-renewal-page .p-4.rounded-lg.border.bg-slate-50,
+.dark-theme .contract-renewal-page .p-4.rounded-lg.border.border-slate-200.bg-slate-50 {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  background-image: none !important;
+}
+
+/* Override any inline styles that might set bg-slate-50 */
+.dark-theme .contract-renewal-page [style*="background-color: rgb(248, 250, 252)"],
+.dark-theme .contract-renewal-page [style*="background-color:rgb(248, 250, 252)"],
+.dark-theme .contract-renewal-page [style*="background: rgb(248, 250, 252)"],
+.dark-theme .contract-renewal-page [style*="background:rgb(248, 250, 252)"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* Ensure all text elements are visible */
+.dark-theme .contract-renewal-page h1,
+.dark-theme .contract-renewal-page h2,
+.dark-theme .contract-renewal-page h3,
+.dark-theme .contract-renewal-page h4,
+.dark-theme .contract-renewal-page h5,
+.dark-theme .contract-renewal-page h6 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .contract-renewal-page p,
+.dark-theme .contract-renewal-page span {
+  color: #d1d5db !important;
+}
+
+.dark-theme .contract-renewal-page label {
+  color: #d1d5db !important;
+}
+
+/* Catch-all for any remaining white/light backgrounds */
+.dark-theme .contract-renewal-page * {
+  background-image: none !important;
+}
+
+.dark-theme .contract-renewal-page div:not([class*="spinner"]):not([class*="icon"]) {
+  background-color: transparent !important;
+}
+
+.dark-theme .contract-renewal-page div[class*="bg-slate"],
+.dark-theme .contract-renewal-page div[class*="bg-gray"],
+.dark-theme .contract-renewal-page div[class*="bg-white"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* Ensure content boxes are dark */
+.dark-theme .contract-renewal-page .space-y-6 > div > div > div > div.bg-slate-50,
+.dark-theme .contract-renewal-page .CardContent > div > div.bg-slate-50 {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* ============================================
+   CREATE CONTRACT PAGE - DARK THEME
+   Specific dark theme implementation for CreateContract.vue only
+   ============================================ */
+
+/* Page Container - Remove black background */
+.dark-theme .create-contract-page {
+  background-color: #1f2937 !important;
+  background: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .create-contract-page .space-y-6 {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Header Section */
+.dark-theme .create-contract-page h1.text-3xl.font-bold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .create-contract-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Cards - Use lighter dark gray instead of black */
+.dark-theme .create-contract-page [class*="card"],
+.dark-theme .create-contract-page [class*="Card"],
+.dark-theme .create-contract-page .Card,
+.dark-theme .create-contract-page .CardHeader,
+.dark-theme .create-contract-page .CardContent,
+.dark-theme .create-contract-page .CardTitle,
+.dark-theme .create-contract-page .CardDescription {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .create-contract-page .CardTitle {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .create-contract-page .CardDescription {
+  color: #9ca3af !important;
+}
+
+/* Info Banner */
+.dark-theme .create-contract-page .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  background: rgba(59, 130, 246, 0.1) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark-theme .create-contract-page .bg-blue-50 h3 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .create-contract-page .bg-blue-50 p {
+  color: #93c5fd !important;
+}
+
+.dark-theme .create-contract-page .text-blue-600,
+.dark-theme .create-contract-page .text-blue-700,
+.dark-theme .create-contract-page .text-blue-800 {
+  color: #60a5fa !important;
+}
+
+/* Success Message */
+.dark-theme .create-contract-page .bg-green-50 {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.dark-theme .create-contract-page .bg-green-50,
+.dark-theme .create-contract-page .text-green-800 {
+  color: #34d399 !important;
+}
+
+/* Error Messages */
+.dark-theme .create-contract-page .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.dark-theme .create-contract-page .bg-red-50,
+.dark-theme .create-contract-page .text-red-800 {
+  color: #f87171 !important;
+}
+
+/* Tabs */
+.dark-theme .create-contract-page .TabsList {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .create-contract-page .TabsTrigger {
+  background-color: transparent !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .create-contract-page .TabsTrigger[data-state="active"] {
+  background-color: #4b5563 !important;
+  color: #f3f4f6 !important;
+}
+
+/* Form Inputs */
+.dark-theme .create-contract-page input[type="text"],
+.dark-theme .create-contract-page input[type="number"],
+.dark-theme .create-contract-page input[type="date"],
+.dark-theme .create-contract-page .Input,
+.dark-theme .create-contract-page .global-form-input,
+.dark-theme .create-contract-page .global-form-date-input {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .create-contract-page input[type="text"]:focus,
+.dark-theme .create-contract-page input[type="number"]:focus,
+.dark-theme .create-contract-page input[type="date"]:focus,
+.dark-theme .create-contract-page .Input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .create-contract-page input[type="text"]::placeholder,
+.dark-theme .create-contract-page input[type="number"]::placeholder,
+.dark-theme .create-contract-page .Input::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Textareas */
+.dark-theme .create-contract-page textarea,
+.dark-theme .create-contract-page .Textarea,
+.dark-theme .create-contract-page .global-form-textarea {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .create-contract-page textarea:focus,
+.dark-theme .create-contract-page .Textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Selects */
+.dark-theme .create-contract-page .SelectTrigger {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .create-contract-page .SelectContent {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .create-contract-page .SelectItem {
+  color: #e5e7eb !important;
+}
+
+.dark-theme .create-contract-page .SelectItem:hover,
+.dark-theme .create-contract-page .SelectItem[data-highlighted] {
+  background-color: #4b5563 !important;
+  color: #f3f4f6 !important;
+}
+
+/* Labels */
+.dark-theme .create-contract-page .Label {
+  color: #d1d5db !important;
+}
+
+/* Buttons */
+.dark-theme .create-contract-page .button--save,
+.dark-theme .create-contract-page .button--submit,
+.dark-theme .create-contract-page .button--add,
+.dark-theme .create-contract-page .button--create {
+  background-color: #3b82f6 !important;
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+.dark-theme .create-contract-page .button--save:hover,
+.dark-theme .create-contract-page .button--submit:hover,
+.dark-theme .create-contract-page .button--add:hover,
+.dark-theme .create-contract-page .button--create:hover {
+  background-color: #2563eb !important;
+  background: #2563eb !important;
+}
+
+.dark-theme .create-contract-page .Button[variant="outline"],
+.dark-theme .create-contract-page .Button[variant="ghost"] {
+  background-color: transparent !important;
+  background: transparent !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .create-contract-page .Button[variant="outline"]:hover,
+.dark-theme .create-contract-page .Button[variant="ghost"]:hover {
+  background-color: #4b5563 !important;
+  color: #f3f4f6 !important;
+}
+
+/* Badges */
+.dark-theme .create-contract-page .Badge {
+  background-color: #4b5563 !important;
+  background: #4b5563 !important;
+  color: #e5e7eb !important;
+  border-color: #6b7280 !important;
+}
+
+/* OCR Upload Section */
+.dark-theme .create-contract-page .border-dashed {
+  border-color: #4b5563 !important;
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+.dark-theme .create-contract-page .border-dashed:hover {
+  border-color: #3b82f6 !important;
+  background-color: rgba(59, 130, 246, 0.05) !important;
+}
+
+/* Progress Bar */
+.dark-theme .create-contract-page .Progress {
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .create-contract-page .Progress [role="progressbar"] {
+  background-color: #3b82f6 !important;
+}
+
+/* Checkbox */
+.dark-theme .create-contract-page .Checkbox {
+  border-color: #4b5563 !important;
+  background-color: #374151 !important;
+}
+
+.dark-theme .create-contract-page .Checkbox[data-state="checked"] {
+  background-color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Debug Info Boxes */
+.dark-theme .create-contract-page .bg-gray-100,
+.dark-theme .create-contract-page .bg-gray-50 {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  color: #9ca3af !important;
+}
+
+.dark-theme .create-contract-page .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+/* Template Section */
+.dark-theme .create-contract-page .bg-muted\/40 {
+  background-color: rgba(75, 85, 99, 0.4) !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .create-contract-page .bg-muted\/60 {
+  background-color: rgba(75, 85, 99, 0.6) !important;
+}
+
+.dark-theme .create-contract-page .bg-blue-50.border-blue-200 {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark-theme .create-contract-page .bg-blue-50.border-blue-200 .text-blue-900 {
+  color: #60a5fa !important;
+}
+
+.dark-theme .create-contract-page .bg-blue-50.border-blue-200 .text-blue-700 {
+  color: #93c5fd !important;
+}
+
+.dark-theme .create-contract-page .bg-blue-50.border-blue-300 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Modal */
+.dark-theme .create-contract-page .bg-white {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .create-contract-page .bg-gray-50 {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* Override any black backgrounds */
+.dark-theme .create-contract-page * {
+  background-image: none !important;
+}
+
+.dark-theme .create-contract-page div:not([class*="spinner"]):not([class*="icon"]) {
+  background-color: transparent !important;
+}
+
+.dark-theme .create-contract-page div[class*="bg-black"],
+.dark-theme .create-contract-page div[class*="bg-gray-900"],
+.dark-theme .create-contract-page div[class*="bg-slate-900"] {
+  background-color: #374151 !important;
+  background: #374151 !important;
+}
+
+/* Readonly input */
+.dark-theme .create-contract-page .bg-gray-50 {
+  background-color: #4b5563 !important;
+  background: #4b5563 !important;
+  color: #9ca3af !important;
+}
+
+/* General text colors */
+.dark-theme .create-contract-page h1,
+.dark-theme .create-contract-page h2,
+.dark-theme .create-contract-page h3,
+.dark-theme .create-contract-page h4,
+.dark-theme .create-contract-page h5,
+.dark-theme .create-contract-page h6 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .create-contract-page p,
+.dark-theme .create-contract-page span {
+  color: #d1d5db !important;
+}
+
+.dark-theme .create-contract-page label {
+  color: #d1d5db !important;
+}
+
+/* ============================================
+   VENDOR CONTRACTS PAGE - DARK THEME
+   Specific dark theme implementation for VendorContracts.vue only
+   ============================================ */
+
+/* Page Container */
+.dark-theme .vendor-contracts-page {
+  background-color: #1f2937 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page .space-y-6 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Header Section */
+.dark-theme .vendor-contracts-page h1.text-3xl.font-bold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .vendor-contracts-page .text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .vendor-contracts-page .button--add {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+.dark-theme .vendor-contracts-page .button--add:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .vendor-contracts-page .button--back {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page .button--back:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme .vendor-contracts-page .button--view {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+.dark-theme .vendor-contracts-page .button--view:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+/* Loading State */
+.dark-theme .vendor-contracts-page .flex.flex-col.items-center.justify-center.py-20 {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page .animate-spin.rounded-full {
+  border-color: rgba(59, 130, 246, 0.2) !important;
+  border-top-color: #3b82f6 !important;
+}
+
+.dark-theme .vendor-contracts-page h3.text-xl.font-semibold.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .vendor-contracts-page .text-primary {
+  color: #60a5fa !important;
+}
+
+/* Error State */
+.dark-theme .vendor-contracts-page .bg-red-50,
+.dark-theme .vendor-contracts-page .dark\:bg-red-900\/20 {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.dark-theme .vendor-contracts-page .text-red-500 {
+  color: #f87171 !important;
+}
+
+/* KPI Cards Grid */
+.dark-theme .vendor-contracts-page .kpi-cards-grid {
+  background-color: transparent !important;
+}
+
+/* KPI Cards */
+.dark-theme .vendor-contracts-page .kpi-card {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-content {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-icon-wrapper {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-icon-blue {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-icon-blue svg {
+  color: #60a5fa !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-icon-green {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-icon-green svg {
+  color: #34d399 !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-icon-purple {
+  background-color: rgba(168, 85, 247, 0.2) !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-icon-purple svg {
+  color: #a78bfa !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-icon-orange {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-icon-orange svg {
+  color: #fb923c !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-title {
+  color: #9ca3af !important;
+}
+
+.dark-theme .vendor-contracts-page .kpi-card-value {
+  color: #f3f4f6 !important;
+}
+
+/* Cards */
+.dark-theme .vendor-contracts-page [class*="Card"],
+.dark-theme .vendor-contracts-page .Card,
+.dark-theme .vendor-contracts-page .CardHeader,
+.dark-theme .vendor-contracts-page .CardContent,
+.dark-theme .vendor-contracts-page .CardTitle,
+.dark-theme .vendor-contracts-page .CardDescription {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page .CardTitle {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .vendor-contracts-page .CardDescription {
+  color: #9ca3af !important;
+}
+
+/* Vendor Information Card */
+.dark-theme .vendor-contracts-page .bg-primary\/10 {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .vendor-contracts-page .text-primary {
+  color: #60a5fa !important;
+}
+
+/* Tables */
+.dark-theme .vendor-contracts-page [class*="Table"],
+.dark-theme .vendor-contracts-page .Table {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page [class*="TableHeader"],
+.dark-theme .vendor-contracts-page .TableHeader {
+  background-color: transparent !important;
+}
+
+.dark-theme .vendor-contracts-page [class*="TableHead"],
+.dark-theme .vendor-contracts-page .TableHead {
+  background-color: transparent !important;
+  color: #d1d5db !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+.dark-theme .vendor-contracts-page [class*="TableRow"],
+.dark-theme .vendor-contracts-page .TableRow {
+  background-color: transparent !important;
+  border-bottom-color: #374151 !important;
+}
+
+.dark-theme .vendor-contracts-page [class*="TableRow"]:hover,
+.dark-theme .vendor-contracts-page .TableRow:hover {
+  background-color: #4b5563 !important;
+}
+
+.dark-theme .vendor-contracts-page [class*="TableCell"],
+.dark-theme .vendor-contracts-page .TableCell {
+  background-color: transparent !important;
+  color: #e5e7eb !important;
+}
+
+/* Badges */
+.dark-theme .vendor-contracts-page [class*="Badge"],
+.dark-theme .vendor-contracts-page .Badge {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page [class*="Badge"][class*="variant-outline"] {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page .badge-approved {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark-theme .vendor-contracts-page .badge-draft {
+  background-color: #374151 !important;
+  color: #9ca3af !important;
+  border-color: #4b5563 !important;
+}
+
+.dark-theme .vendor-contracts-page .badge-in-review {
+  background-color: rgba(249, 115, 22, 0.2) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+/* Search Input */
+.dark-theme .vendor-contracts-page .search-container {
+  background-color: transparent !important;
+}
+
+.dark-theme .vendor-contracts-page .search-input-wrapper {
+  background-color: transparent !important;
+}
+
+.dark-theme .vendor-contracts-page .search-input {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page .search-input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark-theme .vendor-contracts-page .search-input::placeholder {
+  color: #6b7280 !important;
+}
+
+.dark-theme .vendor-contracts-page .search-icon {
+  color: #9ca3af !important;
+}
+
+/* Dropdown */
+.dark-theme .vendor-contracts-page [class*="dropdown"],
+.dark-theme .vendor-contracts-page [class*="Dropdown"] {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+/* Contact Information Icons */
+.dark-theme .vendor-contracts-page .w-4.h-4.text-muted-foreground,
+.dark-theme .vendor-contracts-page .w-3.h-3.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Text Colors */
+.dark-theme .vendor-contracts-page .font-medium.text-foreground {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .vendor-contracts-page .text-sm.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+.dark-theme .vendor-contracts-page .text-2xl.font-bold.text-primary {
+  color: #60a5fa !important;
+}
+
+.dark-theme .vendor-contracts-page .text-lg.text-muted-foreground {
+  color: #9ca3af !important;
+}
+
+/* Buttons */
+.dark-theme .vendor-contracts-page [class*="Button"],
+.dark-theme .vendor-contracts-page .Button {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+.dark-theme .vendor-contracts-page [class*="Button"]:hover,
+.dark-theme .vendor-contracts-page .Button:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.dark-theme .vendor-contracts-page [class*="Button"][class*="variant-outline"] {
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+  color: #e5e7eb !important;
+}
+
+.dark-theme .vendor-contracts-page [class*="Button"][class*="variant-outline"]:hover {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #ffffff !important;
+}
+
+/* Override any white/light backgrounds */
+.dark-theme .vendor-contracts-page [style*="background-color: white"],
+.dark-theme .vendor-contracts-page [style*="background-color:white"],
+.dark-theme .vendor-contracts-page [style*="background: white"],
+.dark-theme .vendor-contracts-page [style*="background:white"],
+.dark-theme .vendor-contracts-page [style*="background-color: #ffffff"],
+.dark-theme .vendor-contracts-page [style*="background-color:#ffffff"],
+.dark-theme .vendor-contracts-page [style*="background-color: #fff"],
+.dark-theme .vendor-contracts-page [style*="background-color:#fff"],
+.dark-theme .vendor-contracts-page [style*="background-color: #F8FAFC"],
+.dark-theme .vendor-contracts-page [style*="background-color:#F8FAFC"],
+.dark-theme .vendor-contracts-page [style*="background-color: #f8fafc"],
+.dark-theme .vendor-contracts-page [style*="background-color:#f8fafc"],
+.dark-theme .vendor-contracts-page [style*="background-color: #f1f5f9"],
+.dark-theme .vendor-contracts-page [style*="background-color:#f1f5f9"],
+.dark-theme .vendor-contracts-page [style*="background-color: #e2e8f0"],
+.dark-theme .vendor-contracts-page [style*="background-color:#e2e8f0"] {
+  background-color: #374151 !important;
+}
+
+/* Override Tailwind light background classes */
+.dark-theme .vendor-contracts-page .bg-white,
+.dark-theme .vendor-contracts-page .bg-slate-50,
+.dark-theme .vendor-contracts-page .bg-slate-100,
+.dark-theme .vendor-contracts-page .bg-gray-50,
+.dark-theme .vendor-contracts-page .bg-gray-100,
+.dark-theme .vendor-contracts-page [class*="bg-white"],
+.dark-theme .vendor-contracts-page [class*="bg-slate-50"],
+.dark-theme .vendor-contracts-page [class*="bg-slate-100"],
+.dark-theme .vendor-contracts-page [class*="bg-gray-50"],
+.dark-theme .vendor-contracts-page [class*="bg-gray-100"] {
+  background-color: #374151 !important;
+}
+
+/* Ensure all text elements are visible */
+.dark-theme .vendor-contracts-page h1,
+.dark-theme .vendor-contracts-page h2,
+.dark-theme .vendor-contracts-page h3,
+.dark-theme .vendor-contracts-page h4,
+.dark-theme .vendor-contracts-page h5,
+.dark-theme .vendor-contracts-page h6 {
+  color: #f3f4f6 !important;
+}
+
+.dark-theme .vendor-contracts-page p,
+.dark-theme .vendor-contracts-page span {
+  color: #d1d5db !important;
+}
+
+.dark-theme .vendor-contracts-page label {
+  color: #d1d5db !important;
+}
+
